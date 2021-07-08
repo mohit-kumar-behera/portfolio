@@ -15,6 +15,13 @@
 	--font-fancy: 'Montserrat', sans-serif;
 
 	--secondary-color: #fa1e0e;
+
+	--color-whatsapp: #25D366;
+	--color-facebook: #4267B2;
+	--color-linkedin: #2867B2;
+	--color-instagram: #F77737;
+	--color-twitter: #1DA1F2;
+	--color-github: #333;
 }
 
 ::selection {

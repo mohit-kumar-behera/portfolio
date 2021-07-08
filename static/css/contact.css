@@ -235,22 +235,22 @@
 	transition-delay: 0.1s
 }
 .social-link--div[data-social-handle='whatsapp'] .overlay--div {
-	background: #25D366;
+	background: var(--color-whatsapp);
 }
 .social-link--div[data-social-handle='linkedin'] .overlay--div {
-	background: #2867B2;;
+	background: var(--color-linkedin);
 }
 .social-link--div[data-social-handle='facebook'] .overlay--div {
-	background: #4267B2;
+	background: var(--color-facebook);
 }
 .social-link--div[data-social-handle='twitter'] .overlay--div {
-	background: #1DA1F2;
+	background: var(--color-twitter);
 }
 .social-link--div[data-social-handle='instagram'] .overlay--div {
-	background: #F77737;
+	background: var(--color-instagram);
 }
 .social-link--div[data-social-handle='github'] .overlay--div {
-	background: #333;
+	background: var(--color-github);
 }
 .social-link--logo {
 	position: absolute;
