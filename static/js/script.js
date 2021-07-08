@@ -1,6 +1,5 @@
 'use strict';
 
-
 const navbar = document.querySelector('.navbar')
 const navbarTogglerBtn = document.querySelector('.navbar-toggler');
 
@@ -22,7 +21,16 @@ const lazyImgElem = Array.from(document.querySelectorAll('.lazy-img'));
 /* home page */
 const contentContainer = document.querySelector('.content-container');
 const usernameSpan = document.querySelector('.username');
-/* end home page */
+/* end of home page */
+
+
+/* contact page */
+const contactForm = document.getElementById('contact-form');
+const userInputFields = document.querySelectorAll('.user-input');
+const sendMssgBtn = document.querySelector('.send-message--btn');
+/* end of contact page */
+
+
 
 // Check which page is currently active and set currPage as the current active page
 let currPage = '';
@@ -188,35 +196,91 @@ const checkActiveTheme = function() {
 };
 checkActiveTheme();
 
+
 /*-------------- Required only in home page -------------------- */
 
-const typewriter = function(val, elem, speed) {
-	/* Creates a typewriter Effect */
-	if (typeof val === 'string') {
-		const valArr = [...val];
-		let i = 0;
+const activateHomePageScript = function() {
+	const typewriter = function(val, elem, speed) {
+		/* Creates a typewriter Effect */
+		if (typeof val === 'string') {
+			const valArr = [...val];
+			let i = 0;
 
-		const tick = function() {
-			if (i < valArr.length)	elem.textContent += valArr[i++];
-			else clearInterval(tick);
-		};
-		setInterval(tick, speed);
+			const tick = function() {
+				if (i < valArr.length)	elem.textContent += valArr[i++];
+				else clearInterval(tick);
+			};
+			setInterval(tick, speed);
 
-	} else {
-		elem.innerHTML = `<span style='font-size: 0.7rem; background: red; color: white'>Error: Wrong input</span>`;
+		} else {
+			elem.innerHTML = `<span style='font-size: 0.7rem; background: red; color: white'>Error: Wrong input</span>`;
+		}
+	};
+
+
+	const setUsername = function() {
+		const username = "MOHIT KUMAR".toUpperCase();
+		const writerSpeed = 95; // in millisecond
+		const screenWidth = document.documentElement.clientWidth || window.screen.width;
+
+		if (screenWidth > 992) typewriter(username, usernameSpan, writerSpeed);
+		else usernameSpan.textContent = username;
+	};
+
+	setUsername();
+};
+
+/*--------------- End of home page ----------------------*/
+
+
+
+/*------------------ Required only in Contact page ----------------------------*/
+
+const activateContactPageScript = function() {
+
+	// Email Validation
+	const validateEmail = (regex, val) => regex.test(val);
+
+
+	const validateInputFields = function() {
+		const inputFields = [...userInputFields];
+		const emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+		let valid = false;
+
+		const inRangeFieldsCount = inputFields
+						.filter(field => field.value.length >= field.dataset.minlength && field.value.length <= field.dataset.maxlength)
+						.reduce((count, elem) => count + 1, 0);
+
+		valid = (inRangeFieldsCount === inputFields.length) ? true : false;
+
+		const emailField = inputFields.find(field => field.type === 'email');
+		
+		return emailField && valid && validateEmail(emailRegex, emailField.value);
 	}
+
+	sendMssgBtn?.addEventListener('click', function() {
+		this.blur();
+		this.innerHTML = '<span>SEND MESSAGE</span><div class="spinner-border spinner-border-sm text-light ml-1"></div>';
+		const isValid = validateInputFields();
+
+		const {left, top} = contactForm.parentElement.getBoundingClientRect();
+
+		contactForm.parentElement.scrollIntoView({behavior: 'smooth'}) || window.scrollTo({
+			left: left + window.pageXOffset,
+			top: top + window.pageYOffset,
+			behavior: 'smooth'
+		})
+
+		setTimeout(function(){
+			isValid ?  contactForm.submit() : document.querySelectorAll('.help-text').forEach(elem => elem.style.display = 'block');
+			this.innerHTML = '<span>SEND MESSAGE</span>';
+		}.bind(this), 400);
+	})
+
+
 };
 
-const setUsername = function() {
-	const username = "MOHIT KUMAR".toUpperCase();
-	const writerSpeed = 95; // in millisecond
-	const screenWidth = document.documentElement.clientWidth || window.screen.width;
-
-	if (screenWidth > 992) typewriter(username, usernameSpan, writerSpeed);
-	else usernameSpan.textContent = username;
-};
-
-/* -------------- End home paage --------------------- */
+/*------------------ End of Contact page ----------------------------*/
 
 
 const startIntersectionObserver = function() {
@@ -307,15 +371,20 @@ window.addEventListener('load', function() {
 		const isMobile = detectMobile();
 		addMobileDevice(isMobile);
 
-		(currPage === 'home') && setUsername();
+		switch (currPage) {
+			case 'home':
+				activateHomePageScript();
+				break;
+			case 'contact':
+				activateContactPageScript();
+				break;
+		}
+
+		// (currPage === 'home') && activateHomePageScript();
+
+		// (currPage === 'contact') && activateContactPageScript();
+
 		startIntersectionObserver();
 	}, 400);
 });
 
-
-/*
-gloabal variable
-isLoad = false
-on window load set is to true
-
-*/
