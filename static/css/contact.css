@@ -1,46 +1,4 @@
 
-.normal-container {
-	width: 100%;
-	margin: 0;
-	padding: 0;
-}
-.page-header,
-.page-content-header {
-	padding: 1rem 0;
-	text-align: center;
-	margin-bottom: 1.5rem;
-	cursor: context-menu;
-}
-.page-header .secondary--type {
-	position: relative;
-	z-index: 0;
-}
-.page-header .secondary--type:after {
-	content: '';
-	position: absolute;
-	bottom: -3px;
-	left: 0;
-	width: 55%;
-	height: 5px;
-	background: var(--secondary-color);
-	border-radius: 100px;
-	z-index: -1;
-	transition: all 0.2s ease-out;
-}
-.page-header:not(.mobile-device) .highlight-heading span:hover .secondary--type:after {
-	width: 100%;
-}
-.page-header.mobile-device .secondary--type:after {
-	width: 80%;
-}
-
-
-.page-content {
-	width: 100%;
-	padding: 2rem 1.3rem;
-	overflow: hidden;
-	margin-bottom: 1rem;
-}
 .content--left,
 .content--right {
 	padding: 1rem 0.5rem;
