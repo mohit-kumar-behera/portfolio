@@ -78,20 +78,28 @@
 .timeline--content {
 	font-family: var(--font-primary);
 }
-.timeline--content div:not(:last-child) {
-	margin-bottom: 0.7rem;
+.timeline--content div:not(:last-child),
+.card-right p:not(:last-child) {
+	margin-bottom: 0.6rem;
 }
-.timeline--duration {
-	position: relative;
-	display: inline-block;
+.timeline--didWhat,
+.experience--position {
+	font-weight: 800;
+}
+.timeline--duration,
+.experience--duration {
 	padding: 0.1rem 0.5rem;
 	border-radius: 3px;
 	font-family: var(--font-fancy);
 	font-size: 0.8rem;
 	font-weight: 600;
+}
+.pill-badge {
+	display: inline-block;
+	position: relative;
 	background: var(--dark-shade6);
 }
-.timeline--duration:before {
+.pill-badge:before {
 	content: '';
 	position: absolute;
 	top: 50%;
@@ -102,6 +110,28 @@
   	border-style: solid;
   	border-color: transparent  var(--dark-shade6) transparent transparent;
 }
-.timeline--didWhat {
-	font-weight: 800;
+
+.experience-card {
+	display: flex;
+	border: 1px solid white;
+	padding: 0.8rem;
+	border-radius: 3px;
+	font-family: var(--font-fancy);
+}
+.experience-card .card-left {
+	width: 30%;
+}
+.experience-card .card-right {
+	width: 70%;
+	padding: 0.25rem;
+}
+.experience-card .card-left > img {
+	position: relative;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 55px;
+	height: 55px;
+	border-radius: 50%;
+	object-fit: cover;
 }
