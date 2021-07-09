@@ -1,0 +1,145 @@
+
+{% extends 'home/common/base.html' %}
+
+{% load static %}
+
+{% block title %}
+	<title>Contact Me - Mohit Kumar</title>
+{% endblock title %}
+
+
+{% block stylesheet %}
+	<link rel="stylesheet" type="text/css" href="{% static 'css/about.css' %}?{% now 'U' %}">
+{% endblock stylesheet %}
+
+
+{% block content %}
+
+	<section class="normal-container">
+
+		<div class="page-header check-mobile">
+			<h1 class="highlight-heading"><span>About <span class="text secondary--type">Me</span></span></h1>
+		</div>
+
+		<div class="page-content about-me">
+			<div class="responsive-wrapper">
+				<div class="about-me--div">
+					<h4>Personal Infos</h4>
+					<div class="row mb-4">
+						<div class="col-lg-6 col-md-6 col-sm-12">
+							<div class="entity">
+								<p class="key">First Name</p>
+								<p class="value">Mohit</p>
+							</div>
+							<div class="entity">
+								<p class="key">Last Name</p>
+								<p class="value">Kumar</p>
+							</div>
+							<div class="entity">
+								<p class="key">DOB</p>
+								<p class="value">Oct 08, 2000</p>
+							</div>
+							<div class="entity">
+								<p class="key">Age</p>
+								<p class="value">21 Years</p>
+							</div>
+							<div class="entity">
+								<p class="key">Nationality</p>
+								<p class="value">Indian</p>
+							</div>
+						</div>
+
+						<div class="col-lg-6 col-md-6 col-sm-12">
+							<div class="entity">
+								<p class="key">Address</p>
+								<p class="value"><a href="https://goo.gl/maps/rfEktawiTEQePXsi6" class="link" target="_blank">Paradeep, Odisha</a></p>
+							</div>
+							<div class="entity">
+								<p class="key">Phone</p>
+								<p class="value"><a href="tel:98610 13399" class="link">+91 98610 13399</a></p>
+							</div>
+							<div class="entity">
+								<p class="key">Email</p>
+								<p class="value"><a href="mailto:mahitkumar166@gmail.com" class="link">mahitkumar166@gmail.com</a></p>
+							</div>
+							<div class="entity">
+								<p class="key">Languages</p>
+								<p class="value">English, Hindi, Odia</p>
+							</div>
+						</div>
+					</div>
+					<button class="bttn secondary--type download-cv--btn">Download cv</button>
+				</div>		
+			</div>
+		</div>
+
+		<div class="page-content about-education">
+			<div class="page-content-header">
+				<h3 class="sub-heading"><span>My</span> <span class="text secondary--type">Education</span></h3>				
+			</div>
+
+			<div class="responsive-wrapper">
+				<div class="row">
+					<div class="col-lg-6 col-md-6 col-sm-12">
+						<div class="timeline">
+							<div class="timeline--div">
+								<div class="timeline--logo"><span class="fa fa-book"></span></div>
+								<div class="timeline--content">
+									<div class="timeline--duration">2006 - 2017</div>
+									<div class="timeline--didWhat">Elementary School</div>
+									<div class="timeline--fromWhere">Bethany Convent School, Odisha</div>
+								</div>
+							</div>
+							<div class="timeline--div">
+								<div class="timeline--logo"><span class="fa fa-book"></span></div>
+								<div class="timeline--content">
+									<div class="timeline--duration">2017 - 2019</div>
+									<div class="timeline--didWhat">High School</div>
+									<div class="timeline--fromWhere">Mother's Public School, Odisha</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-lg-6 col-md-6 col-sm-12">
+						<div class="timeline">
+							<div class="timeline--div">
+								<div class="timeline--logo"><span class="fa fa-graduation-cap"></span></div>
+								<div class="timeline--content">
+									<div class="timeline--duration">2019 - 2023</div>
+									<div class="timeline--didWhat">Graduation</div>
+									<div class="timeline--fromWhere">IIIT BBSR, Odisha</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+		<div class="page-content about-skills">
+			<div class="page-content-header">
+				<h3 class="sub-heading"><span>My</span> <span class="text secondary--type">Skills</span></h3>				
+			</div>
+		</div>
+
+
+		<div class="page-content about-experience">
+			<div class="page-content-header">
+				<h3 class="sub-heading"><span>My</span> <span class="text secondary--type">Experience</span></h3>				
+			</div>
+		</div>
+
+
+		<div class="page-content about-awards">
+			<div class="page-content-header">
+				<h3 class="sub-heading"><span>My</span> <span class="text secondary--type">Awards</span></h3>				
+			</div>
+		</div>
+
+		{% include 'home/common/footer.html' %}
+		
+	</section>
+
+{% endblock content %}

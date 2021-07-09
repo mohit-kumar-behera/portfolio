@@ -215,9 +215,13 @@ p {
 	outline: none;
 }
 .bttn.secondary--type {
+	border-radius: 100px;
 	background: var(--secondary-color);
 	color: var(--light-shade1);
 	position: relative;
+	text-transform: uppercase;
+	font-weight: 500;
+	font-size: 0.9rem;
 	z-index: 0;
 }
 .bttn.secondary--type::after {
@@ -544,6 +548,34 @@ section.normal-container .page-content {
 	padding: 2rem 1.3rem;
 	overflow: hidden;
 	margin-bottom: 1rem;
+}
+section.normal-container .responsive-wrapper {
+	margin: auto;
+}
+@media screen and (min-width: 1400px) {
+	section.normal-container .responsive-wrapper {
+		width: 50%;
+	}
+}
+@media screen and (min-width: 1200px) and (max-width: 1400px) {
+	section.normal-container .responsive-wrapper {
+		width: 55%;
+	}
+}
+@media screen and (min-width: 768px) and (max-width: 1200px) {
+	section.normal-container .responsive-wrapper {
+		width: 60%;
+	}
+}
+@media screen and (min-width: 576px) and (max-width: 768px) {
+	section.normal-container .responsive-wrapper {
+		width: 80%;
+	}
+}
+@media screen and (max-width: 576px) {
+	section.normal-container .responsive-wrapper {
+		width: 100%;
+	}
 }
 
 /*-------------------- END OF OTHER PAGES COMMON STYLE -------------------------------*/
