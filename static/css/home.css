@@ -112,8 +112,6 @@
 	border-radius: 320px 30px 320px 30px;
 	border-left: 6px solid #fa1e0e10;
 	border-right: 6px solid #913EE810;
-	filter: alpha(opacity=50);
-	opacity: 1;
 	transition: all 0.3s ease-out;
 }
 .content:not(:first-child) {

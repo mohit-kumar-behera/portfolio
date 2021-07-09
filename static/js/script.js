@@ -12,11 +12,6 @@ const closeModelBtn = document.querySelector('.close-model--btn');
 const themePicker = document.querySelector('.theme-picker');
 const themePickerModelBtn = document.querySelector('.theme-picker--btn');
 
-const lazyOpacityElem = Array.from(document.querySelectorAll('.lazy-opacity'));
-const lazyTransitionLeftElem = Array.from(document.querySelectorAll('.lazy-transition--left'));
-const lazyTransitionBottomElem = Array.from(document.querySelectorAll('.lazy-transition--bottom'));
-const lazyImgElem = Array.from(document.querySelectorAll('.lazy-img'));
-
 
 /* home page */
 const contentContainer = document.querySelector('.content-container');
@@ -28,7 +23,58 @@ const usernameSpan = document.querySelector('.username');
 const contactForm = document.getElementById('contact-form');
 const userInputFields = document.querySelectorAll('.user-input');
 const sendMssgBtn = document.querySelector('.send-message--btn');
+const socialAccountContainer = document.querySelector('.social-link--wrapper');
 /* end of contact page */
+
+
+const user = {
+	firstName: 'Mohit',
+	lastName: 'Kumar',
+	
+	socialAccounts: [
+		{
+			name: 'linkedin',
+			logo: 'fa-linkedin',
+			img: '/static/media/image/linkedin-high.jpg',
+			url: 'https://www.linkedin.com/',
+		},
+		{
+			name: 'whatsapp',
+			logo: 'fa-whatsapp',
+			img: '/static/media/image/whatsapp-high.jpg',
+			url: 'https://wa.me/919861013399',			
+		},
+		{
+			name: 'github',
+			logo: 'fa-github',
+			img: '/static/media/image/github-high.jpg',
+			url: 'https://www.github.com/',
+		},
+		{
+			name: 'facebook',
+			logo: 'fa-facebook-square',
+			img: '/static/media/image/facebook-high.jpg',
+			url: 'https://www.facebook.com/',
+		},
+		{
+			name: 'twitter',
+			logo: 'fa-twitter',
+			img: '/static/media/image/twitter--low.jpg',
+			url: 'https://www.twitter.com/',
+		},
+		{
+			name: 'instagram',
+			logo: 'fa-instagram',
+			img: '/static/media/image/instagram-high.jpg',
+			url: 'https://www.instagram.com/',
+		}
+
+	],	
+
+	getFullName() {
+		return `${this.firstName} ${this.lastName}`;
+	}
+}
 
 
 
@@ -117,7 +163,7 @@ themePickerModelBtn.addEventListener('click', function(e) {
 			<div class="pallete">
 				<button class="bttn color--btn" data-color="#f97194" onclick="handleThemeModelBtn(this)" style="background: #f97194"></button>
 				<button class="bttn color--btn" data-color="#ffae00" onclick="handleThemeModelBtn(this)" style="background: #ffae00"></button>
-				<button class="bttn color--btn" data-color="#73A528" onclick="handleThemeModelBtn(this)" style="background: #73A528"></button>
+				<button class="bttn color--btn" data-color="#73a528" onclick="handleThemeModelBtn(this)" style="background: #73A528"></button>
 				<button class="bttn color--btn" data-color="#a0522d" onclick="handleThemeModelBtn(this)" style="background: #A0522D"></button>
 				<button class="bttn color--btn" data-color="#01937c" onclick="handleThemeModelBtn(this)" style="background: #01937C"></button>
 			</div>
@@ -218,8 +264,8 @@ const activateHomePageScript = function() {
 	};
 
 
-	const setUsername = function() {
-		const username = "MOHIT KUMAR".toUpperCase();
+	const setUsername = function(fullName) {
+		const username = fullName.toUpperCase();
 		const writerSpeed = 95; // in millisecond
 		const screenWidth = document.documentElement.clientWidth || window.screen.width;
 
@@ -227,7 +273,7 @@ const activateHomePageScript = function() {
 		else usernameSpan.textContent = username;
 	};
 
-	setUsername();
+	setUsername(user.getFullName());
 };
 
 /*--------------- End of home page ----------------------*/
@@ -241,12 +287,12 @@ const activateContactPageScript = function() {
 	// Email Validation
 	const validateEmail = (regex, val) => regex.test(val);
 
-
 	const validateInputFields = function() {
 		const inputFields = [...userInputFields];
 		const emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 		let valid = false;
 
+		// It counts the number of fields that are in valid range mentioned respectively
 		const inRangeFieldsCount = inputFields
 						.filter(field => field.value.length >= field.dataset.minlength && field.value.length <= field.dataset.maxlength)
 						.reduce((count, elem) => count + 1, 0);
@@ -256,7 +302,7 @@ const activateContactPageScript = function() {
 		const emailField = inputFields.find(field => field.type === 'email');
 		
 		return emailField && valid && validateEmail(emailRegex, emailField.value);
-	}
+	};
 
 	sendMssgBtn?.addEventListener('click', function() {
 		this.blur();
@@ -275,15 +321,61 @@ const activateContactPageScript = function() {
 			isValid ?  contactForm.submit() : document.querySelectorAll('.help-text').forEach(elem => elem.style.display = 'block');
 			this.innerHTML = '<span>SEND MESSAGE</span>';
 		}.bind(this), 400);
-	})
+	});
 
+	const buildAccountCard = acc => `
+			<div class="social-link--div lazy-transition--bottom" data-social-handle="${acc.name}">
+				<div class="social-link" tabindex="0">
+					<a href="${acc.url}" class="link" target="_blank">
+						<div class="social-link--img">
+							<img src="${acc.img}" class="img-fluid"/>
+						</div>
+					</a>
+
+					<div class="overlay--div"></div>
+
+					<div class="social-link--logo">
+						<span class="fa ${acc.logo} icon"></span>
+					</div>
+				</div>
+			</div>
+		`;
+
+	const renderSocialAccounts = function(socialAccounts) {
+		socialAccountContainer.innerHTML = '';
+
+		socialAccounts.forEach(acc => {
+			socialAccountContainer.insertAdjacentHTML('beforeend', buildAccountCard(acc));
+		});
+
+	};
+	renderSocialAccounts(user.socialAccounts);
 
 };
 
 /*------------------ End of Contact page ----------------------------*/
 
+const loadImg = function(imgElem, imgPath) {
+	return new Promise((resolve, reject) => {
+		imgElem.src = imgPath;
+
+		imgElem.addEventListener('load', function() {
+			resolve(imgElem);
+		});
+
+		imgElem.addEventListener('error', function() {
+			reject(new Error(`Unable to load Image`));
+		})
+	})
+}
 
 const startIntersectionObserver = function() {
+
+	const lazyOpacityElem = Array.from(document.querySelectorAll('.lazy-opacity'));
+	const lazyTransitionLeftElem = Array.from(document.querySelectorAll('.lazy-transition--left'));
+	const lazyTransitionBottomElem = Array.from(document.querySelectorAll('.lazy-transition--bottom'));
+	const lazyImgElem = Array.from(document.querySelectorAll('.lazy-img'));
+
 	
 	const handleLazyOpacity = function(entries) {
 		const [entry] = entries;
@@ -309,7 +401,6 @@ const startIntersectionObserver = function() {
 
 	const handleLazyTransitionBottom = function(entries) {
 		// const [entry] = entries;
-
 		entries.forEach(function(entry) {
 			if (!entry.isIntersecting) return;
 
@@ -320,15 +411,26 @@ const startIntersectionObserver = function() {
 		});
 	}
 
-	const handleLazyImg = function(entries) {
+	const handleLazyImg = async function(entries) {
 		const [entry] = entries;
 
 		if (!entry.isIntersecting) return;
 
 		const elem = entry.target;
 
-		elem.src = elem.dataset.src;
-		elem.addEventListener('load', () => elem.classList.remove('lazy-img'));
+		try {
+		
+			const loadedImg = await loadImg(elem, elem.dataset.src);
+			loadedImg.classList.remove('lazy-img');
+		
+		} catch (err) {
+			
+			elem.classList.remove('lazy-img')
+			elem.setAttribute('alt', 'Unable to Load Mohit Kumar Photo');
+			console.error(err);
+
+		}
+
 		lazyImgObserver.unobserve(elem)
 	}
 	
@@ -379,10 +481,6 @@ window.addEventListener('load', function() {
 				activateContactPageScript();
 				break;
 		}
-
-		// (currPage === 'home') && activateHomePageScript();
-
-		// (currPage === 'contact') && activateContactPageScript();
 
 		startIntersectionObserver();
 	}, 400);
