@@ -48,6 +48,21 @@
 .page-content:nth-child(odd) {
 	background: var(--dark-shade4); /* shade4 or shade6  */
 }
+
+.skill-bar--wrapper {
+	display: flex;
+	flex-direction: column;
+	padding: 0.5rem;
+}
+.skill-bar--label {
+	padding: 0.2rem 0.1rem 0 0.1rem;
+	margin-bottom: 0.2rem;
+	font-family: var(--font-fancy);
+	font-size: 0.8rem;
+	font-weight: 600;
+	text-transform: uppercase;
+}
+
 .timeline {
 	padding: 0 1rem;
 }
@@ -135,4 +150,12 @@
 	border-radius: 50%;
 	object-fit: cover;
 }
-
+.overlay--div > span {
+	position: relative;
+	top: 50%;
+	transform: translateY(-50%);
+	-webkit-transform: translateY(-50%);
+	font-size: 1.8rem;
+	text-transform: uppercase;
+	font-weight: bold;
+}
