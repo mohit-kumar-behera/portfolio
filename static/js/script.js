@@ -27,9 +27,54 @@ const socialAccountContainer = document.querySelector('.social-link--wrapper');
 /* end of contact page */
 
 
+/* about page */
+const personalInfoContainer = document.querySelector('.about-me--content');
+/* end of about page */
+
+
 const user = {
 	firstName: 'Mohit',
 	lastName: 'Kumar',
+
+	aboutMe: 'Nothing ....',
+
+	dob: {
+		date: '08',
+		month: 'October',
+		year: '2000',
+
+		formatDOB() {
+			return `${this.month.slice(0, 3)} ${this.date}, ${this.year}`
+		}
+	},
+
+	address: {
+		home: {
+			street: 'PLOT NO. - 1583, Udayabhat',
+			city: 'Paradeep',
+			district: 'Jagatsinghpur',
+			PIN: '754142',
+			state: 'Odisha',
+			country: 'India',
+			mapURL : 'https://goo.gl/maps/rfEktawiTEQePXsi6'
+		},
+		work: {
+			street: 'PLOT NO. - 1583, Udayabhat',
+			city: 'BBSR',
+			district: 'Khorda',
+			PIN: '754142',
+			state: 'Odisha',
+			country: 'India',
+			mapURL : 'https://goo.gl/maps/rfEktawiTEQePXsi6'
+		}
+	},
+
+	contact: {
+		phone: ['9861013399'],
+		email: ['mahitkumar166@gmail.com']
+	},
+
+	languageSpoken: ['English', 'Hindi', 'Odia'],
 	
 	socialAccounts: [
 		{
@@ -73,9 +118,100 @@ const user = {
 
 	getFullName() {
 		return `${this.firstName} ${this.lastName}`;
+	},
+
+	getAge() {
+		return new Date().getFullYear() - +this.dob.year;
+	},
+
+	getAddress(type='home', short=true) {
+		type = type.toLowerCase();
+		return short ? 
+			{
+				address: `${this.address[type].city}, ${this.address[type].state}`,
+				url: `${this.address[type].mapURL}`
+			} : 
+			{
+				address: `${this.address[type].street}, ${this.address[type].city}, ${this.address[type].district}, PIN-${this.address[type].PIN}, ${this.address[type].state}`,
+				url: `${this.address[type].mapURL}`
+			}
+	},
+
+	getNationality(type='home') {
+		return this.address[type.toLowerCase()].country;
+	},
+
+	getPIN() {
+		return this.address.PIN
+	},
+
+	getContact() {
+		return [this.contact.phone[0], this.contact.email[0]];
+	},
+
+	getPhoneNum() {
+		const [phone] = this.getContact();
+		return {
+			phone,
+			url: `tel:${phone}`
+		}
+	},
+
+	getEmail() {
+		const [, email] = this.getContact();
+		return {
+			email,
+			url: `mailto:${email}`
+		}
+	},
+
+	getLanguageSpoken() {
+		return this.languageSpoken;
+	},
+
+	getShortBio() {
+		const biodata = [
+			{
+				key: 'First Name',
+				value: this.firstName,
+			},
+			{
+				key: 'Last Name',
+				value: this.lastName,
+			},
+			{
+				key: 'DOB',
+				value: this.dob.formatDOB(),
+			},
+			{
+				key: 'Age',
+				value: this.getAge(),
+			},
+			{
+				key: 'Nationality',
+				value: this.getNationality(),
+			},
+			{
+				key: 'Address',
+				value: this.getAddress(),
+			},
+			{
+				key: 'Phone',
+				value: this.getPhoneNum(),
+			},
+			{
+				key: 'Email',
+				value: this.getEmail(),
+			},
+			{
+				key: 'Languages',
+				value: this.getLanguageSpoken().join(', '),
+			},
+		];
+
+		return biodata;
 	}
 }
-
 
 
 // Check which page is currently active and set currPage as the current active page
@@ -245,7 +381,7 @@ checkActiveTheme();
 
 /*-------------- Required only in home page -------------------- */
 
-const activateHomePageScript = function() {
+const activateHomePageScript = function(user) {
 	const typewriter = function(val, elem, speed) {
 		/* Creates a typewriter Effect */
 		if (typeof val === 'string') {
@@ -282,11 +418,12 @@ const activateHomePageScript = function() {
 
 /*------------------ Required only in Contact page ----------------------------*/
 
-const activateContactPageScript = function() {
+const activateContactPageScript = function(user) {
 
 	// Email Validation
 	const validateEmail = (regex, val) => regex.test(val);
 
+	// Input fields validation
 	const validateInputFields = function() {
 		const inputFields = [...userInputFields];
 		const emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
@@ -304,6 +441,7 @@ const activateContactPageScript = function() {
 		return emailField && valid && validateEmail(emailRegex, emailField.value);
 	};
 
+	// Handle Click Event on Send Meesage button
 	sendMssgBtn?.addEventListener('click', function() {
 		this.blur();
 		this.innerHTML = '<span>SEND MESSAGE</span><div class="spinner-border spinner-border-sm text-light ml-1"></div>';
@@ -323,6 +461,7 @@ const activateContactPageScript = function() {
 		}.bind(this), 400);
 	});
 
+	// Build card for social media account
 	const buildAccountCard = acc => `				 
 			<div class="display-card--div social-link--div lazy-transition--bottom" data-social-handle="${acc.name}">
 				<div class="display-card social-link" tabindex="0">
@@ -342,6 +481,7 @@ const activateContactPageScript = function() {
 			</div>
 		`;
 
+	// Render the data in form of card to screen
 	const renderSocialAccounts = function(socialAccounts) {
 		socialAccountContainer.innerHTML = '';
 
@@ -355,6 +495,45 @@ const activateContactPageScript = function() {
 };
 
 /*------------------ End of Contact page ----------------------------*/
+
+
+
+
+/*------------------------- Required only in About us Page ----------------------------------------*/
+
+const activateAboutPageScript = function(user) {
+
+	// Personal Info Card
+	const buildPersonalInfoCard = function(entry) {
+		
+		// Format the link (address, phone, email)
+		const getFormattedLink = (key, val) => `<a href="${val.url}" class="link" target="_blank">${val[key]}</a>`;
+		
+		return `
+			<div class="entity">
+		 		<p class="key">${entry.key}</p>
+		 		<p class="value">${entry.key.toLowerCase() !== 'address' && entry.key.toLowerCase() !== 'phone' && entry.key.toLowerCase() !== 'email' ? entry.value : getFormattedLink(entry.key.toLowerCase(), entry.value)}</p>
+		 	</div>
+		`
+	}
+
+	// Render personal detail on screen in Personal Info section
+	const renderPersonalDetail = function(shortBio) {
+		personalInfoContainer.innerHTML = '';
+
+		shortBio.forEach(entry => {
+			personalInfoContainer.insertAdjacentHTML('beforeend', buildPersonalInfoCard(entry))
+		})
+	}
+	renderPersonalDetail(user.getShortBio());
+
+}
+
+/*------------------------- End of About us Page -------------------------------------------*/
+
+
+
+
 
 const loadImg = function(imgElem, imgPath) {
 	return new Promise((resolve, reject) => {
@@ -476,10 +655,13 @@ window.addEventListener('load', function() {
 
 		switch (currPage) {
 			case 'home':
-				activateHomePageScript();
+				activateHomePageScript(user);
 				break;
 			case 'contact':
-				activateContactPageScript();
+				activateContactPageScript(user);
+				break;
+			case 'about':
+				activateAboutPageScript(user);
 				break;
 		}
 

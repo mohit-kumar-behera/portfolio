@@ -338,9 +338,11 @@ p {
 }
 .lazy-transition--left {
 	transform: translateX(-24px);
+	transition-delay: 0.1s;
 }
 .lazy-transition--bottom {
 	transform: translateY(24px);
+	transition-delay: 0.1s;
 }
 .lazy-img {
 	filter: blur(6px);
