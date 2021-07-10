@@ -323,14 +323,15 @@ const activateContactPageScript = function() {
 		}.bind(this), 400);
 	});
 
-	const buildAccountCard = acc => `
-			<div class="social-link--div lazy-transition--bottom" data-social-handle="${acc.name}">
-				<div class="social-link" tabindex="0">
-					<a href="${acc.url}" class="link" target="_blank">
-						<div class="social-link--img">
-							<img src="${acc.img}" class="img-fluid"/>
-						</div>
-					</a>
+	const buildAccountCard = acc => `				 
+			<div class="display-card--div social-link--div lazy-transition--bottom" data-social-handle="${acc.name}">
+				<div class="display-card social-link" tabindex="0">
+		
+					<div class="display-card--img social-link--img">
+						<img src="${acc.img}" alt="Mohit's ${acc.name} cover img"/>
+					</div>
+
+					<a href="${acc.url}" class="link display-card--link" target="_blank"></a>
 
 					<div class="overlay--div"></div>
 

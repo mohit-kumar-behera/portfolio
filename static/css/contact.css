@@ -138,66 +138,13 @@
 	float: right;
 }
 
-.social-link--wrapper {
-	display: flex;
-	justify-content: space-around;
-	flex-wrap: wrap;
-	padding: 1rem 0 0 0;
-	overflow: hidden;
-}
-.social-link--div {
-	width: 50%;
-	padding: 0.2rem;
-	margin-bottom: 1rem;
-	transition: all 0.3s ease-out;
-}
-@media screen and (min-width: 1400px) {
-	.social-link--div {
-		width: 25%;
-	}
-}
-@media screen and (min-width: 768px) and (max-width: 1400px) {
-	.social-link--div {
-		width: 33.33%;
-	}
-}
-@media screen and (max-width: 768px) {
-	.social-link--div {
-		width: 50%;
-	}
-}
-.social-link--div > .social-link {
-	width: 100%;
-	height: 100%;
+
+
+.display-card.social-link {
 	background: var(--light-shade2);
-	border-radius: 5px;
-	text-align: center;
-	position: relative;
 }
-.social-link a,
-.social-link--img,
-.social-link--img > img {
-	border-radius: inherit;
-}
-.social-link--img {
-	width: 100%;
-	height: 100%;
-}
-.social-link--img > img {
-	width: 100%;
-	height: 100%;
-	object-fit: contain;
-}
-.overlay--div {
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	border-radius: inherit;
+.display-card.social-link .overlay--div {
 	opacity: 1;
-	pointer-events: none;
-	transition-delay: 0.1s
 }
 .social-link--div[data-social-handle='whatsapp'] .overlay--div {
 	background: var(--color-whatsapp);
@@ -233,9 +180,9 @@
 .social-link--wrapper.mobile-device .icon {
 	font-size: 2rem;
 }
-.social-link--div * {
+/*.social-link--div * {
 	transition: all 0.3s ease;
-}
+}*/
 .social-link--wrapper:not(.mobile-device) .social-link:hover .overlay--div,
 .social-link--wrapper:not(.mobile-device) .social-link:focus .overlay--div {
 	opacity: 0.6;

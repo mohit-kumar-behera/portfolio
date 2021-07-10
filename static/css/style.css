@@ -578,6 +578,74 @@ section.normal-container .responsive-wrapper {
 	}
 }
 
+/* Card Component */
+.display-card--wrapper {
+	display: flex;
+	justify-content: space-around;
+	flex-wrap: wrap;
+	padding: 1rem 0 0 0;
+	overflow: hidden;
+}
+.display-card--div {
+	width: 50%;
+	padding: 0.2rem;
+	margin-bottom: 1rem;
+	transition: all 0.3s ease-out;
+}
+.display-card--div * {
+	transition: all 0.3s ease;
+}
+@media screen and (min-width: 1400px) {
+	.display-card--div {
+		width: 25%;
+	}
+}
+@media screen and (min-width: 768px) and (max-width: 1400px) {
+	.display-card--div {
+		width: 33.33%;
+	}
+}
+@media screen and (max-width: 768px) {
+	.display-card--div {
+		width: 50%;
+	}
+}
+.display-card {
+	width: 100%;
+	height: 100%;
+	background: var(--dark-shade2);
+	border-radius: 5px;
+	text-align: center;
+	cursor: pointer;
+	position: relative;
+}
+.display-card--img,
+.display-card--img > img,
+.display-card--link,
+.overlay--div {
+	width: 100%;
+	height: 100%;
+	border-radius: inherit;
+}
+.display-card--img > img {
+	object-fit: cover;
+}
+.display-card--link,
+.overlay--div {
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+.overlay--div {
+	background: var(--dark-shade6);
+	opacity: 0;
+	pointer-events: none;
+	transition: all 0.3s;
+}
+.display-card--wrapper:not(.mobile-device) .display-card:hover > .overlay--div {
+	opacity: 0.55;
+}
+
 /*-------------------- END OF OTHER PAGES COMMON STYLE -------------------------------*/
 
 
