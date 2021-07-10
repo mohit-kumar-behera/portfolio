@@ -642,7 +642,7 @@ section.normal-container .responsive-wrapper {
 	pointer-events: none;
 	transition: all 0.3s;
 }
-.display-card--wrapper:not(.mobile-device) .display-card:hover > .overlay--div {
+.display-card--wrapper:not(.mobile-device) .display-card:hover > .overlay--div{
 	opacity: 0.55;
 }
 

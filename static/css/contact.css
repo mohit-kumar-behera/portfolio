@@ -139,7 +139,6 @@
 }
 
 
-
 .display-card.social-link {
 	background: var(--light-shade2);
 }
@@ -180,9 +179,6 @@
 .social-link--wrapper.mobile-device .icon {
 	font-size: 2rem;
 }
-/*.social-link--div * {
-	transition: all 0.3s ease;
-}*/
 .social-link--wrapper:not(.mobile-device) .social-link:hover .overlay--div,
 .social-link--wrapper:not(.mobile-device) .social-link:focus .overlay--div {
 	opacity: 0.6;
