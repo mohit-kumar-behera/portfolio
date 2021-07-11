@@ -31,6 +31,7 @@ const socialAccountContainer = document.querySelector('.social-link--wrapper');
 const personalInfoContainer = document.querySelector('.about-me--content');
 const aboutEducationContainer = document.querySelector('.about-education--content');
 const aboutExperienceContainer = document.querySelector('.about-experience--content');
+const aboutAwardsContainer = document.querySelector('.about-awards--content');
 /* end of about page */
 
 
@@ -215,63 +216,63 @@ const user = {
 
 	],	
 
-	education: {
-		phase: [
-			{
-				institute: {
-					name: 'Bethany Convent School',
-					tag: 'Elementary School',
-					state: 'Odisha'
-				},
-				duration: {
-					startYear: '2006',
-					endYear: '2017'
-				}
-			},
-			{
-				institute: {
-					name: 'Mothers Public School',
-					tag: 'High School',
-					state: 'Odisha'
-				},
-				duration: {
-					startYear: '2017',
-					endYear: '2019'
-				}
-			},
-			{
-				institute: {
-					name: 'IIIT BBSR',
-					tag: 'Graduation',
-					state: 'Odisha'
-				},
-				duration: {
-					startYear: '2019',
-					endYear: '2023'
-				}
-			},
-		],
-
-		getDuration(duration) {
-			return duration && `${+duration.endYear - +duration.startYear}`;
-		},
-		
-		formatDurationStr(duration) {
-			return duration && `${duration.startYear} - ${duration.endYear}`;
-		},
-
-		getInstituteDetail(phase) {
-			return phase && {
-				name: `${phase.institute.name}, ${phase.institute.state}`,
-				tag: phase.institute.tag,
-				durationStr: this.formatDurationStr(phase.duration),
-				duration: this.getDuration(phase.duration),
-			}
-		}
-
-	},
-
 	knowledge: {
+		education: {
+			phase: [
+				{
+					institute: {
+						name: 'Bethany Convent School',
+						tag: 'Elementary School',
+						state: 'Odisha'
+					},
+					duration: {
+						startYear: '2006',
+						endYear: '2017'
+					}
+				},
+				{
+					institute: {
+						name: 'Mothers Public School',
+						tag: 'High School',
+						state: 'Odisha'
+					},
+					duration: {
+						startYear: '2017',
+						endYear: '2019'
+					}
+				},
+				{
+					institute: {
+						name: 'IIIT BBSR',
+						tag: 'Graduation',
+						state: 'Odisha'
+					},
+					duration: {
+						startYear: '2019',
+						endYear: '2023'
+					}
+				},
+			],
+
+			getDuration(duration) {
+				return duration && `${+duration.endYear - +duration.startYear}`;
+			},
+			
+			formatDurationStr(duration) {
+				return duration && `${duration.startYear} - ${duration.endYear}`;
+			},
+
+			getDetail(phase) {
+				return phase && {
+					name: `${phase.institute.name}, ${phase.institute.state}`,
+					tag: phase.institute.tag,
+					durationStr: this.formatDurationStr(phase.duration),
+					duration: this.getDuration(phase.duration),
+				}
+			}
+
+		},
+
 		skills: [
 
 		],
@@ -311,7 +312,7 @@ const user = {
 				return duration && `${duration.months} months (${durationStr})`;
 			},
 
-			getExperienceDetail(phase) {
+			getDetail(phase) {
 				return phase && {
 					name: phase.company.name,
 					logo: phase.company.logo,
@@ -323,9 +324,45 @@ const user = {
 			}
 		},
 
-		awards: [
+		awards: {
+			phase: [
+				{
+					name: 'Django',
+					imgPath: '/static/media/image/django.png',
+				},
+				{
+					name: 'IACE Hackathon',
+					imgPath: '/static/media/image/iace-hackathon.png',
+				},
+				{
+					name: 'MERN Stack',
+					imgPath: '/static/media/image/webdev-mern.png',
+				},
+				{
+					name: 'Digital Marketing',
+					imgPath: '/static/media/image/digital-marketing.png',
+				},
+				{
+					name: 'Verzeo Internship',
+					imgPath: '/static/media/image/webdev-internship-verzeo.jpg',
+				},
+				{
+					name: 'Web Scraping',
+					imgPath: '/static/media/image/web-scraping.jpg',
+				},
+				{
+					name: 'Blockchain',
+					imgPath: '/static/media/image/blockchain.png',
+				},
+			],
 
-		],
+			getDetail(phase) {
+				return phase && {
+					name: phase.name,
+					imgPath: phase.imgPath,
+				}
+			}
+		},
 	},	
 
 };
@@ -656,23 +693,7 @@ const activateAboutPageScript = function(user) {
 				</div>
 			</div>
 		`;
-	}
-
-	// Render About education details
-	const renderAboutEducation = function(user) {
-		const education = user.education;
-		const phases = user.education.phase;
-		let timeline_html= '<div class="timeline">';
-
-		phases.forEach(phase => {
-			timeline_html += buildEducationTimeline(education.getInstituteDetail(phase))
-		})
-		
-		timeline_html += '</div>';
-		aboutEducationContainer.innerHTML = timeline_html;
-	}
-	renderAboutEducation(user);
-
+	};
 
 	// Build Experience Card
 	const buildExperienceCard = function(phase) {
@@ -690,23 +711,47 @@ const activateAboutPageScript = function(user) {
 				</div>
 			</div>
 		`;
+	};
+
+	// Build Award Card
+	const buildAwardCard = function(phase) {
+		return `
+			<div class="display-card--div lazy-transition--bottom">
+				<div class="display-card">
+					<div class="display-card--img">
+						<img src="${phase.imgPath}" class="award--img"/>
+					</div>
+
+					<a href="${phase.imgPath}" class="display-card--link" target="_blank" alt="${phase.name} Certificate"></a>
+
+					<div class="overlay--div"><span>View</span></div>
+				</div>
+			</div>
+		`;
 	}
 
-	// Render About experience
-	const renderAboutExperience = function(user) {
-		const experience = user.knowledge.experience;
-		const phases = user.knowledge.experience.phase;
-		let experience_html = '<div class="row">';
+	const renderContentDynamically = function(user, elem, type, classes, build) {
+		const mainType = user.knowledge[type];
+		const phases = mainType.phase;
 
-		phases.forEach(phase => {
-			experience_html += buildExperienceCard(experience.getExperienceDetail(phase));
+		let html_div = document.createElement('div');
+		html_div.classList = classes.join(' ');
+
+		let html_content = '';
+
+		phases.forEach(phase =>{
+			html_content += build(mainType.getDetail(phase));
 		});
 
-		experience_html += '</div>';
-		aboutExperienceContainer.innerHTML = experience_html;
+		html_div.innerHTML = html_content;
 
-	}
-	renderAboutExperience(user);
+		elem.innerHTML = '';
+		elem.append(html_div);
+	};
+
+	renderContentDynamically(user, aboutEducationContainer, 'education', ['timeline'], buildEducationTimeline);
+	renderContentDynamically(user, aboutExperienceContainer, 'experience', ['row'], buildExperienceCard);
+	renderContentDynamically(user, aboutAwardsContainer, 'awards', ['display-card--wrapper', 'check-mobile'], buildAwardCard);
 
 }
 
