@@ -1,5 +1,17 @@
 'use strict';
 
+import detectMobile from '../js/modules/mobile.js';
+import user from '../js/modules/mohitInfo.js';
+import {loadImg, createImg} from '../js/modules/loadCreateImg.js';
+import typewriter from '../js/modules/typewriter.js';
+import {buildThemePickerModelBody,
+	    buildAccountCard, 
+		buildPersonalInfoCard,
+		buildEducationTimeline, 
+		buildSkillBar, 
+		buildExperienceCard, 
+		buildAwardCard} from '../js/modules/build.js'; 
+
 const navbar = document.querySelector('.navbar')
 const navbarTogglerBtn = document.querySelector('.navbar-toggler');
 
@@ -36,401 +48,13 @@ const aboutAwardsContainer = document.querySelector('.about-awards--content');
 /* end of about page */
 
 
-const user = {
-	firstName: 'Mohit',
-	lastName: 'Kumar',
-
-	aboutMe: 'Nothing ....',
-	profileImg: '',
-
-	dob: {
-		date: '08',
-		month: 'October',
-		year: '2000',
-
-		formatDOB() {
-			return `${this.month.slice(0, 3)} ${this.date}, ${this.year}`
-		}
-	},
-
-	address: {
-		home: {
-			street: 'PLOT NO. - 1583, Udayabhat',
-			city: 'Paradeep',
-			district: 'Jagatsinghpur',
-			PIN: '754142',
-			state: 'Odisha',
-			country: 'India',
-			mapURL : 'https://goo.gl/maps/rfEktawiTEQePXsi6'
-		},
-		work: {
-			street: 'PLOT NO. - 1583, Udayabhat',
-			city: 'BBSR',
-			district: 'Khorda',
-			PIN: '754142',
-			state: 'Odisha',
-			country: 'India',
-			mapURL : 'https://goo.gl/maps/rfEktawiTEQePXsi6'
-		}
-	},
-
-	contact: {
-		phone: ['98610 13399'],
-		email: ['mahitkumar166@gmail.com']
-	},
-
-	languageSpoken: ['English', 'Hindi', 'Odia'],
-
-	getFullName() {
-		return `${this.firstName} ${this.lastName}`;
-	},
-
-	getAge() {
-		return new Date().getFullYear() - +this.dob.year;
-	},
-
-	getAddress(type='home', short=true) {
-		type = type.toLowerCase();
-		return short ? 
-			{
-				address: `${this.address[type].city}, ${this.address[type].state}`,
-				url: `${this.address[type].mapURL}`
-			} : 
-			{
-				address: `${this.address[type].street}, ${this.address[type].city}, ${this.address[type].district}, PIN-${this.address[type].PIN}, ${this.address[type].state}`,
-				url: `${this.address[type].mapURL}`
-			}
-	},
-
-	getNationality(type='home') {
-		return this.address[type.toLowerCase()].country;
-	},
-
-	getPIN() {
-		return this.address.PIN
-	},
-
-	getContact() {
-		return [this.contact.phone[0], this.contact.email[0]];
-	},
-
-	getPhoneNum() {
-		const [phone] = this.getContact();
-		return {
-			phone: `+91 ${phone}`,
-			url: `tel:${phone}`
-		}
-	},
-
-	getEmail() {
-		const [, email] = this.getContact();
-		return {
-			email,
-			url: `mailto:${email}`
-		}
-	},
-
-	getLanguageSpoken() {
-		return this.languageSpoken;
-	},
-
-	getShortBio() {
-		const biodata = [
-			{
-				key: 'First Name',
-				value: this.firstName,
-			},
-			{
-				key: 'Last Name',
-				value: this.lastName,
-			},
-			{
-				key: 'DOB',
-				value: this.dob.formatDOB(),
-			},
-			{
-				key: 'Age',
-				value: this.getAge(),
-			},
-			{
-				key: 'Nationality',
-				value: this.getNationality(),
-			},
-			{
-				key: 'Address',
-				value: this.getAddress(),
-			},
-			{
-				key: 'Phone',
-				value: this.getPhoneNum(),
-			},
-			{
-				key: 'Email',
-				value: this.getEmail(),
-			},
-			{
-				key: 'Languages',
-				value: this.getLanguageSpoken().join(', '),
-			},
-		];
-
-		return biodata;
-	},
-	
-	socialAccounts: [
-		{
-			name: 'linkedin',
-			logo: 'fa-linkedin',
-			img: '/static/media/image/linkedin-high.jpg',
-			url: 'https://www.linkedin.com/',
-		},
-		{
-			name: 'whatsapp',
-			logo: 'fa-whatsapp',
-			img: '/static/media/image/whatsapp-high.jpg',
-			url: 'https://wa.me/919861013399',			
-		},
-		{
-			name: 'github',
-			logo: 'fa-github',
-			img: '/static/media/image/github-high.jpg',
-			url: 'https://www.github.com/',
-		},
-		{
-			name: 'facebook',
-			logo: 'fa-facebook-square',
-			img: '/static/media/image/facebook-high.jpg',
-			url: 'https://www.facebook.com/',
-		},
-		{
-			name: 'twitter',
-			logo: 'fa-twitter',
-			img: '/static/media/image/twitter--low.jpg',
-			url: 'https://www.twitter.com/',
-		},
-		{
-			name: 'instagram',
-			logo: 'fa-instagram',
-			img: '/static/media/image/instagram-high.jpg',
-			url: 'https://www.instagram.com/',
-		}
-
-	],	
-
-	knowledge: {
-		education: {
-			phase: [
-				{
-					institute: {
-						name: 'Bethany Convent School',
-						tag: 'Elementary School',
-						state: 'Odisha'
-					},
-					duration: {
-						startYear: '2006',
-						endYear: '2017'
-					}
-				},
-				{
-					institute: {
-						name: 'Mothers Public School',
-						tag: 'High School',
-						state: 'Odisha'
-					},
-					duration: {
-						startYear: '2017',
-						endYear: '2019'
-					}
-				},
-				{
-					institute: {
-						name: 'IIIT BBSR',
-						tag: 'Graduation',
-						state: 'Odisha'
-					},
-					duration: {
-						startYear: '2019',
-						endYear: '2023'
-					}
-				},
-			],
-
-			getDuration(duration) {
-				return duration && `${+duration.endYear - +duration.startYear}`;
-			},
-			
-			formatDurationStr(duration) {
-				return duration && `${duration.startYear} - ${duration.endYear}`;
-			},
-
-			getDetail(phase) {
-				return phase && {
-					name: `${phase.institute.name}, ${phase.institute.state}`,
-					tag: phase.institute.tag,
-					durationStr: this.formatDurationStr(phase.duration),
-					duration: this.getDuration(phase.duration),
-				}
-			}
-
-			// getDetail(phase) {
-			// 	return new Promise((resolve, reject) => {
-			// 		if (!phase)
-			// 			reject('Error fetching data')
-			// 		resolve({
-			// 			name: `${phase.institute.name}, ${phase.institute.state}`,
-			// 			tag: phase.institute.tag,
-			// 			durationStr: this.formatDurationStr(phase.duration),
-			// 			duration: this.getDuration(phase.duration),
-			// 		})
-			// 	})
-			// }
-
-		},
-
-		skills: {
-			phase: [
-				{
-					name: 'HTML',
-					rate: '0.85',
-				},
-				{
-					name: 'DJANGO',
-					rate: '0.75',
-				},
-								{
-					name: 'REACT JS',
-					rate: '0.45',
-				},
-				{
-					name: 'CSS',
-					rate: '0.75',
-				},
-				{
-					name: 'NODE JS',
-					rate: '0.3',
-				},
-				{
-					name: 'BOOTSTRAP',
-					rate: '0.9',
-				},
-				{
-					name: 'PHP',
-					rate: '0.4',
-				},
-				{
-					name: 'SQL',
-					rate: '0.7',
-				},
-				{
-					name: 'MONGO DB',
-					rate: '0.4',
-				},
-				{
-					name: 'SELENIUM WEBDRIVER',
-					rate: '0.5',
-				},
-			],
-
-			getDetail(phase) {
-				return phase && {
-					name: phase.name,
-					rate: +phase.rate
-				}
-			}
-		},
-
-		experience: {
-			phase: [
-				{
-					company: {
-						name: 'Verzeo',
-						logo: '/static/media/image/verzeo-logo.png',
-						url: 'https://www.verzeo.com/'
-					},
-					duration: {
-						startYear: '2020',
-						endYear: '2020',
-						months: '2',
-					},
-					position: 'Web Developer',
-				},
-				{
-					company: {
-						name: 'Alineter',
-						logo: '/static/media/image/alineter-logo.jpg',
-						url: 'https://www.alineter.com/'
-					},
-					duration: {
-						startYear: '2021',
-						endYear: '2021',
-						months: '6',
-					},
-					position: 'Web Developer',
-				}
-			],
-
-			formatDurationStr(duration) {
-				const durationStr = duration.startYear === duration.endYear ? duration.startYear : `${duration.startYear} - ${duration.endYear}`
-				return duration && `${duration.months} months (${durationStr})`;
-			},
-
-			getDetail(phase) {
-				return phase && {
-					name: phase.company.name,
-					logo: phase.company.logo,
-					url: phase.company.url,
-					position: phase.position,
-					duration: +phase.duration.months,
-					durationStr: this.formatDurationStr(phase.duration)
-				}
-			}
-		},
-
-		awards: {
-			phase: [
-				{
-					name: 'Django',
-					imgPath: '/static/media/image/django.png',
-				},
-				{
-					name: 'IACE Hackathon',
-					imgPath: '/static/media/image/iace-hackathon.png',
-				},
-				{
-					name: 'MERN Stack',
-					imgPath: '/static/media/image/webdev-mern.png',
-				},
-				{
-					name: 'Digital Marketing',
-					imgPath: '/static/media/image/digital-marketing.png',
-				},
-				{
-					name: 'Verzeo Internship',
-					imgPath: '/static/media/image/webdev-internship-verzeo.jpg',
-				},
-				{
-					name: 'Web Scraping',
-					imgPath: '/static/media/image/web-scraping.jpg',
-				},
-				{
-					name: 'Blockchain',
-					imgPath: '/static/media/image/blockchain.png',
-				},
-			],
-
-			getDetail(phase) {
-				return phase && {
-					name: phase.name,
-					imgPath: phase.imgPath,
-				}
-			}
-		},
-	},	
-};
-
+let currPage, isMobile;
+const init = () => {
+	let currPage = '';
+	let isMobile = '';
+}
 
 // Check which page is currently active and set currPage as the current active page
-let currPage = '';
 const setCurrPage = () => currPage = location.pathname.split('/')[1] || 'home';	
 
 // Add active class to the navlink
@@ -441,22 +65,6 @@ const setActivePageNavLink = function() {
 	document.querySelector(`a.nav-link[data-path='${currPage}']`)?.classList.add('active');
 }
 
-// Detect if the device is Mobile device or not
-const detectMobile = function() {
-    const mobileOS = [
-        /Android/i,
-        /webOS/i,
-        /iPhone/i,
-        /iPad/i,
-        /iPod/i,
-        /BlackBerry/i,
-        /Windows Phone/i
-    ];
-
-    return mobileOS.some((os) => {
-        return navigator.userAgent.match(os);
-    });
-};
 
 // Add "mobile-device" class to specified elements
 const addMobileDevice__class = elems => elems.forEach(elem => elem?.classList.add('mobile-device'));
@@ -502,24 +110,7 @@ themePickerModelBtn.addEventListener('click', function(e) {
 
 	modelHead.innerHTML = modelBody.innerHTML = 'loading...';
 
-	const themePickerBodyHTML = `
-		<div class="theme-picker from-model">
-			<div class="pallete">
-				<button class="bttn color--btn" data-color="#913ee8" onclick="handleThemeModelBtn(this)" style="background: #913EE8"></button>
-				<button class="bttn color--btn" data-color="#0556f3" onclick="handleThemeModelBtn(this)" style="background: #0556F3"></button>
-				<button class="bttn color--btn" data-color="#fa1e0e" onclick="handleThemeModelBtn(this)" style="background: #FA1E0E"></button>
-				<button class="bttn color--btn" data-color="#fe4c03" onclick="handleThemeModelBtn(this)" style="background: #fe4c03"></button>
-				<button class="bttn color--btn" data-color="#ef5742" onclick="handleThemeModelBtn(this)" style="background: #EF5742"></button>
-			</div>
-			<div class="pallete">
-				<button class="bttn color--btn" data-color="#f97194" onclick="handleThemeModelBtn(this)" style="background: #f97194"></button>
-				<button class="bttn color--btn" data-color="#ffae00" onclick="handleThemeModelBtn(this)" style="background: #ffae00"></button>
-				<button class="bttn color--btn" data-color="#73a528" onclick="handleThemeModelBtn(this)" style="background: #73A528"></button>
-				<button class="bttn color--btn" data-color="#a0522d" onclick="handleThemeModelBtn(this)" style="background: #A0522D"></button>
-				<button class="bttn color--btn" data-color="#01937c" onclick="handleThemeModelBtn(this)" style="background: #01937C"></button>
-			</div>
-		</div>
-	` ;
+	const themePickerBodyHTML = buildThemePickerModelBody();
 
 	modelHead.innerHTML = modelBody.innerHTML = '';
 
@@ -597,23 +188,6 @@ checkActiveTheme();
 /*-------------- Required only in home page -------------------- */
 
 const activateHomePageScript = function(user) {
-	const typewriter = function(val, elem, speed) {
-		/* Creates a typewriter Effect */
-		if (typeof val === 'string') {
-			const valArr = [...val];
-			let i = 0;
-
-			const tick = function() {
-				if (i < valArr.length)	elem.textContent += valArr[i++];
-				else clearInterval(tick);
-			};
-			setInterval(tick, speed);
-
-		} else {
-			elem.innerHTML = `<span style='font-size: 0.7rem; background: red; color: white'>Error: Wrong input</span>`;
-		}
-	};
-
 
 	const setUsername = function(fullName) {
 		const username = fullName.toUpperCase();
@@ -625,6 +199,7 @@ const activateHomePageScript = function(user) {
 	};
 
 	setUsername(user.getFullName());
+
 };
 
 /*--------------- End of home page ----------------------*/
@@ -676,26 +251,6 @@ const activateContactPageScript = function(user) {
 		}.bind(this), 400);
 	});
 
-	// Build card for social media account
-	const buildAccountCard = acc => `				 
-			<div class="display-card--div social-link--div lazy-transition--bottom" data-social-handle="${acc.name}">
-				<div class="display-card social-link" tabindex="0">
-		
-					<div class="display-card--img social-link--img">
-						<img src="${acc.img}" alt="Mohit's ${acc.name} cover img"/>
-					</div>
-
-					<a href="${acc.url}" class="link display-card--link" target="_blank"></a>
-
-					<div class="overlay--div"></div>
-
-					<div class="social-link--logo">
-						<span class="fa ${acc.logo} icon"></span>
-					</div>
-				</div>
-			</div>
-		`;
-
 	// Render the data in form of card to screen
 	const renderSocialAccounts = function(socialAccounts) {
 		socialAccountContainer.innerHTML = '';
@@ -718,19 +273,6 @@ const activateContactPageScript = function(user) {
 
 const activateAboutPageScript = function(user) {
 
-	// Build Personal Info Card
-	const buildPersonalInfoCard = function(entry) {	
-		// Format the link (address, phone, email)
-		const getFormattedLink = (key, val) => `<a href="${val.url}" class="link" target="_blank">${val[key]}</a>`;
-		
-		return `
-			<div class="entity">
-		 		<p class="key">${entry.key}</p>
-		 		<p class="value">${entry.key.toLowerCase() !== 'address' && entry.key.toLowerCase() !== 'phone' && entry.key.toLowerCase() !== 'email' ? entry.value : getFormattedLink(entry.key.toLowerCase(), entry.value)}</p>
-		 	</div>
-		`;
-	};
-
 	// Render personal detail on screen in Personal Info section
 	const renderPersonalDetail = function(shortBio) {
 		personalInfoContainer.innerHTML = '';
@@ -741,71 +283,7 @@ const activateAboutPageScript = function(user) {
 	}
 	renderPersonalDetail(user.getShortBio());
 
-
-	// Build Education Timeline
-	const buildEducationTimeline = function(phase) {
-		return `
-			<div class="timeline--div">
-				<div class="timeline--logo"><span class="fa fa-book"></span></div>
-				<div class="timeline--content">
-					<div class="timeline--duration pill-badge">${phase.durationStr}</div>
-					<div class="timeline--didWhat">${phase.tag}</div>
-					<div class="timeline--fromWhere">${phase.name}</div>
-				</div>
-			</div>
-		`;
-	};
-
-	// Build Skill Bar
-	const buildSkillBar = function(phase) {
-		return `
-			<div class="col-lg-3 col-md-4 col-sm-12 mb-3">
-				<div class="skill-bar--wrapper lazy-transition--bottom">
-					<div class="skill-bar--label"><span>${phase.name}</span></div>
-					<div class="mk-progress">
-						<div class="mk-progress-bar" style="width: ${phase.rate * 100}%;"><span>${phase.rate * 100}%</span></div>
-					</div>
-				</div>						
-			</div>
-		`;
-	}
-
-	// Build Experience Card
-	const buildExperienceCard = function(phase) {
-		return `
-			<div class="col-lg-6 col-md-12 col-sm-12 p-1 mb-2">
-				<div class="experience-card lazy-transition--bottom">
-					<div class="card-left">
-						<img src="${phase.logo}" alt="${phase.name} logo"/>
-					</div>
-					<div class="card-right">
-						<p class="experience--duration pill-badge">${phase.durationStr}</p>
-						<p class="experience--position">${phase.position}</p>
-						<p class="experience--company"><a href="${phase.url}" class="link" target="_blank">${phase.name}</a></p>
-					</div>
-				</div>
-			</div>
-		`;
-	};
-
-	// Build Award Card
-	const buildAwardCard = function(phase) {
-		return `
-			<div class="display-card--div lazy-transition--bottom">
-				<div class="display-card">
-					<div class="display-card--img">
-						<img src="${phase.imgPath}" class="award--img"/>
-					</div>
-
-					<a href="${phase.imgPath}" class="display-card--link" target="_blank" alt="${phase.name} Certificate"></a>
-
-					<div class="overlay--div"><span>View</span></div>
-				</div>
-			</div>
-		`;
-	}
-
-	const renderContentDynamically = async function(user, elem, type, classes, build) {
+	const renderContentDynamically = function(user, elem, type, classes, build) {
 		const mainType = user.knowledge[type];
 		const phases = mainType.phase;
 
@@ -840,7 +318,7 @@ const activateAboutPageScript = function(user) {
 		{
 			type: 'awards',
 			elem: aboutAwardsContainer,
-			classes: ['display-card--wrapper', 'check-mobile'],
+			classes: ['display-card--wrapper', 'check-mobile', `${isMobile && 'mobile-device'}`],
 			build: buildAwardCard
 		},
 		{
@@ -859,21 +337,6 @@ const activateAboutPageScript = function(user) {
 
 
 
-
-
-const loadImg = function(imgElem, imgPath) {
-	return new Promise((resolve, reject) => {
-		imgElem.src = imgPath;
-
-		imgElem.addEventListener('load', function() {
-			resolve(imgElem);
-		});
-
-		imgElem.addEventListener('error', function() {
-			reject(new Error(`Unable to load Image`));
-		})
-	})
-}
 
 const startIntersectionObserver = function() {
 
@@ -974,9 +437,10 @@ window.addEventListener('load', function() {
 		document.querySelector('.loader').remove();
 		document.getElementById('main-body').style.display = 'block';
 		
+		init();
 		setActivePageNavLink();
 		checkActiveTheme();
-		const isMobile = detectMobile();
+		isMobile = detectMobile();
 		addMobileDevice(isMobile);
 
 		switch (currPage) {
