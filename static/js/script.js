@@ -30,6 +30,7 @@ const socialAccountContainer = document.querySelector('.social-link--wrapper');
 /* about page */
 const personalInfoContainer = document.querySelector('.about-me--content');
 const aboutEducationContainer = document.querySelector('.about-education--content');
+const aboutSkillsContainer = document.querySelector('.about-skills--content');
 const aboutExperienceContainer = document.querySelector('.about-experience--content');
 const aboutAwardsContainer = document.querySelector('.about-awards--content');
 /* end of about page */
@@ -271,11 +272,72 @@ const user = {
 				}
 			}
 
+			// getDetail(phase) {
+			// 	return new Promise((resolve, reject) => {
+			// 		if (!phase)
+			// 			reject('Error fetching data')
+			// 		resolve({
+			// 			name: `${phase.institute.name}, ${phase.institute.state}`,
+			// 			tag: phase.institute.tag,
+			// 			durationStr: this.formatDurationStr(phase.duration),
+			// 			duration: this.getDuration(phase.duration),
+			// 		})
+			// 	})
+			// }
+
 		},
 
-		skills: [
+		skills: {
+			phase: [
+				{
+					name: 'HTML',
+					rate: '0.85',
+				},
+				{
+					name: 'DJANGO',
+					rate: '0.75',
+				},
+								{
+					name: 'REACT JS',
+					rate: '0.45',
+				},
+				{
+					name: 'CSS',
+					rate: '0.75',
+				},
+				{
+					name: 'NODE JS',
+					rate: '0.3',
+				},
+				{
+					name: 'BOOTSTRAP',
+					rate: '0.9',
+				},
+				{
+					name: 'PHP',
+					rate: '0.4',
+				},
+				{
+					name: 'SQL',
+					rate: '0.7',
+				},
+				{
+					name: 'MONGO DB',
+					rate: '0.4',
+				},
+				{
+					name: 'SELENIUM WEBDRIVER',
+					rate: '0.5',
+				},
+			],
 
-		],
+			getDetail(phase) {
+				return phase && {
+					name: phase.name,
+					rate: +phase.rate
+				}
+			}
+		},
 
 		experience: {
 			phase: [
@@ -364,7 +426,6 @@ const user = {
 			}
 		},
 	},	
-
 };
 
 
@@ -695,6 +756,20 @@ const activateAboutPageScript = function(user) {
 		`;
 	};
 
+	// Build Skill Bar
+	const buildSkillBar = function(phase) {
+		return `
+			<div class="col-lg-3 col-md-4 col-sm-12 mb-3">
+				<div class="skill-bar--wrapper lazy-transition--bottom">
+					<div class="skill-bar--label"><span>${phase.name}</span></div>
+					<div class="mk-progress">
+						<div class="mk-progress-bar" style="width: ${phase.rate * 100}%;"><span>${phase.rate * 100}%</span></div>
+					</div>
+				</div>						
+			</div>
+		`;
+	}
+
 	// Build Experience Card
 	const buildExperienceCard = function(phase) {
 		return `
@@ -730,7 +805,7 @@ const activateAboutPageScript = function(user) {
 		`;
 	}
 
-	const renderContentDynamically = function(user, elem, type, classes, build) {
+	const renderContentDynamically = async function(user, elem, type, classes, build) {
 		const mainType = user.knowledge[type];
 		const phases = mainType.phase;
 
@@ -739,7 +814,7 @@ const activateAboutPageScript = function(user) {
 
 		let html_content = '';
 
-		phases.forEach(phase =>{
+		phases.forEach(phase => {
 			html_content += build(mainType.getDetail(phase));
 		});
 
@@ -749,9 +824,34 @@ const activateAboutPageScript = function(user) {
 		elem.append(html_div);
 	};
 
-	renderContentDynamically(user, aboutEducationContainer, 'education', ['timeline'], buildEducationTimeline);
-	renderContentDynamically(user, aboutExperienceContainer, 'experience', ['row'], buildExperienceCard);
-	renderContentDynamically(user, aboutAwardsContainer, 'awards', ['display-card--wrapper', 'check-mobile'], buildAwardCard);
+	const options = [
+		{
+			type: 'education',
+			elem: aboutEducationContainer,
+			classes: ['timeline'],
+			build: buildEducationTimeline
+		},
+		{
+			type: 'experience',
+			elem: aboutExperienceContainer,
+			classes: ['row'],
+			build: buildExperienceCard
+		},
+		{
+			type: 'awards',
+			elem: aboutAwardsContainer,
+			classes: ['display-card--wrapper', 'check-mobile'],
+			build: buildAwardCard
+		},
+		{
+			type: 'skills',
+			elem: aboutSkillsContainer,
+			classes: ['row', 'm-0'],
+			build: buildSkillBar
+		},
+	];
+
+	options.forEach(entry => renderContentDynamically(user, entry.elem, entry.type, entry.classes, entry.build));
 
 }
 
