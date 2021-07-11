@@ -68,6 +68,41 @@
 .page-content:nth-child(odd) {
 	background: var(--dark-shade4); /* shade4 or shade6  */
 }
+.about-education--div {
+	display: flex;
+	transition: all 0.3s ease-out;
+}
+.about-education--div > .div--left,
+.about-education--div > .div--right {
+	width: 50%;
+	padding: 2.5rem;
+}
+#svg--education {
+	position: relative;
+	top: 40%;
+	transform: translateY(-50%);
+	-webkit-transform: translateY(-50%);
+}
+#svg--education .secondary--type {
+	fill: var(--secondary-color);
+}
+@media screen and (max-width: 992px) {
+	.about-education--div > .div--left {
+		display: block;
+		width: 50%;
+	}
+	.about-education--div > .div--right {
+		width: 50%;
+	}
+}
+@media screen and (max-width: 992px) {
+	.about-education--div > .div--left {
+		display: none;
+	}
+	.about-education--div > .div--right {
+		width: 100%;
+	}
+}
 
 .skill-bar--wrapper {
 	display: flex;
@@ -173,6 +208,14 @@
 	height: 55px;
 	border-radius: 50%;
 	object-fit: cover;
+}
+.experience-card .link {
+	color: inherit;
+}
+.experience-card .link:hover,
+.experience-card .link:focus {
+	color: var(--secondary-color);
+	text-decoration: none;
 }
 .overlay--div > span {
 	position: relative;

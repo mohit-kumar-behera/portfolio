@@ -29,6 +29,8 @@ const socialAccountContainer = document.querySelector('.social-link--wrapper');
 
 /* about page */
 const personalInfoContainer = document.querySelector('.about-me--content');
+const aboutEducationContainer = document.querySelector('.about-education--content');
+const aboutExperienceContainer = document.querySelector('.about-experience--content');
 /* end of about page */
 
 
@@ -37,6 +39,7 @@ const user = {
 	lastName: 'Kumar',
 
 	aboutMe: 'Nothing ....',
+	profileImg: '',
 
 	dob: {
 		date: '08',
@@ -70,51 +73,11 @@ const user = {
 	},
 
 	contact: {
-		phone: ['9861013399'],
+		phone: ['98610 13399'],
 		email: ['mahitkumar166@gmail.com']
 	},
 
 	languageSpoken: ['English', 'Hindi', 'Odia'],
-	
-	socialAccounts: [
-		{
-			name: 'linkedin',
-			logo: 'fa-linkedin',
-			img: '/static/media/image/linkedin-high.jpg',
-			url: 'https://www.linkedin.com/',
-		},
-		{
-			name: 'whatsapp',
-			logo: 'fa-whatsapp',
-			img: '/static/media/image/whatsapp-high.jpg',
-			url: 'https://wa.me/919861013399',			
-		},
-		{
-			name: 'github',
-			logo: 'fa-github',
-			img: '/static/media/image/github-high.jpg',
-			url: 'https://www.github.com/',
-		},
-		{
-			name: 'facebook',
-			logo: 'fa-facebook-square',
-			img: '/static/media/image/facebook-high.jpg',
-			url: 'https://www.facebook.com/',
-		},
-		{
-			name: 'twitter',
-			logo: 'fa-twitter',
-			img: '/static/media/image/twitter--low.jpg',
-			url: 'https://www.twitter.com/',
-		},
-		{
-			name: 'instagram',
-			logo: 'fa-instagram',
-			img: '/static/media/image/instagram-high.jpg',
-			url: 'https://www.instagram.com/',
-		}
-
-	],	
 
 	getFullName() {
 		return `${this.firstName} ${this.lastName}`;
@@ -152,7 +115,7 @@ const user = {
 	getPhoneNum() {
 		const [phone] = this.getContact();
 		return {
-			phone,
+			phone: `+91 ${phone}`,
 			url: `tel:${phone}`
 		}
 	},
@@ -210,8 +173,162 @@ const user = {
 		];
 
 		return biodata;
-	}
-}
+	},
+	
+	socialAccounts: [
+		{
+			name: 'linkedin',
+			logo: 'fa-linkedin',
+			img: '/static/media/image/linkedin-high.jpg',
+			url: 'https://www.linkedin.com/',
+		},
+		{
+			name: 'whatsapp',
+			logo: 'fa-whatsapp',
+			img: '/static/media/image/whatsapp-high.jpg',
+			url: 'https://wa.me/919861013399',			
+		},
+		{
+			name: 'github',
+			logo: 'fa-github',
+			img: '/static/media/image/github-high.jpg',
+			url: 'https://www.github.com/',
+		},
+		{
+			name: 'facebook',
+			logo: 'fa-facebook-square',
+			img: '/static/media/image/facebook-high.jpg',
+			url: 'https://www.facebook.com/',
+		},
+		{
+			name: 'twitter',
+			logo: 'fa-twitter',
+			img: '/static/media/image/twitter--low.jpg',
+			url: 'https://www.twitter.com/',
+		},
+		{
+			name: 'instagram',
+			logo: 'fa-instagram',
+			img: '/static/media/image/instagram-high.jpg',
+			url: 'https://www.instagram.com/',
+		}
+
+	],	
+
+	education: {
+		phase: [
+			{
+				institute: {
+					name: 'Bethany Convent School',
+					tag: 'Elementary School',
+					state: 'Odisha'
+				},
+				duration: {
+					startYear: '2006',
+					endYear: '2017'
+				}
+			},
+			{
+				institute: {
+					name: 'Mothers Public School',
+					tag: 'High School',
+					state: 'Odisha'
+				},
+				duration: {
+					startYear: '2017',
+					endYear: '2019'
+				}
+			},
+			{
+				institute: {
+					name: 'IIIT BBSR',
+					tag: 'Graduation',
+					state: 'Odisha'
+				},
+				duration: {
+					startYear: '2019',
+					endYear: '2023'
+				}
+			},
+		],
+
+		getDuration(duration) {
+			return duration && `${+duration.endYear - +duration.startYear}`;
+		},
+		
+		formatDurationStr(duration) {
+			return duration && `${duration.startYear} - ${duration.endYear}`;
+		},
+
+		getInstituteDetail(phase) {
+			return phase && {
+				name: `${phase.institute.name}, ${phase.institute.state}`,
+				tag: phase.institute.tag,
+				durationStr: this.formatDurationStr(phase.duration),
+				duration: this.getDuration(phase.duration),
+			}
+		}
+
+	},
+
+	knowledge: {
+		skills: [
+
+		],
+
+		experience: {
+			phase: [
+				{
+					company: {
+						name: 'Verzeo',
+						logo: '/static/media/image/verzeo-logo.png',
+						url: 'https://www.verzeo.com/'
+					},
+					duration: {
+						startYear: '2020',
+						endYear: '2020',
+						months: '2',
+					},
+					position: 'Web Developer',
+				},
+				{
+					company: {
+						name: 'Alineter',
+						logo: '/static/media/image/alineter-logo.jpg',
+						url: 'https://www.alineter.com/'
+					},
+					duration: {
+						startYear: '2021',
+						endYear: '2021',
+						months: '6',
+					},
+					position: 'Web Developer',
+				}
+			],
+
+			formatDurationStr(duration) {
+				const durationStr = duration.startYear === duration.endYear ? duration.startYear : `${duration.startYear} - ${duration.endYear}`
+				return duration && `${duration.months} months (${durationStr})`;
+			},
+
+			getExperienceDetail(phase) {
+				return phase && {
+					name: phase.company.name,
+					logo: phase.company.logo,
+					url: phase.company.url,
+					position: phase.position,
+					duration: +phase.duration.months,
+					durationStr: this.formatDurationStr(phase.duration)
+				}
+			}
+		},
+
+		awards: [
+
+		],
+	},	
+
+};
 
 
 // Check which page is currently active and set currPage as the current active page
@@ -503,9 +620,8 @@ const activateContactPageScript = function(user) {
 
 const activateAboutPageScript = function(user) {
 
-	// Personal Info Card
-	const buildPersonalInfoCard = function(entry) {
-		
+	// Build Personal Info Card
+	const buildPersonalInfoCard = function(entry) {	
 		// Format the link (address, phone, email)
 		const getFormattedLink = (key, val) => `<a href="${val.url}" class="link" target="_blank">${val[key]}</a>`;
 		
@@ -514,8 +630,8 @@ const activateAboutPageScript = function(user) {
 		 		<p class="key">${entry.key}</p>
 		 		<p class="value">${entry.key.toLowerCase() !== 'address' && entry.key.toLowerCase() !== 'phone' && entry.key.toLowerCase() !== 'email' ? entry.value : getFormattedLink(entry.key.toLowerCase(), entry.value)}</p>
 		 	</div>
-		`
-	}
+		`;
+	};
 
 	// Render personal detail on screen in Personal Info section
 	const renderPersonalDetail = function(shortBio) {
@@ -526,6 +642,71 @@ const activateAboutPageScript = function(user) {
 		})
 	}
 	renderPersonalDetail(user.getShortBio());
+
+
+	// Build Education Timeline
+	const buildEducationTimeline = function(phase) {
+		return `
+			<div class="timeline--div">
+				<div class="timeline--logo"><span class="fa fa-book"></span></div>
+				<div class="timeline--content">
+					<div class="timeline--duration pill-badge">${phase.durationStr}</div>
+					<div class="timeline--didWhat">${phase.tag}</div>
+					<div class="timeline--fromWhere">${phase.name}</div>
+				</div>
+			</div>
+		`;
+	}
+
+	// Render About education details
+	const renderAboutEducation = function(user) {
+		const education = user.education;
+		const phases = user.education.phase;
+		let timeline_html= '<div class="timeline">';
+
+		phases.forEach(phase => {
+			timeline_html += buildEducationTimeline(education.getInstituteDetail(phase))
+		})
+		
+		timeline_html += '</div>';
+		aboutEducationContainer.innerHTML = timeline_html;
+	}
+	renderAboutEducation(user);
+
+
+	// Build Experience Card
+	const buildExperienceCard = function(phase) {
+		return `
+			<div class="col-lg-6 col-md-12 col-sm-12 p-1 mb-2">
+				<div class="experience-card lazy-transition--bottom">
+					<div class="card-left">
+						<img src="${phase.logo}" alt="${phase.name} logo"/>
+					</div>
+					<div class="card-right">
+						<p class="experience--duration pill-badge">${phase.durationStr}</p>
+						<p class="experience--position">${phase.position}</p>
+						<p class="experience--company"><a href="${phase.url}" class="link" target="_blank">${phase.name}</a></p>
+					</div>
+				</div>
+			</div>
+		`;
+	}
+
+	// Render About experience
+	const renderAboutExperience = function(user) {
+		const experience = user.knowledge.experience;
+		const phases = user.knowledge.experience.phase;
+		let experience_html = '<div class="row">';
+
+		phases.forEach(phase => {
+			experience_html += buildExperienceCard(experience.getExperienceDetail(phase));
+		});
+
+		experience_html += '</div>';
+		aboutExperienceContainer.innerHTML = experience_html;
+
+	}
+	renderAboutExperience(user);
 
 }
 
