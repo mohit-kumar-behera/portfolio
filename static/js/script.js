@@ -105,25 +105,6 @@ closeModelBtn.addEventListener('click', closeModel);
 overlay.addEventListener('click', closeModel);
 
 
-themePickerModelBtn.addEventListener('click', function(e) {
-	e.preventDefault();
-	this.blur();
-
-	modelHead.innerHTML = modelBody.innerHTML = 'loading...';
-
-	const themePickerBodyHTML = buildThemePickerModelBody();
-
-	modelHead.innerHTML = modelBody.innerHTML = '';
-
-	const themePickerHeadHTML = `<h4>Pick Theme</h4>`;
-
-	model.style.width = 'auto';
-	modelHead.insertAdjacentHTML('beforeend', themePickerHeadHTML);
-	modelBody.insertAdjacentHTML('beforeend', themePickerBodyHTML);
-	
-	openModel();
-});
-
 
 document.body.addEventListener('keyup', function(e) {
 	
@@ -160,19 +141,16 @@ const setNewTheme = function(color) {
 
 const handleThemePickerBtn = function(e) {
 	/* Handle Theme Picker Button to update theme */
-	e.target.blur();
+	const elem = e.target;
+	elem.blur();
 
-	if (e.target.classList.contains('color--btn')) {
-		const color = e.target.dataset.color;
+	if (elem.classList.contains('color--btn')) {
+		const color = elem.dataset.color;
 		setNewTheme(color);
 	}
 };
 themePicker?.addEventListener('click', handleThemePickerBtn);
 
-const handleThemeModelBtn = function(elem) {
-	const color = elem.dataset.color;
-	setNewTheme(color);
-};
 
 const checkActiveTheme = function() {
 	if (localStorage.getItem('theme-color')) {
@@ -184,6 +162,33 @@ const checkActiveTheme = function() {
 	}
 };
 checkActiveTheme();
+
+
+// Handle Theme Picker Button from Model
+themePickerModelBtn.addEventListener('click', function(e) {
+	e.preventDefault();
+	this.blur();
+
+	modelHead.innerHTML = modelBody.innerHTML = 'loading...';
+
+	const themePickerBodyHTML = buildThemePickerModelBody();
+
+	modelHead.innerHTML = modelBody.innerHTML = '';
+
+	const themePickerHeadHTML = `<h4>Pick Theme</h4>`;
+
+	model.style.width = 'auto';
+	modelHead.insertAdjacentHTML('beforeend', themePickerHeadHTML);
+	modelBody.insertAdjacentHTML('beforeend', themePickerBodyHTML);
+	
+	document
+		.querySelector('.theme-picker.from-model')
+		.addEventListener('click', e => handleThemePickerBtn(e));
+
+	openModel();
+});
+
+
 
 
 /*-------------- Required only in home page -------------------- */

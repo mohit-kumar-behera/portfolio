@@ -3,18 +3,18 @@
 const buildThemePickerModelBody = () => `
 		<div class="theme-picker from-model">
 			<div class="pallete">
-				<button class="bttn color--btn" data-color="#913ee8" onclick="handleThemeModelBtn(this)" style="background: #913EE8"></button>
-				<button class="bttn color--btn" data-color="#0556f3" onclick="handleThemeModelBtn(this)" style="background: #0556F3"></button>
-				<button class="bttn color--btn" data-color="#fa1e0e" onclick="handleThemeModelBtn(this)" style="background: #FA1E0E"></button>
-				<button class="bttn color--btn" data-color="#fe4c03" onclick="handleThemeModelBtn(this)" style="background: #fe4c03"></button>
-				<button class="bttn color--btn" data-color="#ef5742" onclick="handleThemeModelBtn(this)" style="background: #EF5742"></button>
+				<button class="bttn color--btn" data-color="#913ee8" style="background: #913EE8"></button>
+				<button class="bttn color--btn" data-color="#0556f3" style="background: #0556F3"></button>
+				<button class="bttn color--btn" data-color="#fa1e0e" style="background: #FA1E0E"></button>
+				<button class="bttn color--btn" data-color="#fe4c03" style="background: #fe4c03"></button>
+				<button class="bttn color--btn" data-color="#ef5742" style="background: #EF5742"></button>
 			</div>
 			<div class="pallete">
-				<button class="bttn color--btn" data-color="#f97194" onclick="handleThemeModelBtn(this)" style="background: #f97194"></button>
-				<button class="bttn color--btn" data-color="#ffae00" onclick="handleThemeModelBtn(this)" style="background: #ffae00"></button>
-				<button class="bttn color--btn" data-color="#73a528" onclick="handleThemeModelBtn(this)" style="background: #73A528"></button>
-				<button class="bttn color--btn" data-color="#a0522d" onclick="handleThemeModelBtn(this)" style="background: #A0522D"></button>
-				<button class="bttn color--btn" data-color="#01937c" onclick="handleThemeModelBtn(this)" style="background: #01937C"></button>
+				<button class="bttn color--btn" data-color="#f97194" style="background: #f97194"></button>
+				<button class="bttn color--btn" data-color="#ffae00" style="background: #ffae00"></button>
+				<button class="bttn color--btn" data-color="#73a528" style="background: #73A528"></button>
+				<button class="bttn color--btn" data-color="#a0522d" style="background: #A0522D"></button>
+				<button class="bttn color--btn" data-color="#01937c" style="background: #01937C"></button>
 			</div>
 		</div>
 	`;
