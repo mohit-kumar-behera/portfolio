@@ -36,6 +36,10 @@ body {
 	font-family: var(--font-primary);
 	background: var(--dark-shade2);
 }
+body * {
+	transition: all 0.3s ease;
+	-webkit-transition: all 0.3s ease;
+}
 
 p {
 	margin: 0;
@@ -185,8 +189,6 @@ p {
 	font-family: var(--font-primary);
 	overflow: auto;
 	padding: 0;
-	transition: all 0.2s ease;
-	-webkit-transition: all 0.2s ease;
 }
 /*-- Text Component --*/
 .text.secondary--type {
@@ -199,9 +201,6 @@ p {
 	font-weight: 800;
 }
 /*-- Link Component --*/
-.link {
-	transition: all 0.3s ease;
-}
 .link:focus {
 	outline: none;
 }
@@ -212,7 +211,6 @@ p {
 .bttn {
 	border: none;
 	font-family: var(--font-fancy);
-	transition: all 0.2s ease-in-out;
 }
 .bttn:focus {
 	outline: none;
@@ -257,7 +255,6 @@ p {
 	background: transparent;
 	backdrop-filter: blur(10px);
 	z-index: 10;
-	transition: all 0.3s;
 }
 .model {
 	position: fixed;
@@ -271,7 +268,6 @@ p {
 	border-radius: 5px;
 	padding: 0;
 	z-index: 20;
-	transition: all 0.3s;
 }
 .overlay.hide,
 .model.hide {
@@ -350,8 +346,13 @@ p {
 .lazy-img {
 	filter: blur(6px);
 }
-
-
+.lazy-opacity,
+.lazy-transition--left,
+.lazy-transition--bottom,
+.lazy-img {
+	transition-timing-function: ease-out;
+	-webkit-transition-timing-function: ease-out;
+}
 
 
 
@@ -366,7 +367,6 @@ p {
 	background: var(--dark-shade1);
 	transform: translateX(100%);
 	-webkit-transform: translateX(100%);
-	transition: all 0.2s ease;
 	border-left: 0.1px solid var(--light-shade2);
 }
 .navbar.open {
@@ -388,7 +388,6 @@ p {
 	background: var(--secondary-color);
 	color: var(--light-shade2);
 	text-align: center;
-	transition: all 0.15s ease-in-out;
 }
 .navbar-toggler--icon {
 	font-weight: 600;
@@ -430,7 +429,6 @@ p {
 	padding: 1rem;
 	display: flex;
 	flex-direction: column;
-	transition: all 0.2s ease;
 	z-index: 0;
 }
 .nav-link span {
@@ -493,7 +491,6 @@ p {
 	height: 32px;
 	border-radius: 2px;
 	border: none;
-	transition: all 0.3s ease-in-out;
 }
 .theme-picker .color--btn:last-child {
 	margin-right: 0;
@@ -595,10 +592,6 @@ section.normal-container .responsive-wrapper {
 	width: 50%;
 	padding: 0.2rem;
 	margin-bottom: 1rem;
-	transition: all 0.3s ease-out;
-}
-.display-card--div * {
-	transition: all 0.3s ease;
 }
 @media screen and (min-width: 1400px) {
 	.display-card--div {
@@ -645,7 +638,6 @@ section.normal-container .responsive-wrapper {
 	background: var(--dark-shade6);
 	opacity: 0;
 	pointer-events: none;
-	transition: all 0.3s;
 }
 .display-card--wrapper:not(.mobile-device) .display-card:hover > .overlay--div{
 	opacity: 0.7;

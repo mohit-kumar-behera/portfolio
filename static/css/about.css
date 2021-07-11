@@ -7,7 +7,6 @@
 	border: 0.3px solid #232b2b;
 	box-shadow: 0px 1px 4px #232b2b90;
 	padding: 1rem;
-	transition: all 0.3s ease-out;
 }
 .about-me--div h4 {
 	font-family: var(--font-fancy);
@@ -51,7 +50,6 @@
 .entity .value :is(.link) {
 	color: inherit;
 	text-decoration: underline;
-	transition: all 0.2s ease-out;
 }
 .entity .value :is(.link):hover,
 .entity .value :is(.link):focus {
@@ -70,7 +68,6 @@
 }
 .about-education--div {
 	display: flex;
-	transition: all 0.3s ease-out;
 }
 .about-education--div > .div--left,
 .about-education--div > .div--right {
@@ -110,7 +107,6 @@
 	padding: 0.7rem;
 	box-shadow: 0.5px 0.5px 3.5px var(--secondary-color);
 	border-radius: 3px;
-	transition: all 0.3s ease-out;
 }
 .skill-bar--label {
 	padding: 0.2rem 0.1rem 0 0.1rem;
@@ -190,7 +186,6 @@
 	padding: 0.8rem;
 	border-radius: 3px;
 	font-family: var(--font-fancy);
-	transition: all 0.3s ease-out;
 }
 .experience-card .card-left {
 	width: 30%;
