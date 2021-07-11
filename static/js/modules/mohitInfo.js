@@ -281,6 +281,10 @@ const user = {
 					rate: '0.4',
 				},
 				{
+					name: 'EXPRESS JS',
+					rate: '0.3',
+				},
+				{
 					name: 'SQL',
 					rate: '0.7',
 				},

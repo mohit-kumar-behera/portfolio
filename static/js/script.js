@@ -1,16 +1,16 @@
 'use strict';
 
-import detectMobile from '../js/modules/mobile.js';
-import user from '../js/modules/mohitInfo.js';
-import {loadImg, createImg} from '../js/modules/loadCreateImg.js';
-import typewriter from '../js/modules/typewriter.js';
+import detectMobile from '../js/modules/Mobile.js';
+import user from '../js/modules/MohitInfo.js';
+import {loadImg, createImg} from '../js/modules/LoadCreateImg.js';
+import typewriter from '../js/modules/Typewriter.js';
 import {buildThemePickerModelBody,
 	    buildAccountCard, 
 		buildPersonalInfoCard,
 		buildEducationTimeline, 
 		buildSkillBar, 
 		buildExperienceCard, 
-		buildAwardCard} from '../js/modules/build.js'; 
+		buildAwardCard} from '../js/modules/Build.js'; 
 
 const navbar = document.querySelector('.navbar')
 const navbarTogglerBtn = document.querySelector('.navbar-toggler');
@@ -75,6 +75,7 @@ const addMobileDevice = isMobile => {
 	 	addMobileDevice__class(addClassToElems);
 	}
 };
+
 
 
 const toggleNavbar = function() {
