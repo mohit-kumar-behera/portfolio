@@ -193,6 +193,7 @@ themePickerModelBtn.addEventListener('click', function(e) {
 
 /*-------------- Required only in home page -------------------- */
 
+/*
 const activateHomePageScript = function(user) {
 
 	const setUsername = function(fullName) {
@@ -210,6 +211,7 @@ const activateHomePageScript = function(user) {
 	setUsername(user.getFullName());
 
 };
+*/
 
 /*--------------- End of home page ----------------------*/
 
@@ -454,7 +456,7 @@ window.addEventListener('load', function() {
 
 		switch (currPage) {
 			case 'home':
-				activateHomePageScript(user);
+				// activateHomePageScript(user);
 				break;
 			case 'contact':
 				activateContactPageScript(user);

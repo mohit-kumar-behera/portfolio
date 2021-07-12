@@ -85,18 +85,22 @@ p {
 .box.one {
 	background: #EF5742;
 	animation-delay: -0.2s;
+	-webkit-animation-delay: -0.2s;
 }
 .box.two {
 	background: #73A528;
 	animation-delay: 0.2s;
+	-webkit-animation-delay: 0.2s;
 }
 .box.three {
 	background: #0556F3;
 	animation-delay: 0.1s;
+	-webkit-animation-delay: 0.1s;
 }
 .box.four {
 	background: #ffae00;
 	animation-delay: -0.1s;
+	-webkit-animation-delay: -0.1s;
 }
 @keyframes shrinksize {
 	0%, 100% {

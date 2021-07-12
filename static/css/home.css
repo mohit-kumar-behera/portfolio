@@ -118,6 +118,27 @@
 	margin-top: 2.5rem;
 	margin-bottom: 0;
 }
+.letter {
+	color: var(--secondary-color);
+	position: relative;
+	top: -15px;
+	animation: come-down 0.18s ease-in-out forwards;
+	-webkit-animation: come-down 0.18s ease-in-out forwards;
+	opacity: 0;
+}
+.letter.two{animation-delay:.15s;-webkit-animation-delay:.15s}.letter.three{animation-delay:.3s;-webkit-animation-delay:.3s}.letter.four{animation-delay:.45s;-webkit-animation-delay:.45s}.letter.five{animation-delay:.6s;-webkit-animation-delay:.6s}.letter.seven{animation-delay:.75s;-webkit-animation-delay:.75s}.letter.eight{animation-delay:.9s;-webkit-animation-delay:.9s}.letter.nine{animation-delay:1.05s;-webkit-animation-delay:1.05s}.letter.ten{animation-delay:1.2s;-webkit-animation-delay:1.2s}.letter.eleven{animation-delay:1.35s;-webkit-animation-delay:1.35s}
+@keyframes come-down {
+	to {
+		top: 0;
+		opacity: 1;
+	}
+}
+@-webkit-keyframes come-down {
+	to {
+		top: 0;
+		opacity: 1;
+	}
+}
 .content .greet {
 	font-family: var(--font-fancy);
 	font-weight: 500;
