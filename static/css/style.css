@@ -344,8 +344,9 @@ p {
 	transition-delay: 0.1s;
 }
 .lazy-img {
-	filter: blur(6px);
+  opacity: 0.15;
 }
+
 .lazy-opacity,
 .lazy-transition--left,
 .lazy-transition--bottom,

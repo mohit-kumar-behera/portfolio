@@ -197,11 +197,14 @@ const activateHomePageScript = function(user) {
 
 	const setUsername = function(fullName) {
 		const username = fullName.toUpperCase();
-		const writerSpeed = 95; // in millisecond
+		const writerSpeed = 115; // in millisecond
 		const screenWidth = document.documentElement.clientWidth || window.screen.width;
 
-		if (screenWidth > 992) typewriter(username, usernameSpan, writerSpeed);
-		else usernameSpan.textContent = username;
+		(screenWidth <= 992) ? 
+			usernameSpan.textContent = username : 
+			setTimeout(function(){
+				typewriter(username, usernameSpan, writerSpeed);
+			}, 250);
 	};
 
 	setUsername(user.getFullName());
@@ -404,7 +407,7 @@ const startIntersectionObserver = function() {
 			elem.setAttribute('alt', 'Unable to Load Mohit Kumar Photo');
 			console.error(err);
 
-		}
+		} 
 
 		lazyImgObserver.unobserve(elem)
 	}

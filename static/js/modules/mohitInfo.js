@@ -273,12 +273,20 @@ const user = {
 					rate: '0.3',
 				},
 				{
+					name: 'Python',
+					rate: '0.8'
+				},
+				{
 					name: 'BOOTSTRAP',
 					rate: '0.9',
 				},
 				{
 					name: 'PHP',
 					rate: '0.4',
+				},
+				{
+					name: 'C',
+					rate: '0.6',
 				},
 				{
 					name: 'EXPRESS JS',
@@ -295,6 +303,10 @@ const user = {
 				{
 					name: 'SELENIUM WEBDRIVER',
 					rate: '0.5',
+				},
+				{
+					name: 'C++',
+					rate: '0.7',
 				},
 			],
 
