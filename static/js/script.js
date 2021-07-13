@@ -9,7 +9,7 @@ import {buildThemePickerModelBody,
 		buildPersonalInfoCard,
 		buildEducationTimeline, 
 		buildSkillBar, 
-		buildExperienceCard, 
+		buildExperienceCard,
 		buildAwardCard} from '../js/modules/Build.js'; 
 
 const navbar = document.querySelector('.navbar')

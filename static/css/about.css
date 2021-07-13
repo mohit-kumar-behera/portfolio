@@ -212,6 +212,9 @@
 	color: var(--secondary-color);
 	text-decoration: none;
 }
+.award-card {
+	background: #232b2b50;
+}
 .overlay--div > span {
 	position: relative;
 	top: 50%;

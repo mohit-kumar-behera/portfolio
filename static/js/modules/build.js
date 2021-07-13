@@ -100,7 +100,7 @@ const buildExperienceCard = phase => `
 // Build Award Card
 const buildAwardCard = phase => `
 		<div class="display-card--div lazy-transition--bottom">
-			<div class="display-card">
+			<div class="display-card award-card">
 				<div class="display-card--img">
 					<img src="${phase.imgPath}" class="award--img"/>
 				</div>
