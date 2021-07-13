@@ -54,6 +54,118 @@ const init = () => {
 	let isMobile = '';
 }
 
+
+
+
+
+// class User {
+// 	url = '/fetch-mohit/';
+// 	firstName;
+	
+// 	constructor() {
+// 		console.log(this)
+// 		this._fetchMohitData(this.url);
+// 			// .then(res => {
+// 			// 	this.firstName = res.firstName;
+// 			// 	this.lastName = res.lastName;
+// 			// 	this.contact = res.contact;
+// 			// });
+// 		console.log(this)
+// 	}
+
+// 	// _fetchMohitData(url) {
+// 	// 	fetch(url)
+// 	// 		.then(response => response.json())
+// 	// 		.then(data => {
+// 	// 			this.firstName = data.firstName;
+// 	// 			this.lastName = data.lastName;
+// 	// 			this.contact = data.contact;
+// 	// 		});
+// 	// }
+
+// 	_set(data) {
+// 		console.log(this)
+// 		this.firstName = data.firstName;
+// 		this.lastName = data.lastName;
+// 		this.contact = data.contact;
+// 		console.log(this.firstName);
+
+// 		console.log(this.getFullName(data));
+// 	}
+
+// 	async _fetchMohitData(url) {
+// 		try {
+// 			const response = await fetch(url);
+// 			if (!response.ok) throw new Error('Something went wrong')
+// 			const data = await response.json();
+// 			this.firstName = data.firstName;
+// 			this.lastName = data.lastName;
+// 			this.contact = data.contact;
+// 			this._set(data)
+// 			return data;
+// 		} catch (err) {
+// 			console.log(err);
+// 		}
+// 	}
+
+// 	getFullName(obj) {
+// 		return `${obj.firstName} ${obj.lastName}`;
+// 	}
+
+// 	getContact(obj, type) {
+// 		return this.contact[type];
+// 	}
+// }
+
+// // const userObj = async function() {
+// // 	const user_1 = await new User();
+// // 	// console.log(user_1.getFullName())
+// // 	const mohit = await user_1.getFullName();
+// // 	// console.log(mohit);
+// // }
+// // userObj();
+// const user_1 = new User();
+// user_1._fetchMohitData(user_1.url)
+// 	.then(res => res)
+// 	.then(data => {
+
+// 		let m = user_1.getContact(data, 'phone');
+// 		console.log(m)
+// 	});
+// console.log("here: ", user_1)
+
+
+
+// const user_2 = new User();
+// user_2.getUserObj()
+// 	.then(res => res)
+// 	.then(data => {
+// 		console.log(data.getFullName());
+// 	})
+
+
+// console.log(user_1.firstName);
+
+// const url = '/fetch-mohit/';
+
+// fetch(url)
+// 	.then(res => res.json())
+// 	.then(data => console.log(data));
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // Check which page is currently active and set currPage as the current active page
 const setCurrPage = () => currPage = location.pathname.split('/')[1] || 'home';	
 
@@ -193,7 +305,7 @@ themePickerModelBtn.addEventListener('click', function(e) {
 
 /*-------------- Required only in home page -------------------- */
 
-/*
+
 const activateHomePageScript = function(user) {
 
 	const setUsername = function(fullName) {
@@ -208,10 +320,50 @@ const activateHomePageScript = function(user) {
 			}, 250);
 	};
 
-	setUsername(user.getFullName());
+	// setUsername(user.getFullName());
+
+
+
+	// class App {
+	// 	constructor() {
+	// 		this._fetchInfo();
+	// 	}
+
+	// 	async _fetchInfo() {
+
+	// 		try {
+	// 			const res = await fetch('/fetch-mohit/');
+	// 			if (!res.ok) throw new Error('Unable to Load Data');
+
+	// 			const data = await res.json();
+	// 			this._loadMohitData(data);
+
+	// 		} catch (err) {
+	// 			console.log(err);
+	// 		} finally {
+	// 			return this;
+	// 		}
+
+	// 	}
+
+	// 	_getContact(contact, type) {
+	// 		return contact[type];
+	// 	}
+
+	// 	_loadMohitData(data) {
+	// 		this.firstName = data.firstName;
+	// 		this.lastName = data.lastName;
+	// 		this.phone = this._getContact(data.contact, 'phone');
+
+	// 		document.getElementById('detail').innerHTML = `${this.firstName}, ${this.lastName}, ${this.phone}`;
+	// 	}
+	// }
+
+	// const app = new App();
+
 
 };
-*/
+
 
 /*--------------- End of home page ----------------------*/
 
@@ -445,8 +597,8 @@ const startIntersectionObserver = function() {
 
 window.addEventListener('load', function() {
 	setTimeout(function() {
-		document.querySelector('.loader').remove();
-		document.getElementById('main-body').style.display = 'block';
+		// document.querySelector('.loader').remove();
+		// document.getElementById('main-body').style.display = 'block';
 		
 		init();
 		setActivePageNavLink();
@@ -456,7 +608,7 @@ window.addEventListener('load', function() {
 
 		switch (currPage) {
 			case 'home':
-				// activateHomePageScript(user);
+				activateHomePageScript(user);
 				break;
 			case 'contact':
 				activateContactPageScript(user);
@@ -465,8 +617,17 @@ window.addEventListener('load', function() {
 				activateAboutPageScript(user);
 				break;
 		}
-
+		
+		document.querySelector('.loader').remove();
+		document.getElementById('main-body').style.display = 'block';
+		
 		startIntersectionObserver();
 	}, 400);
 });
 
+
+/*
+
+https://stackoverflow.com/questions/7165656/passing-objects-from-django-to-javascript-dom
+
+*/
