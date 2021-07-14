@@ -604,6 +604,7 @@ section.normal-container .responsive-wrapper {
 }
 
 /* Card Component */
+/* Display Card */
 .display-card--wrapper {
 	display: flex;
 	justify-content: space-around;
@@ -661,6 +662,63 @@ section.normal-container .responsive-wrapper {
 }
 .display-card--wrapper:not(.mobile-device) .display-card:hover > .overlay--div{
 	opacity: 0.7;
+}
+/* Info Card */
+.info-card {
+	display: flex;
+	border: 1px solid white;
+	padding: 0.8rem;
+	border-radius: 3px;
+	font-family: var(--font-fancy);
+}
+.info-card .info-card--left {
+	width: 30%;
+}
+.info-card .info-card--right {
+	width: 70%;
+	padding: 0.25rem;
+}
+.info-card .info-card--left > img {
+	position: relative;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 60px;
+	height: 60px;
+	border-radius: 50%;
+}
+.info-card--right .info-card--content:not(:last-child) {
+	margin-bottom: .4rem;
+}
+.info-card .link {
+	color: inherit;
+}
+.info-card .link:hover,
+.info-card .link:focus {
+	color: var(--secondary-color);
+	text-decoration: none;
+}
+
+/* Pill-Badge Component */
+.pill-badge {
+	position: relative;
+	display: inline-block;
+	font-family: var(--font-fancy);
+	font-size: 0.8rem;
+	border-radius: 2px;
+	padding: 0.1rem 0.5rem;
+	background: var(--dark-shade6);
+}
+.pill-badge:before {
+	content: '';
+	position: absolute;
+	top: 50%;
+	left: 0;
+	transform: translate(-100%, -50%);
+	-webkit-transform: translate(-100%, -50%);
+	border-width: 5px;
+  	border-style: solid;
+  	border-color: transparent  var(--dark-shade6) transparent transparent;
 }
 
 /* Progress Bar Component */

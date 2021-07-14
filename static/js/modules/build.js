@@ -84,14 +84,22 @@ const buildSkillBar = phase => `
 // Build Experience Card
 const buildExperienceCard = phase => `
 		<div class="col-lg-6 col-md-12 col-sm-12 p-1 mb-2">
-			<div class="experience-card lazy-transition--bottom">
-				<div class="card-left">
+			<div class="info-card lazy-transition--bottom">
+				<div class="info-card--left">
 					<img src="${phase.logo}" alt="${phase.name} logo"/>
 				</div>
-				<div class="card-right">
-					<p class="experience--duration pill-badge text-weight-bold">${phase.durationStr}</p>
-					<p class="experience--position">${phase.position}</p>
-					<p class="experience--company"><a href="${phase.url}" class="link" target="_blank">${phase.name}</a></p>
+				<div class="info-card--right">
+					<div class="info-card--content">
+						<p class="experience--duration pill-badge text-weight-bold">${phase.durationStr}</p>
+					</div>
+					
+					<div class="info-card--content">
+						<p class="experience--position">${phase.position}</p>
+					</div>
+					
+					<div class="info-card--content">
+						<p class="experience--company"><a href="${phase.url}" class="link" target="_blank">${phase.name}</a></p>
+					</div>
 				</div>
 			</div>
 		</div>

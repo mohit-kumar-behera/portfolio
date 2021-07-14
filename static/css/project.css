@@ -88,56 +88,6 @@
 
 
 
-
-
-
-
-.pill-badge {
-	display: inline-block;
-	position: relative;
-	background: var(--dark-shade6);
-}
-.pill-badge:before {
-	content: '';
-	position: absolute;
-	top: 50%;
-	left: 0;
-	transform: translate(-100%, -50%);
-	-webkit-transform: translate(-100%, -50%);
-	border-width: 5px;
-  	border-style: solid;
-  	border-color: transparent  var(--dark-shade6) transparent transparent;
-}
-
-.experience-card {
-	display: flex;
-	border: 1px solid white;
-	padding: 0.8rem;
-	border-radius: 3px;
-	font-family: var(--font-fancy);
-}
-.experience-card .card-left {
-	width: 30%;
-}
-.experience-card .card-right {
-	width: 70%;
-	padding: 0.25rem;
-}
-.experience-card .card-left > img {
-	position: relative;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-	width: 55px;
-	height: 55px;
-	border-radius: 50%;
-	object-fit: cover;
-}
-.experience-card .link {
-	color: inherit;
-}
-.experience-card .link:hover,
-.experience-card .link:focus {
-	color: var(--secondary-color);
-	text-decoration: none;
+.experience--position {
+	font-weight: 800;
 }
