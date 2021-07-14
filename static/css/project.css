@@ -1,10 +1,4 @@
 
-.project--wrapper,
-.project-tech-stack {
-	display: flex;
-	flex-direction: row;
-	flex-wrap: wrap;
-}
 .project--div {
 	padding: 0.6rem;
 }
@@ -47,9 +41,6 @@
 	background: #ffffff10;
 	box-sizing: content-box;
 }
-.project-thumbnail-img > .project--img {
-	object-fit: cover;
-}
 .project-content {
 	padding: 1rem;
 	font-family: var(--font-fancy);
@@ -61,26 +52,16 @@
 	position: relative;
 }
 .project-headline > .headline {
-	font-weight: 600;
 	color: var(--light-shade1);
 	text-transform: capitalize;
 }
-.project-headline:hover > .headline {
-	color: var(--secondary-color);
-}
+.project-headline:hover > .headline,
 .project-headline .display-card--link:focus + .headline {
 	color: var(--secondary-color);
-}
-div.hr {
-	width: 100%;
-	height: 2px;
-	background: #ffffff20;
-	border-radius: 100px;
 }
 .tech-badge {
 	border-radius: 3px;
 	font-family: var(--font-primary);
-	font-weight: 600;
 	font-size: 0.8rem;
 	padding: 0;
 	margin-bottom: 0.8rem;
@@ -107,100 +88,56 @@ div.hr {
 
 
 
-/* pagination  */
-.pagination {
-	margin-top: 0.8rem;
-}
-.pagination--wrapper {
-/*	background: green;*/
-	margin: auto;
-	/*padding: 0.5rem;*/
-	display: flex;
-	justify-content: space-between;
-}
 
-.pagination-controller:first-child {
-	margin-right: 0.7rem;
-}
-.pagination-controller:last-child {
-	margin-left: 0.7rem;
-}
 
-.pagination-page {
-	max-width: 162.5px;
-	overflow-x: hidden;
+
+
+.pill-badge {
+	display: inline-block;
 	position: relative;
-
-	align-self: center;
+	background: var(--dark-shade6);
 }
-
-.pagination-list {
-	display: flex;
-	justify-content: start;
-	padding: 0;
-	margin-bottom: 0;
-}
-.pagination-item {
-	list-style-type: none;
-}
-.pagination .bttn {
-	padding: 0.2rem 1rem;
-	border-radius: 2px;
-
-	position: relative;
-	z-index: 0;
-}
-
-.pagination-item {
-	/*transform: translateX(-100%);*/
-}
-
-
-.pagination-controller--btn,
-.pagination-page--btn {
-	background: transparent;
-	color: var(--secondary-color);
-	font-size: 1rem;
-}
-
-.pagination-page--btn.active {
-	background: var(--secondary-color);
-	color: var(--light-shade1);
-}
-
-.pagination-controller--btn {
-	font-size: 1.8rem;
-	font-weight: 800;
-}
-
-/*.pagination-controller--btn:hover,
-.pagination-controller--btn:focus {
-	box-shadow: 0 0 2px var(--secondary-color);
-	background: var(--secondary-color);
-}
-.pagination-page--btn:hover,
-.pagination-page--btn:focus {
-	background: ;
-}*/
-
-.pagination:not(.mobile-device) .bttn:after {
+.pill-badge:before {
 	content: '';
 	position: absolute;
-	top: 0;
+	top: 50%;
 	left: 0;
-	width: 100%;
-	height: 100%;
-	background: var(--secondary-color);
-	opacity: 0;
-	border-radius: inherit;
-	z-index: -1;
-	transition: all 0.3s ease;
-	-webkit-transition: all 0.3s ease;
+	transform: translate(-100%, -50%);
+	-webkit-transform: translate(-100%, -50%);
+	border-width: 5px;
+  	border-style: solid;
+  	border-color: transparent  var(--dark-shade6) transparent transparent;
 }
-.pagination:not(.mobile-device) .bttn:hover:after,
-.pagination:not(.mobile-device) .bttn:focus:after {
-	opacity: 0.1;
+
+.experience-card {
+	display: flex;
+	border: 1px solid white;
+	padding: 0.8rem;
+	border-radius: 3px;
+	font-family: var(--font-fancy);
 }
-.pagination .bttn:active {
-	opacity: 0.7;
+.experience-card .card-left {
+	width: 30%;
+}
+.experience-card .card-right {
+	width: 70%;
+	padding: 0.25rem;
+}
+.experience-card .card-left > img {
+	position: relative;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 55px;
+	height: 55px;
+	border-radius: 50%;
+	object-fit: cover;
+}
+.experience-card .link {
+	color: inherit;
+}
+.experience-card .link:hover,
+.experience-card .link:focus {
+	color: var(--secondary-color);
+	text-decoration: none;
 }

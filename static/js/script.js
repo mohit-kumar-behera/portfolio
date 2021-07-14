@@ -5,11 +5,11 @@ import user from '../js/modules/MohitInfo.js';
 import {loadImg, createImg} from '../js/modules/LoadCreateImg.js';
 import typewriter from '../js/modules/Typewriter.js';
 import {buildThemePickerModelBody,
-	    buildAccountCard, 
+		buildAccountCard, 
 		buildPersonalInfoCard,
-		buildEducationTimeline, 
-		buildSkillBar, 
-		buildExperienceCard,
+	    buildEducationTimeline,
+	    buildSkillBar,
+	    buildExperienceCard,
 		buildAwardCard} from '../js/modules/Build.js'; 
 
 const navbar = document.querySelector('.navbar')

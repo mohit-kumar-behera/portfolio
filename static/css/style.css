@@ -204,6 +204,9 @@ p {
 	text-transform: uppercase;
 	font-weight: 800;
 }
+.text-weight-bold {
+	font-weight: 600;
+}
 /*-- Link Component --*/
 .link:focus {
 	outline: none;
@@ -321,6 +324,23 @@ p {
 	border-radius: 50%;
 	color: var(--light-shade1);
 }
+/* Horizontal Line Component */
+div.hr {
+	width: 100%;
+	height: 2px;
+	background: #ffffff20;
+	border-radius: 100px;
+}
+/* Flex Wrapper */
+.flex-wrapper {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+}
+/* Image Component */
+img {
+	object-fit: cover;
+}
 /* scrollbar  */
 .content-overflow::-webkit-scrollbar {
   width: 7px;
@@ -395,7 +415,6 @@ p {
 	text-align: center;
 }
 .navbar-toggler--icon {
-	font-weight: 600;
 	font-size: 1.5rem;
 }
 .navbar.open .navbar-toggler--icon {
@@ -554,7 +573,6 @@ section.normal-container .page-content {
 	width: 100%;
 	padding: 2rem 1.3rem;
 	overflow: hidden;
-	margin-bottom: 1rem;
 }
 section.normal-container .responsive-wrapper {
 	margin: auto;
@@ -616,7 +634,7 @@ section.normal-container .responsive-wrapper {
 .display-card {
 	width: 100%;
 	height: 100%;
-	background: var(--dark-shade2);
+	background: var(--dark-shade6);
 	border-radius: 5px;
 	text-align: center;
 	cursor: pointer;
@@ -629,9 +647,6 @@ section.normal-container .responsive-wrapper {
 	width: 100%;
 	height: 100%;
 	border-radius: inherit;
-}
-.display-card--img > img {
-	object-fit: cover;
 }
 .display-card--link,
 .overlay--div {
@@ -672,6 +687,78 @@ section.normal-container .responsive-wrapper {
 	transform: translate(-50%, -50%);
 	font-size: 0.65rem;
 	font-weight: bold;
+}
+
+/* Pagination Component */
+.pagination--wrapper {
+	margin: auto;
+	display: flex;
+	justify-content: space-between;
+}
+.pagination-controller:first-child {
+	margin-right: 0.7rem;
+}
+.pagination-controller:last-child {
+	margin-left: 0.7rem;
+}
+.pagination-list--wrapper {
+	position: relative;
+	max-width: 162.5px; /* Fixed */
+	overflow-x: hidden;
+	align-self: center;
+}
+.pagination-list {
+	display: flex;
+	justify-content: start;
+	padding: 0;
+	margin-bottom: 0;
+}
+.pagination-item {
+	list-style-type: none;
+}
+.pagination .bttn {
+	position: relative;
+	padding: 0.2rem 1rem;
+	border-radius: 2px;
+	z-index: 0;
+}
+.pagination-controller--btn,
+.pagination-page--btn {
+	background: transparent;
+	color: var(--secondary-color);
+	font-size: 1rem;
+}
+.pagination-page--btn.active {
+	background: var(--secondary-color);
+	color: var(--light-shade1);
+}
+.pagination-controller--btn {
+	font-size: 1.8rem;
+	font-weight: 800;
+}
+.pagination:not(.mobile-device) .bttn:after {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: var(--secondary-color);
+	opacity: 0;
+	border-radius: inherit;
+	transition: all 0.3s ease;
+	-webkit-transition: all 0.3s ease;
+	z-index: -1;
+}
+.pagination:not(.mobile-device) .bttn:hover:after,
+.pagination:not(.mobile-device) .bttn:focus:after {
+	opacity: 0.1;
+}
+.pagination .bttn:active {
+	opacity: 0.7;
+}
+.pagination-item {
+	/*transform: translateX(-100%);*/
 }
 
 /*-------------------- END OF OTHER PAGES COMMON STYLE -------------------------------*/

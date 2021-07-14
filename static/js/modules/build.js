@@ -50,7 +50,7 @@ const buildPersonalInfoCard = entry => {
 	const getFormattedLink = (key, val) => `<a href="${val.url}" class="link" target="_blank">${val[key]}</a>`;
 	
 	return `
-		<div class="entity">
+		<div class="entity text-weight-bold">
 	 		<p class="key">${entry.key}</p>
 	 		<p class="value">${entry.key.toLowerCase() !== 'address' && entry.key.toLowerCase() !== 'phone' && entry.key.toLowerCase() !== 'email' ? entry.value : getFormattedLink(entry.key.toLowerCase(), entry.value)}</p>
 	 	</div>
@@ -62,7 +62,7 @@ const buildEducationTimeline = phase => `
 		<div class="timeline--div">
 			<div class="timeline--logo"><span class="fa fa-book"></span></div>
 			<div class="timeline--content">
-				<div class="timeline--duration pill-badge">${phase.durationStr}</div>
+				<div class="timeline--duration pill-badge text-weight-bold">${phase.durationStr}</div>
 				<div class="timeline--didWhat">${phase.tag}</div>
 				<div class="timeline--fromWhere">${phase.name}</div>
 			</div>
@@ -73,7 +73,7 @@ const buildEducationTimeline = phase => `
 const buildSkillBar = phase => `
 		<div class="col-lg-3 col-md-4 col-sm-12 mb-3">
 			<div class="skill-bar--wrapper lazy-transition--bottom">
-				<div class="skill-bar--label"><span>${phase.name}</span></div>
+				<div class="skill-bar--label text-weight-bold"><span>${phase.name}</span></div>
 				<div class="mk-progress">
 					<div class="mk-progress-bar" style="width: ${phase.rate * 100}%;"><span>${phase.rate * 100}%</span></div>
 				</div>
@@ -89,7 +89,7 @@ const buildExperienceCard = phase => `
 					<img src="${phase.logo}" alt="${phase.name} logo"/>
 				</div>
 				<div class="card-right">
-					<p class="experience--duration pill-badge">${phase.durationStr}</p>
+					<p class="experience--duration pill-badge text-weight-bold">${phase.durationStr}</p>
 					<p class="experience--position">${phase.position}</p>
 					<p class="experience--company"><a href="${phase.url}" class="link" target="_blank">${phase.name}</a></p>
 				</div>
