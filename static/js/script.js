@@ -59,106 +59,98 @@ const init = () => {
 
 
 // class User {
-// 	url = '/fetch-mohit/';
-// 	firstName;
-	
-// 	constructor() {
-// 		console.log(this)
-// 		this._fetchMohitData(this.url);
-// 			// .then(res => {
-// 			// 	this.firstName = res.firstName;
-// 			// 	this.lastName = res.lastName;
-// 			// 	this.contact = res.contact;
-// 			// });
-// 		console.log(this)
-// 	}
+	// 	url = '/fetch-mohit/';
+	// 	firstName;
+		
+	// 	constructor() {
+	// 		console.log(this)
+	// 		this._fetchMohitData(this.url);
+	// 			// .then(res => {
+	// 			// 	this.firstName = res.firstName;
+	// 			// 	this.lastName = res.lastName;
+	// 			// 	this.contact = res.contact;
+	// 			// });
+	// 		console.log(this)
+	// 	}
 
-// 	// _fetchMohitData(url) {
-// 	// 	fetch(url)
-// 	// 		.then(response => response.json())
-// 	// 		.then(data => {
-// 	// 			this.firstName = data.firstName;
-// 	// 			this.lastName = data.lastName;
-// 	// 			this.contact = data.contact;
-// 	// 		});
-// 	// }
+	// 	// _fetchMohitData(url) {
+	// 	// 	fetch(url)
+	// 	// 		.then(response => response.json())
+	// 	// 		.then(data => {
+	// 	// 			this.firstName = data.firstName;
+	// 	// 			this.lastName = data.lastName;
+	// 	// 			this.contact = data.contact;
+	// 	// 		});
+	// 	// }
 
-// 	_set(data) {
-// 		console.log(this)
-// 		this.firstName = data.firstName;
-// 		this.lastName = data.lastName;
-// 		this.contact = data.contact;
-// 		console.log(this.firstName);
+	// 	_set(data) {
+	// 		console.log(this)
+	// 		this.firstName = data.firstName;
+	// 		this.lastName = data.lastName;
+	// 		this.contact = data.contact;
+	// 		console.log(this.firstName);
 
-// 		console.log(this.getFullName(data));
-// 	}
+	// 		console.log(this.getFullName(data));
+	// 	}
 
-// 	async _fetchMohitData(url) {
-// 		try {
-// 			const response = await fetch(url);
-// 			if (!response.ok) throw new Error('Something went wrong')
-// 			const data = await response.json();
-// 			this.firstName = data.firstName;
-// 			this.lastName = data.lastName;
-// 			this.contact = data.contact;
-// 			this._set(data)
-// 			return data;
-// 		} catch (err) {
-// 			console.log(err);
-// 		}
-// 	}
+	// 	async _fetchMohitData(url) {
+	// 		try {
+	// 			const response = await fetch(url);
+	// 			if (!response.ok) throw new Error('Something went wrong')
+	// 			const data = await response.json();
+	// 			this.firstName = data.firstName;
+	// 			this.lastName = data.lastName;
+	// 			this.contact = data.contact;
+	// 			this._set(data)
+	// 			return data;
+	// 		} catch (err) {
+	// 			console.log(err);
+	// 		}
+	// 	}
 
-// 	getFullName(obj) {
-// 		return `${obj.firstName} ${obj.lastName}`;
-// 	}
+	// 	getFullName(obj) {
+	// 		return `${obj.firstName} ${obj.lastName}`;
+	// 	}
 
-// 	getContact(obj, type) {
-// 		return this.contact[type];
-// 	}
-// }
+	// 	getContact(obj, type) {
+	// 		return this.contact[type];
+	// 	}
+	// }
 
-// // const userObj = async function() {
-// // 	const user_1 = await new User();
-// // 	// console.log(user_1.getFullName())
-// // 	const mohit = await user_1.getFullName();
-// // 	// console.log(mohit);
-// // }
-// // userObj();
-// const user_1 = new User();
-// user_1._fetchMohitData(user_1.url)
-// 	.then(res => res)
-// 	.then(data => {
+	// // const userObj = async function() {
+	// // 	const user_1 = await new User();
+	// // 	// console.log(user_1.getFullName())
+	// // 	const mohit = await user_1.getFullName();
+	// // 	// console.log(mohit);
+	// // }
+	// // userObj();
+	// const user_1 = new User();
+	// user_1._fetchMohitData(user_1.url)
+	// 	.then(res => res)
+	// 	.then(data => {
 
-// 		let m = user_1.getContact(data, 'phone');
-// 		console.log(m)
-// 	});
-// console.log("here: ", user_1)
-
-
-
-// const user_2 = new User();
-// user_2.getUserObj()
-// 	.then(res => res)
-// 	.then(data => {
-// 		console.log(data.getFullName());
-// 	})
+	// 		let m = user_1.getContact(data, 'phone');
+	// 		console.log(m)
+	// 	});
+	// console.log("here: ", user_1)
 
 
-// console.log(user_1.firstName);
 
-// const url = '/fetch-mohit/';
+	// const user_2 = new User();
+	// user_2.getUserObj()
+	// 	.then(res => res)
+	// 	.then(data => {
+	// 		console.log(data.getFullName());
+	// 	})
 
-// fetch(url)
-// 	.then(res => res.json())
+
+	// console.log(user_1.firstName);
+
+	// const url = '/fetch-mohit/';
+
+	// fetch(url)
+	// 	.then(res => res.json())
 // 	.then(data => console.log(data));
-
-
-
-
-
-
-
-
 
 
 
@@ -172,7 +164,6 @@ const setCurrPage = () => currPage = location.pathname.split('/')[1] || 'home';
 // Add active class to the navlink
 const setActivePageNavLink = function() {
 	setCurrPage();
-
 	document.querySelector('a.nav-link.active')?.classList.remove('active');
 	document.querySelector(`a.nav-link[data-path='${currPage}']`)?.classList.add('active');
 }
@@ -325,39 +316,39 @@ const activateHomePageScript = function(user) {
 
 
 	// class App {
-	// 	constructor() {
-	// 		this._fetchInfo();
-	// 	}
+		// 	constructor() {
+		// 		this._fetchInfo();
+		// 	}
 
-	// 	async _fetchInfo() {
+		// 	async _fetchInfo() {
 
-	// 		try {
-	// 			const res = await fetch('/fetch-mohit/');
-	// 			if (!res.ok) throw new Error('Unable to Load Data');
+		// 		try {
+		// 			const res = await fetch('/fetch-mohit/');
+		// 			if (!res.ok) throw new Error('Unable to Load Data');
 
-	// 			const data = await res.json();
-	// 			this._loadMohitData(data);
+		// 			const data = await res.json();
+		// 			this._loadMohitData(data);
 
-	// 		} catch (err) {
-	// 			console.log(err);
-	// 		} finally {
-	// 			return this;
-	// 		}
+		// 		} catch (err) {
+		// 			console.log(err);
+		// 		} finally {
+		// 			return this;
+		// 		}
 
-	// 	}
+		// 	}
 
-	// 	_getContact(contact, type) {
-	// 		return contact[type];
-	// 	}
+		// 	_getContact(contact, type) {
+		// 		return contact[type];
+		// 	}
 
-	// 	_loadMohitData(data) {
-	// 		this.firstName = data.firstName;
-	// 		this.lastName = data.lastName;
-	// 		this.phone = this._getContact(data.contact, 'phone');
+		// 	_loadMohitData(data) {
+		// 		this.firstName = data.firstName;
+		// 		this.lastName = data.lastName;
+		// 		this.phone = this._getContact(data.contact, 'phone');
 
-	// 		document.getElementById('detail').innerHTML = `${this.firstName}, ${this.lastName}, ${this.phone}`;
-	// 	}
-	// }
+		// 		document.getElementById('detail').innerHTML = `${this.firstName}, ${this.lastName}, ${this.phone}`;
+		// 	}
+		// }
 
 	// const app = new App();
 
