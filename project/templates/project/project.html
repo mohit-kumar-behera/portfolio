@@ -21,41 +21,7 @@
 			<h1 class="highlight-heading"><span>My <span class="text secondary--type">Portfolio</span></span></h1>
 		</div>
 
-		<div class="page-content pagination check-mobile" style="padding:0.1rem;">
-			<div class="pagination--wrapper">
-				<div class="pagination-controller">
-					<button class="bttn pagination-controller--btn prev--btn"><span class="fa fa-angle-left icon"></span></button>
-				</div>
-
-				<div class="pagination-list--wrapper">
-					<ul class="pagination-list">
-						<li class="pagination-item">
-							<button class="bttn pagination-page--btn">1</button>
-						</li>
-						<li class="pagination-item">
-							<button class="bttn pagination-page--btn active">2</button>
-						</li>
-						<li class="pagination-item">
-							<button class="bttn pagination-page--btn">3</button>
-						</li>
-						<li class="pagination-item">
-							<button class="bttn pagination-page--btn">4</button>
-						</li>
-						<!-- Extra -->
-						<li class="pagination-item">
-							<button class="bttn pagination-page--btn">5</button>
-						</li>
-						<li class="pagination-item">
-							<button class="bttn pagination-page--btn">6</button>
-						</li>
-					</ul>
-				</div>
-
-				<div class="pagination-controller">
-					<button class="bttn pagination-controller--btn next--btn"><span class="fa fa-angle-right icon"></span></button>
-				</div>
-			</div>
-		</div>
+		{% include 'project/common/pagination.html' %}
 
 		<div class="page-content project">
 			<div class="project--wrapper flex-wrapper">
@@ -236,42 +202,7 @@
 			</div>
 		</div>
 
-
-		<div class="page-content pagination check-mobile" style="padding:0.1rem">
-			<div class="pagination--wrapper">
-				<div class="pagination-controller">
-					<button class="bttn pagination-controller--btn prev--btn"><span class="fa fa-angle-left icon"></span></button>
-				</div>
-
-				<div class="pagination-list--wrapper">
-					<ul class="pagination-list">
-						<li class="pagination-item">
-							<button class="bttn pagination-page--btn">1</button>
-						</li>
-						<li class="pagination-item">
-							<button class="bttn pagination-page--btn active">2</button>
-						</li>
-						<li class="pagination-item">
-							<button class="bttn pagination-page--btn">3</button>
-						</li>
-						<li class="pagination-item">
-							<button class="bttn pagination-page--btn">4</button>
-						</li>
-						<!-- Extra -->
-						<li class="pagination-item">
-							<button class="bttn pagination-page--btn">5</button>
-						</li>
-						<li class="pagination-item">
-							<button class="bttn pagination-page--btn">6</button>
-						</li>
-					</ul>
-				</div>
-
-				<div class="pagination-controller">
-					<button class="bttn pagination-controller--btn next--btn"><span class="fa fa-angle-right icon"></span></button>
-				</div>
-			</div>
-		</div>
+		{% include 'project/common/pagination.html' %}
 
 		<div class="page-content mt-2" style="background: #1b1b1b;">
 			<div class="page-content-header">
@@ -282,20 +213,92 @@
 				<div class="col-lg-4 col-md-6 col-sm-12 p-1 mb-2">
 					<div class="info-card lazy-transition--bottom">
 						<div class="info-card--left">
-							<img src="{% static 'media/image/verzeo-logo.png' %}" />
+							<img src="https://avatars.githubusercontent.com/u/33843378?v=4" />
 						</div>
 						<div class="info-card--right">
 							<div class="info-card--content">
-								<p class="experience--duration pill-badge text-weight-bold">2 months (2020)</p>
+								<p class="experience--duration pill-badge text-weight-bold">Dennis Ivy</p>
 							</div>
 							
 							<div class="info-card--content">
-								<p class="experience--position">Web Developer</p>
+								<p class="experience--position"><a href="#" class="link" target="_blank">Youtube Channel</a></p>
+								<p class="experience--position"><a href="#" class="link" target="_blank">Udemy Channel</a></p>
+							</div>
+							
+						</div>
+					</div>
+				</div>
+
+				<div class="col-lg-4 col-md-6 col-sm-12 p-1 mb-2">
+					<div class="info-card lazy-transition--bottom">
+						<div class="info-card--left">
+							<img src="https://avatars.githubusercontent.com/u/33843378?v=4" />
+						</div>
+						<div class="info-card--right">
+							<div class="info-card--content">
+								<p class="experience--duration pill-badge text-weight-bold">Jonas Schmedtann</p>
 							</div>
 							
 							<div class="info-card--content">
-								<p class="experience--company"><a href="#" class="link">Verzeo</a></p>
+								<p class="experience--position"><a href="#" class="link" target="_blank">Udemy Channel</a></p>
 							</div>
+							
+						</div>
+					</div>
+				</div>
+
+				<div class="col-lg-4 col-md-6 col-sm-12 p-1 mb-2">
+					<div class="info-card lazy-transition--bottom">
+						<div class="info-card--left">
+							<img src="https://avatars.githubusercontent.com/u/33843378?v=4" />
+						</div>
+						<div class="info-card--right">
+							<div class="info-card--content">
+								<p class="experience--duration pill-badge text-weight-bold">Justin Mitchel</p>
+							</div>
+							
+							<div class="info-card--content">
+								<p class="experience--position"><a href="#" class="link" target="_blank">Udemy Channel</a></p>
+								<p class="experience--position"><a href="#" class="link" target="_blank">Youtube Channel</a></p>
+							</div>
+							
+						</div>
+					</div>
+				</div>
+
+				<div class="col-lg-4 col-md-6 col-sm-12 p-1 mb-2">
+					<div class="info-card lazy-transition--bottom">
+						<div class="info-card--left">
+							<img src="https://avatars.githubusercontent.com/u/33843378?v=4" />
+						</div>
+						<div class="info-card--right">
+							<div class="info-card--content">
+								<p class="experience--duration pill-badge text-weight-bold">Jonas Schmedtann</p>
+							</div>
+							
+							<div class="info-card--content">
+								<p class="experience--position"><a href="#" class="link" target="_blank">Udemy Channel</a></p>
+							</div>
+							
+						</div>
+					</div>
+				</div>
+
+				<div class="col-lg-4 col-md-6 col-sm-12 p-1 mb-2">
+					<div class="info-card lazy-transition--bottom">
+						<div class="info-card--left">
+							<img src="https://avatars.githubusercontent.com/u/33843378?v=4" />
+						</div>
+						<div class="info-card--right">
+							<div class="info-card--content">
+								<p class="experience--duration pill-badge text-weight-bold">Justin Mitchel</p>
+							</div>
+							
+							<div class="info-card--content">
+								<p class="experience--position"><a href="#" class="link" target="_blank">Udemy Channel</a></p>
+								<p class="experience--position"><a href="#" class="link" target="_blank">Youtube Channel</a></p>
+							</div>
+							
 						</div>
 					</div>
 				</div>

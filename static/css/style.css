@@ -666,6 +666,7 @@ section.normal-container .responsive-wrapper {
 /* Info Card */
 .info-card {
 	display: flex;
+	height: 100%;
 	border: 1px solid white;
 	padding: 0.8rem;
 	border-radius: 3px;
@@ -686,6 +687,9 @@ section.normal-container .responsive-wrapper {
 	width: 60px;
 	height: 60px;
 	border-radius: 50%;
+}
+.info-card--right {
+	align-self: center;
 }
 .info-card--right .info-card--content:not(:last-child) {
 	margin-bottom: .4rem;
