@@ -50,12 +50,6 @@
 .entity .value :is(.link):focus {
 	color: var(--secondary-color);
 }
-.download-cv--btn {
-	padding: 0.6rem 1rem;
-}
-.download-cv--btn[disabled] {
-	cursor: not-allowed;
-}
 
 .page-content:nth-child(odd) {
 	background: var(--dark-shade4);
@@ -147,14 +141,4 @@
 .timeline--didWhat,
 .experience--position {
 	font-weight: 800;
-}
-
-.overlay--div > span {
-	position: relative;
-	top: 50%;
-	transform: translateY(-50%);
-	-webkit-transform: translateY(-50%);
-	font-size: 1.8rem;
-	text-transform: uppercase;
-	font-weight: bold;
 }

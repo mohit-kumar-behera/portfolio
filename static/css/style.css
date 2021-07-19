@@ -217,10 +217,14 @@ p {
 /*-- Button Component --*/
 .bttn {
 	border: none;
+	padding: .6rem 1rem;
 	font-family: var(--font-fancy);
 }
 .bttn:focus {
 	outline: none;
+}
+.bttn[disabled] {
+	cursor: not-allowed;
 }
 .bttn.secondary--type {
 	border-radius: 100px;
@@ -659,6 +663,15 @@ section.normal-container .responsive-wrapper {
 	background: var(--dark-shade6);
 	opacity: 0;
 	pointer-events: none;
+}
+.overlay--div > span {
+	position: relative;
+	top: 50%;
+	transform: translateY(-50%);
+	-webkit-transform: translateY(-50%);
+	font-size: 1.8rem;
+	text-transform: uppercase;
+	font-weight: bold;
 }
 .display-card--wrapper:not(.mobile-device) .display-card:hover > .overlay--div{
 	opacity: 0.7;
