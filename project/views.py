@@ -9,3 +9,11 @@ def redirect_to_all_projects(request):
 
 def all_projects(request):
 	return render(request, 'project/project.html')
+
+
+def projects_by_tag(request, tag):
+	return render(request, 'project/project.html')
+
+
+def view_product(request, title):
+	return render(request, 'project/v-project.html')

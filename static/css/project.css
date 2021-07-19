@@ -30,8 +30,8 @@
 	padding: 0;
 	border: 0.5px solid #ffffff20;
 }
-.project-thumbnail-img,
-.project-thumbnail-img > .project--img {
+.project--card .project-thumbnail-img,
+.project--card .project-thumbnail-img > .project--img {
 	width: 100%;
 	height: 215px;
 	border-top-left-radius: inherit;
@@ -83,4 +83,54 @@
 	color: inherit;
 	text-decoration: none;
 	border-color: var(--light-shade1);
+}
+
+
+/* Project detail */
+.project-detail--div {
+	/*font-family: var(--font-fancy);*/
+}
+.project-detail--div > div:not(:last-child) {
+	margin-bottom: 2rem;
+}
+.project-detail .project-thumbnail-img,
+.project-detail .project-thumbnail-img > .project--img {
+	width: 100%;
+	max-height: 415px;
+	border-radius: 2px;
+}
+.project-detail .project-thumbnail-img > .project--img {
+	object-fit: contain;
+}
+
+.project--description > * {
+	line-height: 1.6;
+	margin-bottom: .8rem;
+}
+.project--description a {
+	color: var(--secondary-color);
+	font-weight: 600;
+}
+.project--description a:hover,
+.project--description a:focus {
+	text-decoration: underline;
+}
+.project--description ul,
+.project--description ol {
+	padding-left: 1.7rem;
+}
+
+.project--description p.note {
+	margin-top: 3rem;
+	color: #dc3545;
+}
+
+.project--video-demo {
+	background: white;
+	width: 100%;
+	height: 300px;
+}
+.project--video-demo iframe {
+	width: 100%;
+	height: 100%;
 }

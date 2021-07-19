@@ -1,0 +1,87 @@
+
+{% extends 'home/common/base.html' %}
+
+{% load static %}
+
+{% block title %}
+	<title>Title of project - Mohit Kumar</title>
+{% endblock title %}
+
+
+{% block stylesheet %}
+	<link rel="stylesheet" type="text/css" href="{% static 'css/project.css' %}?{% now 'U' %}">
+{% endblock stylesheet %}
+
+
+{% block content %}
+	
+	<section class="normal-container">
+
+		<div class="page-header check-mobile">
+			<h1 class="highlight-heading"><span>Project <span class="text secondary--type">#12</span></span></h1>
+		</div>
+
+
+		<div class="page-content project-detail">
+			<div class="responsive-wrapper" style="padding: 0.5rem;border:0.2px solid #ffffff20;border-radius: 4px;">
+				<div class="project-detail--div">
+					<div class="project--title">
+						<h4>Top 10 Toolkits for deep learning in 2020</h4>
+					</div>
+
+					<div class="project-thumbnail-img">
+						<img src="{% static 'media/image/iace-hackathon.png' %}" class="project--img" alt="Project Image">
+					</div>
+
+					<div class="project--description">
+						<p><strong>Lorem ipsum dolor</strong> sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Sit amet tellus cras adipiscing. Iaculis urna id volutpat lacus laoreet. Tincidunt vitae semper quis lectus nulla. Posuere it amet consectetur adipiscing elit. Semper auctor neque vitae tempus quam pellentesque nec. <em>Sit amet lentesque habitant morbi.</em> Nec tincidunt praesent semper feugiat nibh sed pulvinar proin gravida.<u> Arcu felis bibendum ut tristique</u> et egestas quis ipsum suspendisse. Risus commodo viverra maecenas accumsan lacus vel. In ante metus dictum at.</p>
+
+						<p>Morbi tincidunt augue interdum velit euismod in pellentesque massa placerat. Feugiat scelerisque varius morbi enim nunc faucibus a. Tellus molestie nunc non blandit massa enim nec dui. Gravida in fermentum et sollicitudin. Purus in massa tempor nec feugiat nisl pretium. Auctor augue mauris augue neque. Congue nisi vitae suscipit tellus mauris a. <a href="https://something.com" class="link">Commodo elit at imperdiet dui</a>. Dignissim suspendisse in est ante.&nbsp;Posuere lorem ipsum dolor sit amet consectetur. Consectetur lorem donec massa sapien faucibus et. Maecenas volutpat blandit aliquam etiam erat velit scelerisque in den.</p>
+
+						<ul>
+							<li>modify or copy the materials;</li>
+							<li>use the materials for any commercial purpose, or for any public display (commercial or non-commercial);</li>
+							<li>attempt to decompile or reverse engineer any software contained on ALINETER LIFESTYLE INDUSTRY PRIVATE LIMITED&#39;s website;</li>
+							<li>remove any copyright or other proprietary notations from the materials; or</li>
+							<li>transfer the materials to another person or &quot;mirror&quot; the materials on any other server.</li>
+						</ul>
+
+						<p class="note">
+							<strong>NOTE:</strong>
+							<ol>
+								<li>modify or copy the materials;</li>
+								<li>use the materials for any commercial purpose, or for any public display (commercial or non-commercial);</li>
+								<li>attempt to decompile or reverse engineer any software contained on <a href="#" class="link">ALINETER LIFESTYLE</a> INDUSTRY PRIVATE LIMITED&#39;s website;</li>
+								<li>remove any copyright or other proprietary notations from the materials; or</li>
+								<li>transfer the materials to another person or &quot;mirror&quot; the materials on any other server.</li>
+							</ol>
+						</p>
+
+					</div>
+
+					<div class="project--demo">
+						<div class="page-content-header">
+							<h4 class="sub-heading"><span>VIDEO</span> <span class="text secondary--type">Demo</span></h4>	
+							<p class="text-danger">Add I FRAME amnd link the src to it asyc way otherwise taking a lot of time and REFACTOR BUUTTON CSS CODE</p>			
+						</div>
+						
+						<div class="project--video-demo">
+							<!-- VIDEO IFRAME -->
+							<!-- <iframe src="https://player.vimeo.com/video/576641330" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe> -->
+						</div>
+
+						<div class="project--demo-link">
+							<button class="bttn secondary--type project--demo--btn">Project Demo</button>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+
+		{% include 'home/common/footer.html' %}
+			
+	</section>
+
+{% endblock content %}
+
