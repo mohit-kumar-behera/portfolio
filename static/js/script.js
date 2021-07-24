@@ -12,39 +12,39 @@ import {buildThemePickerModelBody,
 	    buildExperienceCard,
 		buildAwardCard} from '../js/modules/Build.js'; 
 
-const navbar = document.querySelector('.navbar')
-const navbarTogglerBtn = document.querySelector('.navbar-toggler');
+// const navbar = document.querySelector('.navbar')
+// const navbarTogglerBtn = document.querySelector('.navbar-toggler');
 
-const overlay = document.querySelector('.overlay');
-const model = document.querySelector('.model');
-const modelHead = document.querySelector('.model-head');
-const modelBody = document.querySelector('.model-body');
-const closeModelBtn = document.querySelector('.close-model--btn');
+// const overlay = document.querySelector('.overlay');
+// const model = document.querySelector('.model');
+// const modelHead = document.querySelector('.model-head');
+// const modelBody = document.querySelector('.model-body');
+// const closeModelBtn = document.querySelector('.close-model--btn');
 
-const themePicker = document.querySelector('.theme-picker');
-const themePickerModelBtn = document.querySelector('.theme-picker--btn');
+// const themePicker = document.querySelector('.theme-picker');
+// const themePickerModelBtn = document.querySelector('.theme-picker--btn');
 
 
 /* home page */
-const contentContainer = document.querySelector('.content-container');
-const usernameSpan = document.querySelector('.username');
+// const contentContainer = document.querySelector('.content-container');
+// const usernameSpan = document.querySelector('.username');
 /* end of home page */
 
 
 /* contact page */
-const contactForm = document.getElementById('contact-form');
-const userInputFields = document.querySelectorAll('.user-input');
-const sendMssgBtn = document.querySelector('.send-message--btn');
-const socialAccountContainer = document.querySelector('.social-link--wrapper');
+// const contactForm = document.getElementById('contact-form');
+// const userInputFields = document.querySelectorAll('.user-input');
+// const sendMssgBtn = document.querySelector('.send-message--btn');
+// const socialAccountContainer = document.querySelector('.social-link--wrapper');
 /* end of contact page */
 
 
 /* about page */
-const personalInfoContainer = document.querySelector('.about-me--content');
-const aboutEducationContainer = document.querySelector('.about-education--content');
-const aboutSkillsContainer = document.querySelector('.about-skills--content');
-const aboutExperienceContainer = document.querySelector('.about-experience--content');
-const aboutAwardsContainer = document.querySelector('.about-awards--content');
+// const personalInfoContainer = document.querySelector('.about-me--content');
+// const aboutEducationContainer = document.querySelector('.about-education--content');
+// const aboutSkillsContainer = document.querySelector('.about-skills--content');
+// const aboutExperienceContainer = document.querySelector('.about-experience--content');
+// const aboutAwardsContainer = document.querySelector('.about-awards--content');
 /* end of about page */
 
 
@@ -53,6 +53,9 @@ const init = () => {
 	let currPage = '';
 	let isMobile = '';
 }
+
+// Check which page is currently active and set currPage as the current active page
+const setCurrPage = () => currPage = location.pathname.split('/')[1] || 'home';	
 
 
 
@@ -157,140 +160,162 @@ const init = () => {
 
 
 
+/* ------------------- Required in All Pages ------------------------- */
 
-// Check which page is currently active and set currPage as the current active page
-const setCurrPage = () => currPage = location.pathname.split('/')[1] || 'home';	
+const activateDefaultPageScript = function() {
 
-// Add active class to the navlink
-const setActivePageNavLink = function() {
-	setCurrPage();
-	document.querySelector('a.nav-link.active')?.classList.remove('active');
-	document.querySelector(`a.nav-link[data-path='${currPage}']`)?.classList.add('active');
-}
+	// Common DOM Selector for all Pages
+	const navbar = document.querySelector('.navbar')
+	const navbarTogglerBtn = document.querySelector('.navbar-toggler');
 
+	const overlay = document.querySelector('.overlay');
+	const model = document.querySelector('.model');
+	const modelHead = document.querySelector('.model-head');
+	const modelBody = document.querySelector('.model-body');
+	const closeModelBtn = document.querySelector('.close-model--btn');
 
-// Add "mobile-device" class to specified elements
-const addMobileDevice__class = elems => elems.forEach(elem => elem?.classList.add('mobile-device'));
-
-const addMobileDevice = isMobile => {
-	if (isMobile) {
-		const addClassToElems = Array.from(document.querySelectorAll('.check-mobile'));
-	 	addMobileDevice__class(addClassToElems);
-	}
-};
-
-
-
-const toggleNavbar = function() {
-	/* open close the navbar */
-	this.blur();
-
-	if (navbar.classList.contains('open')) navbar.classList.remove('open');
-	else navbar.classList.add('open');
-}
-
-navbarTogglerBtn.addEventListener('click', toggleNavbar);
-
-
-const openModel = function() {
-	/* Open Model Box */
-	overlay.classList.remove('hide');
-	model.classList.remove('hide');
-}
-
-const closeModel = function() {
-	/* Close Model Box */
-	overlay.classList.add('hide');
-	model.classList.add('hide'); 
-}
-
-closeModelBtn.addEventListener('click', closeModel);
-overlay.addEventListener('click', closeModel);
-
-
-
-document.body.addEventListener('keyup', function(e) {
+	const themePicker = document.querySelector('.theme-picker');
+	const themePickerModelBtn = document.querySelector('.theme-picker--btn');
 	
-	if (e.key === 'Tab') {
-		/* open close navbar as per TAB Focus */
-		if (document.activeElement.classList.contains('nav-link'))
-			navbar.classList.add('open');
-		else 
-			navbar.classList.remove('open');
+
+
+	// Add active class to the navlink
+	const setActivePageNavLink = function() {
+		setCurrPage();
+		document.querySelector('a.nav-link.active')?.classList.remove('active');
+		document.querySelector(`a.nav-link[data-path='${currPage}']`)?.classList.add('active');
 	}
 
-});
 
-document.body.addEventListener('keydown', function(e) {
+	// Add "mobile-device" class to specified elements
+	const addMobileDevice__class = elems => elems.forEach(elem => elem?.classList.add('mobile-device'));
 
-	if (e.key === 'Escape' && !model.classList.contains('hide')) closeModel(); // Close the Model on ESC key press
+	const addMobileDevice = isMobile => {
+		if (isMobile) {
+			const addClassToElems = Array.from(document.querySelectorAll('.check-mobile'));
+		 	addMobileDevice__class(addClassToElems);
+		}
+	};
 
-});
+
+
+	const toggleNavbar = function() {
+		/* open close the navbar */
+		this.blur();
+
+		if (navbar.classList.contains('open')) navbar.classList.remove('open');
+		else navbar.classList.add('open');
+	}
+
+	navbarTogglerBtn.addEventListener('click', toggleNavbar);
+
+
+	const openModel = function() {
+		/* Open Model Box */
+		overlay.classList.remove('hide');
+		model.classList.remove('hide');
+	}
+
+	const closeModel = function() {
+		/* Close Model Box */
+		overlay.classList.add('hide');
+		model.classList.add('hide'); 
+	}
+
+	closeModelBtn.addEventListener('click', closeModel);
+	overlay.addEventListener('click', closeModel);
 
 
 
-const handleActiveThemeClass = function(activeTheme) {
-	/* Add active class to current Theme button */
-	document.querySelectorAll('.theme-picker:not(.from-model) .color--btn')?.forEach(btn => btn.classList.remove('active'));
-	document.querySelector(`.theme-picker:not(.from-model) .color--btn[data-color='${activeTheme}']`)?.classList.add('active');
-}
+	document.body.addEventListener('keyup', function(e) {
+		
+		if (e.key === 'Tab') {
+			/* open close navbar as per TAB Focus */
+			if (document.activeElement.classList.contains('nav-link'))
+				navbar.classList.add('open');
+			else 
+				navbar.classList.remove('open');
+		}
 
-const setNewTheme = function(color) {
-	/* Update the Theme Pattern */
-	localStorage.setItem('theme-color', color);
-	document.documentElement.style.setProperty('--secondary-color', color);
-	currPage === 'home' && handleActiveThemeClass(color);
-};
+	});
 
-const handleThemePickerBtn = function(e) {
-	/* Handle Theme Picker Button to update theme */
-	const elem = e.target;
-	elem.blur();
+	document.body.addEventListener('keydown', function(e) {
 
-	if (elem.classList.contains('color--btn')) {
+		if (e.key === 'Escape' && !model.classList.contains('hide')) closeModel(); // Close the Model on ESC key press
+
+	});
+
+
+
+	const handleActiveThemeClass = function(activeTheme) {
+		/* Add active class to current Theme button */
+		document.querySelectorAll('.theme-picker:not(.from-model) .color--btn')?.forEach(btn => btn.classList.remove('active'));
+		document.querySelector(`.theme-picker:not(.from-model) .color--btn[data-color='${activeTheme}']`)?.classList.add('active');
+	}
+
+	const setNewTheme = function(color) {
+		/* Update the Theme Pattern */
+		localStorage.setItem('theme-color', color);
+		document.documentElement.style.setProperty('--secondary-color', color);
+		currPage === 'home' && handleActiveThemeClass(color);
+	};
+
+	const handleThemePickerBtn = function(e) {
+		/* Handle Theme Picker Button to update theme */
+		const elem = e.target.closest('.color--btn');
+		if (!elem) return;
+
+		elem.blur();
+
 		const color = elem.dataset.color;
 		setNewTheme(color);
-	}
+	};
+	themePicker?.addEventListener('click', handleThemePickerBtn);
+
+
+	const checkActiveTheme = function() {
+		if (localStorage.getItem('theme-color')) {
+			setNewTheme(localStorage.getItem('theme-color'));
+		}
+		else {
+			localStorage.setItem('theme-color', '#fa1e0e');
+			setNewTheme(localStorage.getItem('theme-color'));
+		}
+	};
+
+
+	// Handle Theme Picker Button from Model
+	themePickerModelBtn.addEventListener('click', function(e) {
+		e.preventDefault();
+		this.blur();
+
+		modelHead.innerHTML = modelBody.innerHTML = 'loading...';
+
+		const themePickerBodyHTML = buildThemePickerModelBody();
+
+		modelHead.innerHTML = modelBody.innerHTML = '';
+
+		const themePickerHeadHTML = `<h4>Pick Theme</h4>`;
+
+		model.style.width = 'auto';
+		modelHead.insertAdjacentHTML('beforeend', themePickerHeadHTML);
+		modelBody.insertAdjacentHTML('beforeend', themePickerBodyHTML);
+		
+		document
+			.querySelector('.theme-picker.from-model')
+			.addEventListener('click', e => handleThemePickerBtn(e));
+
+		openModel();
+	});
+
+
+	setActivePageNavLink();
+	checkActiveTheme();
+	isMobile = detectMobile();
+	addMobileDevice(isMobile);
 };
-themePicker?.addEventListener('click', handleThemePickerBtn);
 
-
-const checkActiveTheme = function() {
-	if (localStorage.getItem('theme-color')) {
-		setNewTheme(localStorage.getItem('theme-color'));
-	}
-	else {
-		localStorage.setItem('theme-color', '#fa1e0e');
-		setNewTheme(localStorage.getItem('theme-color'));
-	}
-};
-checkActiveTheme();
-
-
-// Handle Theme Picker Button from Model
-themePickerModelBtn.addEventListener('click', function(e) {
-	e.preventDefault();
-	this.blur();
-
-	modelHead.innerHTML = modelBody.innerHTML = 'loading...';
-
-	const themePickerBodyHTML = buildThemePickerModelBody();
-
-	modelHead.innerHTML = modelBody.innerHTML = '';
-
-	const themePickerHeadHTML = `<h4>Pick Theme</h4>`;
-
-	model.style.width = 'auto';
-	modelHead.insertAdjacentHTML('beforeend', themePickerHeadHTML);
-	modelBody.insertAdjacentHTML('beforeend', themePickerBodyHTML);
-	
-	document
-		.querySelector('.theme-picker.from-model')
-		.addEventListener('click', e => handleThemePickerBtn(e));
-
-	openModel();
-});
-
+/* ---------------------- End of Default Page Script ----------------------- */
 
 
 
@@ -298,6 +323,11 @@ themePickerModelBtn.addEventListener('click', function(e) {
 
 
 const activateHomePageScript = function(user) {
+
+	// Home Page DOM Selector
+	const contentContainer = document.querySelector('.content-container');
+	const usernameSpan = document.querySelector('.username');
+
 
 	const setUsername = function(fullName) {
 		const username = fullName.toUpperCase();
@@ -364,6 +394,13 @@ const activateHomePageScript = function(user) {
 
 const activateContactPageScript = function(user) {
 
+	// Contact Page DOM Selector
+	const contactForm = document.getElementById('contact-form');
+	const userInputFields = document.querySelectorAll('.user-input');
+	const sendMssgBtn = document.querySelector('.send-message--btn');
+	const socialAccountContainer = document.querySelector('.social-link--wrapper');
+
+
 	// Email Validation
 	const validateEmail = (regex, val) => regex.test(val);
 
@@ -426,6 +463,14 @@ const activateContactPageScript = function(user) {
 /*------------------------- Required only in About us Page ----------------------------------------*/
 
 const activateAboutPageScript = function(user) {
+
+	// About Page DOM Selector
+	const personalInfoContainer = document.querySelector('.about-me--content');
+	const aboutEducationContainer = document.querySelector('.about-education--content');
+	const aboutSkillsContainer = document.querySelector('.about-skills--content');
+	const aboutExperienceContainer = document.querySelector('.about-experience--content');
+	const aboutAwardsContainer = document.querySelector('.about-awards--content');
+
 
 	// Render personal detail on screen in Personal Info section
 	const renderPersonalDetail = function(shortBio) {
@@ -592,10 +637,7 @@ window.addEventListener('load', function() {
 		// document.getElementById('main-body').style.display = 'block';
 		
 		init();
-		setActivePageNavLink();
-		checkActiveTheme();
-		isMobile = detectMobile();
-		addMobileDevice(isMobile);
+		activateDefaultPageScript();
 
 		switch (currPage) {
 			case 'home':
