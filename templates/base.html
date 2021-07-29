@@ -41,12 +41,12 @@
 </head>
 <body>
 
-	{% include 'home/common/loader.html' %}
+	{% include 'snippets/loader.html' %}
 
 	<section id="main-body">
-		{% include 'home/common/navbar.html' %}
+		{% include 'snippets/navbar.html' %}
 
-		{% include 'home/common/model.html' %}
+		{% include 'snippets/model.html' %}
 
 		{% block content %}
 		{% endblock content %}
@@ -58,6 +58,7 @@
 </html>
 
 <!--
+
 
 -- Font Family --
 font-family: 'Montserrat', sans-serif;
