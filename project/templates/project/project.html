@@ -1,314 +1,453 @@
+{% extends 'base.html' %} {% load static %} {% block title %}
+<title>My Projects - Mohit Kumar</title>
+{% endblock title %} {% block stylesheet %}
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="{% static 'css/project.css' %}?{% now 'U' %}"
+/>
+{% endblock stylesheet %} {% block content %}
 
-{% extends 'base.html' %}
+<section class="normal-container">
+  <div class="page-header check-mobile">
+    <h1 class="highlight-heading">
+      <span>My <span class="text secondary--type">Portfolio</span></span>
+    </h1>
+  </div>
 
-{% load static %}
+  {% include 'project/snippets/pagination.html' %}
 
-{% block title %}
-	<title>My Projects - Mohit Kumar</title>
-{% endblock title %}
+  <div class="page-content project lazy-transition--bottom">
+    <div class="project--wrapper flex-wrapper">
+      <div class="project--div">
+        <div class="project--card">
+          <div class="project-thumbnail-img">
+            <img
+              src="{% static 'media/image/iace-hackathon.png' %}"
+              class="project--img"
+              alt="Project Image"
+            />
+          </div>
 
+          <div class="project-content">
+            <div class="project-headline">
+              <a href="#view" class="link display-card--link"></a>
+              <h5 class="headline text-weight-bold">
+                Top 10 Toolkits for deep learning in 2020
+              </h5>
+            </div>
 
-{% block stylesheet %}
-	<link rel="stylesheet" type="text/css" href="{% static 'css/project.css' %}?{% now 'U' %}">
-{% endblock stylesheet %}
+            <div class="hr"></div>
 
+            <div class="project-tech-stack flex-wrapper">
+              <div class="tech-badge text-weight-bold">
+                <a href="#" class="link tech-badge--link">Python</a>
+              </div>
+              <div class="tech-badge text-weight-bold">
+                <a href="#" class="link tech-badge--link">html</a>
+              </div>
+              <div class="tech-badge text-weight-bold">
+                <a href="#" class="link tech-badge--link">css</a>
+              </div>
+              <div class="tech-badge text-weight-bold">
+                <a href="#" class="link tech-badge--link">Python</a>
+              </div>
+              <div class="tech-badge text-weight-bold">
+                <a href="#" class="link tech-badge--link">Python</a>
+              </div>
+              <div class="tech-badge text-weight-bold">
+                <a href="#" class="link tech-badge--link">html</a>
+              </div>
+              <div class="tech-badge text-weight-bold">
+                <a href="#" class="link tech-badge--link">css</a>
+              </div>
+              <div class="tech-badge text-weight-bold">
+                <a href="#" class="link tech-badge--link">Python</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
-{% block content %}
-	
-	<section class="normal-container">
+      <div class="project--div">
+        <div class="project--card">
+          <div class="project-thumbnail-img">
+            <img
+              src="{% static 'media/image/iace-hackathon.png' %}"
+              class="project--img"
+              alt="Project Image"
+            />
+          </div>
 
-		<div class="page-header check-mobile">
-			<h1 class="highlight-heading"><span>My <span class="text secondary--type">Portfolio</span></span></h1>
-		</div>
+          <div class="project-content">
+            <div class="project-headline">
+              <a href="#view" class="link display-card--link"></a>
+              <h5 class="headline text-weight-bold">
+                Top 10 Toolkits for deep learning in 2020
+              </h5>
+            </div>
 
-		{% include 'project/snippets/pagination.html' %}
+            <div class="hr"></div>
 
-		<div class="page-content project">
-			<div class="project--wrapper flex-wrapper">
-				<div class="project--div">
-					<div class="project--card">
-						<div class="project-thumbnail-img">
-							<img src="{% static 'media/image/iace-hackathon.png' %}" class="project--img" alt="Project Image">
-						</div>
+            <div class="project-tech-stack flex-wrapper">
+              <div class="tech-badge text-weight-bold">
+                <a href="#" class="link tech-badge--link">Python</a>
+              </div>
+              <div class="tech-badge text-weight-bold">
+                <a href="#" class="link tech-badge--link">html</a>
+              </div>
+              <div class="tech-badge text-weight-bold">
+                <a href="#" class="link tech-badge--link">css</a>
+              </div>
+              <div class="tech-badge text-weight-bold">
+                <a href="#" class="link tech-badge--link">Python</a>
+              </div>
+              <div class="tech-badge text-weight-bold">
+                <a href="#" class="link tech-badge--link">Python</a>
+              </div>
+              <div class="tech-badge text-weight-bold">
+                <a href="#" class="link tech-badge--link">html</a>
+              </div>
+              <div class="tech-badge text-weight-bold">
+                <a href="#" class="link tech-badge--link">css</a>
+              </div>
+              <div class="tech-badge text-weight-bold">
+                <a href="#" class="link tech-badge--link">Python</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
-						<div class="project-content">
-							<div class="project-headline">
-								<a href="#view" class="link display-card--link"></a>
-								<h5 class="headline text-weight-bold">Top 10 Toolkits for deep learning in 2020</h5>
-							</div>
+      <div class="project--div">
+        <div class="project--card">
+          <div class="project-thumbnail-img">
+            <img
+              src="{% static 'media/image/django.png' %}"
+              class="project--img"
+              alt="Project Image"
+            />
+          </div>
 
-							<div class="hr"></div>
+          <div class="project-content">
+            <div class="project-headline">
+              <a href="#view" class="link display-card--link"></a>
+              <h5 class="headline text-weight-bold">
+                Top 10 Toolkits for deep learning in 2020
+              </h5>
+            </div>
 
-							<div class="project-tech-stack flex-wrapper">
-								<div class="tech-badge text-weight-bold"><a href="#" class="link tech-badge--link">Python</a></div>
-								<div class="tech-badge text-weight-bold"><a href="#" class="link tech-badge--link">html</a></div>
-								<div class="tech-badge text-weight-bold"><a href="#" class="link tech-badge--link">css</a></div>
-								<div class="tech-badge text-weight-bold"><a href="#" class="link tech-badge--link">Python</a></div>
-								<div class="tech-badge text-weight-bold"><a href="#" class="link tech-badge--link">Python</a></div>
-								<div class="tech-badge text-weight-bold"><a href="#" class="link tech-badge--link">html</a></div>
-								<div class="tech-badge text-weight-bold"><a href="#" class="link tech-badge--link">css</a></div>
-								<div class="tech-badge text-weight-bold"><a href="#" class="link tech-badge--link">Python</a></div>
-							</div>
+            <div class="hr"></div>
 
-						</div>
-					</div>
-				</div>
+            <div class="project-tech-stack flex-wrapper">
+              <div class="tech-badge text-weight-bold">
+                <a href="#" class="link tech-badge--link">Python</a>
+              </div>
+              <div class="tech-badge text-weight-bold">
+                <a href="#" class="link tech-badge--link">html</a>
+              </div>
+              <div class="tech-badge text-weight-bold">
+                <a href="#" class="link tech-badge--link">css</a>
+              </div>
+              <div class="tech-badge text-weight-bold">
+                <a href="#" class="link tech-badge--link">Python</a>
+              </div>
+              <div class="tech-badge text-weight-bold">
+                <a href="#" class="link tech-badge--link">Python</a>
+              </div>
+              <div class="tech-badge text-weight-bold">
+                <a href="#" class="link tech-badge--link">html</a>
+              </div>
+              <div class="tech-badge text-weight-bold">
+                <a href="#" class="link tech-badge--link">css</a>
+              </div>
+              <div class="tech-badge text-weight-bold">
+                <a href="#" class="link tech-badge--link">Python</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
-				<div class="project--div">
-					<div class="project--card">
-						<div class="project-thumbnail-img">
-							<img src="{% static 'media/image/iace-hackathon.png' %}" class="project--img" alt="Project Image">
-						</div>
+      <div class="project--div">
+        <div class="project--card">
+          <div class="project-thumbnail-img">
+            <img
+              src="{% static 'media/image/iace-hackathon.png' %}"
+              class="project--img"
+              alt="Project Image"
+            />
+          </div>
 
-						<div class="project-content">
-							<div class="project-headline">
-								<a href="#view" class="link display-card--link"></a>
-								<h5 class="headline text-weight-bold">Top 10 Toolkits for deep learning in 2020</h5>
-							</div>
+          <div class="project-content">
+            <div class="project-headline">
+              <a href="#view" class="link display-card--link"></a>
+              <h5 class="headline text-weight-bold">
+                Top 10 Toolkits for deep learning in 2020
+              </h5>
+            </div>
 
-							<div class="hr"></div>
+            <div class="hr"></div>
 
-							<div class="project-tech-stack flex-wrapper">
-								<div class="tech-badge text-weight-bold"><a href="#" class="link tech-badge--link">Python</a></div>
-								<div class="tech-badge text-weight-bold"><a href="#" class="link tech-badge--link">html</a></div>
-								<div class="tech-badge text-weight-bold"><a href="#" class="link tech-badge--link">css</a></div>
-								<div class="tech-badge text-weight-bold"><a href="#" class="link tech-badge--link">Python</a></div>
-								<div class="tech-badge text-weight-bold"><a href="#" class="link tech-badge--link">Python</a></div>
-								<div class="tech-badge text-weight-bold"><a href="#" class="link tech-badge--link">html</a></div>
-								<div class="tech-badge text-weight-bold"><a href="#" class="link tech-badge--link">css</a></div>
-								<div class="tech-badge text-weight-bold"><a href="#" class="link tech-badge--link">Python</a></div>
-							</div>
+            <div class="project-tech-stack flex-wrapper">
+              <div class="tech-badge text-weight-bold">
+                <a href="#" class="link tech-badge--link">Python</a>
+              </div>
+              <div class="tech-badge text-weight-bold">
+                <a href="#" class="link tech-badge--link">html</a>
+              </div>
+              <div class="tech-badge text-weight-bold">
+                <a href="#" class="link tech-badge--link">css</a>
+              </div>
+              <div class="tech-badge text-weight-bold">
+                <a href="#" class="link tech-badge--link">Python</a>
+              </div>
+              <div class="tech-badge text-weight-bold">
+                <a href="#" class="link tech-badge--link">Python</a>
+              </div>
+              <div class="tech-badge text-weight-bold">
+                <a href="#" class="link tech-badge--link">html</a>
+              </div>
+              <div class="tech-badge text-weight-bold">
+                <a href="#" class="link tech-badge--link">css</a>
+              </div>
+              <div class="tech-badge text-weight-bold">
+                <a href="#" class="link tech-badge--link">Python</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
-						</div>
-					</div>
-				</div>
+      <div class="project--div">
+        <div class="project--card">
+          <div class="project-thumbnail-img">
+            <img
+              src="{% static 'media/image/iace-hackathon.png' %}"
+              class="project--img"
+              alt="Project Image"
+            />
+          </div>
 
-				<div class="project--div">
-					<div class="project--card">
-						<div class="project-thumbnail-img">
-							<img src="{% static 'media/image/django.png' %}" class="project--img" alt="Project Image">
-						</div>
+          <div class="project-content">
+            <div class="project-headline">
+              <a href="#view" class="link display-card--link"></a>
+              <h5 class="headline text-weight-bold">
+                Top 10 Toolkits for deep learning in 2020
+              </h5>
+            </div>
 
-						<div class="project-content">
-							<div class="project-headline">
-								<a href="#view" class="link display-card--link"></a>
-								<h5 class="headline text-weight-bold">Top 10 Toolkits for deep learning in 2020</h5>
-							</div>
+            <div class="hr"></div>
 
-							<div class="hr"></div>
+            <div class="project-tech-stack flex-wrapper">
+              <div class="tech-badge text-weight-bold">
+                <a href="#" class="link tech-badge--link">Python</a>
+              </div>
+              <div class="tech-badge text-weight-bold">
+                <a href="#" class="link tech-badge--link">html</a>
+              </div>
+              <div class="tech-badge text-weight-bold">
+                <a href="#" class="link tech-badge--link">css</a>
+              </div>
+              <div class="tech-badge text-weight-bold">
+                <a href="#" class="link tech-badge--link">Python</a>
+              </div>
+              <div class="tech-badge text-weight-bold">
+                <a href="#" class="link tech-badge--link">Python</a>
+              </div>
+              <div class="tech-badge text-weight-bold">
+                <a href="#" class="link tech-badge--link">html</a>
+              </div>
+              <div class="tech-badge text-weight-bold">
+                <a href="#" class="link tech-badge--link">css</a>
+              </div>
+              <div class="tech-badge text-weight-bold">
+                <a href="#" class="link tech-badge--link">Python</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
-							<div class="project-tech-stack flex-wrapper">
-								<div class="tech-badge text-weight-bold"><a href="#" class="link tech-badge--link">Python</a></div>
-								<div class="tech-badge text-weight-bold"><a href="#" class="link tech-badge--link">html</a></div>
-								<div class="tech-badge text-weight-bold"><a href="#" class="link tech-badge--link">css</a></div>
-								<div class="tech-badge text-weight-bold"><a href="#" class="link tech-badge--link">Python</a></div>
-								<div class="tech-badge text-weight-bold"><a href="#" class="link tech-badge--link">Python</a></div>
-								<div class="tech-badge text-weight-bold"><a href="#" class="link tech-badge--link">html</a></div>
-								<div class="tech-badge text-weight-bold"><a href="#" class="link tech-badge--link">css</a></div>
-								<div class="tech-badge text-weight-bold"><a href="#" class="link tech-badge--link">Python</a></div>
-							</div>
+      <div class="project--div">
+        <div class="project--card">
+          <div class="project-thumbnail-img">
+            <img
+              src="{% static 'media/image/iace-hackathon.png' %}"
+              class="project--img"
+              alt="Project Image"
+            />
+          </div>
 
-						</div>
-					</div>
-				</div>
+          <div class="project-content">
+            <div class="project-headline">
+              <a href="#view" class="link display-card--link"></a>
+              <h5 class="headline text-weight-bold">
+                Top 10 Toolkits for deep learning in 2020
+              </h5>
+            </div>
 
-				<div class="project--div">
-					<div class="project--card">
-						<div class="project-thumbnail-img">
-							<img src="{% static 'media/image/iace-hackathon.png' %}" class="project--img" alt="Project Image">
-						</div>
+            <div class="hr"></div>
 
-						<div class="project-content">
-							<div class="project-headline">
-								<a href="#view" class="link display-card--link"></a>
-								<h5 class="headline text-weight-bold">Top 10 Toolkits for deep learning in 2020</h5>
-							</div>
+            <div class="project-tech-stack flex-wrapper">
+              <div class="tech-badge text-weight-bold">
+                <a href="#" class="link tech-badge--link">Python</a>
+              </div>
+              <div class="tech-badge text-weight-bold">
+                <a href="#" class="link tech-badge--link">html</a>
+              </div>
+              <div class="tech-badge text-weight-bold">
+                <a href="#" class="link tech-badge--link">css</a>
+              </div>
+              <div class="tech-badge text-weight-bold">
+                <a href="#" class="link tech-badge--link">Python</a>
+              </div>
+              <div class="tech-badge text-weight-bold">
+                <a href="#" class="link tech-badge--link">Python</a>
+              </div>
+              <div class="tech-badge text-weight-bold">
+                <a href="#" class="link tech-badge--link">html</a>
+              </div>
+              <div class="tech-badge text-weight-bold">
+                <a href="#" class="link tech-badge--link">css</a>
+              </div>
+              <div class="tech-badge text-weight-bold">
+                <a href="#" class="link tech-badge--link">Python</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
-							<div class="hr"></div>
+  {% include 'project/snippets/pagination.html' %}
 
-							<div class="project-tech-stack flex-wrapper">
-								<div class="tech-badge text-weight-bold"><a href="#" class="link tech-badge--link">Python</a></div>
-								<div class="tech-badge text-weight-bold"><a href="#" class="link tech-badge--link">html</a></div>
-								<div class="tech-badge text-weight-bold"><a href="#" class="link tech-badge--link">css</a></div>
-								<div class="tech-badge text-weight-bold"><a href="#" class="link tech-badge--link">Python</a></div>
-								<div class="tech-badge text-weight-bold"><a href="#" class="link tech-badge--link">Python</a></div>
-								<div class="tech-badge text-weight-bold"><a href="#" class="link tech-badge--link">html</a></div>
-								<div class="tech-badge text-weight-bold"><a href="#" class="link tech-badge--link">css</a></div>
-								<div class="tech-badge text-weight-bold"><a href="#" class="link tech-badge--link">Python</a></div>
-							</div>
+  <div class="page-content project--mentor mt-2 lazy-transition--bottom">
+    <div class="page-content-header">
+      <h3 class="sub-heading">
+        <span>Thank</span> <span class="text secondary--type">You</span>
+      </h3>
+    </div>
 
-						</div>
-					</div>
-				</div>
+    <div class="row">
+      <div class="col-lg-4 col-md-6 col-sm-12 p-1 mb-2">
+        <div class="info-card">
+          <div class="info-card--left">
+            <img src="https://avatars.githubusercontent.com/u/33843378?v=4" />
+          </div>
+          <div class="info-card--right">
+            <div class="info-card--content">
+              <p class="experience--duration pill-badge text-weight-bold">
+                Dennis Ivy
+              </p>
+            </div>
 
-				<div class="project--div">
-					<div class="project--card">
-						<div class="project-thumbnail-img">
-							<img src="{% static 'media/image/iace-hackathon.png' %}" class="project--img" alt="Project Image">
-						</div>
+            <div class="info-card--content">
+              <p class="experience--position">
+                <a href="#" class="link" target="_blank">Youtube Channel</a>
+              </p>
+              <p class="experience--position">
+                <a href="#" class="link" target="_blank">Udemy Channel</a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
 
-						<div class="project-content">
-							<div class="project-headline">
-								<a href="#view" class="link display-card--link"></a>
-								<h5 class="headline text-weight-bold">Top 10 Toolkits for deep learning in 2020</h5>
-							</div>
+      <div class="col-lg-4 col-md-6 col-sm-12 p-1 mb-2">
+        <div class="info-card">
+          <div class="info-card--left">
+            <img src="https://avatars.githubusercontent.com/u/33843378?v=4" />
+          </div>
+          <div class="info-card--right">
+            <div class="info-card--content">
+              <p class="experience--duration pill-badge text-weight-bold">
+                Jonas Schmedtann
+              </p>
+            </div>
 
-							<div class="hr"></div>
+            <div class="info-card--content">
+              <p class="experience--position">
+                <a href="#" class="link" target="_blank">Udemy Channel</a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
 
-							<div class="project-tech-stack flex-wrapper">
-								<div class="tech-badge text-weight-bold"><a href="#" class="link tech-badge--link">Python</a></div>
-								<div class="tech-badge text-weight-bold"><a href="#" class="link tech-badge--link">html</a></div>
-								<div class="tech-badge text-weight-bold"><a href="#" class="link tech-badge--link">css</a></div>
-								<div class="tech-badge text-weight-bold"><a href="#" class="link tech-badge--link">Python</a></div>
-								<div class="tech-badge text-weight-bold"><a href="#" class="link tech-badge--link">Python</a></div>
-								<div class="tech-badge text-weight-bold"><a href="#" class="link tech-badge--link">html</a></div>
-								<div class="tech-badge text-weight-bold"><a href="#" class="link tech-badge--link">css</a></div>
-								<div class="tech-badge text-weight-bold"><a href="#" class="link tech-badge--link">Python</a></div>
-							</div>
+      <div class="col-lg-4 col-md-6 col-sm-12 p-1 mb-2">
+        <div class="info-card">
+          <div class="info-card--left">
+            <img src="https://avatars.githubusercontent.com/u/33843378?v=4" />
+          </div>
+          <div class="info-card--right">
+            <div class="info-card--content">
+              <p class="experience--duration pill-badge text-weight-bold">
+                Justin Mitchel
+              </p>
+            </div>
 
-						</div>
-					</div>
-				</div>
+            <div class="info-card--content">
+              <p class="experience--position">
+                <a href="#" class="link" target="_blank">Udemy Channel</a>
+              </p>
+              <p class="experience--position">
+                <a href="#" class="link" target="_blank">Youtube Channel</a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
 
-				<div class="project--div">
-					<div class="project--card">
-						<div class="project-thumbnail-img">
-							<img src="{% static 'media/image/iace-hackathon.png' %}" class="project--img" alt="Project Image">
-						</div>
+      <div class="col-lg-4 col-md-6 col-sm-12 p-1 mb-2">
+        <div class="info-card">
+          <div class="info-card--left">
+            <img src="https://avatars.githubusercontent.com/u/33843378?v=4" />
+          </div>
+          <div class="info-card--right">
+            <div class="info-card--content">
+              <p class="experience--duration pill-badge text-weight-bold">
+                Jonas Schmedtann
+              </p>
+            </div>
 
-						<div class="project-content">
-							<div class="project-headline">
-								<a href="#view" class="link display-card--link"></a>
-								<h5 class="headline text-weight-bold">Top 10 Toolkits for deep learning in 2020</h5>
-							</div>
+            <div class="info-card--content">
+              <p class="experience--position">
+                <a href="#" class="link" target="_blank">Udemy Channel</a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
 
-							<div class="hr"></div>
+      <div class="col-lg-4 col-md-6 col-sm-12 p-1 mb-2">
+        <div class="info-card">
+          <div class="info-card--left">
+            <img src="https://avatars.githubusercontent.com/u/33843378?v=4" />
+          </div>
+          <div class="info-card--right">
+            <div class="info-card--content">
+              <p class="experience--duration pill-badge text-weight-bold">
+                Justin Mitchel
+              </p>
+            </div>
 
-							<div class="project-tech-stack flex-wrapper">
-								<div class="tech-badge text-weight-bold"><a href="#" class="link tech-badge--link">Python</a></div>
-								<div class="tech-badge text-weight-bold"><a href="#" class="link tech-badge--link">html</a></div>
-								<div class="tech-badge text-weight-bold"><a href="#" class="link tech-badge--link">css</a></div>
-								<div class="tech-badge text-weight-bold"><a href="#" class="link tech-badge--link">Python</a></div>
-								<div class="tech-badge text-weight-bold"><a href="#" class="link tech-badge--link">Python</a></div>
-								<div class="tech-badge text-weight-bold"><a href="#" class="link tech-badge--link">html</a></div>
-								<div class="tech-badge text-weight-bold"><a href="#" class="link tech-badge--link">css</a></div>
-								<div class="tech-badge text-weight-bold"><a href="#" class="link tech-badge--link">Python</a></div>
-							</div>
+            <div class="info-card--content">
+              <p class="experience--position">
+                <a href="#" class="link" target="_blank">Udemy Channel</a>
+              </p>
+              <p class="experience--position">
+                <a href="#" class="link" target="_blank">Youtube Channel</a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
-						</div>
-					</div>
-				</div>
-
-			</div>
-		</div>
-
-		{% include 'project/snippets/pagination.html' %}
-
-		<div class="page-content mt-2" style="background: #1b1b1b;">
-			<div class="page-content-header">
-				<h3 class="sub-heading"><span>Thank</span> <span class="text secondary--type">You</span></h3>				
-			</div>
-
-			<div class="row">
-				<div class="col-lg-4 col-md-6 col-sm-12 p-1 mb-2">
-					<div class="info-card lazy-transition--bottom">
-						<div class="info-card--left">
-							<img src="https://avatars.githubusercontent.com/u/33843378?v=4" />
-						</div>
-						<div class="info-card--right">
-							<div class="info-card--content">
-								<p class="experience--duration pill-badge text-weight-bold">Dennis Ivy</p>
-							</div>
-							
-							<div class="info-card--content">
-								<p class="experience--position"><a href="#" class="link" target="_blank">Youtube Channel</a></p>
-								<p class="experience--position"><a href="#" class="link" target="_blank">Udemy Channel</a></p>
-							</div>
-							
-						</div>
-					</div>
-				</div>
-
-				<div class="col-lg-4 col-md-6 col-sm-12 p-1 mb-2">
-					<div class="info-card lazy-transition--bottom">
-						<div class="info-card--left">
-							<img src="https://avatars.githubusercontent.com/u/33843378?v=4" />
-						</div>
-						<div class="info-card--right">
-							<div class="info-card--content">
-								<p class="experience--duration pill-badge text-weight-bold">Jonas Schmedtann</p>
-							</div>
-							
-							<div class="info-card--content">
-								<p class="experience--position"><a href="#" class="link" target="_blank">Udemy Channel</a></p>
-							</div>
-							
-						</div>
-					</div>
-				</div>
-
-				<div class="col-lg-4 col-md-6 col-sm-12 p-1 mb-2">
-					<div class="info-card lazy-transition--bottom">
-						<div class="info-card--left">
-							<img src="https://avatars.githubusercontent.com/u/33843378?v=4" />
-						</div>
-						<div class="info-card--right">
-							<div class="info-card--content">
-								<p class="experience--duration pill-badge text-weight-bold">Justin Mitchel</p>
-							</div>
-							
-							<div class="info-card--content">
-								<p class="experience--position"><a href="#" class="link" target="_blank">Udemy Channel</a></p>
-								<p class="experience--position"><a href="#" class="link" target="_blank">Youtube Channel</a></p>
-							</div>
-							
-						</div>
-					</div>
-				</div>
-
-				<div class="col-lg-4 col-md-6 col-sm-12 p-1 mb-2">
-					<div class="info-card lazy-transition--bottom">
-						<div class="info-card--left">
-							<img src="https://avatars.githubusercontent.com/u/33843378?v=4" />
-						</div>
-						<div class="info-card--right">
-							<div class="info-card--content">
-								<p class="experience--duration pill-badge text-weight-bold">Jonas Schmedtann</p>
-							</div>
-							
-							<div class="info-card--content">
-								<p class="experience--position"><a href="#" class="link" target="_blank">Udemy Channel</a></p>
-							</div>
-							
-						</div>
-					</div>
-				</div>
-
-				<div class="col-lg-4 col-md-6 col-sm-12 p-1 mb-2">
-					<div class="info-card lazy-transition--bottom">
-						<div class="info-card--left">
-							<img src="https://avatars.githubusercontent.com/u/33843378?v=4" />
-						</div>
-						<div class="info-card--right">
-							<div class="info-card--content">
-								<p class="experience--duration pill-badge text-weight-bold">Justin Mitchel</p>
-							</div>
-							
-							<div class="info-card--content">
-								<p class="experience--position"><a href="#" class="link" target="_blank">Udemy Channel</a></p>
-								<p class="experience--position"><a href="#" class="link" target="_blank">Youtube Channel</a></p>
-							</div>
-							
-						</div>
-					</div>
-				</div>
-
-			</div>
-		</div>
-
-
-		{% include 'snippets/footer.html' %}
-			
-	</section>
+  {% include 'snippets/footer.html' %}
+</section>
 
 {% endblock content %}

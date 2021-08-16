@@ -1,4 +1,3 @@
-
 // Build Model for Theme Picker
 const buildThemePickerModelBody = () => `
 		<div class="theme-picker from-model">
@@ -19,11 +18,9 @@ const buildThemePickerModelBody = () => `
 		</div>
 	`;
 
-
-
 // Build card for social media account
 const buildAccountCard = acc => `				 
-		<div class="display-card--div social-link--div lazy-transition--bottom" data-social-handle="${acc.name}">
+		<div class="display-card--div social-link--div" data-social-handle="${acc.name}">
 			<div class="display-card social-link" tabindex="0">
 	
 				<div class="display-card--img social-link--img">
@@ -41,18 +38,22 @@ const buildAccountCard = acc => `
 		</div>
 	`;
 
-
-
-
 // Build Personal Info Card
-const buildPersonalInfoCard = entry => {	
-	// Format the link (address, phone, email)
-	const getFormattedLink = (key, val) => `<a href="${val.url}" class="link" target="_blank">${val[key]}</a>`;
-	
-	return `
+const buildPersonalInfoCard = entry => {
+  // Format the link (address, phone, email)
+  const getFormattedLink = (key, val) =>
+    `<a href="${val.url}" class="link" target="_blank">${val[key]}</a>`;
+
+  return `
 		<div class="entity text-weight-bold">
 	 		<p class="key">${entry.key}</p>
-	 		<p class="value">${entry.key.toLowerCase() !== 'address' && entry.key.toLowerCase() !== 'phone' && entry.key.toLowerCase() !== 'email' ? entry.value : getFormattedLink(entry.key.toLowerCase(), entry.value)}</p>
+	 		<p class="value">${
+        entry.key.toLowerCase() !== 'address' &&
+        entry.key.toLowerCase() !== 'phone' &&
+        entry.key.toLowerCase() !== 'email'
+          ? entry.value
+          : getFormattedLink(entry.key.toLowerCase(), entry.value)
+      }</p>
 	 	</div>
 	`;
 };
@@ -72,10 +73,12 @@ const buildEducationTimeline = phase => `
 // Build Skill Bar
 const buildSkillBar = phase => `
 		<div class="col-lg-3 col-md-4 col-sm-12 mb-3">
-			<div class="skill-bar--wrapper lazy-transition--bottom">
+			<div class="skill-bar--wrapper">
 				<div class="skill-bar--label text-weight-bold"><span>${phase.name}</span></div>
 				<div class="mk-progress">
-					<div class="mk-progress-bar" style="width: ${phase.rate * 100}%;"><span>${phase.rate * 100}%</span></div>
+					<div class="mk-progress-bar" style="width: ${phase.rate * 100}%;"><span>${
+  phase.rate * 100
+}%</span></div>
 				</div>
 			</div>						
 		</div>
@@ -84,7 +87,7 @@ const buildSkillBar = phase => `
 // Build Experience Card
 const buildExperienceCard = phase => `
 		<div class="col-lg-6 col-md-12 col-sm-12 p-1 mb-2">
-			<div class="info-card lazy-transition--bottom">
+			<div class="info-card">
 				<div class="info-card--left">
 					<img src="${phase.logo}" alt="${phase.name} logo"/>
 				</div>
@@ -107,7 +110,7 @@ const buildExperienceCard = phase => `
 
 // Build Award Card
 const buildAwardCard = phase => `
-		<div class="display-card--div lazy-transition--bottom">
+		<div class="display-card--div">
 			<div class="display-card award-card">
 				<div class="display-card--img">
 					<img src="${phase.imgPath}" class="award--img"/>
@@ -120,11 +123,12 @@ const buildAwardCard = phase => `
 		</div>
 	`;
 
-
-export {buildThemePickerModelBody, 
-		buildAccountCard, 
-		buildPersonalInfoCard, 
-		buildEducationTimeline, 
-		buildSkillBar, 
-		buildExperienceCard, 
-		buildAwardCard};
+export {
+  buildThemePickerModelBody,
+  buildAccountCard,
+  buildPersonalInfoCard,
+  buildEducationTimeline,
+  buildSkillBar,
+  buildExperienceCard,
+  buildAwardCard,
+};
