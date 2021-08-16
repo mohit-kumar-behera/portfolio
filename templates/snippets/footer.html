@@ -1,16 +1,17 @@
-
-<div class="footer">	
-</div>
+<div class="footer"></div>
 <script type="text/javascript">
-	const year = new Date().getFullYear() + '';
-	const locationURL = location.hostname; 
+  const year = new Date().getFullYear() + '';
+  const locationURL = location.hostname;
 
-	const footer_html = `
+  const footer_html = `
 		<p>Copyright 
 			<span>&copy; 2021-${year.slice(2)}</span>, 
-			<a href="{% url 'home:home' %}" class="link">${locationURL.replace('www.', '')}</a>. 
+			<a href="{% url 'home:home' %}" class="link">${locationURL.replace(
+        'www.',
+        ''
+      )}</a>. 
 			All Rights Reserved.
 		</p>
 	`;
-	document.querySelector('.footer').innerHTML = footer_html;
+  document.querySelector('.footer').innerHTML = footer_html;
 </script>

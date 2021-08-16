@@ -1,80 +1,137 @@
+{% extends 'base.html' %} {% load static %} {% block title %}
+<title>Mohit Kumar</title>
+{% endblock title %} {% block stylesheet %}
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="{% static 'css/home.css' %}?{% now 'U' %}"
+/>
+{% endblock stylesheet %} {% block content %}
 
-{% extends 'base.html' %}
-{% load static %}
+<div class="main-container row">
+  <div class="content--left col-lg-4 col-md-6 col-sm-12 content-overflow">
+    <div class="img-container">
+      <div class="blob">
+        <svg
+          viewBox="0 0 200 200"
+          xmlns="http://www.w3.org/2000/svg"
+          opacity="0.7"
+        >
+          <path
+            d="M35.4,-48.1C48.9,-38.9,65,-32.6,72.1,-21C79.1,-9.4,77.2,7.5,70.1,20.8C63.1,34.1,50.9,43.7,38.4,55.4C25.9,67,12.9,80.6,0.1,80.5C-12.8,80.4,-25.5,66.5,-41.3,56C-57,45.4,-75.8,38,-79.9,25.8C-84,13.7,-73.4,-3.4,-65.9,-19.9C-58.4,-36.3,-54,-52.2,-43.5,-62.4C-33,-72.5,-16.5,-77,-2.8,-73.1C10.9,-69.3,21.9,-57.3,35.4,-48.1Z"
+            transform="translate(100 100)"
+          />
+        </svg>
+      </div>
+      <img
+        src="{% static 'media/image/mohit-3-c11.png' %}"
+        class="main-img lazy-img"
+        data-src="{% static 'media/image/mohit-3.png' %}"
+        alt="Mohit Kumar"
+      />
+    </div>
+  </div>
+  <div class="content--right col-lg-8 col-md-6 col-sm-12 content-overflow">
+    <div class="content-container lazy-opacity">
+      <div class="content">
+        <p class="greet">HI THERE !</p>
+      </div>
 
-{% block title %}
-	<title>Mohit Kumar</title>
-{% endblock title %}
-
-{% block stylesheet %}
-	<link rel="stylesheet" type="text/css" href="{% static 'css/home.css' %}?{% now 'U' %}">
-{% endblock stylesheet %}
-
-{% block content %}
-
-
-	<div class="main-container row">
-		<div class="content--left col-lg-4 col-md-6 col-sm-12 content-overflow">
-			<div class="img-container">
-				<div class="blob">
-					<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" opacity=0.7>
-					  <path d="M35.4,-48.1C48.9,-38.9,65,-32.6,72.1,-21C79.1,-9.4,77.2,7.5,70.1,20.8C63.1,34.1,50.9,43.7,38.4,55.4C25.9,67,12.9,80.6,0.1,80.5C-12.8,80.4,-25.5,66.5,-41.3,56C-57,45.4,-75.8,38,-79.9,25.8C-84,13.7,-73.4,-3.4,-65.9,-19.9C-58.4,-36.3,-54,-52.2,-43.5,-62.4C-33,-72.5,-16.5,-77,-2.8,-73.1C10.9,-69.3,21.9,-57.3,35.4,-48.1Z" transform="translate(100 100)"/>
-					</svg>
-				</div>
-				<img src="{% static 'media/image/mohit-3-c11.png' %}" class="main-img lazy-img" data-src="{% static 'media/image/mohit-3.png' %}" alt="Mohit Kumar"/>
-			</div>
-		</div>
-		<div class="content--right col-lg-8 col-md-6 col-sm-12 content-overflow">
-			<div class="content-container lazy-opacity">
-				<div class="content">
-					<p class="greet">HI THERE !</p>
-				</div>
-				
-				<!-- <div class="content">
+      <!-- <div class="content">
 					<h1 class="highlight-heading">I'M <span class=""></span></h1>
 				</div> -->
-				<div class="content">
-					<h1 class="highlight-heading">I'M 
-						<span class="letter one">M</span><span class="letter two">O</span><span class="letter three">H</span><span class="letter four">I</span><span class="letter five">T</span><span class="letter six"> </span><span class="letter seven">K</span><span class="letter eight">U</span><span class="letter nine">M</span><span class="letter ten">A</span><span class="letter eleven">R</span>
-					</h1>
-				</div>
-				
-				<!-- <div class="content">
+      <div class="content">
+        <h1 class="highlight-heading">
+          I'M <span class="letter one">M</span><span class="letter two">O</span
+          ><span class="letter three">H</span><span class="letter four">I</span
+          ><span class="letter five">T</span><span class="letter six"> </span
+          ><span class="letter seven">K</span><span class="letter eight">U</span
+          ><span class="letter nine">M</span><span class="letter ten">A</span
+          ><span class="letter eleven">R</span>
+        </h1>
+      </div>
+
+      <!-- <div class="content">
 					<p id="detail"></p>
 				</div> -->
 
-				<div class="content">
-					<!-- <p class="bio">What is Lorem Ipsum Lorem Ipsum is simply dummy text of the printing and typesetting industry Lorem Ipsum has been the industry's standard dummy text ever since the 1500s when an unknown printer took a galley of type and scrambled it to make a type specimen book it has.</p> -->
-					<div class="content-bar-loader">
-						<div class="bar"></div>
-						<div class="bar"></div>
-						<div class="bar"></div>
-					</div>
-				</div>
-				
-				<div class="content mt-5">
-					<button class="bttn about-me--btn secondary--type" onclick="window.location.href=`{% url 'home:about' %}`">MORE ABOUT ME<span class="fa fa-user-secret icon"></span></button>
-				</div>
-				
-				<div class="content theme-picker check-mobile">
-					<h5 class="mb-3">Pick Theme</h5>
-					<div class="pallete">
-						<button class="bttn color--btn" data-color="#913ee8" style="background: #913EE8"></button>
-						<button class="bttn color--btn" data-color="#01937c" style="background: #01937C"></button>
-						<button class="bttn color--btn" data-color="#fa1e0e" style="background: #FA1E0E"></button>
-						<button class="bttn color--btn" data-color="#a0522d" style="background: #A0522D"></button>
-						<button class="bttn color--btn" data-color="#ef5742" style="background: #EF5742"></button>
-					</div>
-					<div class="pallete">
-						<button class="bttn color--btn" data-color="#f97194" style="background: #f97194"></button>
-						<button class="bttn color--btn" data-color="#ffae00" style="background: #ffae00"></button>
-						<button class="bttn color--btn" data-color="#73a528" style="background: #73A528"></button>
-						<button class="bttn color--btn" data-color="#fe4c03" style="background: #fe4c03"></button>
-						<button class="bttn color--btn" data-color="#0556f3" style="background: #0556F3"></button>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+      <div class="content">
+        <!-- <p class="bio">What is Lorem Ipsum Lorem Ipsum is simply dummy text of the printing and typesetting industry Lorem Ipsum has been the industry's standard dummy text ever since the 1500s when an unknown printer took a galley of type and scrambled it to make a type specimen book it has.</p> -->
+        <div class="content-bar-loader">
+          <div class="bar"></div>
+          <div class="bar"></div>
+          <div class="bar"></div>
+        </div>
+      </div>
+
+      <div class="content mt-5">
+        <button
+          class="bttn about-me--btn secondary--type"
+          onclick="window.location.href=`{% url 'about:about' %}`"
+        >
+          MORE ABOUT ME<span class="fa fa-user-secret icon"></span>
+        </button>
+      </div>
+
+      <div class="content theme-picker check-mobile">
+        <h5 class="mb-3">Pick Theme</h5>
+        <div class="pallete">
+          <button
+            class="bttn color--btn"
+            data-color="#913ee8"
+            style="background: #913ee8"
+          ></button>
+          <button
+            class="bttn color--btn"
+            data-color="#01937c"
+            style="background: #01937c"
+          ></button>
+          <button
+            class="bttn color--btn"
+            data-color="#fa1e0e"
+            style="background: #fa1e0e"
+          ></button>
+          <button
+            class="bttn color--btn"
+            data-color="#a0522d"
+            style="background: #a0522d"
+          ></button>
+          <button
+            class="bttn color--btn"
+            data-color="#ef5742"
+            style="background: #ef5742"
+          ></button>
+        </div>
+        <div class="pallete">
+          <button
+            class="bttn color--btn"
+            data-color="#f97194"
+            style="background: #f97194"
+          ></button>
+          <button
+            class="bttn color--btn"
+            data-color="#ffae00"
+            style="background: #ffae00"
+          ></button>
+          <button
+            class="bttn color--btn"
+            data-color="#73a528"
+            style="background: #73a528"
+          ></button>
+          <button
+            class="bttn color--btn"
+            data-color="#fe4c03"
+            style="background: #fe4c03"
+          ></button>
+          <button
+            class="bttn color--btn"
+            data-color="#0556f3"
+            style="background: #0556f3"
+          ></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 {% endblock content %}

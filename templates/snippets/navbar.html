@@ -1,39 +1,50 @@
-
 <nav class="navbar">
-	<button class="bttn navbar-toggler check-mobile">
-		<span class="fa fa-angle-left icon navbar-toggler--icon"></span>
-	</button>
+  <button class="bttn navbar-toggler check-mobile">
+    <span class="fa fa-angle-left icon navbar-toggler--icon"></span>
+  </button>
 
-	<div class="nav-wrapper check-mobile">
-		<div class="nav-item">
-			<a href="{% url 'home:home' %}" class="link nav-link active" data-path="home">
-				<span class="fa fa-home icon nav-link--icon"></span>
-				<span class="nav-link--text">Home</span>
-			</a>
-		</div>
-		<div class="nav-item">
-			<a href="{% url 'home:about' %}" class="link nav-link" data-path="about">
-				<span class="fa fa-user-secret icon nav-link--icon"></span>
-				<span class="nav-link--text">About</span>
-			</a>
-		</div>
-		<div class="nav-item">
-			<a href="{% url 'home:contact' %}" class="link nav-link" data-path="contact">
-				<span class="fa fa-connectdevelop icon nav-link--icon"></span>
-				<span class="nav-link--text">Contact</span>
-			</a>
-		</div>
-		<div class="nav-item">
-			<a href="{% url 'project:all_projects' %}" class="link nav-link" data-path="project">
-				<span class="fa fa-code icon nav-link--icon"></span>
-				<span class="nav-link--text">Projects</span>
-			</a>
-		</div>
-		<div class="nav-item">
-			<a href="#" class="link nav-link theme-picker--btn">
-				<span class="fa fa-tint icon nav-link--icon"></span>
-				<span class="nav-link--text">Theme</span>
-			</a>
-		</div>
-	</div>
+  <div class="nav-wrapper check-mobile">
+    <div class="nav-item">
+      <a
+        href="{% url 'home:home' %}"
+        class="link nav-link active"
+        data-path="home"
+      >
+        <span class="fa fa-home icon nav-link--icon"></span>
+        <span class="nav-link--text">Home</span>
+      </a>
+    </div>
+    <div class="nav-item">
+      <a href="{% url 'about:about' %}" class="link nav-link" data-path="about">
+        <span class="fa fa-user-secret icon nav-link--icon"></span>
+        <span class="nav-link--text">About</span>
+      </a>
+    </div>
+    <div class="nav-item">
+      <a
+        href="{% url 'contact:contact' %}"
+        class="link nav-link"
+        data-path="contact"
+      >
+        <span class="fa fa-connectdevelop icon nav-link--icon"></span>
+        <span class="nav-link--text">Contact</span>
+      </a>
+    </div>
+    <div class="nav-item">
+      <a
+        href="{% url 'project:all_projects' %}"
+        class="link nav-link"
+        data-path="project"
+      >
+        <span class="fa fa-code icon nav-link--icon"></span>
+        <span class="nav-link--text">Projects</span>
+      </a>
+    </div>
+    <div class="nav-item">
+      <a href="#" class="link nav-link theme-picker--btn">
+        <span class="fa fa-tint icon nav-link--icon"></span>
+        <span class="nav-link--text">Theme</span>
+      </a>
+    </div>
+  </div>
 </nav>

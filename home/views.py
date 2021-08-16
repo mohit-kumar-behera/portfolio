@@ -2,17 +2,8 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect, Http404, JsonResponse
 
 
-
-def home(request):
+def home_view(request):
 	return render(request, 'home/home.html')
-
-
-def contact(request):
-	return render(request, 'home/contact.html') 
-
-
-def about(request):
-	return render(request, 'home/about.html')
 
 
 
