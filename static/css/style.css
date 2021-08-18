@@ -575,8 +575,8 @@ img {
   -webkit-transform-origin: right;
   transition: all 0.15s ease-in-out;
 }
-body:not([data-mobile-device='true']) .nav-wrapper .nav-link:hover::after,
-body:not([data-mobile-device='true']) .nav-wrapper .nav-link:focus::after {
+body[data-mobile-device='false'] .nav-wrapper .nav-link:hover::after,
+body[data-mobile-device='false'] .nav-wrapper .nav-link:focus::after {
   transform: scaleX(1);
   -webkit-transform: scaleX(1);
 }
@@ -607,14 +607,16 @@ body:not([data-mobile-device='true']) .nav-wrapper .nav-link:focus::after {
 .theme-picker .color--btn:last-child {
   margin-right: 0;
 }
-.theme-picker .color--btn.active {
+.theme-picker .color--btn.active,
+body[data-mobile-device='false'] .theme-picker .color--btn:not(.active):hover,
+body[data-mobile-device='false'] .theme-picker .color--btn:focus {
   border-radius: 50% 50% 50% 5%;
   transform: rotate(135deg);
+  -webkit-transform: rotate(135deg);
 }
-.theme-picker:not(.mobile-device) .color--btn:not(.active):hover,
-.theme-picker:not(.mobile-device) .color--btn:focus {
-  border-radius: 50% 50% 50% 5%;
-  transform: rotate(135deg);
+body[data-mobile-device='true'] .theme-picker .color--btn:active {
+  transform: scale(0.95);
+  -webkit-transform: scale(0.95);
 }
 /*---------------- END OF THEME PICKER PALLETE --------------------*/
 
