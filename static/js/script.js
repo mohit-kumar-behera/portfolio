@@ -520,11 +520,7 @@ const activateAboutPageScript = function (user) {
     {
       type: 'awards',
       elem: aboutAwardsContainer,
-      classes: [
-        'display-card--wrapper',
-        'check-mobile',
-        `${isMobile ? 'mobile-device' : ''}`,
-      ],
+      classes: ['display-card--wrapper'],
       build: buildAwardCard,
     },
     {

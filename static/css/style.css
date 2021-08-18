@@ -638,7 +638,7 @@ section.normal-container .page-header .secondary--type {
   position: relative;
   z-index: 0;
 }
-section.normal-container .page-header .secondary--type:after {
+section.normal-container .page-header .secondary--type::before {
   content: '';
   position: absolute;
   bottom: -3px;
@@ -650,15 +650,19 @@ section.normal-container .page-header .secondary--type:after {
   z-index: -1;
   transition: all 0.2s ease-out;
 }
-section.normal-container
-  .page-header:not(.mobile-device)
+body[data-mobile-device='true']
+  section.normal-container
+  .page-header
+  .secondary--type::before {
+  width: 80%;
+}
+body[data-mobile-device='false']
+  section.normal-container
+  .page-header
   .highlight-heading
   span:hover
-  .secondary--type:after {
+  .secondary--type::before {
   width: 100%;
-}
-section.normal-container .page-header.mobile-device .secondary--type:after {
-  width: 80%;
 }
 section.normal-container .page-content {
   width: 100%;
@@ -760,7 +764,10 @@ section.normal-container .responsive-wrapper {
   text-transform: uppercase;
   font-weight: bold;
 }
-.display-card--wrapper:not(.mobile-device) .display-card:hover > .overlay--div {
+body[data-mobile-device='false']
+  .display-card--wrapper
+  .display-card:hover
+  > .overlay--div {
   opacity: 0.7;
 }
 /* Info Card */
