@@ -281,6 +281,13 @@ p {
 .link:active {
   opacity: 0.9;
 }
+/* ::after selector */
+*::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+}
 /*-- Button Component --*/
 .bttn {
   border: none;
@@ -304,10 +311,6 @@ p {
   z-index: 0;
 }
 .bttn.secondary--type::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
   width: 100%;
   height: 100%;
   border-radius: inherit;
@@ -315,15 +318,18 @@ p {
   z-index: -1;
   pointer-events: none;
   transform: scale(0);
+  -webkit-transform: scale(0);
   transform-origin: center;
   transition: all 0.3s ease-in-out;
 }
 .bttn.secondary--type:hover::after,
 .bttn.secondary--type:focus::after {
   transform: scale(1);
+  -webkit-transform: scale(1);
 }
 .bttn.secondary--type:active {
   transform: scale(0.9);
+  -webkit-transform: scale(0.9);
 }
 /*-- Model Component --*/
 .overlay {
@@ -336,10 +342,6 @@ p {
   z-index: 10;
 }
 .overlay::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
   width: inherit;
   height: inherit;
   z-index: 9;
@@ -565,21 +567,22 @@ img {
   text-decoration: none;
 }
 .nav-link::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 0;
-  height: 100%;
+  width: inherit;
+  height: inherit;
   background: var(--secondary-color);
   opacity: 0.2;
   pointer-events: none;
   z-index: -1;
+  transform: scaleX(0);
+  -webkit-transform: scaleX(0);
+  transform-origin: right;
+  -webkit-transform-origin: right;
   transition: all 0.15s ease-in-out;
 }
 .nav-wrapper:not(.mobile-device) .nav-link:not(.active):hover::after,
 .nav-wrapper:not(.mobile-device) .nav-link:focus::after {
-  width: 100%;
+  transform: scaleX(1);
+  -webkit-transform: scaleX(1);
 }
 
 /*--------------------------- END OF NAVBAR ------------------------*/
