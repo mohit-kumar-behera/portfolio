@@ -19,7 +19,8 @@ const navbar = document.querySelector('.navbar');
 const navbarTogglerBtn = document.querySelector('.navbar-toggler');
 
 const overlay = document.querySelector('.overlay');
-const modelView = document.querySelector('.model-view');
+const normalModelView = document.querySelector('.normal-model-view');
+const imgModelView = document.querySelector('.img-model-view');
 
 const themePicker = document.querySelector('.theme-picker');
 const themePickerModelBtn = document.querySelector('.theme-picker--btn');
@@ -209,7 +210,7 @@ class Model {
     return this;
   }
 
-  render(dataBody, dataHead = undefined) {
+  render(dataBody, dataHead) {
     this._dataBody = dataBody;
     this._dataHead = dataHead || undefined;
     const markup = this._generateMarkup();
@@ -327,7 +328,7 @@ const activateDefaultPageScript = function (currPage, isMobile, modelCl) {
   });
 
   // Handle Model view when images are clicked for viewing
-  modelView?.addEventListener('click', function (e) {
+  imgModelView?.addEventListener('click', function (e) {
     const card = e.target.closest('.display-card--div');
     if (!card) return;
 
@@ -345,8 +346,55 @@ const activateDefaultPageScript = function (currPage, isMobile, modelCl) {
       .renderSpinner()
       .open();
 
-    const dataBody = `<img src="${imgPath}" class="view-img" alt=""/>`;
+    const dataBody = `
+      <div class="img--div">
+        <img src="${imgPath}" class="view-img" alt=""/>
+      </div>
+    `;
     modelCl.render(dataBody);
+  });
+
+  // Handle Model view when experience section is clicked for viewing
+  normalModelView?.addEventListener('click', function (e) {
+    const cardLink = e.target.closest('.experience--company .link');
+    if (cardLink) return;
+
+    const card = e.target.closest('.info-card');
+    if (!card) return;
+
+    const cardId = card.dataset.id;
+    const params = {
+      model: document.querySelector('#normal-model.model'),
+      overlay,
+    };
+    modelCl = new Model(params.model, params.overlay);
+    modelCl.customize().renderSpinner().open();
+
+    setTimeout(function () {
+      const dataHead = `<h4>Internship Detail</h4>`;
+      const dataBody = `
+        <div class="experience-description">
+          <p><strong>Lorem ipsum dolor</strong> sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Sit amet tellus cras adipiscing. Iaculis urna id volutpat lacus laoreet. Tincidunt vitae semper quis lectus nulla. Posuere it amet consectetur adipiscing elit. Semper auctor neque vitae tempus quam pellentesque nec.</p>
+
+          <p>Morbi tincidunt augue interdum velit euismod in pellentesque massa placerat. Feugiat scelerisque varius morbi enim nunc faucibus a. Auctor augue mauris augue neque. Congue nisi vitae suscipit tellus mauris a. <a href="https://something.com" class="link">Commodo elit at imperdiet dui</a>. Maecenas volutpat blandit aliquam etiam erat velit scelerisque in den.</p>
+
+          <ul>
+            <li>modify or copy the materials;</li>
+            <li>use the materials for any commercial purpose, or for any public display (commercial or non-commercial);</li>
+          </ul>
+
+          <p class="note">
+            <strong>NOTE:</strong>
+            <ol>
+              <li>modify or copy the materials;</li>
+              <li>use the materials for any commercial purpose, or for any public display (commercial or non-commercial);</li>
+              <li>attempt to decompile or reverse engineer any software contained on <a href="#" class="link">ALINETER LIFESTYLE</a> INDUSTRY PRIVATE LIMITED&#39;s website;</li>
+            </ol>
+          </p>
+        </div>
+      `;
+      modelCl.render(dataBody, dataHead);
+    }, 0);
   });
 
   currPage = setCurrPage();

@@ -76,9 +76,9 @@ const buildSkillBar = phase => `
 			<div class="skill-bar--wrapper">
 				<div class="skill-bar--label text-weight-bold"><span>${phase.name}</span></div>
 				<div class="mk-progress">
-					<div class="mk-progress-bar" style="width: ${phase.rate * 100}%;"><span>${
-  phase.rate * 100
-}%</span></div>
+					<div class="mk-progress-bar" style="width: ${phase.rate * 100}%;">
+						<span>${phase.rate * 100}%</span>
+					</div>
 				</div>
 			</div>						
 		</div>
@@ -87,7 +87,7 @@ const buildSkillBar = phase => `
 // Build Experience Card
 const buildExperienceCard = phase => `
 		<div class="col-lg-6 col-md-12 col-sm-12 p-1 mb-2">
-			<div class="info-card">
+			<div class="info-card" data-id="${phase.name}">
 				<div class="info-card--left">
 					<img src="${phase.logo}" alt="${phase.name} logo"/>
 				</div>

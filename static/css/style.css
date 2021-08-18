@@ -359,8 +359,10 @@ body[data-mobile-device='false'] .bttn.secondary--type:focus::after {
   transform: translate(-50%, -50%);
   color: var(--dark-shade6);
   border-radius: 5px;
-  padding: 0;
+  padding: 0.1rem;
   z-index: 20;
+  max-height: 75vh;
+  overflow: hidden auto;
 }
 .overlay.hide,
 .model.hide {
@@ -384,7 +386,7 @@ body[data-mobile-device='false'] .bttn.secondary--type:focus::after {
 }
 @media screen and (max-width: 576px) {
   .model {
-    width: 80%;
+    width: 85%;
   }
 }
 .model-head,
@@ -398,6 +400,22 @@ body[data-mobile-device='false'] .bttn.secondary--type:focus::after {
 .model-head > *,
 .model-body > * {
   padding: 1rem;
+}
+.model-body > div {
+  width: 100%;
+  height: 100%;
+}
+.model-body > div ul,
+.model-body > div ol {
+  padding-left: 1.5rem;
+}
+.model-body > div a {
+  color: var(--secondary-color);
+  font-weight: 600;
+}
+.model-body > div a:hover,
+.model-body > div a:focus {
+  text-decoration: underline;
 }
 .close-model--btn {
   position: absolute;
@@ -445,11 +463,11 @@ img {
 }
 .content-overflow::-webkit-scrollbar-track {
   background: var(--light-shade1);
-  border-radius: 100px;
+  border-radius: 0;
 }
 .content-overflow::-webkit-scrollbar-thumb {
   background: var(--secondary-color);
-  border-radius: 100px;
+  border-radius: 1.5px;
 }
 /*.content-overflow::-webkit-scrollbar-thumb:hover {  }*/
 
