@@ -104,6 +104,9 @@ p {
 }
 /*Circle Loader*/
 .content-loader {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
   border-style: solid;
   border-radius: 50%;
   border-width: 6px;

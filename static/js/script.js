@@ -19,10 +19,6 @@ const navbar = document.querySelector('.navbar');
 const navbarTogglerBtn = document.querySelector('.navbar-toggler');
 
 const overlay = document.querySelector('.overlay');
-const model = document.querySelector('.model');
-const modelHead = document.querySelector('.model-head');
-const modelBody = document.querySelector('.model-body');
-const closeModelBtn = document.querySelector('.close-model--btn');
 const modelView = document.querySelector('.model-view');
 
 const themePicker = document.querySelector('.theme-picker');
@@ -48,10 +44,11 @@ const themePickerModelBtn = document.querySelector('.theme-picker--btn');
 // const aboutAwardsContainer = document.querySelector('.about-awards--content');
 /* end of about page */
 
-let currPage, isMobile;
+let currPage, isMobile, modelCl;
 const init = () => {
   let currPage = '';
   let isMobile = '';
+  let modelCl = undefined;
 };
 
 // Check which page is currently active and set currPage as the current active page
@@ -151,35 +148,96 @@ const setCurrPage = () =>
 
 /* ------------------- Required in All Pages ------------------------- */
 
-const openModel = function () {
-  /* Open Model Box */
-  overlay.classList.remove('hide');
-  model.classList.remove('hide');
-};
+class Model {
+  _overlay;
+  _model;
+  _dataHead;
+  _dataBody;
 
-const closeModel = function () {
-  /* Close Model Box */
-  overlay.classList.add('hide');
-  model.classList.add('hide');
-};
+  constructor(model, overlay) {
+    this._model = model;
+    this._overlay = overlay;
 
-const customizeModel = function (
-  width = 'auto',
-  height = 'auto',
-  background = 'var(--light-shade1)'
-) {
-  model.style.width = width;
-  model.style.height = height;
-  model.style.background = background;
-};
+    this._overlay.addEventListener(
+      'click',
+      function (e) {
+        const closeEl =
+          e.target.closest('.close-model--btn') || e.target.closest('.overlay');
+        if (!closeEl) return;
+        this.close();
+      }.bind(this)
+    );
 
-const activateDefaultPageScript = function () {
+    document.body.addEventListener(
+      'keydown',
+      function (e) {
+        // Close the Model on ESC key press
+        if (e.key === 'Escape' && !this._model.classList.contains('hide'))
+          this.close();
+      }.bind(this)
+    );
+  }
+
+  _clear() {
+    this._model.innerHTML = '';
+  }
+
+  renderSpinner() {
+    this._clear();
+    this._model.innerHTML = '<div class="content-loader lg mx-auto"></div>';
+    return this;
+  }
+
+  open() {
+    /* Open Model window */
+    this._overlay.classList.remove('hide');
+    this._model.classList.remove('hide');
+    return this;
+  }
+
+  close() {
+    /* Close Model window */
+    this._overlay.classList.add('hide');
+    this._model.classList.add('hide');
+    return this;
+  }
+
+  customize(width, height, background = 'var(--light-shade1)') {
+    if (width) this._model.style.width = width;
+    if (height) this._model.style.height = height;
+    this._model.style.background = background;
+    return this;
+  }
+
+  render(dataBody, dataHead = undefined) {
+    this._dataBody = dataBody;
+    this._dataHead = dataHead || undefined;
+    const markup = this._generateMarkup();
+    this._clear();
+    this._model.insertAdjacentHTML('afterbegin', markup);
+    return this;
+  }
+
+  _attachHead() {
+    return `
+      <div class="model-head">${this._dataHead}</div>
+    `;
+  }
+
+  _generateMarkup() {
+    return `
+      ${this._dataHead ? this._attachHead() : ''}
+      <div class="model-body">${this._dataBody}</div>
+    `;
+  }
+}
+
+const activateDefaultPageScript = function (currPage, isMobile, modelCl) {
   // Add active class to the navlink
-  const setActivePageNavLink = function () {
-    setCurrPage();
+  const setActivePageNavLink = function (page) {
     document.querySelector('a.nav-link.active')?.classList.remove('active');
     document
-      .querySelector(`a.nav-link[data-path='${currPage}']`)
+      .querySelector(`a.nav-link[data-path='${page}']`)
       ?.classList.add('active');
   };
 
@@ -197,9 +255,6 @@ const activateDefaultPageScript = function () {
 
   navbarTogglerBtn.addEventListener('click', toggleNavbar);
 
-  closeModelBtn.addEventListener('click', closeModel);
-  overlay.addEventListener('click', closeModel);
-
   document.body.addEventListener('keyup', function (e) {
     if (e.key === 'Tab') {
       /* open close navbar as per TAB Focus */
@@ -207,10 +262,6 @@ const activateDefaultPageScript = function () {
         navbar.classList.add('open');
       else navbar.classList.remove('open');
     }
-  });
-
-  document.body.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape' && !model.classList.contains('hide')) closeModel(); // Close the Model on ESC key press
   });
 
   const handleActiveThemeClass = function (activeTheme) {
@@ -225,7 +276,7 @@ const activateDefaultPageScript = function () {
       ?.classList.add('active');
   };
 
-  const setNewTheme = function (color) {
+  const setTheme = function (color) {
     /* Update the Theme Pattern */
     localStorage.setItem('theme-color', color);
     document.documentElement.style.setProperty('--secondary-color', color);
@@ -240,16 +291,16 @@ const activateDefaultPageScript = function () {
     elem.blur();
 
     const color = elem.dataset.color;
-    setNewTheme(color);
+    setTheme(color);
   };
   themePicker?.addEventListener('click', handleThemePickerBtn);
 
   const checkActiveTheme = function () {
     if (localStorage.getItem('theme-color')) {
-      setNewTheme(localStorage.getItem('theme-color'));
+      setTheme(localStorage.getItem('theme-color'));
     } else {
       localStorage.setItem('theme-color', '#fa1e0e');
-      setNewTheme(localStorage.getItem('theme-color'));
+      setTheme(localStorage.getItem('theme-color'));
     }
   };
 
@@ -258,45 +309,50 @@ const activateDefaultPageScript = function () {
     e.preventDefault();
     this.blur();
 
-    modelBody.innerHTML =
-      '<div class="content-loader sm dotted mx-auto"></div>';
-    customizeModel();
-    openModel();
+    const params = {
+      model: document.querySelector('#normal-model.model'),
+      overlay,
+      width: 'auto',
+      height: 'auto',
+    };
+    modelCl = new Model(params.model, params.overlay);
+    modelCl.customize(params.width, params.height).renderSpinner().open();
 
-    const themePickerBodyHTML = buildThemePickerModelBody();
-    modelHead.innerHTML = modelBody.innerHTML = '';
-    const themePickerHeadHTML = `<h4>Pick Theme</h4>`;
-    modelHead.insertAdjacentHTML('beforeend', themePickerHeadHTML);
-    modelBody.insertAdjacentHTML('beforeend', themePickerBodyHTML);
-
+    const headEl = '<h4>Pick Theme</h4>';
+    const bodyEl = buildThemePickerModelBody();
+    modelCl.render(bodyEl, headEl);
     document
       .querySelector('.theme-picker.from-model')
       .addEventListener('click', e => handleThemePickerBtn(e));
   });
 
   // Handle Model view when images are clicked for viewing
-  modelView &&
-    modelView.addEventListener('click', function (e) {
-      const card = e.target.closest('.display-card--div');
-      if (!card) return;
+  modelView?.addEventListener('click', function (e) {
+    const card = e.target.closest('.display-card--div');
+    if (!card) return;
 
-      const imgPath = card.dataset.imgSrc;
-      modelHead.innerHTML = '';
-      modelBody.innerHTML = '<div class="content-loader dotted mx-auto"></div>';
-      const params = {
-        width: '90%',
-        height: '75vh',
-        background: 'transparent',
-      };
-      customizeModel(params.width, params.height, params.background);
-      openModel();
+    const imgPath = card.dataset.imgSrc;
+    const params = {
+      model: document.querySelector('#img-model.model'),
+      overlay,
+      width: '90%',
+      height: '75vh',
+      background: 'transparent',
+    };
+    modelCl = new Model(params.model, params.overlay);
+    modelCl
+      .customize(params.width, params.height, params.background)
+      .renderSpinner()
+      .open();
 
-      modelBody.innerHTML = `<img src="${imgPath}" class="view-img" alt=""/>`;
-    });
+    const dataBody = `<img src="${imgPath}" class="view-img" alt=""/>`;
+    modelCl.render(dataBody);
+  });
 
-  setActivePageNavLink();
-  checkActiveTheme();
+  currPage = setCurrPage();
   isMobile = detectMobile();
+  setActivePageNavLink(currPage);
+  checkActiveTheme();
   addMobileAttr(isMobile);
 };
 
@@ -323,45 +379,7 @@ const activateHomePageScript = function (user) {
   };
 
   // setUsername(user.getFullName());
-
-  // class App {
-  // 	constructor() {
-  // 		this._fetchInfo();
-  // 	}
-
-  // 	async _fetchInfo() {
-
-  // 		try {
-  // 			const res = await fetch('/fetch-mohit/');
-  // 			if (!res.ok) throw new Error('Unable to Load Data');
-
-  // 			const data = await res.json();
-  // 			this._loadMohitData(data);
-
-  // 		} catch (err) {
-  // 			console.log(err);
-  // 		} finally {
-  // 			return this;
-  // 		}
-
-  // 	}
-
-  // 	_getContact(contact, type) {
-  // 		return contact[type];
-  // 	}
-
-  // 	_loadMohitData(data) {
-  // 		this.firstName = data.firstName;
-  // 		this.lastName = data.lastName;
-  // 		this.phone = this._getContact(data.contact, 'phone');
-
-  // 		document.getElementById('detail').innerHTML = `${this.firstName}, ${this.lastName}, ${this.phone}`;
-  // 	}
-  // }
-
-  // const app = new App();
 };
-
 /*--------------- End of home page ----------------------*/
 
 /*------------------ Required only in Contact page ----------------------------*/
@@ -392,10 +410,9 @@ const activateContactPageScript = function (user) {
           field.value.length >= field.dataset.minlength &&
           field.value.length <= field.dataset.maxlength
       )
-      .reduce((count, elem) => count + 1, 0);
+      .reduce(count => count + 1, 0);
 
-    valid = inRangeFieldsCount === inputFields.length ? true : false;
-
+    valid = inRangeFieldsCount === inputFields.length;
     const emailField = inputFields.find(field => field.type === 'email');
 
     return emailField && valid && validateEmail(emailRegex, emailField.value);
@@ -648,11 +665,8 @@ const startIntersectionObserver = function () {
 
 window.addEventListener('load', function () {
   setTimeout(function () {
-    // document.querySelector('.loader').remove();
-    // document.getElementById('main-body').style.display = 'block';
-
     init();
-    activateDefaultPageScript();
+    activateDefaultPageScript(currPage, isMobile, modelCl);
 
     switch (currPage) {
       case 'home':

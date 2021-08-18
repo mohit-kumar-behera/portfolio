@@ -1,13 +1,20 @@
-{% extends 'base.html' %} {% load static %} {% block title %}
+{% extends 'base.html' %} {% load static %} 
+
+{% block title %}
 <title>About Me - Mohit Kumar</title>
-{% endblock title %} {% block stylesheet %}
+{% endblock title %} 
+
+{% block stylesheet %}
 <link
   rel="stylesheet"
   type="text/css"
   href="{% static 'css/about.css' %}?{% now 'U' %}"
 />
-{% endblock stylesheet %} {% block content %}
+{% endblock stylesheet %} 
 
+{% block content %}
+
+{% include 'snippets/model/img-model.html' %} 
 <section class="normal-container">
   <div class="page-header">
     <h1 class="highlight-heading">
@@ -335,7 +342,6 @@
 
   {% include 'snippets/footer.html' %}
 </section>
-
 {% endblock content %}
 
 <!--
