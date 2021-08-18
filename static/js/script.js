@@ -370,9 +370,8 @@ const activateDefaultPageScript = function (currPage, isMobile, modelCl) {
     modelCl = new Model(params.model, params.overlay);
     modelCl.customize().renderSpinner().open();
 
-    setTimeout(function () {
-      const dataHead = `<h4>Internship Detail</h4>`;
-      const dataBody = `
+    const dataHead = `<h4>Internship Detail</h4>`;
+    const dataBody = `
         <div class="experience-description">
           <p><strong>Lorem ipsum dolor</strong> sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Sit amet tellus cras adipiscing. Iaculis urna id volutpat lacus laoreet. Tincidunt vitae semper quis lectus nulla. Posuere it amet consectetur adipiscing elit. Semper auctor neque vitae tempus quam pellentesque nec.</p>
 
@@ -393,8 +392,7 @@ const activateDefaultPageScript = function (currPage, isMobile, modelCl) {
           </p>
         </div>
       `;
-      modelCl.render(dataBody, dataHead);
-    }, 0);
+    modelCl.render(dataBody, dataHead);
   });
 
   currPage = setCurrPage();

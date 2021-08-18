@@ -1,17 +1,28 @@
-<div class="footer"></div>
-<script type="text/javascript">
-  const year = new Date().getFullYear() + '';
-  const locationURL = location.hostname;
-
-  const footer_html = `
-		<p>Copyright 
-			<span>&copy; 2021-${year.slice(2)}</span>, 
-			<a href="{% url 'home:home' %}" class="link">${locationURL.replace(
-        'www.',
-        ''
-      )}</a>. 
+{% load static %}
+<div class="footer">
+  <div class="logo--div">
+      <div>
+        <img src="{% static 'media/image/mk-full-rect-round-2.png' %}" />
+      </div>
+  </div>
+  <div class="quick-links--div">
+    <a href="#" class="link">Home</a>&nbsp;&nbsp;.&nbsp;&nbsp;
+    <a href="#" class="link">Contact</a>&nbsp;&nbsp;.&nbsp;&nbsp;
+    <a href="#" class="link">Home</a>&nbsp;&nbsp;.&nbsp;&nbsp;
+    <a href="#" class="link">Contact</a>&nbsp;&nbsp;.&nbsp;&nbsp;
+    <a href="#" class="link">Project 12</a>&nbsp;&nbsp;.&nbsp;&nbsp;
+    <a href="#" class="link">Read this</a>
+  </div>
+  <div class="hr"></div>
+  <div class="copyright--div">
+    <p>Copyright 
+			<span>&copy; <span class="start-year">2021</span>-<span class="curr-year"></span></span>, 
+			<a href="{% url 'home:home' %}" class="link">Mohit Kumar</a>. 
 			All Rights Reserved.
 		</p>
-	`;
-  document.querySelector('.footer').innerHTML = footer_html;
-</script>
+  </div>
+</div>
+<script type="text/javascript">
+  const year = new Date().getFullYear() + '';
+  document.querySelector('.footer .curr-year').textContent = year.slice(2);
+</script> 
