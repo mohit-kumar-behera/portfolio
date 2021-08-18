@@ -195,6 +195,8 @@ const activateDefaultPageScript = function () {
       addMobileDevice__class(addClassToElems);
     }
   };
+  const addMobileAttr = isMobile =>
+    document.body.setAttribute('data-mobile-device', isMobile);
 
   const toggleNavbar = function () {
     /* open close the navbar */
@@ -307,6 +309,7 @@ const activateDefaultPageScript = function () {
   checkActiveTheme();
   isMobile = detectMobile();
   addMobileDevice(isMobile);
+  addMobileAttr(isMobile);
 };
 
 /* ---------------------- End of Default Page Script ----------------------- */
