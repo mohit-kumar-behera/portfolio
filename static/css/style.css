@@ -512,10 +512,6 @@ img {
 .navbar.open .navbar-toggler--icon {
   transform: rotate(180deg);
 }
-.navbar-toggler:not(.mobile-device):hover,
-.navbar-toggler:focus {
-  filter: brightness(86%);
-}
 .navbar-toggler:active {
   opacity: 0.9;
 }

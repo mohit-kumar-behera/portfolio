@@ -34,7 +34,7 @@
   color: #ffffff90;
   text-transform: capitalize;
 }
-.entity .key:after {
+.entity .value::before {
   content: ':';
   margin: 0 0.4rem;
 }
