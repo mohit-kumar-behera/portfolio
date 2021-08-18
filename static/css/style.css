@@ -332,8 +332,20 @@ p {
   left: 0;
   width: 100%;
   height: 100%;
-  background: var(--dark-shade5);
+  backdrop-filter: blur(6px);
   z-index: 10;
+}
+.overlay::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: inherit;
+  height: inherit;
+  z-index: 9;
+  pointer-events: none;
+  background: var(--secondary-color);
+  opacity: 0.3;
 }
 .model {
   position: fixed;
@@ -393,6 +405,7 @@ p {
   font-size: 2.3rem;
   border-radius: 50%;
   color: var(--light-shade1);
+  z-index: inherit;
   background: transparent;
 }
 .close-model--btn > span {
