@@ -575,8 +575,8 @@ img {
   -webkit-transform-origin: right;
   transition: all 0.15s ease-in-out;
 }
-.nav-wrapper:not(.mobile-device) .nav-link:not(.active):hover::after,
-.nav-wrapper:not(.mobile-device) .nav-link:focus::after {
+body:not([data-mobile-device='true']) .nav-wrapper .nav-link:hover::after,
+body:not([data-mobile-device='true']) .nav-wrapper .nav-link:focus::after {
   transform: scaleX(1);
   -webkit-transform: scaleX(1);
 }
