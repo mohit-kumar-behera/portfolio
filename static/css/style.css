@@ -323,7 +323,7 @@ body[data-mobile-device='false'] .bttn.secondary--type::after {
   transform: scale(0);
   -webkit-transform: scale(0);
   transform-origin: center;
-  transition: all 0.3s ease-in-out;
+  transition: all 0.2s ease-in-out;
 }
 body[data-mobile-device='false'] .bttn.secondary--type:hover::after,
 body[data-mobile-device='false'] .bttn.secondary--type:focus::after {
