@@ -183,18 +183,7 @@ const activateDefaultPageScript = function () {
       ?.classList.add('active');
   };
 
-  // Add "mobile-device" class to specified elements
-  const addMobileDevice__class = elems =>
-    elems.forEach(elem => elem?.classList.add('mobile-device'));
-
-  const addMobileDevice = isMobile => {
-    if (isMobile) {
-      const addClassToElems = Array.from(
-        document.querySelectorAll('.check-mobile')
-      );
-      addMobileDevice__class(addClassToElems);
-    }
-  };
+  // Add "mobile-device" attribute to body
   const addMobileAttr = isMobile =>
     document.body.setAttribute('data-mobile-device', isMobile);
 
@@ -308,7 +297,6 @@ const activateDefaultPageScript = function () {
   setActivePageNavLink();
   checkActiveTheme();
   isMobile = detectMobile();
-  addMobileDevice(isMobile);
   addMobileAttr(isMobile);
 };
 

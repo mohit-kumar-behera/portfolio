@@ -905,7 +905,7 @@ body[data-mobile-device='false']
   font-size: 1.8rem;
   font-weight: 800;
 }
-.pagination:not(.mobile-device) .bttn:after {
+body[data-mobile-device='false'] .pagination .bttn:after {
   content: '';
   position: absolute;
   top: 0;
@@ -919,8 +919,8 @@ body[data-mobile-device='false']
   -webkit-transition: all 0.3s ease;
   z-index: -1;
 }
-.pagination:not(.mobile-device) .bttn:hover:after,
-.pagination:not(.mobile-device) .bttn:focus:after {
+body[data-mobile-device='false'] .pagination .bttn:hover:after,
+body[data-mobile-device='false'] .pagination .bttn:focus:after {
   opacity: 0.1;
 }
 .pagination .bttn:active {
