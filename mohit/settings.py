@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'contact',
     'home',
     'project',
+    'error',
 ]
 
 MIDDLEWARE = [

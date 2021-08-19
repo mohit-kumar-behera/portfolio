@@ -8,6 +8,8 @@ urlpatterns = [
     path('about/', include('about.urls')),
     path('', include('home.urls')),
     path('project/', include('project.urls')),
+
+    path('error/', include('error.urls')),
 ]
 
 if settings.DEBUG:
