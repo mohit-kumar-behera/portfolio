@@ -495,6 +495,7 @@ const activateContactPageScript = function (user) {
 
   // Render the data in form of card to screen
   const renderSocialAccounts = function (socialAccounts) {
+    if (!socialAccountContainer) return;
     socialAccountContainer.innerHTML = '';
 
     socialAccounts.forEach(acc => {
@@ -525,6 +526,7 @@ const activateAboutPageScript = function (user) {
 
   // Render personal detail on screen in Personal Info section
   const renderPersonalDetail = function (shortBio) {
+    if (!personalInfoContainer) return;
     personalInfoContainer.innerHTML = '';
 
     shortBio.forEach(entry => {
@@ -537,6 +539,8 @@ const activateAboutPageScript = function (user) {
   renderPersonalDetail(user.getShortBio());
 
   const renderContentDynamically = function (user, elem, type, classes, build) {
+    if (!elem) return;
+
     const mainType = user.knowledge[type];
     const phases = mainType.phase;
 
@@ -735,9 +739,3 @@ window.addEventListener('load', function () {
     startIntersectionObserver();
   }, 400);
 });
-
-/*
-
-https://stackoverflow.com/questions/7165656/passing-objects-from-django-to-javascript-dom
-
-*/

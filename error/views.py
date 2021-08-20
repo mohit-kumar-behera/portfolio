@@ -33,7 +33,7 @@ def error_404(request, exception=None):
 def error_500(request, exception=None):
 	context = {
 		'error':{
-			'code':404,
+			'code':500,
 			'message':'The server can not find the requested resource. In the browser, this means the URL is not recognized. In an API, this can also mean that the endpoint is valid but the resource itself does not exist. Servers may also send this response instead of 403 to hide the existence of a resource from an unauthorized client. This response code is probably the most famous one due to its frequent occurrence on the web.'
 		}
 	}

@@ -22,13 +22,13 @@
 
 {% block text-content %}
 <div class="content">
-  <h1 class="display-1 focus">404</h1>
+  <h1 class="display-1 focus">{{error.code}}</h1>
 </div>
 <div class="content">
   <h1 class="focus">Oops,<br> <span class="text secondary--type">nothing</span> here...</h1>
 </div>
 <div class="content">
-  <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+  <p>{{ error.message }}</p>
 </div>
 <div class="content">
   <button class="bttn call-to-action secondary--type" onclick="window.location.href=`{% url 'home:home' %}`">Back Home<span class="fa fa-home icon"></span></button>
