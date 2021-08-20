@@ -1,0 +1,39 @@
+{% extends 'base.html' %} {% load static %} 
+
+{% block title %}
+
+{% endblock title %} 
+
+{% block stylesheet %}
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="{% static 'css/base-2.css' %}?{% now 'U' %}"
+/>
+{% endblock stylesheet %} 
+
+{% block content %}
+
+{% include 'snippets/model/img-model.html' %} 
+<section class="normal-container">
+  <div class="page-header">
+    <h1 class="highlight-heading">
+      <span>About <span class="text secondary--type">Me</span></span>
+    </h1>
+  </div>
+
+  {% block page-content %} {% endblock page-content %}
+
+  {% include 'snippets/footer.html' %}
+</section>
+{% endblock content %}
+
+<!--
+
+NOTE: 
+IN AWARDS -
+ use low resolution img while displaying the img,
+ but the link will take the user to original image of higher resolution
+
+
+-->

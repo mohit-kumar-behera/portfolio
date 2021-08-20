@@ -2,11 +2,9 @@
 {% block title %}
 <title>Mohit Kumar</title>
 {% endblock title %} 
-{% block stylesheet %}
-<link rel="stylesheet" type="text/css" href="{% static 'css/base-1.css' %}?{% now 'U' %}"/>
+{% block page-stylesheet %}
 <link rel="stylesheet" type="text/css" href="{% static 'css/home.css' %}?{% now 'U' %}"/>
-{% endblock stylesheet %} 
-
+{% endblock page-stylesheet %} 
 {% block img-content %}
 <div class="blob">
   <svg
