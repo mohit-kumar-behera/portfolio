@@ -1,24 +1,17 @@
-{% extends 'base.html' %} {% load static %} {% block title %}
-<title>My Projects - Mohit Kumar</title>
-{% endblock title %} {% block stylesheet %}
-<link
-  rel="stylesheet"
-  type="text/css"
-  href="{% static 'css/project.css' %}?{% now 'U' %}"
-/>
-{% endblock stylesheet %} {% block content %}
+{% extends 'base-2.html' %} {% load static %} 
+{% block title %}<title>My Projects - Mohit Kumar</title>{% endblock title %} 
+{% block page-stylesheet %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/project.css' %}?{% now 'U' %}"/>
+<link rel="stylesheet" type="text/css" href="{% static 'css/pagination.css' %}?{% now 'U' %}"/>
+{% endblock page-stylesheet %} 
 
-<section class="normal-container">
-  <div class="page-header">
-    <h1 class="highlight-heading">
-      <span>My <span class="text secondary--type">Portfolio</span></span>
-    </h1>
-  </div>
+{% block page-title %}<span>My <span class="text secondary--type">Portfolio</span></span>{% endblock page-title %}
 
+{% block page-content %}
   {% include 'project/snippets/pagination.html' %}
 
   <div class="page-content project lazy-transition--bottom">
-    <div class="project--wrapper flex-wrapper">
+    <div class="project--wrapper flex-wrapper justify-content-around">
       <div class="project--div">
         <div class="project--card">
           <div class="project-thumbnail-img">
@@ -447,7 +440,4 @@
     </div>
   </div>
 
-  {% include 'snippets/footer.html' %}
-</section>
-
-{% endblock content %}
+{% endblock page-content %}

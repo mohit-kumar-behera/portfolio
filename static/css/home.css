@@ -48,6 +48,9 @@
       var(--secondary-color) 15%
     );
   }
+  .theme-picker:not(.from-model) {
+    display: none;
+  }
 }
 .img-container {
   background: var(--dark-shade4);

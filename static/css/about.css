@@ -49,7 +49,7 @@
 .entity .value :is(.link):focus {
   color: var(--secondary-color);
 }
-.page-content:nth-child(even) {
+.page-content:nth-child(odd) {
   background: var(--dark-shade4);
 }
 .about-education--div {
