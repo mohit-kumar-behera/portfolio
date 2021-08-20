@@ -1,24 +1,17 @@
 {% extends 'base.html' %} {% load static %} 
 
-{% block title %}
-
-{% endblock title %} 
-
 {% block stylesheet %}
-<link
-  rel="stylesheet"
-  type="text/css"
-  href="{% static 'css/base-2.css' %}?{% now 'U' %}"
+<link rel="stylesheet" type="text/css" href="{% static 'css/base-2.css' %}?{% now 'U' %}"
 />
+{% block page-stylesheet %} {% endblock page-stylesheet %}
 {% endblock stylesheet %} 
 
 {% block content %}
-
 {% include 'snippets/model/img-model.html' %} 
 <section class="normal-container">
   <div class="page-header">
     <h1 class="highlight-heading">
-      <span>About <span class="text secondary--type">Me</span></span>
+      {% block page-title %} {% endblock page-title %}
     </h1>
   </div>
 
@@ -28,12 +21,3 @@
 </section>
 {% endblock content %}
 
-<!--
-
-NOTE: 
-IN AWARDS -
- use low resolution img while displaying the img,
- but the link will take the user to original image of higher resolution
-
-
--->
