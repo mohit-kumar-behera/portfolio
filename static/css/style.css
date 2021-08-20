@@ -294,7 +294,7 @@ p {
 /*-- Button Component --*/
 .bttn {
   border: none;
-  padding: 0.6rem 1rem;
+  padding: 0.8rem 1.7rem;
   font-family: var(--font-fancy);
 }
 .bttn:focus {
@@ -941,6 +941,23 @@ body[data-mobile-device='false'] .pagination .bttn:focus:after {
 }
 .pagination .bttn:active {
   opacity: 0.7;
+}
+/*Color Btn*/
+.color--btn {
+  padding: 0.6rem 1rem;
+}
+/* SVG Component */
+.svg {
+  position: relative;
+  width: 80%;
+  height: 80%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+}
+.svg .secondary--type {
+  fill: var(--secondary-color);
 }
 
 /*-------------------- END OF OTHER PAGES COMMON STYLE -------------------------------*/

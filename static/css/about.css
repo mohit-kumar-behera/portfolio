@@ -61,16 +61,7 @@
   width: 50%;
   padding: 2.5rem;
 }
-#svg--education {
-  position: relative;
-  top: 40%;
-  transform: translateY(-50%);
-  -webkit-transform: translateY(-50%);
-}
-#svg--education .secondary--type {
-  fill: var(--secondary-color);
-}
-@media screen and (max-width: 992px) {
+@media screen and (min-width: 992px) {
   .about-education--div > .div--left {
     display: block;
     width: 50%;
