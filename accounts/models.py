@@ -143,6 +143,9 @@ class Profile(models.Model):
         present_year = int(datetime.datetime.now().strftime('%Y'))
         birth_year = int(self.date_of_birth.strftime('%Y'))
         return present_year - birth_year
+    
+    class Meta:
+        verbose_name_plural = 'User Profile'
 
 
 @receiver(post_save, sender=User)
