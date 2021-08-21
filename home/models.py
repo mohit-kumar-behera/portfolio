@@ -1,5 +1,5 @@
 from django.db import models
-from django.db.models.signals import post_save, post_delete
+from django.db.models.signals import pre_save, post_save, post_delete
 from django.dispatch import receiver
 from home.config import (
     THUMBNAIL_DIM,
@@ -38,6 +38,22 @@ class ImageUploader(models.Model):
         verbose_name_plural = 'Image Uploader'
 
 
+class Technology(models.Model):
+    id = models.UUIDField(default=uuid.uuid4, primary_key=True, unique=True, editable=False)
+    name = models.CharField(verbose_name='Technology Name', max_length=30, unique=True)
+    upload_date = models.DateField(auto_now_add=True)
+
+    def __str__(self):
+        return self.name
+    
+    def __unicode__(self):
+        return self.name
+    
+    class Meta:
+        verbose_name_plural = 'Technology'
+
+
+
 @receiver(post_save, sender=ImageUploader)
 def compress_image(sender, instance, created, *args, **kwargs):
     if created:
@@ -49,3 +65,12 @@ def compress_image(sender, instance, created, *args, **kwargs):
 @receiver(post_delete, sender=ImageUploader)
 def submission_delete(sender, instance, *args, **kwargs):
     instance.image.delete(False)
+
+@receiver(pre_save, sender=Technology)
+def capitalize_techname(sender, instance, *args, **kwargs):
+    try:
+        Technology.objects.get(name__iexact=instance.name)
+    except Technology.DoesNotExist:
+        instance.name = instance.name.title()
+    else:
+        raise ValueError('Technology with this name already exists')
