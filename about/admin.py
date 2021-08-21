@@ -1,6 +1,11 @@
 from django.contrib import admin
-from about.models import Skill
+from about.models import Skill, Award
 
+
+class AwardAdmin(admin.ModelAdmin):
+    list_display = ('user', 'name')
+    search_fields = ('name',)
+    ordering = ('name',)
 
 class SkillAdmin(admin.ModelAdmin):
     readonly_fields = ('last_updated',)
@@ -11,3 +16,4 @@ class SkillAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Skill, SkillAdmin)
+admin.site.register(Award, AwardAdmin)
