@@ -2,6 +2,7 @@ from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.contrib.auth import get_user_model
 from accounts.forms import UserCreationForm, UserChangeForm
+from accounts.models import Profile
 User = get_user_model()
 
 class UserAdmin(BaseUserAdmin):
@@ -30,4 +31,9 @@ class UserAdmin(BaseUserAdmin):
     ordering = ('email',)
     filter_horizontal = ()
 
+class ProfileAdmin(admin.ModelAdmin):
+    list_display = ('user', 'date_of_birth')
+
+
 admin.site.register(User, UserAdmin)
+admin.site.register(Profile, ProfileAdmin)
