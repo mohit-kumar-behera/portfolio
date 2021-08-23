@@ -1,17 +1,8 @@
 from django.db import models
-from django.core.exceptions import ValidationError
-from django.db.models.signals import post_save
 from home.models import Profile, Technology
 from home.config import MAX_RATING
-from home.helper import image_directory_path
-from PIL import Image
+from home.helper import image_directory_path, MaxValueValidator
 import uuid
-
-
-def MaxValueValidator(rating):
-    if rating > 0 and rating < MAX_RATING:
-        return rating
-    raise ValidationError(f'Rating can be between 0 to {MAX_RATING}')
 
 
 class Award(models.Model):

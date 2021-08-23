@@ -1,4 +1,11 @@
-from home.config import *
+from django.core.exceptions import ValidationError
+from home.config import (
+    THUMBNAIL_DIM,
+    MAX_RATING,
+    IMAGE_RESOLUTION,
+    IMAGE_TYPE,
+    IMAGE_RESOLUTION_CHOICE,
+)
 from PIL import Image
 import random
 
@@ -25,7 +32,21 @@ def compress_image(sender, instance, created, **kwargs):
 def submission_delete(sender, instance, *args, **kwargs):
     instance.image.delete(False)
 
+def MaxValueValidator(rating):
+    if rating > 0 and rating < MAX_RATING:
+        return rating
+    raise ValidationError(f'Rating can be between 0 to {MAX_RATING}')
 
-"""
-D:\Dev\django\mohit\portfolio\static\media\award\award_is_good4012.jpg
-"""
+
+
+# @receiver(post_save, sender=ImageUploader)
+# def compress_image(sender, instance, created, *args, **kwargs):
+#     if created:
+#         img = Image.open(instance.image.path)
+#         if instance.type == 'avataar' and img.width > THUMBNAIL_DIM and img.height > THUMBNAIL_DIM:
+#             img.thumbnail((THUMBNAIL_DIM, THUMBNAIL_DIM))
+#         img.save(instance.image.path, quality=IMAGE_RESOLUTION[instance.resolution])
+
+# @receiver(post_delete, sender=ImageUploader)
+# def submission_delete(sender, instance, *args, **kwargs):
+#     instance.image.delete(False)

@@ -1,24 +1,7 @@
 from django.db import models
 from django.contrib.auth import get_user_model
-from django.db.models.signals import post_save, post_delete
-from django.dispatch import receiver
-from PIL import Image
-from home.config import (
-    THUMBNAIL_DIM,
-    IMAGE_TYPE,
-    IMAGE_RESOLUTION,
-    IMAGE_RESOLUTION_CHOICE
-)
-import uuid, random, datetime
+import uuid, datetime
 User = get_user_model()
-
-
-def image_directory_path(instance, filename):
-    """ Set path for image """
-    extension = filename.split('.')[1]
-    filename = f'{instance.type}/{instance.name}{random.randint(1111, 9999)}.{extension}'
-    return filename
-
 
 class Profile(models.Model):
     id = models.UUIDField(default=uuid.uuid4, primary_key=True, unique=True, editable=False)
@@ -69,32 +52,3 @@ class Technology(models.Model):
     
     class Meta:
         verbose_name_plural = 'Technology'
-
-
-
-# @receiver(post_save, sender=ImageUploader)
-# def compress_image(sender, instance, created, *args, **kwargs):
-#     if created:
-#         img = Image.open(instance.image.path)
-#         if instance.type == 'avataar' and img.width > THUMBNAIL_DIM and img.height > THUMBNAIL_DIM:
-#             img.thumbnail((THUMBNAIL_DIM, THUMBNAIL_DIM))
-#         img.save(instance.image.path, quality=IMAGE_RESOLUTION[instance.resolution])
-
-# @receiver(post_delete, sender=ImageUploader)
-# def submission_delete(sender, instance, *args, **kwargs):
-#     instance.image.delete(False)
-
-
-
-@receiver(post_save, sender=User)
-def createUserProfile(sender, instance, created, *args, **kwargs):
-    if created:
-        try:
-            Profile.objects.create(user=instance)
-        except:
-            pass
-
-@receiver(post_save, sender=User)
-def updateUserProfile(sender, instance, created, *args, **kwargs):
-    if not created:
-        instance.profile.save()
