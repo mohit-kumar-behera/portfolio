@@ -4,6 +4,7 @@ from about.models import Skill, Award
 
 class AwardAdmin(admin.ModelAdmin):
     list_display = ('profile', 'name')
+    list_filter = ('name',)
     search_fields = ('name',)
     ordering = ('name',)
 

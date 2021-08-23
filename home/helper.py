@@ -3,8 +3,6 @@ from home.config import (
     THUMBNAIL_DIM,
     MAX_RATING,
     IMAGE_RESOLUTION,
-    IMAGE_TYPE,
-    IMAGE_RESOLUTION_CHOICE,
 )
 from PIL import Image
 import random
@@ -15,38 +13,32 @@ def image_directory_path(instance, filename):
     filename = f'{instance.directory}/{instance.name.lower()}{random.randint(1111, 9999)}.{extension}'
     return filename
 
+def get_img(image):
+    return image and Image.open(image.path)
+
+def save_img(image, imagePath, quality):
+    image.save(imagePath, quality=quality)
+
 def compress_image(sender, instance, created, **kwargs):
     if created:
-        temp = instance.image
-        img = Image.open(instance.image.path)
-        # if instance.type == 'avataar' and img.width > THUMBNAIL_DIM and img.height > THUMBNAIL_DIM:
-        #     img.thumbnail((THUMBNAIL_DIM, THUMBNAIL_DIM))
-        # img.save(instance.image.path, quality=IMAGE_RESOLUTION[instance.resolution])
-        # instance.img_high_res = instance.image
-        # img2 = Image.open(instance.img_high_res.path)
-        img.save(instance.image.path, quality=20)
-        print(instance.image.path)
+        thumbnail = getattr(instance, '_thumbnail', False)
+        imgH = get_img(instance.image_high_res)
+        imgL = get_img(instance.image_low_res)
+
+        if thumbnail:
+            if imgL.width > THUMBNAIL_DIM and imgL.height > THUMBNAIL_DIM:
+                imgL.thumbnail((THUMBNAIL_DIM, THUMBNAIL_DIM))
+        
+        imgH and save_img(imgH, instance.image_high_res.path, IMAGE_RESOLUTION['normal'])
+        imgL and save_img(imgL, instance.image_low_res.path, IMAGE_RESOLUTION['low'])
         instance.save()
 
 
 def submission_delete(sender, instance, *args, **kwargs):
-    instance.image.delete(False)
+    instance.image_high_res and instance.image_high_res.delete(False)
+    instance.image_low_res and instance.image_low_res.delete(False)
 
 def MaxValueValidator(rating):
     if rating > 0 and rating < MAX_RATING:
         return rating
     raise ValidationError(f'Rating can be between 0 to {MAX_RATING}')
-
-
-
-# @receiver(post_save, sender=ImageUploader)
-# def compress_image(sender, instance, created, *args, **kwargs):
-#     if created:
-#         img = Image.open(instance.image.path)
-#         if instance.type == 'avataar' and img.width > THUMBNAIL_DIM and img.height > THUMBNAIL_DIM:
-#             img.thumbnail((THUMBNAIL_DIM, THUMBNAIL_DIM))
-#         img.save(instance.image.path, quality=IMAGE_RESOLUTION[instance.resolution])
-
-# @receiver(post_delete, sender=ImageUploader)
-# def submission_delete(sender, instance, *args, **kwargs):
-#     instance.image.delete(False)

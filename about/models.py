@@ -1,17 +1,21 @@
 from django.db import models
+from django.db.models.signals import post_save, post_delete
 from home.models import Profile, Technology
 from home.config import MAX_RATING
-from home.helper import image_directory_path, MaxValueValidator
+from home.helper import (
+    compress_image, image_directory_path, 
+    MaxValueValidator, submission_delete
+)
 import uuid
 
 
 class Award(models.Model):
     id = models.UUIDField(default=uuid.uuid4, primary_key=True, unique=True, editable=False)
-    profile = models.ForeignKey(Profile, on_delete=models.SET_NULL, null=True, blank=True)
+    profile = models.ForeignKey(Profile, on_delete=models.SET_NULL, null=True)
     name = models.CharField(verbose_name='Award Name', max_length=50)
     directory = models.CharField(max_length=15, default='award', editable=False)
-    image = models.ImageField(verbose_name='Low Resolution', upload_to=image_directory_path)
-    img_high_res = models.ImageField(upload_to=image_directory_path, blank=True, null=True)
+    image_high_res = models.ImageField(verbose_name='High Resolution Image', upload_to=image_directory_path)
+    image_low_res = models.ImageField(verbose_name='Low Resolution Image', upload_to=image_directory_path)
 
     def __str__(self):
         return self.name
@@ -34,10 +38,10 @@ class Skill(models.Model):
     last_updated = models.DateField(auto_now=True)
 
     def __str__(self):
-        return f'{self.user.username}, {self.technology.name}-{self.rating}'
+        return f'{self.profile.user}, {self.technology.name}-{self.rating}'
     
     def __unicode__(self):
-        return f'{self.user.username}, {self.technology.name}-{self.rating}'
+        return f'{self.profile.user}, {self.technology.name}-{self.rating}'
 
     def save(self, *args, **kwargs):
         self.rating = round(self.rating, 1)
@@ -46,3 +50,6 @@ class Skill(models.Model):
     class Meta:
         verbose_name_plural = 'User\'s Skill'
 
+
+post_save.connect(compress_image, sender=Award)
+post_delete.connect(submission_delete, sender=Award)
