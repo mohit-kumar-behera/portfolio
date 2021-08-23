@@ -13,7 +13,6 @@ class Award(models.Model):
     id = models.UUIDField(default=uuid.uuid4, primary_key=True, unique=True, editable=False)
     profile = models.ForeignKey(Profile, on_delete=models.SET_NULL, null=True)
     name = models.CharField(verbose_name='Award Name', max_length=50)
-    directory = models.CharField(max_length=15, default='award', editable=False)
     image_high_res = models.ImageField(verbose_name='High Resolution Image', upload_to=image_directory_path)
     image_low_res = models.ImageField(verbose_name='Low Resolution Image', upload_to=image_directory_path)
 

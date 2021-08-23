@@ -10,7 +10,7 @@ import random
 def image_directory_path(instance, filename):
     """ Set path for image """
     extension = filename.split('.')[1]
-    filename = f'{instance.directory}/{instance.name.lower()}{random.randint(1111, 9999)}.{extension}'
+    filename = f'{instance.__class__.__name__.lower()}/{instance.name.lower()}{random.randint(1111, 9999)}.{extension}'
     return filename
 
 def get_img(image):
