@@ -3,10 +3,7 @@ from django.conf import settings
 from django.core.exceptions import ValidationError
 from django.core.validators import RegexValidator
 from django.contrib.auth.models import BaseUserManager, AbstractBaseUser, PermissionsMixin, Group
-from django.db.models.query_utils import select_related_descend
-from django.db.models.signals import post_save
-from django.dispatch import receiver
-import uuid, datetime
+import uuid
 
 USERNAME_REGEX = '^[a-zA-Z0-9@.-_]*$'
 
@@ -115,49 +112,4 @@ class User(AbstractBaseUser, PermissionsMixin):
     @property
     def get_last_name(self):
         return self.last_name if self.last_name else None
-
-
-class Profile(models.Model):
-    id = models.UUIDField(default=uuid.uuid4, primary_key=True, unique=True, editable=False)
-    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    bio = models.TextField(verbose_name='About Me')
-    date_of_birth = models.DateField(verbose_name='Date of birth')
-    # image_lowres = models.ImageField
-    # image_highres = models.ImageField
-    # language_spoken = models.OneToManyField
-    # address = models.OneToManyField
-    # contact = models.OneToManyField
-    # education = models.OneToManyField
-    # social_account = models.OneToManyField
-    # work_experience = models.OneToManyField
-    # awards = models.OneToManyField
-    # skills = models.OneToManyField
-
-    def __str__(self):
-        return self.user.email
-    
-    def __unicode__(self):
-        return self.user.email
-    
-    def get_age(self):
-        present_year = int(datetime.datetime.now().strftime('%Y'))
-        birth_year = int(self.date_of_birth.strftime('%Y'))
-        return present_year - birth_year
-    
-    class Meta:
-        verbose_name_plural = 'User Profile'
-
-
-@receiver(post_save, sender=User)
-def createUserProfile(sender, instance, created, *args, **kwargs):
-    if created:
-        try:
-            Profile.objects.create(user=instance)
-        except:
-            pass
-
-@receiver(post_save, sender=User)
-def updateUserProfile(sender, instance, created, *args, **kwargs):
-    if not created:
-        instance.profile.save()
 

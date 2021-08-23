@@ -1,29 +1,26 @@
 from django.db import models
 from django.core.exceptions import ValidationError
-from django.contrib.auth import get_user_model
-# from django.db.models.signals import post_save
-# from django.dispatch import receiver
-from home.models import Technology, ImageUploader
-import uuid
-User = get_user_model()
-
-#3rd party package
+from django.db.models.signals import post_save
+from home.models import Profile, Technology
+from home.config import MAX_RATING
+from home.helper import image_directory_path
 from PIL import Image
+import uuid
 
-MAX_RATING_LIMIT = 5
 
 def MaxValueValidator(rating):
-    if rating > 0 and rating < MAX_RATING_LIMIT:
+    if rating > 0 and rating < MAX_RATING:
         return rating
-    raise ValidationError(f'Rating can be between 0 to {MAX_RATING_LIMIT}')
+    raise ValidationError(f'Rating can be between 0 to {MAX_RATING}')
 
 
 class Award(models.Model):
     id = models.UUIDField(default=uuid.uuid4, primary_key=True, unique=True, editable=False)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    profile = models.ForeignKey(Profile, on_delete=models.SET_NULL, null=True, blank=True)
     name = models.CharField(verbose_name='Award Name', max_length=50)
-    # img_low_res = models.ImageField(verbose_name='Low Resolution', upload_to='s',)
-    # img_high_res = moe
+    directory = models.CharField(max_length=15, default='award', editable=False)
+    image = models.ImageField(verbose_name='Low Resolution', upload_to=image_directory_path)
+    img_high_res = models.ImageField(upload_to=image_directory_path, blank=True, null=True)
 
     def __str__(self):
         return self.name
@@ -32,16 +29,16 @@ class Award(models.Model):
         return self.name
     
     class Meta:
-        verbose_name_plural = 'User\'s Awards'
+        verbose_name_plural = 'User\'s Award'
 
 class Skill(models.Model):
     id = models.UUIDField(default=uuid.uuid4, primary_key=True, unique=True, editable=False)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
     technology = models.OneToOneField(Technology, on_delete=models.CASCADE)
     rating = models.FloatField(
         verbose_name='Skill Rating', 
         validators=[MaxValueValidator], 
-        help_text=f'Rating can be between 0 to {MAX_RATING_LIMIT}'
+        help_text=f'Rating can be between 0 to {MAX_RATING}'
     )
     last_updated = models.DateField(auto_now=True)
 
@@ -57,3 +54,4 @@ class Skill(models.Model):
     
     class Meta:
         verbose_name_plural = 'User\'s Skill'
+

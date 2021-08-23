@@ -1,12 +1,8 @@
 from django.contrib import admin
-from home.models import ImageUploader, Technology
+from home.models import Profile, Technology
 
-class ImageUploaderAdmin(admin.ModelAdmin):
-    readonly_fields = ('upload_date',)
-    list_display = ('name', 'type', 'upload_date', 'resolution')
-    list_filter = ('type',)
-    search_fields = ('type', 'name')
-    ordering = ('-upload_date',)
+class ProfileAdmin(admin.ModelAdmin):
+    list_display = ('user', 'date_of_birth')
 
 class TechnologyAdmin(admin.ModelAdmin):
     readonly_fields = ('upload_date',)
@@ -14,6 +10,5 @@ class TechnologyAdmin(admin.ModelAdmin):
     search_fields = ('name',)
     ordering = ('name',)
 
-
-admin.site.register(ImageUploader, ImageUploaderAdmin)
 admin.site.register(Technology, TechnologyAdmin)
+admin.site.register(Profile, ProfileAdmin)

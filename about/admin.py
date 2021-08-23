@@ -3,13 +3,13 @@ from about.models import Skill, Award
 
 
 class AwardAdmin(admin.ModelAdmin):
-    list_display = ('user', 'name')
+    list_display = ('profile', 'name')
     search_fields = ('name',)
     ordering = ('name',)
 
 class SkillAdmin(admin.ModelAdmin):
     readonly_fields = ('last_updated',)
-    list_display = ('user', 'technology', 'rating', 'last_updated')
+    list_display = ('profile', 'technology', 'rating', 'last_updated')
     list_filter = ('rating',)
     search_fields = ('technology',)
     ordering = ('technology',)
