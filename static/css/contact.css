@@ -19,9 +19,12 @@
 .avatar-img {
   position: relative;
   top: 50%;
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  background: var(--secondary-color);
   transform: translateY(-50%);
   -webkit-transform: translateY(-50%);
-  filter: drop-shadow(1.5px 1.2px 1px var(--secondary-color));
 }
 
 .contact-detail {
