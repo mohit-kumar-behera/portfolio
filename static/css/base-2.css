@@ -265,8 +265,7 @@ body[data-mobile-device='false'] .pagination .bttn:focus:after {
 .footer > .quick-links--div {
   display: flex;
 }
-.footer > .logo--div > div,
-.footer > .quick-links--div {
+.footer > .logo--div {
   margin: auto;
 }
 .footer {
@@ -275,29 +274,37 @@ body[data-mobile-device='false'] .pagination .bttn:focus:after {
   color: var(--light-shade2);
   background: var(--dark-shade5);
   flex-direction: column;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
 }
 .footer > div {
   text-align: center;
   padding: 0.1rem;
   margin: 1.1rem;
 }
-.footer > div.hr {
-  width: 60%;
-  margin: 1.1rem auto;
+.footer > div:first-child {
+  margin-top: 0;
 }
 .footer > div:last-child {
   margin-top: 1.5rem;
 }
-.footer > .logo--div > div {
-  width: 160px;
+.footer > div.hr {
+  width: 60%;
+  margin: 1.1rem auto;
+}
+.footer > .logo--div {
+  display: flex;
+  justify-content: center;
+  width: 100%;
   height: 80px;
 }
 .view-img,
-.footer > .logo--div > div > img {
+.footer > .logo--div > img {
   width: 100%;
   height: 100%;
   object-fit: contain;
+}
+.footer > .logo--div > img {
+  width: 60%;
 }
 .footer > .quick-links--div {
   flex-wrap: wrap;
