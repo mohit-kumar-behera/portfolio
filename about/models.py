@@ -1,9 +1,7 @@
 from django.db import models
-from django.db.models.signals import post_save, post_delete
 from home.models import Profile, Technology
 from home.config import MAX_RATING
 from home.helper import image_directory_path, MaxValueValidator
-from home.signals import compress_image, submission_delete
 import uuid
 
 
@@ -47,6 +45,3 @@ class Skill(models.Model):
     class Meta:
         verbose_name_plural = 'User\'s Skill'
 
-
-post_save.connect(compress_image, sender=Award)
-post_delete.connect(submission_delete, sender=Award)
