@@ -602,7 +602,7 @@ body[data-mobile-device='false'] .nav-link::after {
   -webkit-transform: scaleX(0);
   transform-origin: right;
   -webkit-transform-origin: right;
-  transition: all 0.15s ease-in-out;
+  transition: all 0.25s ease-in-out;
 }
 body[data-mobile-device='false'] .nav-wrapper .nav-link:hover::after,
 body[data-mobile-device='false'] .nav-wrapper .nav-link:focus::after {
