@@ -2,10 +2,8 @@ from django.db import models
 from django.db.models.signals import post_save, post_delete
 from home.models import Profile, Technology
 from home.config import MAX_RATING
-from home.helper import (
-    compress_image, image_directory_path, 
-    MaxValueValidator, submission_delete
-)
+from home.helper import image_directory_path, MaxValueValidator
+from home.signals import compress_image, submission_delete
 import uuid
 
 

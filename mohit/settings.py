@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     'accounts',
     'about',
     'contact',
-    'home',
+    'home.apps.HomeConfig',
     'project',
     'error',
 ]
