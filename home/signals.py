@@ -1,6 +1,7 @@
 from django.contrib.auth import get_user_model
 from django.db.models.signals import post_save, post_delete
 from django.dispatch import receiver
+from contact.models import SocialAccount
 from about.models import Award
 from home.models import Profile
 from home.helper import compress_image
@@ -30,13 +31,25 @@ def delete_user(sender, instance, **kwargs):
 @receiver(post_save, sender=Award)
 def dual_resolution_image(sender, instance, created, **kwargs):
     if created:
-        compress_image(instance, save=True)
+        compress_image(instance, dual=True, save=True)
 
 
 @receiver(post_save, sender=Award)
 def update_dual_resolution_image(sender, instance, created, **kwargs):
     if not created:
-        compress_image(instance, save=False)
+        compress_image(instance, dual=True, save=False)
+
+
+@receiver(post_save, sender=SocialAccount)
+def single_resolution_image(sender, instance, created, **kwargs):
+    if created:
+        compress_image(instance, dual=False, save=True)
+
+
+@receiver(post_save, sender=SocialAccount)
+def update_single_resolution_image(sender, instance, created, **kwargs):
+    if created:
+        compress_image(instance, dual=False, save=False)
 
 
 @receiver(post_delete, sender=Award)

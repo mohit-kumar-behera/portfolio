@@ -1,5 +1,5 @@
 from django.contrib import admin
-from contact.models import Contact, Address
+from contact.models import Contact, Address, SocialAccount
 
 class ContactAdmin(admin.ModelAdmin):
     readonly_fields = ('last_updated', 'url')
@@ -15,5 +15,12 @@ class AddressAdmin(admin.ModelAdmin):
     search_fields = ('profile', 'type', 'city', 'district', 'state')
     ordering = ('state',)
 
+class SocialAccountAdmin(admin.ModelAdmin):
+    list_display = ('profile', 'name')
+    list_filter = ('profile', 'name')
+    search_fields = ('profile', 'name')
+    ordering = ('profile',)
+
 admin.site.register(Contact, ContactAdmin)
 admin.site.register(Address, AddressAdmin)
+admin.site.register(SocialAccount, SocialAccountAdmin)
