@@ -1,12 +1,7 @@
-from django import dispatch
-from django.core.exceptions import ValidationError
 from django.db import models
 from home.models import Profile
 from home.helper import image_directory_path
 import uuid
-
-from django.db.models.signals import post_save, pre_save
-from django.dispatch import receiver
 
 CONTACT_TYPE = (
     ('phone', 'phone'),

@@ -1,11 +1,12 @@
 from django.core.exceptions import ValidationError
+from django.utils.text import slugify
 from home.config import (
     MAX_RATING, WATERMARK_DIM, 
     IMAGE_RESOLUTION, LOGO_THUMBNAIL_DIM,
     PROJECT_THUMBNAIL_DIM
 )
 from PIL import Image
-import random
+import uuid, random
 
 def image_directory_path(instance, filename):
     """ Set path for image """
@@ -41,7 +42,8 @@ def compress_image(instance, dual, save=False):
         imgH = Image.open(instance.image_high_res)
         imgL = Image.open(instance.image_low_res)
 
-        if instance.__class__.__name__.lower() == 'project':
+        classname = instance.__class__.__name__.lower()  
+        if classname == 'projectimage' or classname == 'project':
             add_logo_watermark(imgH, imgL)
         
         imgH.save(instance.image_high_res.path, quality=IMAGE_RESOLUTION['normal'])
@@ -56,7 +58,8 @@ def compress_image(instance, dual, save=False):
 
 # Create a thumbnail image
 def convert_thumbnail(instance, save=False):
-    thumbnail = PROJECT_THUMBNAIL_DIM if instance.__class__.__name__.lower() == 'project' else LOGO_THUMBNAIL_DIM
+    classname = instance.__class__.__name__.lower()
+    thumbnail = PROJECT_THUMBNAIL_DIM if classname == 'project' or classname == 'projectimage' else LOGO_THUMBNAIL_DIM
     if instance.image_low_res:
         imgL = Image.open(instance.image_low_res.path)
         
@@ -70,6 +73,24 @@ def convert_thumbnail(instance, save=False):
         imgL.save(instance.image_low_res.path)
     if save:
         instance.save()
+
+
+# slugify the title
+def slugify_title(instance, save=False, new_slug=None):
+    if new_slug is not None:
+        slug = new_slug
+    else:
+        slug = slugify(instance.name)
+    updatedClass = instance.__class__ # at each iteration class object is updated
+    qs = updatedClass.objects.filter(slug=slug).exclude(id=uuid.UUID(str(instance.id)))
+    if qs.exists():
+        rand_int = random.randint(111_111, 999_999)
+        slug = f'{slug}-{rand_int}'
+        return slugify_title(instance, save=save, new_slug=slug)
+    instance.slug = slug
+    if save:
+        instance.save()
+    return instance
 
 
 def validate_range(rating):

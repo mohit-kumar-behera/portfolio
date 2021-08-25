@@ -1,14 +1,15 @@
 from django.contrib.auth import get_user_model
-from django.db.models.signals import post_save, post_delete
+from django.db.models.signals import pre_save, post_save, post_delete
 from django.dispatch import receiver
-from project.models import Mentor, MentorChannel
+from project.models import Project, ProjectImage
 from contact.models import SocialAccount
 from about.models import Award, Education, Work
-from home.models import Profile
-from home.helper import compress_image, convert_thumbnail
+from home.models import Profile, Mentor, MentorChannel
+from home.helper import compress_image, convert_thumbnail, slugify_title
 User = get_user_model()
 
 
+"""Create Profile when User is created"""
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):
     if created:
@@ -18,43 +19,55 @@ def create_user_profile(sender, instance, created, **kwargs):
             pass
 
 
+"""Update Profile when User is updated"""
 @receiver(post_save, sender=User)
 def update_user_profile(sender, instance, created, **kwargs):
     if not created and instance.profile:
         instance.profile.save()
 
 
+"""Delete the user when Profile of that User is deleted"""
 @receiver(post_delete, sender=Profile)
 def delete_user(sender, instance, **kwargs):
     instance.user and instance.user.delete()
 
 
+"""Create low + high resolution images from the mentioned Model on creation"""
+@receiver(post_save, sender=Project)
+@receiver(post_save, sender=ProjectImage)
 @receiver(post_save, sender=Award)
 def dual_resolution_image(sender, instance, created, **kwargs):
     if created:
         compress_image(instance, dual=True, save=True)
 
 
+"""Create low + high resolution images from the mentioned Model on updation"""
+@receiver(post_save, sender=Project)
+@receiver(post_save, sender=ProjectImage)
 @receiver(post_save, sender=Award)
 def update_dual_resolution_image(sender, instance, created, **kwargs):
     if not created:
         compress_image(instance, dual=True, save=False)
 
 
+"""Create low resolution images from the mentioned Model on creation"""
 @receiver(post_save, sender=SocialAccount)
 def single_resolution_image(sender, instance, created, **kwargs):
     if created:
         compress_image(instance, dual=False, save=True)
 
 
-@receiver(post_save, sender=Work)
+"""Create low resolution images from the mentioned Model on updation"""
 @receiver(post_save, sender=Mentor)
 @receiver(post_save, sender=SocialAccount)
+@receiver(post_save, sender=Work)
 def update_single_resolution_image(sender, instance, created, **kwargs):
     if not created:
         compress_image(instance, dual=False, save=False)
 
 
+"""Convert image to thumbnail when Model is created"""
+@receiver(post_save, sender=Project)
 @receiver(post_save, sender=Mentor)
 @receiver(post_save, sender=Work)
 def convert_thumbnail_image(sender, instance, created, **kwargs):
@@ -62,6 +75,8 @@ def convert_thumbnail_image(sender, instance, created, **kwargs):
         convert_thumbnail(instance, save=True)
 
 
+"""Convert image to thumbnail when Model is updated"""
+@receiver(post_save, sender=Project)
 @receiver(post_save, sender=Mentor)
 @receiver(post_save, sender=Work)
 def update_convert_thumbnail_image(sender, instance, created, **kwargs):
@@ -69,11 +84,13 @@ def update_convert_thumbnail_image(sender, instance, created, **kwargs):
         convert_thumbnail(instance, save=False)
 
 
-
-@receiver(post_delete, sender=SocialAccount)
-@receiver(post_delete, sender=Mentor)
-@receiver(post_delete, sender=Work)
+"""Delete the image instance when Model is deleted"""
 @receiver(post_delete, sender=Award)
+@receiver(post_delete, sender=Mentor)
+@receiver(post_delete, sender=Project)
+@receiver(post_delete, sender=ProjectImage)
+@receiver(post_delete, sender=SocialAccount)
+@receiver(post_delete, sender=Work)
 def submission_delete(sender, instance, *args, **kwargs):
     try:
         instance.image_high_res
@@ -90,11 +107,27 @@ def submission_delete(sender, instance, *args, **kwargs):
         instance.image_low_res.delete(False)
 
 
-@receiver(post_save, sender=Work)
+"""Capitalize the name field"""
+@receiver(post_save, sender=Project)
 @receiver(post_save, sender=Education)
 @receiver(post_save, sender=Mentor)
 @receiver(post_save, sender=MentorChannel)
+@receiver(post_save, sender=Work)
 def capitalize_name(sender, instance, created, **kwargs):
     if created:
         instance.name = instance.name.title()
         instance.save()
+
+
+"""Slugify the title field in project"""
+@receiver(pre_save, sender=Project)
+def slugify_title_pre_method(sender, instance, **kwargs):
+    if instance.slug is None:
+        slugify_title(instance, save=False)
+
+
+"""Slugify the title field in project"""
+@receiver(post_save, sender=Project)
+def slugify_title_post_method(sender, instance, created, **kwargs):
+    if created:
+        slugify_title(instance, save=True)
