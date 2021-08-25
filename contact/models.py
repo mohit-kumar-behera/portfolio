@@ -55,7 +55,7 @@ class Address(models.Model):
     district = models.CharField(verbose_name='District', max_length=40)
     pin = models.CharField(verbose_name='PIN', max_length=6)
     state = models.CharField(verbose_name='State', max_length=40)
-    coutry = models.CharField(verbose_name='Country', max_length=40)
+    country = models.CharField(verbose_name='Country', max_length=40)
     mapURL = models.URLField(verbose_name='URL of MAP', blank=True, null=True)
 
     def __str__(self):
@@ -63,6 +63,10 @@ class Address(models.Model):
 
     def __unicode__(self):
         return f'{self.profile} {self.type} address'
+
+    def save(self, *args, **kwargs):
+        self.state, self.country = self.state.title(), self.country.title()
+        super(Address, self).save(*args, **kwargs)
     
     class Meta:
         verbose_name_plural = 'Address Detail'
