@@ -69,10 +69,25 @@ def update_convert_thumbnail_image(sender, instance, created, **kwargs):
         convert_thumbnail(instance, save=False)
 
 
+
+@receiver(post_delete, sender=SocialAccount)
+@receiver(post_delete, sender=Mentor)
+@receiver(post_delete, sender=Work)
 @receiver(post_delete, sender=Award)
 def submission_delete(sender, instance, *args, **kwargs):
-    instance.image_high_res and instance.image_high_res.delete(False)
-    instance.image_low_res and instance.image_low_res.delete(False)
+    try:
+        instance.image_high_res
+    except:
+        pass
+    else:
+        instance.image_high_res.delete(False)
+    
+    try:
+        instance.image_low_res
+    except:
+        pass
+    else:
+        instance.image_low_res.delete(False)
 
 
 @receiver(post_save, sender=Work)
