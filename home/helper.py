@@ -72,7 +72,7 @@ def convert_thumbnail(instance, save=False):
         instance.save()
 
 
-def MaxValueValidator(rating):
+def validate_range(rating):
     if rating > 0 and rating < MAX_RATING:
         return rating
     raise ValidationError(f'Rating can be between 0 to {MAX_RATING}')

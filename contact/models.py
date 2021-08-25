@@ -1,7 +1,12 @@
+from django import dispatch
+from django.core.exceptions import ValidationError
 from django.db import models
 from home.models import Profile
 from home.helper import image_directory_path
 import uuid
+
+from django.db.models.signals import post_save, pre_save
+from django.dispatch import receiver
 
 CONTACT_TYPE = (
     ('phone', 'phone'),
@@ -22,6 +27,7 @@ SOCIALACCOUNT_CHOICE = (
     ('twitter', 'twitter'),
     ('instagram', 'instagram'),
 )
+
 
 class Contact(models.Model):
     id = models.UUIDField(default=uuid.uuid4, primary_key=True, unique=True, editable=False)
@@ -75,14 +81,7 @@ class Address(models.Model):
 class SocialAccount(models.Model):
     id = models.UUIDField(default=uuid.uuid4, primary_key=True, unique=True, editable=False)
     profile = models.ForeignKey(Profile, on_delete=models.SET_NULL, null=True)
-    name = models.CharField(
-        verbose_name='Social Media', 
-        max_length=30, 
-        choices=SOCIALACCOUNT_CHOICE, 
-        unique=True,
-        error_messages= {
-            'unique': 'You already have added this social account.'
-        })
+    name = models.CharField(verbose_name='Social Media', max_length=30, choices=SOCIALACCOUNT_CHOICE)
     url = models.URLField(verbose_name='Social Media Link')
     image_low_res = models.ImageField(verbose_name='Low Resolution Account Image', upload_to=image_directory_path)
 
@@ -90,8 +89,8 @@ class SocialAccount(models.Model):
         return f'{self.profile} {self.name}'
 
     def __unicode__(self):
-        return f'{self.profile} {self.name}'
+        return f'{self.profile} {self.name}'  
 
     class Meta:
         verbose_name_plural = 'Social Account'
-    
+

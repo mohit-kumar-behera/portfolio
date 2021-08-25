@@ -1,7 +1,7 @@
 from django.db import models
 from home.models import Profile, Technology
 from home.config import MAX_RATING
-from home.helper import image_directory_path, MaxValueValidator
+from home.helper import image_directory_path, validate_range
 from ckeditor.fields import RichTextField
 import uuid
 
@@ -40,7 +40,7 @@ class Skill(models.Model):
     technology = models.OneToOneField(Technology, on_delete=models.CASCADE)
     rating = models.FloatField(
         verbose_name='Skill Rating', 
-        validators=[MaxValueValidator], 
+        validators=[validate_range], 
         help_text=f'Rating can be between 0 to {MAX_RATING}'
     )
     last_updated = models.DateField(auto_now=True)
