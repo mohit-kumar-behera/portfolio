@@ -73,7 +73,7 @@ class SocialAccount(models.Model):
     profile = models.ForeignKey(Profile, on_delete=models.SET_NULL, null=True)
     name = models.CharField(verbose_name='Social Media', max_length=30, choices=SOCIALACCOUNT_CHOICE)
     url = models.URLField(verbose_name='Social Media Link')
-    image_low_res = models.ImageField(verbose_name='Low Resolution Image', upload_to=image_directory_path)
+    image_low_res = models.ImageField(verbose_name='Low Resolution Account Image', upload_to=image_directory_path)
 
     def __str__(self):
         return f'{self.profile} {self.name}'

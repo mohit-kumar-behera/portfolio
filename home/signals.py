@@ -1,6 +1,7 @@
 from django.contrib.auth import get_user_model
 from django.db.models.signals import post_save, post_delete
 from django.dispatch import receiver
+from project.models import Mentor
 from contact.models import SocialAccount
 from about.models import Award
 from home.models import Profile
@@ -46,6 +47,7 @@ def single_resolution_image(sender, instance, created, **kwargs):
         compress_image(instance, dual=False, save=True)
 
 
+@receiver(post_save, sender=Mentor)
 @receiver(post_save, sender=SocialAccount)
 def update_single_resolution_image(sender, instance, created, **kwargs):
     if created:
