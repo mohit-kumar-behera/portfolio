@@ -1,8 +1,12 @@
 from django.contrib import admin
-from home.models import Profile, Technology, Mentor, MentorChannel
+from home.models import Profile, ProfileImage, Technology, Mentor, MentorChannel
 
 class ProfileAdmin(admin.ModelAdmin):
     list_display = ('user', 'date_of_birth')
+
+class ProfileImageAdmin(admin.ModelAdmin):
+    list_display = ('profile', 'name')
+
 
 class TechnologyAdmin(admin.ModelAdmin):
     readonly_fields = ('upload_date',)
@@ -24,6 +28,7 @@ class MentorChannelAdmin(admin.ModelAdmin):
 
 admin.site.register(Technology, TechnologyAdmin)
 admin.site.register(Profile, ProfileAdmin)
+admin.site.register(ProfileImage, ProfileImageAdmin)
 admin.site.register(Mentor, MentorAdmin)
 admin.site.register(MentorChannel, MentorChannelAdmin)
 

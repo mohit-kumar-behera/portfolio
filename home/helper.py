@@ -37,21 +37,32 @@ def add_logo_watermark(imgH, imgL):
 
 # Compress image into high resolution and low resolution
 def compress_image(instance, dual, save=False):
-    if dual and instance.image_high_res and instance.image_low_res:
-        # Compress image both for high and low resolution
-        imgH = Image.open(instance.image_high_res)
-        imgL = Image.open(instance.image_low_res)
+    if dual:
+        try:
+            instance.image_high_res
+            instance.image_low_res
+        except:
+            pass
+        else:
+            # Compress image both for high and low resolution
+            imgH = Image.open(instance.image_high_res.path)
+            imgL = Image.open(instance.image_low_res.path)
 
-        classname = instance.__class__.__name__.lower()  
-        if classname == 'projectimage' or classname == 'project':
-            add_logo_watermark(imgH, imgL)
-        
-        imgH.save(instance.image_high_res.path, quality=IMAGE_RESOLUTION['normal'])
-        imgL.save(instance.image_low_res.path, quality=IMAGE_RESOLUTION['low'])
+            classname = instance.__class__.__name__.lower()  
+            if classname == 'projectimage' or classname == 'project':
+                add_logo_watermark(imgH, imgL)
+            
+            imgH.save(instance.image_high_res.path, quality=IMAGE_RESOLUTION['normal'])
+            imgL.save(instance.image_low_res.path, quality=IMAGE_RESOLUTION['low'])
     else:
         # Compress image only for low resolution
-        img = Image.open(instance.image_low_res)
-        img.save(instance.image_low_res.path, quality=IMAGE_RESOLUTION['low'])
+        try:
+            instance.image_low_res
+        except:
+            pass
+        else:
+            img = Image.open(instance.image_low_res.path)
+            img.save(instance.image_low_res.path, quality=IMAGE_RESOLUTION['low'])
     if save:
         instance.save()
 

@@ -5,7 +5,7 @@ from django.dispatch import receiver
 from project.models import Project, ProjectImage
 from contact.models import SocialAccount
 from about.models import Award, Education, Work
-from home.models import Profile, Mentor, MentorChannel
+from home.models import Profile, Mentor, MentorChannel, ProfileImage
 from home.helper import compress_image, convert_thumbnail, slugify_title
 User = get_user_model()
 
@@ -34,6 +34,7 @@ def delete_user(sender, instance, **kwargs):
 
 
 """Create low + high resolution images from the mentioned Model on creation"""
+@receiver(post_save, sender=ProfileImage)
 @receiver(post_save, sender=Project)
 @receiver(post_save, sender=ProjectImage)
 @receiver(post_save, sender=Award)
@@ -43,6 +44,7 @@ def dual_resolution_image(sender, instance, created, **kwargs):
 
 
 """Create low + high resolution images from the mentioned Model on updation"""
+@receiver(post_save, sender=ProfileImage)
 @receiver(post_save, sender=Project)
 @receiver(post_save, sender=ProjectImage)
 @receiver(post_save, sender=Award)
@@ -86,6 +88,7 @@ def update_convert_thumbnail_image(sender, instance, created, **kwargs):
 
 
 """Delete the image instance when Model is deleted"""
+@receiver(post_delete, sender=ProfileImage)
 @receiver(post_delete, sender=Award)
 @receiver(post_delete, sender=Mentor)
 @receiver(post_delete, sender=Project)

@@ -1,6 +1,5 @@
 from django.db import models
 from django.contrib.auth import get_user_model
-# from project.models import Mentor
 from home.helper import image_directory_path
 import uuid, datetime
 User = get_user_model()
@@ -47,11 +46,7 @@ class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     bio = models.TextField(verbose_name='About Me')
     date_of_birth = models.DateField(verbose_name='Date of birth', null=True)
-    # image_lowres = models.ImageField
-    # image_highres = models.ImageField
-    # education = models.OneToManyField
-    # work_experience = models.OneToManyField
-    mentor = models.ManyToManyField(Mentor)
+    mentor = models.ManyToManyField(Mentor, null=True, blank=True)
 
     def __str__(self):
         return self.user.email
@@ -66,6 +61,23 @@ class Profile(models.Model):
     
     class Meta:
         verbose_name_plural = 'User Profile'
+
+
+class ProfileImage(models.Model):
+    id = models.UUIDField(default=uuid.uuid4, primary_key=True, unique=True, editable=False)
+    profile = models.OneToOneField(Profile, on_delete=models.CASCADE)
+    name = models.CharField(verbose_name="Profile Image Name", max_length=30)
+    image_high_res = models.ImageField(verbose_name='High Resolution Profile Image', upload_to=image_directory_path)
+    image_low_res = models.ImageField(verbose_name='Low Resolution Profile Image', upload_to=image_directory_path)
+
+    def __str__(self):
+        return f'{self.profile} {self.name}'
+    
+    def __unicode__(self):
+        return f'{self.profile} {self.name}'
+
+    class Meta:
+        verbose_name_plural = 'User Profile Image'
 
 
 class Technology(models.Model):
