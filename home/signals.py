@@ -1,7 +1,7 @@
 from django.contrib.auth import get_user_model
 from django.db.models.signals import post_save, post_delete
 from django.dispatch import receiver
-from project.models import Mentor
+from project.models import Mentor, MentorChannel
 from contact.models import SocialAccount
 from about.models import Award
 from home.models import Profile
@@ -58,3 +58,11 @@ def update_single_resolution_image(sender, instance, created, **kwargs):
 def submission_delete(sender, instance, *args, **kwargs):
     instance.image_high_res and instance.image_high_res.delete(False)
     instance.image_low_res and instance.image_low_res.delete(False)
+
+
+@receiver(post_save, sender=Mentor)
+@receiver(post_save, sender=MentorChannel)
+def capitalize_name(sender, instance, created, **kwargs):
+    if created:
+        instance.name = instance.name.title()
+        instance.save()
