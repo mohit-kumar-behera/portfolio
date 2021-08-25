@@ -3,7 +3,7 @@ from django.db.models.signals import post_save, post_delete
 from django.dispatch import receiver
 from project.models import Mentor, MentorChannel
 from contact.models import SocialAccount
-from about.models import Award
+from about.models import Award, Education, Work
 from home.models import Profile
 from home.helper import compress_image
 User = get_user_model()
@@ -47,6 +47,7 @@ def single_resolution_image(sender, instance, created, **kwargs):
         compress_image(instance, dual=False, save=True)
 
 
+@receiver(post_save, sender=Work)
 @receiver(post_save, sender=Mentor)
 @receiver(post_save, sender=SocialAccount)
 def update_single_resolution_image(sender, instance, created, **kwargs):
@@ -60,6 +61,8 @@ def submission_delete(sender, instance, *args, **kwargs):
     instance.image_low_res and instance.image_low_res.delete(False)
 
 
+@receiver(post_save, sender=Work)
+@receiver(post_save, sender=Education)
 @receiver(post_save, sender=Mentor)
 @receiver(post_save, sender=MentorChannel)
 def capitalize_name(sender, instance, created, **kwargs):

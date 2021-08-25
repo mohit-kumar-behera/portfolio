@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth import get_user_model
+from project.models import Mentor
 import uuid, datetime
 User = get_user_model()
 
@@ -10,14 +11,9 @@ class Profile(models.Model):
     date_of_birth = models.DateField(verbose_name='Date of birth', null=True)
     # image_lowres = models.ImageField
     # image_highres = models.ImageField
-    # language_spoken = models.OneToManyField
-    # address = models.OneToManyField
-    # contact = models.OneToManyField
     # education = models.OneToManyField
-    # social_account = models.OneToManyField
     # work_experience = models.OneToManyField
-    # awards = models.OneToManyField
-    # skills = models.OneToManyField
+    mentor = models.ManyToManyField(Mentor)
 
     def __str__(self):
         return self.user.email

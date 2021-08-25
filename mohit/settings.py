@@ -45,6 +45,8 @@ INSTALLED_APPS = [
     'home.apps.HomeConfig',
     'project',
     'error',
+
+    'ckeditor',
 ]
 
 MIDDLEWARE = [

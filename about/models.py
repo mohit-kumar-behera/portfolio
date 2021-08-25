@@ -2,7 +2,20 @@ from django.db import models
 from home.models import Profile, Technology
 from home.config import MAX_RATING
 from home.helper import image_directory_path, MaxValueValidator
+from ckeditor.fields import RichTextField
 import uuid
+
+SECONDARY_SCHOOL= 'S'
+HIGHER_SECONDARY_SCHOOL = 'HS'
+UNDER_GRADUATE = 'UG'
+POST_GRADUATE = 'PG'
+
+SCHOOLING_TYPE = (
+    (SECONDARY_SCHOOL, 'Secondary School'),
+    (HIGHER_SECONDARY_SCHOOL, 'Higher Secondary School'),
+    (UNDER_GRADUATE, 'Graduation'),
+    (POST_GRADUATE, 'Post Graduation'),
+)
 
 
 class Award(models.Model):
@@ -44,4 +57,45 @@ class Skill(models.Model):
     
     class Meta:
         verbose_name_plural = 'User\'s Skill'
+
+
+class ExperienceDetail(models.Model):
+    id = models.UUIDField(default=uuid.uuid4, primary_key=True, unique=True, editable=False)
+    profile = models.ForeignKey(Profile, on_delete=models.SET_NULL, null=True)
+    name = models.CharField(verbose_name='Field Name', max_length=50)
+    start_date = models.DateField(verbose_name='Start Date')
+    end_date = models.DateField(verbose_name='End Date')
+    url = models.URLField(verbose_name='Field URL')
+
+    def __str__(self):
+        return self.name
+    
+    def __unicode__(self):
+        return self.name
+
+    class Meta:
+        abstract = True
+
+
+class Education(ExperienceDetail):
+    state = models.CharField(verbose_name='Passed out State', max_length=40)
+    tag = models.CharField(
+        verbose_name='Type of Schooling', 
+        max_length=5, 
+        choices=SCHOOLING_TYPE, 
+        null=True, blank=True
+    )
+    short_descp = models.CharField(verbose_name='Small Description', max_length=60, default='General Science')
+
+    class Meta:
+        verbose_name_plural = 'Education'
+
+
+class Work(ExperienceDetail):
+    position = models.CharField(verbose_name='Work Position', max_length=60)
+    image_low_res = models.ImageField(verbose_name='Low Resolution Logo Image', upload_to=image_directory_path)
+    detail = RichTextField()
+
+    class Meta:
+        verbose_name_plural = 'Work Experience'
 
