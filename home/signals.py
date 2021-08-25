@@ -5,7 +5,7 @@ from project.models import Mentor, MentorChannel
 from contact.models import SocialAccount
 from about.models import Award, Education, Work
 from home.models import Profile
-from home.helper import compress_image
+from home.helper import compress_image, convert_thumbnail
 User = get_user_model()
 
 
@@ -51,8 +51,22 @@ def single_resolution_image(sender, instance, created, **kwargs):
 @receiver(post_save, sender=Mentor)
 @receiver(post_save, sender=SocialAccount)
 def update_single_resolution_image(sender, instance, created, **kwargs):
-    if created:
+    if not created:
         compress_image(instance, dual=False, save=False)
+
+
+@receiver(post_save, sender=Mentor)
+@receiver(post_save, sender=Work)
+def convert_thumbnail_image(sender, instance, created, **kwargs):
+    if created:
+        convert_thumbnail(instance, save=True)
+
+
+@receiver(post_save, sender=Mentor)
+@receiver(post_save, sender=Work)
+def update_convert_thumbnail_image(sender, instance, created, **kwargs):
+    if not created:
+        convert_thumbnail(instance, save=False)
 
 
 @receiver(post_delete, sender=Award)

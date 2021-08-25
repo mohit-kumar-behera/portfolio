@@ -1,5 +1,9 @@
 from django.core.exceptions import ValidationError
-from home.config import MAX_RATING, WATERMARK_DIM, IMAGE_RESOLUTION
+from home.config import (
+    MAX_RATING, WATERMARK_DIM, 
+    IMAGE_RESOLUTION, LOGO_THUMBNAIL_DIM,
+    PROJECT_THUMBNAIL_DIM
+)
 from PIL import Image
 import random
 
@@ -46,6 +50,24 @@ def compress_image(instance, dual, save=False):
         # Compress image only for low resolution
         img = Image.open(instance.image_low_res)
         img.save(instance.image_low_res.path, quality=IMAGE_RESOLUTION['low'])
+    if save:
+        instance.save()
+
+
+# Create a thumbnail image
+def convert_thumbnail(instance, save=False):
+    thumbnail = PROJECT_THUMBNAIL_DIM if instance.__class__.__name__.lower() == 'project' else LOGO_THUMBNAIL_DIM
+    if instance.image_low_res:
+        imgL = Image.open(instance.image_low_res.path)
+        
+        # width, height = (width, height)
+        imgL_w, imgL_h = imgL.size
+        thumbnail_w, thumbnail_h = thumbnail
+        
+        if imgL_w > thumbnail_w and imgL_h > thumbnail_h:
+            imgL.thumbnail(thumbnail)
+        
+        imgL.save(instance.image_low_res.path)
     if save:
         instance.save()
 
