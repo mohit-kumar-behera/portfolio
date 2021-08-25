@@ -3,7 +3,7 @@ from project.models import Project, ProjectImage
 
 
 class ProjectAdmin(admin.ModelAdmin):
-    readonly_fields = ('date_added', 'date_updated')
+    readonly_fields = ('project_num', 'date_added', 'date_updated')
     list_display = ('profile', 'name', 'slug', 'date_updated')
     list_filter = ('profile', 'name')
     search_fields = ('profile', 'name',)

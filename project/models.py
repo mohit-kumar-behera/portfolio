@@ -7,6 +7,7 @@ import uuid, random
 class Project(models.Model):
     id = models.UUIDField(default=uuid.uuid4, primary_key=True, unique=True, editable=False)
     profile = models.ForeignKey(Profile, on_delete=models.SET_NULL, null=True)
+    project_num = models.IntegerField(null=True, blank=True)
     name = models.CharField(verbose_name='Project Title', max_length=255)
     slug = models.SlugField(
         max_length=255, 
@@ -25,10 +26,10 @@ class Project(models.Model):
     image_low_res = models.ImageField(verbose_name='Low Resolution Thumbnail Image', upload_to=image_directory_path)
 
     def __str__(self):
-        return f'{self.profile} {self.name}'
+        return f'{self.profile}-{self.name}'
     
     def __unicode__(self):
-        return f'{self.profile} {self.name}'
+        return f'{self.profile}-{self.name}'
 
     class Meta:
         verbose_name_plural = 'Project'
