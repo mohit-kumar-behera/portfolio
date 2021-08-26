@@ -22,11 +22,10 @@
   width: 250px;
   height: 250px;
   border-radius: 50%;
-  background: var(--secondary-color);
+  border: 8px solid var(--secondary-color);
   transform: translateY(-50%);
   -webkit-transform: translateY(-50%);
 }
-
 .contact-detail {
   display: flex;
   justify-content: space-between;
