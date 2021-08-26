@@ -34,7 +34,7 @@ def delete_user(sender, instance, **kwargs):
 
 
 """Create low + high resolution images from the mentioned Model on creation"""
-
+@receiver(post_save, sender=ProfileImage)
 @receiver(post_save, sender=ProjectImage)
 @receiver(post_save, sender=Award)
 def dual_resolution_image(sender, instance, created, **kwargs):
@@ -43,6 +43,7 @@ def dual_resolution_image(sender, instance, created, **kwargs):
 
 
 """Create low + high resolution images from the mentioned Model on updation"""
+@receiver(post_save, sender=ProfileImage)
 @receiver(post_save, sender=ProjectImage)
 @receiver(post_save, sender=Award)
 def update__dual_resolution_image(sender, instance, created, **kwargs):
@@ -83,6 +84,7 @@ def update__convert_thumbnail_image(sender, instance, created, **kwargs):
 
 
 """Delete the image instance when Model is deleted"""
+@receiver(post_delete, sender=ProfileImage)
 @receiver(post_delete, sender=Award)
 @receiver(post_delete, sender=Mentor)
 @receiver(post_delete, sender=ProjectImage)
