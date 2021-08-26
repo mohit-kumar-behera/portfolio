@@ -1,5 +1,5 @@
 from django.contrib import admin
-from contact.models import Contact, Address, SocialAccount
+from contact.models import Contact, Address, SocialAccount, Message
 
 class ContactAdmin(admin.ModelAdmin):
     readonly_fields = ('last_updated', 'url')
@@ -21,6 +21,13 @@ class SocialAccountAdmin(admin.ModelAdmin):
     search_fields = ('profile', 'name')
     ordering = ('profile',)
 
+class MessageAdmin(admin.ModelAdmin):
+    list_display = ('profile', 'name', 'subject', 'date_posted')
+    list_filter = ('profile', 'date_posted')
+    search_fields = ('profile', 'name', 'subject')
+    ordering = ('-date_posted',)
+
 admin.site.register(Contact, ContactAdmin)
 admin.site.register(Address, AddressAdmin)
 admin.site.register(SocialAccount, SocialAccountAdmin)
+admin.site.register(Message, MessageAdmin)

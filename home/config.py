@@ -9,4 +9,4 @@ IMAGE_RESOLUTION = {
     'high': 80,
 }
 
-PATH_TO_LOGO = './static/media/image/mk-final-round.png'
+PATH_TO_LOGO = './static/media/image/mk-final.png'

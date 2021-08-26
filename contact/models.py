@@ -89,3 +89,22 @@ class SocialAccount(models.Model):
     class Meta:
         verbose_name_plural = 'Social Account'
 
+
+class Message(models.Model):
+    id = models.UUIDField(default=uuid.uuid4, primary_key=True, unique=True, editable=False)
+    profile = models.ForeignKey(Profile, on_delete=models.SET_NULL, null=True)
+    name = models.CharField(verbose_name='Sender Name', max_length=80)
+    email = models.EmailField(verbose_name='Sender Email')
+    subject = models.CharField(verbose_name='Subject', max_length=255)
+    message = models.TextField(verbose_name='Message')
+    date_posted = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.subject
+    
+    def __unicode__(self):
+        return self.subject
+    
+    class Meta:
+        verbose_name_plural = 'Messages'
+
