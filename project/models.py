@@ -1,9 +1,8 @@
 from django.db import models
-from django.utils import tree
 from home.models import Profile, Technology
 from home.helper import image_directory_path
 from ckeditor.fields import RichTextField
-import uuid, random
+import uuid
 
 class Project(models.Model):
     id = models.UUIDField(default=uuid.uuid4, primary_key=True, unique=True, editable=False)
