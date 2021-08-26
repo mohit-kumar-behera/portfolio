@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils import tree
 from home.models import Profile, Technology
 from home.helper import image_directory_path
 from ckeditor.fields import RichTextField
@@ -20,10 +21,9 @@ class Project(models.Model):
     date_updated = models.DateField(auto_now=True)
     tech_stack = models.ManyToManyField(Technology)
     project_url = models.URLField(verbose_name='Project URL', null=True, blank=True) 
-    video_url = models.URLField(verbose_name='Video Demo URL')
-    source_code_url = models.URLField(verbose_name='Source Code URL')
-    image_high_res = models.ImageField(verbose_name='High Resolution Thumbnail Image', upload_to=image_directory_path)
-    image_low_res = models.ImageField(verbose_name='Low Resolution Thumbnail Image', upload_to=image_directory_path)
+    video_url = models.URLField(verbose_name='Video Demo URL', null=True, blank=True)
+    source_code_url = models.URLField(verbose_name='Source Code URL', null=True, blank=True)
+    thumbnail = models.OneToOneField('ProjectImage', on_delete=models.CASCADE, null=True, blank=True, related_name='thumbnail')
 
     def __str__(self):
         return f'{self.profile}-{self.name}'

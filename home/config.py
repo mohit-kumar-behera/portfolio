@@ -8,3 +8,5 @@ IMAGE_RESOLUTION = {
     'normal': 40,
     'high': 80,
 }
+
+PATH_TO_LOGO = './static/media/image/mk-final-round.png'

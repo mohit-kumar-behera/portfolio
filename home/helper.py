@@ -3,7 +3,8 @@ from django.utils.text import slugify
 from home.config import (
     MAX_RATING, WATERMARK_DIM, 
     IMAGE_RESOLUTION, LOGO_THUMBNAIL_DIM,
-    PROJECT_THUMBNAIL_DIM
+    PROJECT_THUMBNAIL_DIM,
+    PATH_TO_LOGO,
 )
 from PIL import Image
 import uuid, random
@@ -17,7 +18,7 @@ def image_directory_path(instance, filename):
 
 # add logo to image
 def add_logo_watermark(imgH, imgL):
-    logo = Image.open('./static/media/image/mk-final.png')
+    logo = Image.open(PATH_TO_LOGO)
     # width, height = (width, height)
     logo_w, logo_h = logo.size 
     imgH_w, imgH_h = imgH.size

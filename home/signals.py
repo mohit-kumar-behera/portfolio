@@ -35,7 +35,7 @@ def delete_user(sender, instance, **kwargs):
 
 """Create low + high resolution images from the mentioned Model on creation"""
 @receiver(post_save, sender=ProfileImage)
-@receiver(post_save, sender=Project)
+# @receiver(post_save, sender=Project)
 @receiver(post_save, sender=ProjectImage)
 @receiver(post_save, sender=Award)
 def dual_resolution_image(sender, instance, created, **kwargs):
@@ -45,7 +45,7 @@ def dual_resolution_image(sender, instance, created, **kwargs):
 
 """Create low + high resolution images from the mentioned Model on updation"""
 @receiver(post_save, sender=ProfileImage)
-@receiver(post_save, sender=Project)
+# @receiver(post_save, sender=Project)
 @receiver(post_save, sender=ProjectImage)
 @receiver(post_save, sender=Award)
 def update_dual_resolution_image(sender, instance, created, **kwargs):
@@ -70,7 +70,7 @@ def update_single_resolution_image(sender, instance, created, **kwargs):
 
 
 """Convert image to thumbnail when Model is created"""
-@receiver(post_save, sender=Project)
+# @receiver(post_save, sender=Project)
 @receiver(post_save, sender=Mentor)
 @receiver(post_save, sender=Work)
 def convert_thumbnail_image(sender, instance, created, **kwargs):
@@ -79,7 +79,7 @@ def convert_thumbnail_image(sender, instance, created, **kwargs):
 
 
 """Convert image to thumbnail when Model is updated"""
-@receiver(post_save, sender=Project)
+# @receiver(post_save, sender=Project)
 @receiver(post_save, sender=Mentor)
 @receiver(post_save, sender=Work)
 def update_convert_thumbnail_image(sender, instance, created, **kwargs):
@@ -91,7 +91,7 @@ def update_convert_thumbnail_image(sender, instance, created, **kwargs):
 @receiver(post_delete, sender=ProfileImage)
 @receiver(post_delete, sender=Award)
 @receiver(post_delete, sender=Mentor)
-@receiver(post_delete, sender=Project)
+# @receiver(post_delete, sender=Project)
 @receiver(post_delete, sender=ProjectImage)
 @receiver(post_delete, sender=SocialAccount)
 @receiver(post_delete, sender=Work)

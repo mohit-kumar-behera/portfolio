@@ -46,7 +46,7 @@ class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     bio = models.TextField(verbose_name='About Me')
     date_of_birth = models.DateField(verbose_name='Date of birth', null=True)
-    mentor = models.ManyToManyField(Mentor, null=True, blank=True)
+    mentor = models.ManyToManyField(Mentor, blank=True)
 
     def __str__(self):
         return self.user.email
