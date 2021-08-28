@@ -148,36 +148,39 @@ p {
   flex-direction: column;
   /* opacity: 0.5; */
 }
-.skeleton-loader .skeleton-text {
+.skeleton-text {
   position: relative;
   padding: 0.7rem;
+  width: 70%;
   height: 20px;
   border-radius: 2px;
-  background: #29323c;
+  background: hsl(12, 5%, 15%);
   margin-bottom: 0.6rem;
   overflow: hidden;
 }
-.skeleton-loader .skeleton-text.w-full {
+.skeleton-text.w-full {
   width: 100%;
 }
-.skeleton-loader .skeleton-text.w-half {
+.skeleton-text.w-half {
   width: 50%;
 }
-.skeleton-loader .skeleton-text:last-child {
+.skeleton-text:last-child {
   margin-bottom: 0;
+}
+.skeleton-loader .skeleton-text:last-child {
   width: 65%;
 }
-.skeleton-loader .skeleton-text:after {
+.skeleton-text:after {
   transform: translateX(-50%);
   -webkit-transform: translateX(-50%);
   width: 40%;
   height: 100%;
   border-radius: inherit;
-  background-image: linear-gradient(to right, #5e6c7712, #eef2f310, #5e6c7712);
-  -webkit-animation: translateLeftRight 1s ease-in-out infinite alternate;
-  animation: translateLeftRight 1s ease-in-out infinite alternate;
+  background: hsl(12, 5%, 16%);
+  -webkit-animation: translateLeftRight 0.4s ease-in-out infinite alternate;
+  animation: translateLeftRight 0.4s ease-in-out infinite alternate;
 }
-.skeleton-loader .skeleton-text:nth-child(odd):after {
+.skeleton-text:nth-child(odd):after {
   animation-delay: 0.2s;
 }
 @keyframes shrinksize {

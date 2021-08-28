@@ -600,15 +600,6 @@ const activateAboutPageScript = function (user) {
       )
     );
   }, 2000);
-  // options.forEach(entry =>
-  //   renderContentDynamically(
-  //     user,
-  //     entry.elem,
-  //     entry.type,
-  //     entry.classes,
-  //     entry.build
-  //   )
-  // );
 };
 
 /*------------------------- End of About us Page -------------------------------------------*/

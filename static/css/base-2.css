@@ -272,19 +272,20 @@ body[data-mobile-device='false'] .pagination .bttn:focus:after {
 }
 
 /* Skeleton Component */
-.display-card--div.skeleton-loader {
+/*for display card*/
+.display-card--div.skeleton {
   pointer-events: none;
-  opacity: 0.7;
+  /* opacity: 0.7; */
 }
-.display-card--div.skeleton-loader > .display-card {
+.display-card--div.skeleton > .display-card {
   border-radius: 10px;
 }
-.display-card--img.skeleton-image {
+.skeleton-image {
   background: hsl(12, 5%, 15%);
   position: relative;
   overflow: hidden;
 }
-.display-card--img.skeleton-image:after {
+.skeleton-image:after {
   transform: translateX(-50%);
   border-radius: 10px;
   width: 70%;
@@ -292,6 +293,42 @@ body[data-mobile-device='false'] .pagination .bttn:focus:after {
   background: hsl(12, 5%, 16%);
   -webkit-animation: translateLeftRight 0.4s ease-in-out infinite alternate;
   animation: translateLeftRight 0.4s ease-in-out infinite alternate;
+}
+/*for info card*/
+.skeleton {
+  border-color: hsl(12, 5%, 30%) !important;
+  pointer-events: none;
+  /* opacity: 0.7; */
+}
+.info-card .skeleton-circle {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: hsl(12, 5%, 15%);
+  position: relative;
+  overflow: hidden;
+}
+.info-card .skeleton-circle:after {
+  transform: translateX(-50%);
+  border-radius: 10px;
+  width: 70%;
+  height: 100%;
+  background: hsl(12, 5%, 16%);
+  -webkit-animation: translateLeftRight 0.4s ease-in-out infinite alternate;
+  animation: translateLeftRight 0.4s ease-in-out infinite alternate;
+}
+.project--div .skeleton-text {
+  background: hsl(12, 5%, 30%);
+}
+.project--div .skeleton-text {
+  margin-bottom: 0;
+}
+.project--div .skeleton-text:after {
+  background: hsl(12, 5%, 32%);
 }
 
 /* == FOOTER == */
