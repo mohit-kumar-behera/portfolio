@@ -117,6 +117,7 @@
   border-radius: 2px;
 }
 .project-detail .project-thumbnail-img > .project--img {
+  min-height: 300px;
   object-fit: contain;
 }
 .project--description > * {

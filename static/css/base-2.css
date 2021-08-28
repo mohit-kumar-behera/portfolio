@@ -120,6 +120,16 @@ section.normal-container .responsive-wrapper {
   height: 100%;
   border-radius: inherit;
 }
+@media screen and (min-width: 576px) {
+  .display-card--img {
+    min-height: 220px;
+  }
+}
+@media screen and (max-width: 576px) {
+  .display-card--img {
+    min-height: 120px;
+  }
+}
 .display-card--link,
 .overlay--div {
   position: absolute;
