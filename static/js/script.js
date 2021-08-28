@@ -506,7 +506,9 @@ const activateContactPageScript = function (user) {
       );
     });
   };
-  renderSocialAccounts(user.socialAccounts);
+  setTimeout(function () {
+    renderSocialAccounts(user.socialAccounts);
+  }, 2000);
 };
 
 /*------------------ End of Contact page ----------------------------*/
@@ -587,15 +589,26 @@ const activateAboutPageScript = function (user) {
     },
   ];
 
-  options.forEach(entry =>
-    renderContentDynamically(
-      user,
-      entry.elem,
-      entry.type,
-      entry.classes,
-      entry.build
-    )
-  );
+  setTimeout(function () {
+    options.forEach(entry =>
+      renderContentDynamically(
+        user,
+        entry.elem,
+        entry.type,
+        entry.classes,
+        entry.build
+      )
+    );
+  }, 2000);
+  // options.forEach(entry =>
+  //   renderContentDynamically(
+  //     user,
+  //     entry.elem,
+  //     entry.type,
+  //     entry.classes,
+  //     entry.build
+  //   )
+  // );
 };
 
 /*------------------------- End of About us Page -------------------------------------------*/

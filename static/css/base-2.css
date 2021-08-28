@@ -87,6 +87,7 @@ section.normal-container .responsive-wrapper {
   width: 50%;
   padding: 0.2rem;
   margin-bottom: 1rem;
+  overflow: hidden;
 }
 @media screen and (min-width: 1400px) {
   .display-card--div {
@@ -268,6 +269,29 @@ body[data-mobile-device='false'] .pagination .bttn:focus:after {
 }
 .pagination .bttn:active {
   opacity: 0.7;
+}
+
+/* Skeleton Component */
+.display-card--div.skeleton-loader {
+  pointer-events: none;
+  opacity: 0.7;
+}
+.display-card--div.skeleton-loader > .display-card {
+  border-radius: 10px;
+}
+.display-card--img.skeleton-image {
+  background: hsl(12, 5%, 15%);
+  position: relative;
+  overflow: hidden;
+}
+.display-card--img.skeleton-image:after {
+  transform: translateX(-50%);
+  border-radius: 10px;
+  width: 70%;
+  height: 100%;
+  background: hsl(12, 5%, 16%);
+  -webkit-animation: translateLeftRight 0.4s ease-in-out infinite alternate;
+  animation: translateLeftRight 0.4s ease-in-out infinite alternate;
 }
 
 /* == FOOTER == */
