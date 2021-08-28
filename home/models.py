@@ -47,6 +47,7 @@ class Profile(models.Model):
     bio = models.TextField(verbose_name='About Me')
     date_of_birth = models.DateField(verbose_name='Date of birth', null=True)
     mentor = models.ManyToManyField(Mentor, blank=True)
+    cv = models.FileField(verbose_name='CV', upload_to='uploads/', blank=True, null=True)
 
     def __str__(self):
         return self.user.email
@@ -98,3 +99,25 @@ class Technology(models.Model):
     
     class Meta:
         verbose_name_plural = 'Technology'
+
+
+class QuickLink(models.Model):
+    id = models.UUIDField(default=uuid.uuid4, primary_key=True, unique=True, editable=False)
+    profile = models.ForeignKey(Profile, on_delete=models.SET_NULL, null=True)
+    name = models.CharField(verbose_name='Link Display Name', max_length=20)
+    url = models.URLField()
+    highlight = models.BooleanField(verbose_name='Highlight this link', default=False)
+
+    def __str__(self):
+        return self.name
+    
+    def __unicode__(self):
+        return self.name
+    
+    def save(self, *args, **kwargs):
+        if not self.name.istitle():
+            self.name = self.name.title()
+        super(QuickLink, self).save(*args, **kwargs)
+    
+    class Meta:
+        verbose_name_plural = 'Quick Links'

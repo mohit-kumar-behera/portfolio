@@ -1,5 +1,9 @@
 from django.contrib import admin
-from home.models import Profile, ProfileImage, Technology, Mentor, MentorChannel
+from home.models import (
+    Profile, ProfileImage, 
+    Technology, Mentor, 
+    MentorChannel, QuickLink
+)
 
 class ProfileAdmin(admin.ModelAdmin):
     list_display = ('user', 'date_of_birth')
@@ -26,11 +30,18 @@ class MentorChannelAdmin(admin.ModelAdmin):
     search_fields = ('mentor', 'name')
     ordering = ('mentor',)
 
+
+class QuickLinkAdmin(admin.ModelAdmin):
+    list_display = ('name', 'highlight')
+    list_filter = ('highlight',)
+
+
 admin.site.register(Technology, TechnologyAdmin)
 admin.site.register(Profile, ProfileAdmin)
 admin.site.register(ProfileImage, ProfileImageAdmin)
 admin.site.register(Mentor, MentorAdmin)
 admin.site.register(MentorChannel, MentorChannelAdmin)
+admin.site.register(QuickLink, QuickLinkAdmin)
 
 
 

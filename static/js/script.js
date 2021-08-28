@@ -390,6 +390,7 @@ const activateDefaultPageScript = function (currPage, isMobile, modelCl) {
               <li>attempt to decompile or reverse engineer any software contained on <a href="#" class="link">ALINETER LIFESTYLE</a> INDUSTRY PRIVATE LIMITED&#39;s website;</li>
             </ol>
           </p>
+          
         </div>
       `;
     modelCl.render(dataBody, dataHead);
