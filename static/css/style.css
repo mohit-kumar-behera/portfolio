@@ -151,12 +151,17 @@ p {
 .skeleton-loader .skeleton-text {
   position: relative;
   padding: 0.7rem;
-  width: 100%;
   height: 20px;
   border-radius: 2px;
   background: #29323c;
   margin-bottom: 0.6rem;
   overflow: hidden;
+}
+.skeleton-loader .skeleton-text.w-full {
+  width: 100%;
+}
+.skeleton-loader .skeleton-text.w-half {
+  width: 50%;
 }
 .skeleton-loader .skeleton-text:last-child {
   margin-bottom: 0;

@@ -88,3 +88,21 @@ CSS	3.8
 C	3.0
 REACT JS	2.2
 DJANGO	3.8
+
+
+
+
+
+EXPERIENCE
+-------------------------------------------------------
+Verzeo
+2020-05-01
+2020-07-01
+https://verzeo.com/
+Web Developer
+
+Alineter
+2021-01-18
+2021-08-18
+https://www.alineter.com/
+Web Developer
