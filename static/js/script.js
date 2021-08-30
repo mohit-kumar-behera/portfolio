@@ -185,7 +185,20 @@ class Model {
 
   renderSpinner() {
     this._clear();
-    this._model.innerHTML = '<div class="content-loader lg mx-auto"></div>';
+    this._model.innerHTML = `
+      <div class="loader">
+        <div class="main-box">
+          <div>
+            <div class="box one"></div>
+            <div class="box two"></div>
+          </div>
+          <div>
+            <div class="box three"></div>
+            <div class="box four"></div>
+          </div>
+        </div>
+      </div>
+    `;
     return this;
   }
 

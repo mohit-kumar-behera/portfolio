@@ -10,6 +10,9 @@
 .pagination-controller:last-child {
   margin-left: 0.7rem;
 }
+.pagination--btn {
+  padding: 0.6rem 1.2rem;
+}
 .pagination--btn > span.icon {
   font-size: 1.2rem;
   position: relative;
@@ -25,7 +28,7 @@
 .pagination--pagenum {
   align-self: center;
   padding: 0.2rem 0.6rem;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   border-radius: 4px;
   background-color: #ffffff10;
   color: var(--secondary-color);
