@@ -105,7 +105,7 @@
 .timeline--div:before {
   content: '';
   top: 4.8px;
-  box-shadow: 0 0 0 2px var(--light-shade2);
+  box-shadow: 0 0 0 2px var(--light-shade1);
   background: var(--secondary-color);
 }
 .timeline--logo {

@@ -550,7 +550,9 @@ const activateAboutPageScript = function (user) {
       );
     });
   };
-  renderPersonalDetail(user.getShortBio());
+  setTimeout(function () {
+    renderPersonalDetail(user.getShortBio());
+  }, 2000);
 
   const renderContentDynamically = function (user, elem, type, classes, build) {
     if (!elem) return;

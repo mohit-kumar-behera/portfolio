@@ -9,142 +9,46 @@
 {% block page-content %}
 	<div class="page-content project-detail lazy-transition--bottom">
 		<div class="responsive-wrapper">
-		<div class="project-detail--div">
+			<div>
 				<div class="page-content-header">
-					<div class="skeleton-text w-full"></div>	
+					<div class="skeleton-text w-full"></div>
+					<div class="skeleton-text w-half"></div>	
 				</div>
-
-				<div class="project-thumbnail-img">
-					<div class="display-card--div social-link--div skeleton w-100">
-						<div class="display-card social-link">
-							<div class="display-card--img social-link--img skeleton-image">
-							</div>
-						</div>
-					</div>
+				<div class="skeleton w-100 mb-3">
+					<div class="display-card--img social-link--img skeleton-image" style="height:300px"></div>
 				</div>
-
-				<div class="project--description">
+				<div class="mb-5">
+					<div class="skeleton-text w-full"></div>
+					<div class="skeleton-text w-full"></div>
+					<div class="skeleton-text"></div><br>
 					<div class="skeleton-text w-full"></div>
 					<div class="skeleton-text w-full"></div>
 					<div class="skeleton-text"></div>
-					<div class="skeleton-text w-half"></div>
-					<div class="skeleton-text"></div>
-					<div class="skeleton-text"></div>
-					<div class="skeleton-text w-half"></div>
 				</div>
-
 				<div class="hr"></div>
-
-				<div class="project--demo">
-					<div class="page-content-header">
-						<h4 class="sub-heading"><span>VIDEO</span> <span class="text secondary--type">Demo</span></h4>	
-						<p class="text-danger">Add I FRAME and link the src to it in asyc way, otherwise it is taking a lot of time</p>			
-					</div>
-					
-					<div class="project--video-demo">
-						<!-- <iframe src="https://player.vimeo.com/video/576641330" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe> -->
-					</div>
-
-					<div class="project--demo-link text-center">
-						<button class="bttn secondary--type project--demo--btn" disabled title="Link Not Available">Project Demo</button>
+				<div class="project--demo mt-3 mb-3">		
+					<div class="skeleton w-100">
+						<div class="display-card--img social-link--img skeleton-image" style="height:300px"></div>
 					</div>
 				</div>
-
 				<div class="hr"></div>
-
 				<div class="project--pictures">
-					<div class="page-content-header">
-						<h4 class="sub-heading"><span>Project</span> <span class="text secondary--type">Picture</span></h4>		
-					</div>
-
-					<div class="display-card--wrapper img-model-view">	
-						<div class="display-card--div social-link--div skeleton">
-							<div class="display-card social-link" tabindex="0">
-								<div class="display-card--img social-link--img skeleton-image">
-								</div>
-							</div>
+					<div class="display-card--wrapper">	
+						<div class="display-card--div skeleton">
+							<div class="display-card--img social-link--img skeleton-image"></div>
 						</div>
-
-						<div class="display-card--div social-link--div skeleton">
-							<div class="display-card social-link" tabindex="0">
-								<div class="display-card--img social-link--img skeleton-image">
-								</div>
-							</div>
+						<div class="display-card--div skeleton">
+							<div class="display-card--img social-link--img skeleton-image"></div>
 						</div>
-
-						<div class="display-card--div social-link--div skeleton">
-							<div class="display-card social-link" tabindex="0">
-								<div class="display-card--img social-link--img skeleton-image">
-								</div>
-							</div>
-						</div>
-
-						<div class="display-card--div" data-img-src="{% static 'media/image/webdev-mern.png' %}">
-							<div class="display-card">
-								<div class="display-card--img">
-									<img src="{% static 'media/image/webdev-mern.png' %}" class="award--img" onerror="this.closest('.display-card').querySelector('.overlay--div').style.display='none'"/>
-								</div>
-
-								<!-- <a href="{% static 'media/image/webdev-mern.png' %}" class="display-card--link" target="_blank"></a> -->
-
-								<div class="overlay--div"><span>View</span></div>
-							</div>
-						</div>
-
-						<div class="display-card--div" data-img-src="{% static 'media/image/webdev-mern.png' %}">
-							<div class="display-card">
-								<div class="display-card--img">
-									<img src="{% static 'media/image/webdev-mern.png' %}" class="award--img" onerror="this.closest('.display-card').querySelector('.overlay--div').style.display='none'"/>
-								</div>
-
-								<!-- <a href="{% static 'media/image/webdev-mern.png' %}" class="display-card--link" target="_blank"></a> -->
-
-								<div class="overlay--div"><span>View</span></div>
-							</div>
-						</div>
-
-						<div class="display-card--div" data-img-src="{% static 'media/image/iace-hackathon.png' %}">
-							<div class="display-card">
-								<div class="display-card--img">
-									<img src="{% static 'media/image/iace-hackathon.png' %}" class="award--img" onerror="this.closest('.display-card').querySelector('.overlay--div').style.display='none'" />
-								</div>
-
-								<!-- <a href="{% static 'media/image/iace-hackathon.png' %}" class="display-card--link" target="_blank"></a> -->
-
-								<div class="overlay--div"><span>View</span></div>
-							</div>
-						</div>
-
-						<div class="display-card--div" data-img-src="{% static 'media/image/iace-hackathon.png' %}">
-							<div class="display-card">
-								<div class="display-card--img">
-									<img src="{% static 'media/image/iace-hackathon.png' %}" class="award--img" onerror="this.closest('.display-card').querySelector('.overlay--div').style.display='none'" />
-								</div>
-
-								<!-- <a href="{% static 'media/image/iace-hackathon.png' %}" class="display-card--link" target="_blank"></a> -->
-
-								<div class="overlay--div"><span>View</span></div>
-							</div>
-						</div>
-
-						<div class="display-card--div" data-img-src="{% static 'media/image/webdev-mern.png' %}">
-							<div class="display-card">
-								<div class="display-card--img">
-									<img src="{% static 'media/image/webdev-mern.jpg' %}" class="award--img" onerror="this.closest('.display-card').querySelector('.overlay--div').style.display='none'"/>
-								</div>
-
-								<!-- <a href="{% static 'media/image/webdev-mern.jpg' %}" class="display-card--link" target="_blank"></a> -->
-
-								<div class="overlay--div"><span>View</span></div>
-							</div>
-						</div>
-					
-					</div>
-					
+					</div>		
 				</div>
-
 			</div>
-			{% comment %} <div class="project-detail--div">
+		</div>
+	</div>
+			
+	<div class="page-content project-detail lazy-transition--bottom">
+		<div class="responsive-wrapper">
+			<div class="project-detail--div">
 				<div class="page-content-header">
 					<h4 class="project--heading">Top 10 Toolkits for deep learning in 2020</h4>		
 				</div>
@@ -283,7 +187,7 @@
 					
 				</div>
 
-			</div> {% endcomment %}
+			</div>
 		</div>
 	</div>
 {% endblock page-content %}

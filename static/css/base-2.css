@@ -251,34 +251,27 @@ body[data-mobile-device='false'] .info-card:hover {
 
 /* Skeleton Component */
 /*for display card*/
-.display-card--div.skeleton {
+.skeleton {
   pointer-events: none;
-  /* opacity: 0.7; */
+  opacity: 0.55;
+}
+.skill-bar--wrapper.skeleton,
+.info-card.skeleton {
+  border-color: hsl(12, 5%, 30%) !important;
+}
+.entity.skeleton {
+  opacity: 1;
 }
 .display-card--div.skeleton > .display-card {
   border-radius: 10px;
 }
-.skeleton-image {
+.skeleton-image,
+.skeleton-circle {
   background: hsl(12, 5%, 15%);
   position: relative;
   overflow: hidden;
 }
-.skeleton-image:after {
-  transform: translateX(-50%);
-  border-radius: 10px;
-  width: 70%;
-  height: 100%;
-  background: hsl(12, 5%, 16%);
-  -webkit-animation: translateLeftRight 0.4s ease-in-out infinite alternate;
-  animation: translateLeftRight 0.4s ease-in-out infinite alternate;
-}
-/*for info card*/
-.skeleton {
-  border-color: hsl(12, 5%, 30%) !important;
-  pointer-events: none;
-  /* opacity: 0.7; */
-}
-.info-card .skeleton-circle {
+.skeleton-circle {
   position: relative;
   top: 50%;
   left: 50%;
@@ -286,18 +279,6 @@ body[data-mobile-device='false'] .info-card:hover {
   width: 60px;
   height: 60px;
   border-radius: 50%;
-  background: hsl(12, 5%, 15%);
-  position: relative;
-  overflow: hidden;
-}
-.info-card .skeleton-circle:after {
-  transform: translateX(-50%);
-  border-radius: 10px;
-  width: 70%;
-  height: 100%;
-  background: hsl(12, 5%, 16%);
-  -webkit-animation: translateLeftRight 0.4s ease-in-out infinite alternate;
-  animation: translateLeftRight 0.4s ease-in-out infinite alternate;
 }
 .project--div .skeleton-text {
   background: hsl(12, 5%, 30%);

@@ -18,13 +18,13 @@
 }
 @keyframes original-state {
   to {
-    letter-spacing: normal;
+    top: 0;
     opacity: 1;
   }
 }
 @-webkit-keyframes original-state {
   to {
-    letter-spacing: normal;
+    top: 0;
     opacity: 1;
   }
 }
@@ -86,8 +86,9 @@
   }
 }
 .highlight-heading .animate-text {
+  position: relative;
+  top: 15px;
   opacity: 0;
-  letter-spacing: -7px;
   animation: original-state 0.7s ease-in-out 0.25s forwards;
   -webkit-animation: original-state 0.7s ease-in-out 0.25s forwards;
 }
