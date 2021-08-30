@@ -106,6 +106,6 @@ def slugify_title(instance, save=False, new_slug=None):
 
 
 def validate_range(rating):
-    if rating > 0 and rating < MAX_RATING:
+    if rating > 0 and rating <= MAX_RATING:
         return rating
     raise ValidationError(f'Rating can be between 0 to {MAX_RATING}')

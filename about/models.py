@@ -37,7 +37,7 @@ class Award(models.Model):
 class Skill(models.Model):
     id = models.UUIDField(default=uuid.uuid4, primary_key=True, unique=True, editable=False)
     profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
-    technology = models.OneToOneField(Technology, on_delete=models.CASCADE)
+    technology = models.ForeignKey(Technology, on_delete=models.CASCADE)
     rating = models.FloatField(
         verbose_name='Skill Rating', 
         validators=[validate_range], 
@@ -56,6 +56,7 @@ class Skill(models.Model):
         super(Skill, self).save(*args, **kwargs)
     
     class Meta:
+        unique_together = ('profile', 'technology')
         verbose_name_plural = 'User\'s Skill'
 
 
