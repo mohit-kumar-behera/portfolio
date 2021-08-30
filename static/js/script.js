@@ -186,16 +186,14 @@ class Model {
   renderSpinner() {
     this._clear();
     this._model.innerHTML = `
-      <div class="loader">
-        <div class="main-box">
-          <div>
-            <div class="box one"></div>
-            <div class="box two"></div>
-          </div>
-          <div>
-            <div class="box three"></div>
-            <div class="box four"></div>
-          </div>
+      <div class="d-flex flex-column">
+        <div class="d-flex mx-auto">
+          <div class="box one"></div>
+          <div class="box two"></div>
+        </div>
+        <div class="d-flex mx-auto">
+          <div class="box three"></div>
+          <div class="box four"></div>
         </div>
       </div>
     `;
