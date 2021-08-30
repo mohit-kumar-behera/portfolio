@@ -249,28 +249,6 @@ body[data-mobile-device='false'] .info-card:hover {
   font-weight: bold;
 }
 
-body[data-mobile-device='false'] .pagination .bttn:after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: var(--secondary-color);
-  opacity: 0;
-  border-radius: inherit;
-  transition: all 0.3s ease;
-  -webkit-transition: all 0.3s ease;
-  z-index: -1;
-}
-body[data-mobile-device='false'] .pagination .bttn:hover:after,
-body[data-mobile-device='false'] .pagination .bttn:focus:after {
-  opacity: 0.1;
-}
-.pagination .bttn:active {
-  opacity: 0.7;
-}
-
 /* Skeleton Component */
 /*for display card*/
 .display-card--div.skeleton {

@@ -10,38 +10,26 @@
 .pagination-controller:last-child {
   margin-left: 0.7rem;
 }
-.pagination-list--wrapper {
+.pagination--btn > span.icon {
+  font-size: 1.2rem;
   position: relative;
-  max-width: 162.5px; /* Fixed */
-  overflow-x: hidden;
+  top: 0.5px;
+  --margin: 0.4rem;
+}
+.pagination--btn.prev > span.icon {
+  margin-right: var(--margin);
+}
+.pagination--btn.next > span.icon {
+  margin-left: var(--margin);
+}
+.pagination--pagenum {
   align-self: center;
-}
-.pagination-list {
-  display: flex;
-  justify-content: start;
-  padding: 0;
-  margin-bottom: 0;
-}
-.pagination-item {
-  list-style-type: none;
-}
-.pagination .bttn {
-  position: relative;
-  padding: 0.2rem 1rem;
-  border-radius: 2px;
-  z-index: 0;
-}
-.pagination-controller--btn,
-.pagination-page--btn {
-  background: transparent;
+  padding: 0.2rem 0.6rem;
+  font-size: 1.2rem;
+  border-radius: 4px;
+  background-color: #ffffff10;
   color: var(--secondary-color);
-  font-size: 1rem;
 }
-.pagination-page--btn.active {
-  background: var(--secondary-color);
-  color: var(--light-shade1);
-}
-.pagination-controller--btn {
-  font-size: 1.8rem;
-  font-weight: 800;
+.pagination--pagenum > span {
+  margin: 0 0.15rem;
 }
