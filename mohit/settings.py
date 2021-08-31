@@ -152,4 +152,5 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'static/media')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+USER_ACCOUNT_EMAIL = env('USER_ACCOUNT_EMAIL')
 USER_ACCOUNT_PASSWORD = env('USER_ACCOUNT_PASSWORD')
