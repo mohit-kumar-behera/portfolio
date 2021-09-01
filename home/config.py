@@ -5,8 +5,8 @@ MAX_RATING = 5
 
 IMAGE_RESOLUTION = {
     'low': 20,
-    'normal': 40,
-    'high': 80,
+    'normal': 45,
+    'high': 95,
 }
 
 PATH_TO_LOGO = './static/media/image/mk-final.png'
