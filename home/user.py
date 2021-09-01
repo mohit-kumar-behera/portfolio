@@ -23,3 +23,14 @@ def get_user():
   return (user, profile)
 
 
+def get_profile(user=None):
+  profile = None
+  if not user:
+    return profile
+  try:
+    profile = Profile.objects.get(user=user)
+  except Profile.DoesNotExist:
+    pass
+  return profile
+
+

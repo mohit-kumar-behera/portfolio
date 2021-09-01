@@ -1,22 +1,19 @@
-{% extends 'base-1.html' %} {% load static %} 
-{% block title %}
+{% extends 'base-1.html' %} {% load static %} {% block title %}
 <title>Mohit Kumar</title>
-{% endblock title %} 
-{% block page-stylesheet %}
-<link rel="stylesheet" type="text/css" href="{% static 'css/home.css' %}?{% now 'U' %}"/>
-{% endblock page-stylesheet %} 
-{% block img-content %}
-<div class="blob">
-  {% include 'svg/blob.html' %}
-</div>
-<img
-  src="{% static 'media/image/mohit-3-c11.png' %}"
-  class="main-img lazy-img"
-  data-src="{% static 'media/image/mohit-3.png' %}"
-  alt="Mohit Kumar"
+{% endblock title %} {% block page-stylesheet %}
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="{% static 'css/home.css' %}?{% now 'U' %}"
 />
-{% endblock img-content %}
-{% block text-content %}
+{% endblock page-stylesheet %} {% block img-content %}
+<div class="blob">{% include 'svg/blob.html' %}</div>
+<img
+  src="{{ img.image_low_res.url }}"
+  class="main-img lazy-img"
+  data-src="{{ img.image_high_res.url }}"
+  alt="{{ profile.user.get_full_name }} profile image"/>
+{% endblock img-content %} {% block text-content %}
 <div class="content">
   <h5 class="focus">HI THERE !</h5>
   <h1 class="highlight-heading focus">
@@ -24,8 +21,8 @@
   </h1>
 </div>
 
-<div class="content">
-  <p>What is Lorem Ipsum Lorem Ipsum is simply dummy text of the printing and typesetting industry Lorem Ipsum has been the industry's standard dummy text ever since the 1500s when an unknown printer took a galley of type and scrambled it to make a type specimen book it has.</p>
+<div class="content" id="profile-bio">
+  <p>{{ profile.bio }}</p>
   <div class="skeleton-content-loader">
     <div class="skeleton-text w-full"></div>
     <div class="skeleton-text w-full"></div>
@@ -42,5 +39,4 @@
   </button>
 </div>
 
-{% include 'home/snippets/pallete.html' %}
-{% endblock text-content %}
+{% include 'home/snippets/pallete.html' %} {% endblock text-content %}

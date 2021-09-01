@@ -10,6 +10,9 @@ urlpatterns = [
     path('about/', include('about.urls')),
     path('', include('home.urls')),
     path('project/', include('project.urls')),
+
+    # REST API
+    path('api/home/', include('home.api.urls')),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
