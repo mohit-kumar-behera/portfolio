@@ -458,7 +458,7 @@ const activateContactPageScript = function (user) {
   const validateInputFields = function () {
     const inputFields = [...userInputFields];
     const emailRegex =
-      /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+      /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]{2,})*$/;
     let valid = false;
 
     // It counts the number of fields that are in valid range mentioned respectively

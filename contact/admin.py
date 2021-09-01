@@ -22,7 +22,7 @@ class SocialAccountAdmin(admin.ModelAdmin):
     ordering = ('profile',)
 
 class MessageAdmin(admin.ModelAdmin):
-    list_display = ('profile', 'name', 'subject', 'date_posted')
+    list_display = ('profile', 'name', 'email', 'subject', 'date_posted')
     list_filter = ('profile', 'date_posted')
     search_fields = ('profile', 'name', 'subject')
     ordering = ('-date_posted',)

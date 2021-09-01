@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from contact.models import Contact, SocialAccount
+from contact.models import Contact, SocialAccount, Message
 
 
 class ContactSerializer(serializers.ModelSerializer):
@@ -27,4 +27,18 @@ class SocialAccountSerializer(serializers.ModelSerializer):
     return {
       'id': social_account.profile.id,
       'username': social_account.profile.user.username
+    }
+
+
+class MessageSerializer(serializers.ModelSerializer):
+  profile = serializers.SerializerMethodField()
+
+  class Meta:
+    model = Message
+    fields = '__all__' 
+  
+  def get_profile(self, message_obj):
+    return {
+      'id': message_obj.profile.id,
+      'username': message_obj.profile.user.username
     }
