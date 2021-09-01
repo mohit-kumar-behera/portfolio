@@ -31,4 +31,7 @@ class ProfileImageSerializer(serializers.ModelSerializer):
     fields = '__all__'
   
   def get_profile(self, profile_img):
-    return profile_img.profile.user.username
+    return {
+      'id': profile_img.profile.id,
+      'username': profile_img.profile.user.username
+    }
