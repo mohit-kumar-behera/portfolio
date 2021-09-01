@@ -24,6 +24,7 @@ section.normal-container .page-header .secondary--type::before {
   background: var(--secondary-color);
   border-radius: 100px;
   z-index: -1;
+  -webkit-transition: all 0.2s ease-out;
   transition: all 0.2s ease-out;
 }
 body[data-mobile-device='true']

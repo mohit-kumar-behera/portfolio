@@ -1,18 +1,11 @@
 @keyframes rotateBlob {
-  0% {
-    transform: translate(-50%, -50%) rotate(0);
-    -webkit-transform: translate(-50%, -50%) rotate(0);
-  }
-  100% {
-    transform: translate(-50%, -50%) rotate(360deg);
+  to {
     -webkit-transform: translate(-50%, -50%) rotate(360deg);
+    transform: translate(-50%, -50%) rotate(360deg);
   }
 }
 @-webkit-keyframes rotateBlob {
-  0% {
-    -webkit-transform: translate(-50%, -50%) rotate(0);
-  }
-  100% {
+  to {
     -webkit-transform: translate(-50%, -50%) rotate(360deg);
   }
 }
@@ -66,9 +59,11 @@
   position: relative;
   top: 35%;
   left: 50%;
-  transform: translate(-50%, -50%);
-  animation: rotateBlob 15s linear infinite;
-  -webkit-animation: rotateBlob 15s linear infinite;
+  /* transform: translate(-50%, -50%); */
+  -webkit-transform: translate(-50%, -50%) rotate(0);
+  transform: translate(-50%, -50%) rotate(0);
+  -webkit-animation: rotateBlob 7s linear infinite;
+  animation: rotateBlob 7s linear infinite;
 }
 @media screen and (min-width: 768px) {
   .highlight-heading {
@@ -87,8 +82,8 @@
 }
 .highlight-heading .animate-text {
   position: relative;
-  top: 15px;
+  top: 20px;
   opacity: 0;
-  animation: original-state 0.7s ease-in-out 0.25s forwards;
   -webkit-animation: original-state 0.7s ease-in-out 0.25s forwards;
+  animation: original-state 0.7s ease-in-out 0.25s forwards;
 }
