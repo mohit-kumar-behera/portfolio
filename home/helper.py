@@ -9,6 +9,26 @@ from home.config import (
 from PIL import Image
 import uuid, random
 
+# create response object
+def create_response_obj(success, data=None, error=None):
+    return {
+        'success': success,
+        'data': data,
+        'error': error
+    }
+
+
+# create http status response
+def create_404_response(data=None, message='Sorry! Couldn\'t find anything related to your search'):
+    return create_response_obj(False, data, {'code': 404, 'message': message})
+
+
+# create http status response
+def create_200_response(data):
+    return create_response_obj(True, data, None)
+
+
+# set the image directory path based on model name
 def image_directory_path(instance, filename):
     """ Set path for image """
     extension = filename.split('.')[1]

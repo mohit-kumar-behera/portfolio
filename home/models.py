@@ -56,6 +56,8 @@ class Profile(models.Model):
         return self.user.email
     
     def get_age(self):
+        if not self.date_of_birth:
+            return None
         present_year = int(datetime.datetime.now().strftime('%Y'))
         birth_year = int(self.date_of_birth.strftime('%Y'))
         return present_year - birth_year
