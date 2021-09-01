@@ -12,9 +12,6 @@ from contact.models import Contact, Message, SocialAccount
 from contact.api.serializers import ContactSerializer, MessageSerializer, SocialAccountSerializer
 import uuid, re
 
-from django.contrib.auth import get_user_model
-User=get_user_model()
-
 EMAIL_REGEX = re.compile(r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b')
 VALID_FIELD_GUIDE = {
   'Name': {
