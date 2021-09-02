@@ -4,6 +4,7 @@ from contact.models import Contact, SocialAccount, Message
 
 class ContactSerializer(serializers.ModelSerializer):
   profile = serializers.SerializerMethodField()
+  type = serializers.SerializerMethodField()
 
   class Meta:
     model = Contact
@@ -14,10 +15,14 @@ class ContactSerializer(serializers.ModelSerializer):
       'id': contact.profile.id,
       'username': contact.profile.user.username
     }
+  
+  def get_type(self, contact):
+    return contact.get_type_display()
 
 
 class SocialAccountSerializer(serializers.ModelSerializer):
   profile = serializers.SerializerMethodField()
+  name = serializers.SerializerMethodField()
 
   class Meta:
     model = SocialAccount
@@ -28,6 +33,9 @@ class SocialAccountSerializer(serializers.ModelSerializer):
       'id': social_account.profile.id,
       'username': social_account.profile.user.username
     }
+  
+  def get_name(self, social_account):
+    return social_account.get_name_display()
 
 
 class MessageSerializer(serializers.ModelSerializer):
