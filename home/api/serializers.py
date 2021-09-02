@@ -7,7 +7,7 @@ User=get_user_model()
 class UserSerializer(serializers.ModelSerializer):
   class Meta:
     model = User
-    fields = ['email', 'username', 'first_name', 'last_name']
+    fields = ('email', 'username', 'first_name', 'last_name')
 
 
 class ProfileSerializer(serializers.ModelSerializer):
@@ -16,7 +16,7 @@ class ProfileSerializer(serializers.ModelSerializer):
   
   class Meta:
     model = Profile
-    exclude = ['mentor']
+    exclude = ('mentor',)
   
   def get_age(self, profile):
     age = profile.get_age()

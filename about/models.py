@@ -5,6 +5,10 @@ from home.helper import image_directory_path, validate_range
 from ckeditor.fields import RichTextField
 import uuid
 
+MONTHS_IN_YEAR = 12
+DAYS_IN_MONTH = 30
+SECS_IN_MONTH = DAYS_IN_MONTH * 24  * 60 * 60  
+
 SECONDARY_SCHOOL= 'S'
 HIGHER_SECONDARY_SCHOOL = 'HS'
 UNDER_GRADUATE = 'UG'
@@ -90,7 +94,12 @@ class Education(ExperienceDetail):
 
     class Meta:
         verbose_name_plural = 'Education'
-
+    
+    def format_time_duration(self):
+        joining_year = int(self.start_date.strftime('%Y'))
+        leaving_year = int(self.end_date.strftime('%Y'))
+        return f'{joining_year} - {leaving_year}'
+    
 
 class Work(ExperienceDetail):
     position = models.CharField(verbose_name='Work Position', max_length=60)
@@ -100,3 +109,10 @@ class Work(ExperienceDetail):
     class Meta:
         verbose_name_plural = 'Work Experience'
 
+    def format_time_duration(self):
+        start_date, end_date = self.start_date, self.end_date
+        time_interval = end_date - start_date
+        month_interval = time_interval.total_seconds() / SECS_IN_MONTH
+        if month_interval > MONTHS_IN_YEAR:
+            return round(month_interval / MONTHS_IN_YEAR, 1) 
+        return round(month_interval, 0)
