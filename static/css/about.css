@@ -20,16 +20,6 @@
   margin-bottom: 0.8rem;
   font-family: var(--font-primary);
 }
-@media screen and (min-width: 992px) {
-  .entity {
-    width: 50%;
-  }
-}
-@media screen and (max-width: 992px) {
-  .entity {
-    width: 100%;
-  }
-}
 .entity .key {
   color: #ffffff90;
   text-transform: capitalize;
@@ -61,6 +51,9 @@
   padding: 2.5rem;
 }
 @media screen and (min-width: 992px) {
+  .entity {
+    width: 50%;
+  }
   .about-education--div > .div--left {
     display: block;
     width: 50%;
@@ -70,6 +63,9 @@
   }
 }
 @media screen and (max-width: 992px) {
+  .entity {
+    width: 100%;
+  }
   .about-education--div > .div--left {
     display: none;
   }
