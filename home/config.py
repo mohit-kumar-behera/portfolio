@@ -9,4 +9,4 @@ IMAGE_RESOLUTION = {
     'high': 95,
 }
 
-PATH_TO_LOGO = './static/media/image/mk-final.png'
+PATH_TO_LOGO = './static/media/logo/mk-final.png'
