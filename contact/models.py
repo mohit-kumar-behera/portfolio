@@ -87,6 +87,7 @@ class SocialAccount(models.Model):
         return f'{self.profile} {self.name}'  
 
     class Meta:
+        unique_together = ('profile', 'name')
         verbose_name_plural = 'Social Account'
 
 
