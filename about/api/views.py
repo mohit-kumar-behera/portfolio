@@ -6,10 +6,11 @@ from home.helper import (
   create_400_response
 ) 
 from home.user import get_user, get_profile
-from about.models import Education, Work, Skill
+from about.models import Award, Education, Work, Skill
 from about.api.serializers import (
   EducationSerializer, WorkExperienceSerializer,
-  WorkExperienceDetailSerializer, SkillSerializer
+  WorkExperienceDetailSerializer, SkillSerializer,
+  AwardSerializer
 )
 
 
@@ -86,3 +87,38 @@ def api_skill_view(request):
     return Response(response, status=status.HTTP_404_NOT_FOUND)
 
 
+@api_view(['GET'])
+def api_award_view(request):
+  profile = get_profile(user=get_user())
+  if request.method == 'GET':
+    if profile:
+      try:
+        user_awards = Award.objects.filter(profile=profile)
+      except:
+        response = create_404_response()
+        return Response(response, status=status.HTTP_404_NOT_FOUND) 
+      else:
+        serializer = AwardSerializer(user_awards, many=True)
+        response = create_200_response(data=serializer.data)
+        return Response(response, status=status.HTTP_200_OK)
+    response = create_404_response()
+    return Response(response, status=status.HTTP_404_NOT_FOUND)
+
+
+@api_view(['GET'])
+def api_award_detail_view(request, id):
+  profile = get_profile(user=get_user())
+  if request.method == 'GET':
+    if profile:
+      try:
+        user_awards = Award.objects.filter(profile=profile)
+        user_awards_detail = user_awards.get(id=id)
+      except:
+        response = create_404_response()
+        return Response(response, status=status.HTTP_404_NOT_FOUND)
+      else:
+        serializer = AwardSerializer(user_awards_detail, many=False)
+        response = create_200_response(data=serializer.data)
+        return Response(response, status=status.HTTP_200_OK)
+    response = create_404_response()
+    return Response(response, status=status.HTTP_404_NOT_FOUND)

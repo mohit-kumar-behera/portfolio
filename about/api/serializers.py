@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from about.models import Education, Work, Skill
+from about.models import Award, Education, Work, Skill
 
 
 class EducationSerializer(serializers.ModelSerializer):
@@ -65,3 +65,18 @@ class SkillSerializer(serializers.ModelSerializer):
   
   def get_technology(self, skill):
     return skill.technology.name
+
+
+class AwardSerializer(serializers.ModelSerializer):
+  profile = serializers.SerializerMethodField()
+
+  class Meta:
+    model = Award
+    fields = '__all__'
+
+  def get_profile(self, award):
+    return {
+      'id': award.profile.id,
+      'username': award.profile.user.username
+    }
+  
