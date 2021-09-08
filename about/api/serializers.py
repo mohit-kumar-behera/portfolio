@@ -1,6 +1,5 @@
 from rest_framework import serializers
 from about.models import Education, Work, Skill
-from home.api.serializers import TechnologySerializer
 
 
 class EducationSerializer(serializers.ModelSerializer):
