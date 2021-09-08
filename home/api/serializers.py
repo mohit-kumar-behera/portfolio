@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from django.contrib.auth import get_user_model
-from home.models import Profile, ProfileImage
+from home.models import Profile, ProfileImage, Technology
 User=get_user_model()
 
 
@@ -35,3 +35,9 @@ class ProfileImageSerializer(serializers.ModelSerializer):
       'id': profile_img.profile.id,
       'username': profile_img.profile.user.username
     }
+
+
+class TechnologySerializer(serializers.ModelSerializer):
+  class Meta:
+    model = Technology
+    fields = '__all__'
