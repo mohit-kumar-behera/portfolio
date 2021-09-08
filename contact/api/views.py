@@ -6,8 +6,11 @@ from home.helper import (
   create_400_response
 ) 
 from home.user import get_user, get_profile
-from contact.models import Contact, Message, SocialAccount
-from contact.api.serializers import ContactSerializer, MessageSerializer, SocialAccountSerializer
+from contact.models import Address, Contact, Message, SocialAccount
+from contact.api.serializers import (
+  AddressSerializer, ContactSerializer, 
+  MessageSerializer, SocialAccountSerializer
+)
 import uuid, re
 
 EMAIL_REGEX = re.compile(r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b')
@@ -86,12 +89,12 @@ def api_social_acccount_view(request):
   if request.method == 'GET':
     if profile:
       try:
-        social_account = SocialAccount.objects.filter(profile=profile)
+        user_social_account = SocialAccount.objects.filter(profile=profile)
       except:
         response = create_404_response()
         return Response(response, status=status.HTTP_404_NOT_FOUND)
       else:
-        serializer = SocialAccountSerializer(social_account, many=True)
+        serializer = SocialAccountSerializer(user_social_account, many=True)
         response = create_200_response(data=serializer.data)
         return Response(response, status=status.HTTP_200_OK)
     response = create_404_response()
@@ -104,13 +107,50 @@ def api_social_acccount_detail_view(request, type):
   if request.method == 'GET':
     if profile:
       try:
-        social_account = SocialAccount.objects.filter(profile=profile)
-        social_account__by_type = social_account.get(name=type)
+        user_social_account = SocialAccount.objects.filter(profile=profile)
+        user_social_account__by_type = user_social_account.get(name=type)
       except:
         response = create_404_response()
         return Response(response, status=status.HTTP_404_NOT_FOUND)
       else:
-        serializer = SocialAccountSerializer(social_account__by_type, many=False)
+        serializer = SocialAccountSerializer(user_social_account__by_type, many=False)
+        response = create_200_response(data=serializer.data)
+        return Response(response, status=status.HTTP_200_OK)
+    response = create_404_response()
+    return Response(response, status=status.HTTP_404_NOT_FOUND)
+
+
+@api_view(['GET'])
+def api_address_view(request):
+  profile = get_profile(user=get_user())
+  if request.method == 'GET':
+    if profile:
+      try:
+        user_address = Address.objects.filter(profile=profile)
+      except:
+        response = create_404_response()
+        return Response(response, status=status.HTTP_404_NOT_FOUND)
+      else:
+        serializer = AddressSerializer(user_address, many=True)
+        response = create_200_response(data=serializer.data)
+        return Response(response, status=status.HTTP_200_OK)
+    response = create_404_response()
+    return Response(response, status=status.HTTP_404_NOT_FOUND)
+
+
+@api_view(['GET'])
+def api_address_detail_view(request, type):
+  profile = get_profile(user=get_user())
+  if request.method == 'GET':
+    if profile:
+      try:
+        user_address = Address.objects.filter(profile=profile)
+        user_address__by_type = user_address.get(type=type)
+      except:
+        response = create_404_response()
+        return Response(response, status=status.HTTP_404_NOT_FOUND)
+      else:
+        serializer = AddressSerializer(user_address__by_type, many=False)
         response = create_200_response(data=serializer.data)
         return Response(response, status=status.HTTP_200_OK)
     response = create_404_response()

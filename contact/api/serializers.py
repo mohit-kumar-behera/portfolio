@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from contact.models import Contact, SocialAccount, Message
+from contact.models import Address, Contact, SocialAccount, Message
 
 
 class ContactSerializer(serializers.ModelSerializer):
@@ -50,3 +50,20 @@ class MessageSerializer(serializers.ModelSerializer):
       'id': message_obj.profile.id,
       'username': message_obj.profile.user.username
     }
+
+class AddressSerializer(serializers.ModelSerializer):
+  profile = serializers.SerializerMethodField()
+  type = serializers.SerializerMethodField()
+
+  class Meta:
+    model = Address
+    fields = '__all__'
+  
+  def get_profile(self, message_obj):
+    return {
+      'id': message_obj.profile.id,
+      'username': message_obj.profile.user.username
+    }
+  
+  def get_type(self, address):
+    return address.get_type_display()
