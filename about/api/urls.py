@@ -5,6 +5,7 @@ from about.api import views
 app_name = 'about_api'
 
 urlpatterns = [
+    path('', views.api_user_short_bio_view, name='get_short_bio'),
     path('education/', views.api_education_view, name='get_education'),
     path('work-experience/', views.api_experience_view, name='get_experience'),
     path('work-experience/c/<str:company>', views.api_experience_detail_view, name='get_experience_detail'),

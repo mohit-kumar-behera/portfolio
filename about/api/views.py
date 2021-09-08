@@ -10,8 +10,20 @@ from about.models import Award, Education, Work, Skill
 from about.api.serializers import (
   EducationSerializer, WorkExperienceSerializer,
   WorkExperienceDetailSerializer, SkillSerializer,
-  AwardSerializer
+  AwardSerializer, ShortBioSerializer
 )
+
+
+@api_view(['GET'])
+def api_user_short_bio_view(request):
+  profile = get_profile(user=get_user())
+  if request.method == 'GET':
+    if profile:
+      serializer = ShortBioSerializer(profile, many=False)
+      response = create_200_response(serializer.data)
+      return Response(response, status=status.HTTP_200_OK)
+    response = create_404_response()
+    return Response(response, status=status.HTTP_404_NOT_FOUND)
 
 
 @api_view(['GET'])

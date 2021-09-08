@@ -1,5 +1,48 @@
 from rest_framework import serializers
+from home.models import Profile
+from home.api.serializers import UserSerializer
 from about.models import Award, Education, Work, Skill
+
+
+from contact.models import Contact, Address
+
+class ShortBioSerializer(serializers.ModelSerializer):
+  user = UserSerializer(many=False)
+  other_info = serializers.SerializerMethodField()
+
+  class Meta:
+    model = Profile
+    exclude = ('bio', 'mentor')
+  
+  def get_other_info(self, profile):
+    age = profile.get_age()
+    try:
+      home_address = profile.address_set.get(type='homes')
+    except Address.DoesNotExist:
+      home_address = None
+    else:
+      home_address = {
+        'nationality': home_address.country,
+        'locality': f'{home_address.city}, {home_address.state}',
+        'url': home_address.mapURL
+      }
+    
+    try:
+      phone = profile.contact_set.get(type='phone')
+    except Contact.DoesNotExist:
+      phone = None
+    else:
+      phone = {
+        'value': phone.value,
+        'url': phone.url
+      }
+      
+    return {
+      'age': age,
+      'address': home_address,
+      'phone': phone
+    }
+    
 
 
 class EducationSerializer(serializers.ModelSerializer):
