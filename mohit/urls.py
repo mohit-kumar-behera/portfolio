@@ -14,7 +14,8 @@ urlpatterns = [
     # REST API
     path('api/user/', include('home.api.urls')),
     path('api/user/about/', include('about.api.urls')),
-    path('api/user/contact/', include('contact.api.urls'))
+    path('api/user/contact/', include('contact.api.urls')),
+    path('api/user/project/', include('project.api.urls')),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
