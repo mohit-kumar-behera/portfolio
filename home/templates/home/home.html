@@ -23,14 +23,9 @@
 
 <div class="content" id="profile-bio">
   <p>{{ profile.bio }}</p>
-  <div class="skeleton-content-loader">
-    <div class="skeleton-text w-full"></div>
-    <div class="skeleton-text w-full"></div>
-    <div class="skeleton-text w-full"></div>
-  </div>
 </div>
 
-<div class="content mt-5">
+<div class="content">
   <button
     class="bttn call-to-action secondary--type"
     onclick="window.location.href=`{% url 'about:about' %}`"
