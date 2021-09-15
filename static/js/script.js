@@ -1,9 +1,8 @@
 'use strict';
 
-import detectMobile from '../js/modules/Mobile.js';
+import * as func from './helper.js';
 import user from '../js/modules/MohitInfo.js';
 import { loadImg, createImg } from '../js/modules/LoadCreateImg.js';
-import typewriter from '../js/modules/Typewriter.js';
 import {
   buildThemePickerModelBody,
   buildAccountCard,
@@ -13,139 +12,6 @@ import {
   buildExperienceCard,
   buildAwardCard,
 } from '../js/modules/Build.js';
-
-// Common DOM Selector for all Pages
-const navbar = document.querySelector('.navbar');
-const navbarTogglerBtn = document.querySelector('.navbar-toggler');
-
-const overlay = document.querySelector('.overlay');
-const normalModelView = document.querySelector('.normal-model-view');
-const imgModelView = document.querySelector('.img-model-view');
-
-const themePicker = document.querySelector('.theme-picker');
-const themePickerModelBtn = document.querySelector('.theme-picker--btn');
-
-/* home page */
-// const contentContainer = document.querySelector('.content-container');
-// const usernameSpan = document.querySelector('.username');
-/* end of home page */
-
-/* contact page */
-// const contactForm = document.getElementById('contact-form');
-// const userInputFields = document.querySelectorAll('.user-input');
-// const sendMssgBtn = document.querySelector('.send-message--btn');
-// const socialAccountContainer = document.querySelector('.social-link--wrapper');
-/* end of contact page */
-
-/* about page */
-// const personalInfoContainer = document.querySelector('.about-me--content');
-// const aboutEducationContainer = document.querySelector('.about-education--content');
-// const aboutSkillsContainer = document.querySelector('.about-skills--content');
-// const aboutExperienceContainer = document.querySelector('.about-experience--content');
-// const aboutAwardsContainer = document.querySelector('.about-awards--content');
-/* end of about page */
-
-let currPage, isMobile, modelCl;
-const init = () => {
-  let currPage = '';
-  let isMobile = '';
-  let modelCl = undefined;
-};
-
-// Check which page is currently active and set currPage as the current active page
-const setCurrPage = () =>
-  (currPage = location.pathname.split('/')[1] || 'home');
-
-// class User {
-// 	url = '/fetch-mohit/';
-// 	firstName;
-
-// 	constructor() {
-// 		console.log(this)
-// 		this._fetchMohitData(this.url);
-// 			// .then(res => {
-// 			// 	this.firstName = res.firstName;
-// 			// 	this.lastName = res.lastName;
-// 			// 	this.contact = res.contact;
-// 			// });
-// 		console.log(this)
-// 	}
-
-// 	// _fetchMohitData(url) {
-// 	// 	fetch(url)
-// 	// 		.then(response => response.json())
-// 	// 		.then(data => {
-// 	// 			this.firstName = data.firstName;
-// 	// 			this.lastName = data.lastName;
-// 	// 			this.contact = data.contact;
-// 	// 		});
-// 	// }
-
-// 	_set(data) {
-// 		console.log(this)
-// 		this.firstName = data.firstName;
-// 		this.lastName = data.lastName;
-// 		this.contact = data.contact;
-// 		console.log(this.firstName);
-
-// 		console.log(this.getFullName(data));
-// 	}
-
-// 	async _fetchMohitData(url) {
-// 		try {
-// 			const response = await fetch(url);
-// 			if (!response.ok) throw new Error('Something went wrong')
-// 			const data = await response.json();
-// 			this.firstName = data.firstName;
-// 			this.lastName = data.lastName;
-// 			this.contact = data.contact;
-// 			this._set(data)
-// 			return data;
-// 		} catch (err) {
-// 			console.log(err);
-// 		}
-// 	}
-
-// 	getFullName(obj) {
-// 		return `${obj.firstName} ${obj.lastName}`;
-// 	}
-
-// 	getContact(obj, type) {
-// 		return this.contact[type];
-// 	}
-// }
-
-// // const userObj = async function() {
-// // 	const user_1 = await new User();
-// // 	// console.log(user_1.getFullName())
-// // 	const mohit = await user_1.getFullName();
-// // 	// console.log(mohit);
-// // }
-// // userObj();
-// const user_1 = new User();
-// user_1._fetchMohitData(user_1.url)
-// 	.then(res => res)
-// 	.then(data => {
-
-// 		let m = user_1.getContact(data, 'phone');
-// 		console.log(m)
-// 	});
-// console.log("here: ", user_1)
-
-// const user_2 = new User();
-// user_2.getUserObj()
-// 	.then(res => res)
-// 	.then(data => {
-// 		console.log(data.getFullName());
-// 	})
-
-// console.log(user_1.firstName);
-
-// const url = '/fetch-mohit/';
-
-// fetch(url)
-// 	.then(res => res.json())
-// 	.then(data => console.log(data));
 
 /* ------------------- Required in All Pages ------------------------- */
 
@@ -245,17 +111,8 @@ class Model {
 }
 
 const activateDefaultPageScript = function (currPage, isMobile, modelCl) {
-  // Add active class to the navlink
-  const setActivePageNavLink = function (page) {
-    document.querySelector('a.nav-link.active')?.classList.remove('active');
-    document
-      .querySelector(`a.nav-link[data-path='${page}']`)
-      ?.classList.add('active');
-  };
-
-  // Add "mobile-device" attribute to body
-  const addMobileAttr = isMobile =>
-    document.body.setAttribute('data-mobile-device', isMobile);
+  const navbar = document.querySelector('.navbar');
+  const navbarTogglerBtn = document.querySelector('.navbar-toggler');
 
   const toggleNavbar = function () {
     /* open close the navbar */
@@ -264,7 +121,6 @@ const activateDefaultPageScript = function (currPage, isMobile, modelCl) {
     if (navbar.classList.contains('open')) navbar.classList.remove('open');
     else navbar.classList.add('open');
   };
-
   navbarTogglerBtn.addEventListener('click', toggleNavbar);
 
   document.body.addEventListener('keyup', function (e) {
@@ -276,24 +132,12 @@ const activateDefaultPageScript = function (currPage, isMobile, modelCl) {
     }
   });
 
-  const handleActiveThemeClass = function (activeTheme) {
-    /* Add active class to current Theme button */
-    document
-      .querySelectorAll('.theme-picker:not(.from-model) .color--btn')
-      ?.forEach(btn => btn.classList.remove('active'));
-    document
-      .querySelector(
-        `.theme-picker:not(.from-model) .color--btn[data-color='${activeTheme}']`
-      )
-      ?.classList.add('active');
-  };
+  const overlay = document.querySelector('.overlay');
+  const normalModelView = document.querySelector('.normal-model-view');
+  const imgModelView = document.querySelector('.img-model-view');
 
-  const setTheme = function (color) {
-    /* Update the Theme Pattern */
-    localStorage.setItem('theme-color', color);
-    document.documentElement.style.setProperty('--secondary-color', color);
-    currPage === 'home' && handleActiveThemeClass(color);
-  };
+  const themePicker = document.querySelector('.theme-picker');
+  const themePickerModelBtn = document.querySelector('.theme-picker--btn');
 
   const handleThemePickerBtn = function (e) {
     /* Handle Theme Picker Button to update theme */
@@ -303,18 +147,9 @@ const activateDefaultPageScript = function (currPage, isMobile, modelCl) {
     elem.blur();
 
     const color = elem.dataset.color;
-    setTheme(color);
+    func.setTheme(color, currPage);
   };
   themePicker?.addEventListener('click', handleThemePickerBtn);
-
-  const checkActiveTheme = function () {
-    if (localStorage.getItem('theme-color')) {
-      setTheme(localStorage.getItem('theme-color'));
-    } else {
-      localStorage.setItem('theme-color', '#fa1e0e');
-      setTheme(localStorage.getItem('theme-color'));
-    }
-  };
 
   // Handle Theme Picker Button from Model
   themePickerModelBtn.addEventListener('click', function (e) {
@@ -406,39 +241,9 @@ const activateDefaultPageScript = function (currPage, isMobile, modelCl) {
       `;
     modelCl.render(dataBody, dataHead);
   });
-
-  currPage = setCurrPage();
-  isMobile = detectMobile();
-  setActivePageNavLink(currPage);
-  checkActiveTheme();
-  addMobileAttr(isMobile);
 };
 
 /* ---------------------- End of Default Page Script ----------------------- */
-
-/*-------------- Required only in home page -------------------- */
-
-const activateHomePageScript = function (user) {
-  // Home Page DOM Selector
-  const contentContainer = document.querySelector('.content-container');
-  const usernameSpan = document.querySelector('.username');
-
-  const setUsername = function (fullName) {
-    const username = fullName.toUpperCase();
-    const writerSpeed = 115; // in millisecond
-    const screenWidth =
-      document.documentElement.clientWidth || window.screen.width;
-
-    screenWidth <= 992
-      ? (usernameSpan.textContent = username)
-      : setTimeout(function () {
-          typewriter(username, usernameSpan, writerSpeed);
-        }, 250);
-  };
-
-  // setUsername(user.getFullName());
-};
-/*--------------- End of home page ----------------------*/
 
 /*------------------ Required only in Contact page ----------------------------*/
 
@@ -731,29 +536,110 @@ const startIntersectionObserver = function () {
   lazyImgElem.forEach(elem => lazyImgObserver.observe(elem));
 };
 
-window.addEventListener('load', function () {
-  setTimeout(function () {
-    init();
-    activateDefaultPageScript(currPage, isMobile, modelCl);
+/* -------------------------------------------------------------------------------------------------- */
 
-    switch (currPage) {
-      case 'home':
-        activateHomePageScript(user);
-        break;
-      case 'contact':
-        activateContactPageScript(user);
-        break;
-      case 'about':
-        activateAboutPageScript(user);
-        break;
-      case 'project':
-        activateProjectPageScript(user);
-        break;
-    }
+class App {
+  _currPage;
+  _isMobile;
+  _modelCl;
 
-    document.querySelector('.loader').remove();
-    document.getElementById('main-body').style.display = 'block';
+  constructor() {
+    this._initialize();
+    this._setMobileDevice();
+    this._setPageTheme();
+  }
 
-    startIntersectionObserver();
-  }, 400);
-});
+  _initialize() {
+    this._currPage = '';
+    this._isMobile = '';
+    this._modelCl = null;
+  }
+
+  _setCurrPage() {
+    this._currPage = location.pathname.split('/')[1] || 'home';
+  }
+
+  _setMobileDevice() {
+    this._isMobile = func.detectMobile();
+    this._addMobileAttribute();
+  }
+
+  _setActivePageNavLink() {
+    document.querySelector('a.nav-link.active')?.classList.remove('active');
+    document
+      .querySelector(`a.nav-link[data-path='${this._currPage}']`)
+      ?.classList.add('active');
+  }
+
+  _setPageTheme() {
+    if (!this._currPageTheme) localStorage.setItem('theme-color', '#fa1e0e');
+    func.setTheme(this._currPageTheme, this._currPage);
+  }
+
+  _addMobileAttribute() {
+    document.body.setAttribute('data-mobile-device', this._isMobile);
+  }
+
+  get _currPageTheme() {
+    return localStorage.getItem('theme-color');
+  }
+
+  init() {
+    window.addEventListener('load', () => {
+      this._setCurrPage();
+      this._setActivePageNavLink();
+
+      activateDefaultPageScript(this._currPage, this._isMobile, this._modelCl);
+
+      switch (this._currPage) {
+        case 'contact':
+          activateContactPageScript(user);
+          break;
+        case 'about':
+          activateAboutPageScript(user);
+          break;
+        case 'project':
+          activateProjectPageScript(user);
+          break;
+      }
+
+      document.querySelector('.loader').remove();
+      document.getElementById('main-body').style.display = 'block';
+
+      startIntersectionObserver();
+    });
+  }
+}
+const app = new App();
+app.init();
+
+// Common DOM Selector for all Pages
+// const navbar = document.querySelector('.navbar');
+// const navbarTogglerBtn = document.querySelector('.navbar-toggler');
+
+// const overlay = document.querySelector('.overlay');
+// const normalModelView = document.querySelector('.normal-model-view');
+// const imgModelView = document.querySelector('.img-model-view');
+
+// const themePicker = document.querySelector('.theme-picker');
+// const themePickerModelBtn = document.querySelector('.theme-picker--btn');
+
+/* home page */
+// const contentContainer = document.querySelector('.content-container');
+// const usernameSpan = document.querySelector('.username');
+/* end of home page */
+
+/* contact page */
+// const contactForm = document.getElementById('contact-form');
+// const userInputFields = document.querySelectorAll('.user-input');
+// const sendMssgBtn = document.querySelector('.send-message--btn');
+// const socialAccountContainer = document.querySelector('.social-link--wrapper');
+/* end of contact page */
+
+/* about page */
+// const personalInfoContainer = document.querySelector('.about-me--content');
+// const aboutEducationContainer = document.querySelector('.about-education--content');
+// const aboutSkillsContainer = document.querySelector('.about-skills--content');
+// const aboutExperienceContainer = document.querySelector('.about-experience--content');
+// const aboutAwardsContainer = document.querySelector('.about-awards--content');
+/* end of about page */
