@@ -9,9 +9,9 @@
 {% endblock page-stylesheet %} {% block img-content %}
 <div class="blob">{% include 'svg/blob.html' %}</div>
 <img
-  src="{{ img.image_low_res.url }}"
+  src="{{ profile.profileimage.image_low_res.url }}"
   class="main-img lazy-img"
-  data-src="{{ img.image_high_res.url }}"
+  data-src="{{ profile.profileimage.image_high_res.url }}"
   alt="{{ profile.user.get_full_name }} profile image"/>
 {% endblock img-content %} {% block text-content %}
 <div class="content">
