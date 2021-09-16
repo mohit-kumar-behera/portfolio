@@ -2,7 +2,7 @@ from django.contrib import admin
 from home.models import (
     Profile, ProfileImage, 
     Technology, Mentor, 
-    MentorChannel, QuickLink
+    MentorChannel
 )
 
 class ProfileAdmin(admin.ModelAdmin):
@@ -31,17 +31,11 @@ class MentorChannelAdmin(admin.ModelAdmin):
     ordering = ('mentor',)
 
 
-class QuickLinkAdmin(admin.ModelAdmin):
-    list_display = ('name', 'highlight')
-    list_filter = ('highlight',)
-
-
 admin.site.register(Technology, TechnologyAdmin)
 admin.site.register(Profile, ProfileAdmin)
 admin.site.register(ProfileImage, ProfileImageAdmin)
 admin.site.register(Mentor, MentorAdmin)
 admin.site.register(MentorChannel, MentorChannelAdmin)
-admin.site.register(QuickLink, QuickLinkAdmin)
 
 
 
