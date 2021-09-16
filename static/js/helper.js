@@ -21,8 +21,15 @@ export const detectMobile = function () {
     /Windows Phone/i,
   ];
 
-  return mobileOS.some(os => {
-    return navigator.userAgent.match(os);
+  return new Promise(resolve => {
+    let mobileDevice = false;
+    mobileOS.some(os => {
+      if (navigator.userAgent.match(os)) {
+        mobileDevice = true;
+        return;
+      }
+    });
+    resolve({ mobileDevice: mobileDevice });
   });
 };
 

@@ -1,5 +1,7 @@
 'use strict';
 
+import navbarView from './views/navbarView.js';
+
 import * as func from './helper.js';
 import user from '../js/modules/MohitInfo.js';
 import { loadImg, createImg } from '../js/modules/LoadCreateImg.js';
@@ -110,28 +112,7 @@ class Model {
   }
 }
 
-const activateDefaultPageScript = function (currPage, isMobile, modelCl) {
-  const navbar = document.querySelector('.navbar');
-  const navbarTogglerBtn = document.querySelector('.navbar-toggler');
-
-  const toggleNavbar = function () {
-    /* open close the navbar */
-    this.blur();
-
-    if (navbar.classList.contains('open')) navbar.classList.remove('open');
-    else navbar.classList.add('open');
-  };
-  navbarTogglerBtn.addEventListener('click', toggleNavbar);
-
-  document.body.addEventListener('keyup', function (e) {
-    if (e.key === 'Tab') {
-      /* open close navbar as per TAB Focus */
-      if (document.activeElement.classList.contains('nav-link'))
-        navbar.classList.add('open');
-      else navbar.classList.remove('open');
-    }
-  });
-
+const activateDefaultPageScript = function (currPage, modelCl) {
   const overlay = document.querySelector('.overlay');
   const normalModelView = document.querySelector('.normal-model-view');
   const imgModelView = document.querySelector('.img-model-view');
@@ -545,6 +526,7 @@ class App {
 
   constructor() {
     this._initialize();
+    this._setCurrPage();
     this._setMobileDevice();
     this._setPageTheme();
   }
@@ -560,15 +542,17 @@ class App {
   }
 
   _setMobileDevice() {
-    this._isMobile = func.detectMobile();
-    this._addMobileAttribute();
-  }
-
-  _setActivePageNavLink() {
-    document.querySelector('a.nav-link.active')?.classList.remove('active');
-    document
-      .querySelector(`a.nav-link[data-path='${this._currPage}']`)
-      ?.classList.add('active');
+    func
+      .detectMobile()
+      .then(res => {
+        this._isMobile = res.mobileDevice;
+      })
+      .catch(_ => {
+        this._isMobile = false;
+      })
+      .finally(() => {
+        this._addMobileAttribute();
+      });
   }
 
   _setPageTheme() {
@@ -586,10 +570,11 @@ class App {
 
   init() {
     window.addEventListener('load', () => {
-      this._setCurrPage();
-      this._setActivePageNavLink();
+      navbarView.setActivePageNavLink(this._currPage);
+      navbarView.addHandlerTogglerBtn();
+      navbarView.addHandlerTabPress();
 
-      activateDefaultPageScript(this._currPage, this._isMobile, this._modelCl);
+      activateDefaultPageScript(this._currPage, this._modelCl);
 
       switch (this._currPage) {
         case 'contact':
