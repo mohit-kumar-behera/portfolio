@@ -1,7 +1,6 @@
 'use strict';
 
 import navbarView from './views/navbarView.js';
-
 import * as func from './helper.js';
 import user from '../js/modules/MohitInfo.js';
 import { loadImg, createImg } from '../js/modules/LoadCreateImg.js';
@@ -523,6 +522,8 @@ class App {
   _currPage;
   _isMobile;
   _modelCl;
+  _loaderEl = document.querySelector('.loader');
+  _mainBodyEl = document.getElementById('main-body');
 
   constructor() {
     this._initialize();
@@ -569,30 +570,33 @@ class App {
   }
 
   init() {
-    window.addEventListener('load', () => {
-      navbarView.setActivePageNavLink(this._currPage);
-      navbarView.addHandlerTogglerBtn();
-      navbarView.addHandlerTabPress();
+    navbarView.setActivePageNavLink(this._currPage);
+    navbarView.addHandlerTogglerBtn();
+    navbarView.addHandlerTabPress();
 
-      activateDefaultPageScript(this._currPage, this._modelCl);
+    activateDefaultPageScript(this._currPage, this._modelCl);
 
-      switch (this._currPage) {
-        case 'contact':
-          activateContactPageScript(user);
-          break;
-        case 'about':
-          activateAboutPageScript(user);
-          break;
-        case 'project':
-          activateProjectPageScript(user);
-          break;
-      }
+    switch (this._currPage) {
+      case 'contact':
+        activateContactPageScript(user);
+        break;
+      case 'about':
+        activateAboutPageScript(user);
+        break;
+      case 'project':
+        activateProjectPageScript(user);
+        break;
+    }
 
-      document.querySelector('.loader').remove();
-      document.getElementById('main-body').style.display = 'block';
+    startIntersectionObserver();
 
-      startIntersectionObserver();
-    });
+    window.addEventListener(
+      'load',
+      function () {
+        this._loaderEl.remove();
+        this._mainBodyEl.style.display = 'block';
+      }.bind(this)
+    );
   }
 }
 const app = new App();
