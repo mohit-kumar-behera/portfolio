@@ -41,6 +41,17 @@ class NavbarView {
       }.bind(this)
     );
   }
+
+  addHandlerThemeModelBtn(handler) {
+    this._parentElement
+      .querySelector('.theme-picker--btn')
+      .addEventListener('click', function (e) {
+        e.preventDefault();
+        console.log(this);
+        this.blur();
+        handler();
+      });
+  }
 }
 
 export default new NavbarView();

@@ -3,6 +3,7 @@
 import navbarView from './views/navbarView.js';
 import paletteView from './views/themePaletteView.js';
 import * as func from './helper.js';
+
 import user from '../js/modules/MohitInfo.js';
 import { loadImg, createImg } from '../js/modules/LoadCreateImg.js';
 import {
@@ -116,40 +117,6 @@ const activateDefaultPageScript = function (currPage, modelCl) {
   const overlay = document.querySelector('.overlay');
   const normalModelView = document.querySelector('.normal-model-view');
   const imgModelView = document.querySelector('.img-model-view');
-
-  const themePickerModelBtn = document.querySelector('.theme-picker--btn');
-
-  // const handleThemePickerBtn = function (e) {
-  //   const elem = e.target.closest('.color--btn');
-  //   if (!elem) return;
-
-  //   elem.blur();
-
-  //   const color = elem.dataset.color;
-  //   func.setTheme(color, currPage);
-  // };
-
-  // Handle Theme Picker Button from Model
-  themePickerModelBtn.addEventListener('click', function (e) {
-    e.preventDefault();
-    this.blur();
-    const params = {
-      model: document.querySelector('#normal-model.model'),
-      overlay,
-      width: 'auto',
-      height: 'auto',
-    };
-    modelCl = new Model(params.model, params.overlay);
-    modelCl.customize(params.width, params.height).renderSpinner().open();
-
-    const headEl = '<h4>Pick Theme</h4>';
-    const bodyEl = buildThemePickerModelBody();
-    const h = paletteView.render(false);
-    modelCl.render(h, headEl);
-    document
-      .querySelector('.theme-picker.from-model')
-      .addEventListener('click', e => controlThemePickerBtn(e));
-  });
 
   // Handle Model view when images are clicked for viewing
   imgModelView?.addEventListener('click', function (e) {
@@ -515,7 +482,33 @@ const startIntersectionObserver = function () {
 };
 
 /* -------------------------------------------------------------------------------------------------- */
+/**
+ @description Customizes and opens model-window for Pallete selection 
+*/
+const controlThemeModelBtn = function () {
+  const params = {
+    model: document.querySelector('#normal-model.model'),
+    overlay: document.querySelector('.overlay'),
+    width: 'auto',
+    height: 'auto',
+  };
 
+  let modelCl = new Model(params.model, params.overlay);
+  modelCl.customize(params.width, params.height).renderSpinner().open();
+
+  const headEl = '<h4>Pick Theme</h4>';
+  const bodyEl = paletteView.render(false);
+
+  modelCl.render(bodyEl, headEl);
+  document
+    .querySelector('.theme-picker.from-model')
+    .addEventListener('click', e => controlThemePickerBtn(e));
+};
+
+/**
+ * @param {object} e Event Object
+ * @description Controller for theme picker button
+ */
 const controlThemePickerBtn = function (e) {
   const elem = e.target.closest('.color--btn');
   if (!elem) return;
@@ -526,7 +519,7 @@ const controlThemePickerBtn = function (e) {
 class App {
   _currPage;
   _isMobile;
-  _modelCl;
+  // _modelCl;
   _loaderEl = document.querySelector('.loader');
   _mainBodyEl = document.getElementById('main-body');
 
@@ -582,6 +575,7 @@ class App {
     navbarView.setActivePageNavLink(this._currPage);
     navbarView.addHandlerTogglerBtn();
     navbarView.addHandlerTabPress();
+    navbarView.addHandlerThemeModelBtn(controlThemeModelBtn);
 
     activateDefaultPageScript(this._currPage, this._modelCl);
 
