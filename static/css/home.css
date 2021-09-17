@@ -9,18 +9,6 @@
     -webkit-transform: translate(-50%, -50%) rotate(360deg);
   }
 }
-@keyframes original-state {
-  to {
-    top: 0;
-    opacity: 1;
-  }
-}
-@-webkit-keyframes original-state {
-  to {
-    top: 0;
-    opacity: 1;
-  }
-}
 @media screen and (min-width: 769px) {
   .main-container {
     background: linear-gradient(
@@ -29,8 +17,8 @@
       var(--secondary-color) 15%
     );
   }
-  .theme-picker:not(.from-model) {
-    display: flex;
+  .content.theme-picker-container {
+    display: block;
   }
 }
 @media screen and (max-width: 768px) {
@@ -41,7 +29,7 @@
       var(--secondary-color) 15%
     );
   }
-  .theme-picker:not(.from-model) {
+  .content.theme-picker-container {
     display: none;
   }
 }
@@ -80,10 +68,83 @@
     font-size: 2.5rem;
   }
 }
-.highlight-heading .animate-text {
+
+@keyframes original-state--up {
+  to {
+    top: 0;
+    opacity: 1;
+  }
+}
+@-webkit-keyframes original-state--up {
+  to {
+    top: 0;
+    opacity: 1;
+  }
+}
+@keyframes original-state--left {
+  to {
+    left: 0;
+    opacity: 1;
+  }
+}
+@-webkit-keyframes original-state--left {
+  to {
+    left: 0;
+    opacity: 1;
+  }
+}
+@keyframes original-state--right {
+  to {
+    right: 0;
+    opacity: 1;
+  }
+}
+@-webkit-keyframes original-state--right {
+  to {
+    right: 0;
+    opacity: 1;
+  }
+}
+@keyframes original-state--opacity {
+  to {
+    opacity: 1;
+  }
+}
+@-webkit-keyframes original-state--opacity {
+  to {
+    opacity: 1;
+  }
+}
+
+.animate-up,
+.animate-left,
+.animate-right {
   position: relative;
-  top: 20px;
   opacity: 0;
-  -webkit-animation: original-state 0.7s ease-in-out 0.25s forwards;
-  animation: original-state 0.7s ease-in-out 0.25s forwards;
+}
+.animate-up {
+  top: 25px;
+  -webkit-animation: original-state--up 0.7s cubic-bezier(0.7, 0.1, 0.7, 1) 0.4s
+    forwards;
+  animation: original-state--up 0.7s cubic-bezier(0.7, 0.1, 0.7, 1) 0.4s
+    forwards;
+}
+.animate-opacity {
+  opacity: 0;
+  -webkit-animation: original-state--opacity 1.2s cubic-bezier(0.7, 0.1, 0.7, 1)
+    0.25s forwards;
+  animation: original-state--opacity 1.2s cubic-bezier(0.7, 0.1, 0.7, 1) 0.25s
+    forwards;
+}
+.animate-right {
+  right: 100px;
+  -webkit-animation: original-state--right 0.7s cubic-bezier(0.7, 0.1, 0.7, 1)
+    0.4s forwards;
+  animation: original-state--right 0.7s cubic-bezier(0.7, 0.1, 0.7, 1) 0.4s
+    forwards;
+}
+.animate-left {
+  left: 100px;
+  -webkit-animation: original-state--left 0.7s ease-in-out 0.4s forwards;
+  animation: original-state--left 0.7s ease-in-out 0.4s forwards;
 }
