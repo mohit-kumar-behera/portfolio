@@ -47,7 +47,6 @@ class NavbarView {
       .querySelector('.theme-picker--btn')
       .addEventListener('click', function (e) {
         e.preventDefault();
-        console.log(this);
         this.blur();
         handler();
       });
