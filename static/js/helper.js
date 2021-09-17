@@ -1,15 +1,3 @@
-const handleActiveThemeClass = function (activeTheme) {
-  /* Add active class to current Theme button */
-  document
-    .querySelectorAll('.theme-picker:not(.from-model) .color--btn')
-    ?.forEach(btn => btn.classList.remove('active'));
-  document
-    .querySelector(
-      `.theme-picker:not(.from-model) .color--btn[data-color='${activeTheme}']`
-    )
-    ?.classList.add('active');
-};
-
 export const detectMobile = function () {
   const mobileOS = [
     /Android/i,
@@ -37,5 +25,8 @@ export const setTheme = function (newColor, currPage) {
   /* Update the Theme Pattern */
   localStorage.setItem('theme-color', newColor);
   document.documentElement.style.setProperty('--secondary-color', newColor);
-  currPage === 'home' && handleActiveThemeClass(newColor);
+
+  import('./views/themePaletteView.js').then(module => {
+    currPage === 'home' && module.default.setActiveThemeClass(newColor);
+  });
 };

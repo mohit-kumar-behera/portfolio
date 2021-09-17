@@ -1,6 +1,7 @@
 'use strict';
 
 import navbarView from './views/navbarView.js';
+import paletteView from './views/themePaletteView.js';
 import * as func from './helper.js';
 import user from '../js/modules/MohitInfo.js';
 import { loadImg, createImg } from '../js/modules/LoadCreateImg.js';
@@ -116,26 +117,22 @@ const activateDefaultPageScript = function (currPage, modelCl) {
   const normalModelView = document.querySelector('.normal-model-view');
   const imgModelView = document.querySelector('.img-model-view');
 
-  const themePicker = document.querySelector('.theme-picker');
   const themePickerModelBtn = document.querySelector('.theme-picker--btn');
 
-  const handleThemePickerBtn = function (e) {
-    /* Handle Theme Picker Button to update theme */
-    const elem = e.target.closest('.color--btn');
-    if (!elem) return;
+  // const handleThemePickerBtn = function (e) {
+  //   const elem = e.target.closest('.color--btn');
+  //   if (!elem) return;
 
-    elem.blur();
+  //   elem.blur();
 
-    const color = elem.dataset.color;
-    func.setTheme(color, currPage);
-  };
-  themePicker?.addEventListener('click', handleThemePickerBtn);
+  //   const color = elem.dataset.color;
+  //   func.setTheme(color, currPage);
+  // };
 
   // Handle Theme Picker Button from Model
   themePickerModelBtn.addEventListener('click', function (e) {
     e.preventDefault();
     this.blur();
-
     const params = {
       model: document.querySelector('#normal-model.model'),
       overlay,
@@ -147,10 +144,11 @@ const activateDefaultPageScript = function (currPage, modelCl) {
 
     const headEl = '<h4>Pick Theme</h4>';
     const bodyEl = buildThemePickerModelBody();
-    modelCl.render(bodyEl, headEl);
+    const h = paletteView.render(false);
+    modelCl.render(h, headEl);
     document
       .querySelector('.theme-picker.from-model')
-      .addEventListener('click', e => handleThemePickerBtn(e));
+      .addEventListener('click', e => controlThemePickerBtn(e));
   });
 
   // Handle Model view when images are clicked for viewing
@@ -518,6 +516,13 @@ const startIntersectionObserver = function () {
 
 /* -------------------------------------------------------------------------------------------------- */
 
+const controlThemePickerBtn = function (e) {
+  const elem = e.target.closest('.color--btn');
+  if (!elem) return;
+  elem.blur();
+  func.setTheme(elem.dataset.color, app.currPage);
+};
+
 class App {
   _currPage;
   _isMobile;
@@ -569,6 +574,10 @@ class App {
     return localStorage.getItem('theme-color');
   }
 
+  get currPage() {
+    return this._currPage;
+  }
+
   init() {
     navbarView.setActivePageNavLink(this._currPage);
     navbarView.addHandlerTogglerBtn();
@@ -577,6 +586,10 @@ class App {
     activateDefaultPageScript(this._currPage, this._modelCl);
 
     switch (this._currPage) {
+      case 'home':
+        paletteView.render();
+        paletteView.addHandlerThemePickerBtn(controlThemePickerBtn);
+        paletteView.setActiveThemeClass(this._currPageTheme);
       case 'contact':
         activateContactPageScript(user);
         break;
@@ -601,6 +614,16 @@ class App {
 }
 const app = new App();
 app.init();
+
+/*
+FIXME: 
+  1) model and home palette should work hand in hand
+*/
+
+/* 
+TODO: 
+  1) check import status from network tab and make use of dynamic import
+*/
 
 // Common DOM Selector for all Pages
 // const navbar = document.querySelector('.navbar');
