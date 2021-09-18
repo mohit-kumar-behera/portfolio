@@ -427,7 +427,7 @@ const controlThemePickerBtn = function (e) {
 
 const controlSocialAccountView = function () {
   socialMediaView.renderSkeleton(4);
-  fetch('/api/user/contact/social-accunt')
+  fetch('/api/user/contact/social-account')
     .then(res => res.json())
     .then(responseData => {
       socialMediaView.render(responseData.data);
@@ -435,7 +435,7 @@ const controlSocialAccountView = function () {
     .catch(err => {
       console.log(err);
       socialMediaView.renderError(
-        'this is erdsihf dshf idsgfi dsgf disf iug dsfuyg dsuf guygf ufs duyg rfudskjfi dsgfi udsgf dsf dsgf dsfiu ysdguff iufd giudsg figf dsigdsi fg isd gidfs gidsg fiudsg fiudsg fidsg ifdsg fidsg fiodsg iofror!!!!!'
+        'this is erdsihf dshf idsgfi dsgf disf iug dsfuyg dsuf guygf ufs duyg rfudskjfi dsgfi udsgf dsf dsgf dsfiu ysdguff iufdror!!!!!'
       );
     });
 };
