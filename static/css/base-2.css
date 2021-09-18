@@ -130,12 +130,12 @@ section.normal-container .responsive-wrapper {
 }
 @media screen and (min-width: 576px) {
   .display-card--img {
-    min-height: 220px;
+    max-height: 250px;
   }
 }
 @media screen and (max-width: 576px) {
   .display-card--img {
-    min-height: 120px;
+    max-height: 120px;
   }
 }
 .display-card--link,

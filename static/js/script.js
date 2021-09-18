@@ -3,12 +3,14 @@
 import navbarView from './views/navbarView.js';
 import paletteView from './views/themePaletteView.js';
 import Model from './views/modelView.js';
+
+import socialMediaView from './views/contact/socialMediaView.js';
+
 import * as func from './helper.js';
 
 import user from '../js/modules/MohitInfo.js';
 import { loadImg, createImg } from '../js/modules/LoadCreateImg.js';
 import {
-  buildThemePickerModelBody,
   buildAccountCard,
   buildPersonalInfoCard,
   buildEducationTimeline,
@@ -162,20 +164,21 @@ const activateContactPageScript = function (user) {
   });
 
   // Render the data in form of card to screen
-  const renderSocialAccounts = function (socialAccounts) {
-    if (!socialAccountContainer) return;
-    socialAccountContainer.innerHTML = '';
+  // const renderSocialAccounts = function (socialAccounts) {
+  //   if (!socialAccountContainer) return;
+  //   socialAccountContainer.innerHTML = '';
 
-    socialAccounts.forEach(acc => {
-      socialAccountContainer.insertAdjacentHTML(
-        'beforeend',
-        buildAccountCard(acc)
-      );
-    });
-  };
-  setTimeout(function () {
-    renderSocialAccounts(user.socialAccounts);
-  }, 2000);
+  //   socialAccounts.forEach(acc => {
+  //     socialAccountContainer.insertAdjacentHTML(
+  //       'beforeend',
+  //       buildAccountCard(acc)
+  //     );
+  //   });
+  // };
+
+  // setTimeout(function () {
+  //   renderSocialAccounts(user.socialAccounts);
+  // }, 2000);
 };
 
 /*------------------ End of Contact page ----------------------------*/
@@ -389,8 +392,8 @@ const startIntersectionObserver = function () {
 
 /* -------------------------------------------------------------------------------------------------- */
 /**
- @description Customizes and opens model-window for Pallete selection 
-*/
+ * @description Customizes and opens model-window for Pallete selection
+ */
 const controlThemeModelBtn = function () {
   const params = {
     model: document.querySelector('#normal-model.model'),
@@ -420,6 +423,14 @@ const controlThemePickerBtn = function (e) {
   if (!elem) return;
   elem.blur();
   func.setTheme(elem.dataset.color, app.currPage);
+};
+
+const controlSocialAccountView = function () {
+  fetch('/api/user/contact/social-account')
+    .then(res => res.json())
+    .then(responseData => {
+      socialMediaView.render(responseData.data);
+    });
 };
 
 class App {
@@ -490,7 +501,9 @@ class App {
         paletteView.render();
         paletteView.addHandlerThemePickerBtn(controlThemePickerBtn);
         paletteView.setActiveThemeClass(this._currPageTheme);
+        break;
       case 'contact':
+        socialMediaView.addHandlerRender(controlSocialAccountView);
         activateContactPageScript(user);
         break;
       case 'about':
@@ -514,11 +527,6 @@ class App {
 }
 const app = new App();
 app.init();
-
-/*
-FIXME: 
-  1) model and home palette should work hand in hand
-*/
 
 /* 
 TODO: 
