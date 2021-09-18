@@ -33,21 +33,49 @@ class SocialMediaView {
     return this._data.map(item => this._buildAccountCard(item)).join('');
   }
 
+  _insertMarkup(position, element, markup) {
+    this._clear();
+    element.insertAdjacentHTML(position, markup);
+  }
+
   addHandlerRender(handler) {
     handler();
   }
 
-  renderSkeleton(count = 1) {}
+  renderSkeleton(count = 1) {
+    const skeleton = `
+    <div class="display-card--div skeleton">
+      <div class="display-card">
+        <div class="display-card--img skeleton-image">
+        </div>
+      </div>
+    </div>
+    `.repeat(count);
+    this._insertMarkup('afterbegin', this._parentElement, skeleton);
+  }
 
-  renderError() {}
+  renderError(message = 'Something went wrong') {
+    const errorMarkup = `
+    <div class="error-div">
+      <i class="fa fa-exclamation-triangle"></i>
+      <p>${message}</p>
+      <a href="">Try Reloading</a>
+    </div>
+    `;
+    this._insertMarkup('afterbegin', this._parentElement, errorMarkup);
+  }
 
   render(data) {
     if (!data) return;
     this._data = data;
 
     const markup = this._generateMarkup();
-    this._clear();
-    this._parentElement.insertAdjacentHTML('afterbegin', markup);
+    setTimeout(
+      function () {
+        this._insertMarkup('afterbegin', this._parentElement, markup);
+      }.bind(this),
+      2000
+    );
   }
 }
 

@@ -132,10 +132,16 @@ section.normal-container .responsive-wrapper {
   .display-card--img {
     max-height: 250px;
   }
+  .display-card--img.skeleton-image {
+    min-height: 250px;
+  }
 }
 @media screen and (max-width: 576px) {
   .display-card--img {
     max-height: 120px;
+  }
+  .display-card--img.skeleton-image {
+    min-height: 120px;
   }
 }
 .display-card--link,

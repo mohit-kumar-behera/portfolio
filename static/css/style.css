@@ -430,6 +430,24 @@ img {
   border-radius: 1.5px;
 }
 /*.content-overflow::-webkit-scrollbar-thumb:hover {  }*/
+/* Error Div */
+.error-div {
+  padding: 1.5rem 3rem;
+  border: 2px solid #ff2626;
+  background-color: #ff262607;
+  border-radius: 8px;
+  text-align: center;
+  max-width: 80%;
+  font-family: var(--font-fancy);
+}
+.error-div > *:not(:last-child) {
+  margin-bottom: 1rem;
+}
+.error-div i {
+  font-size: 3rem;
+  text-align: center;
+  color: #ffbcbc;
+}
 
 /*--------------------------- LAZY LOAD EFFECT ------------------------*/
 @-webkit-keyframes opacity-transition {
