@@ -53,10 +53,6 @@ class SocialMediaView {
     element.insertAdjacentHTML(position, markup);
   }
 
-  addHandlerRender(handler) {
-    handler();
-  }
-
   renderSkeleton(count = 1) {
     const skeletonMarkup = this._generateSkeletonMarkup().repeat(5);
     this._insertMarkup('afterbegin', this._parentElement, skeletonMarkup);
@@ -78,6 +74,10 @@ class SocialMediaView {
       }.bind(this),
       2000
     );
+  }
+
+  addHandlerRender(handler) {
+    handler();
   }
 }
 

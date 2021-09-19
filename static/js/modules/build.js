@@ -18,26 +18,6 @@ const buildThemePickerModelBody = () => `
 		</div>
 	`;
 
-// Build card for social media account
-const buildAccountCard = acc => `				 
-		<div class="display-card--div social-link--div" data-social-handle="${acc.name}">
-			<div class="display-card social-link" tabindex="0">
-	
-				<div class="display-card--img social-link--img">
-					<img src="${acc.img}" alt="Mohit's ${acc.name} cover img"/>
-				</div>
-
-				<a href="${acc.url}" class="link display-card--link" target="_blank"></a>
-
-				<div class="overlay--div"></div>
-
-				<div class="social-link--logo">
-					<span class="fa ${acc.logo} icon"></span>
-				</div>
-			</div>
-		</div>
-	`;
-
 // Build Personal Info Card
 const buildPersonalInfoCard = entry => {
   // Format the link (address, phone, email)

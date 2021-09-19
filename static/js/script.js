@@ -11,7 +11,6 @@ import * as func from './helper.js';
 import user from '../js/modules/MohitInfo.js';
 import { loadImg, createImg } from '../js/modules/LoadCreateImg.js';
 import {
-  buildAccountCard,
   buildPersonalInfoCard,
   buildEducationTimeline,
   buildSkillBar,
@@ -105,9 +104,6 @@ const activateContactPageScript = function (user) {
   const contactForm = document.getElementById('contact-form');
   const userInputFields = document.querySelectorAll('.user-input');
   const sendMssgBtn = document.querySelector('.send-message--btn');
-  const socialAccountContainer = document.querySelector(
-    '.social-link--wrapper'
-  );
 
   // Email Validation
   const validateEmail = (regex, val) => regex.test(val);
@@ -162,23 +158,6 @@ const activateContactPageScript = function (user) {
       400
     );
   });
-
-  // Render the data in form of card to screen
-  // const renderSocialAccounts = function (socialAccounts) {
-  //   if (!socialAccountContainer) return;
-  //   socialAccountContainer.innerHTML = '';
-
-  //   socialAccounts.forEach(acc => {
-  //     socialAccountContainer.insertAdjacentHTML(
-  //       'beforeend',
-  //       buildAccountCard(acc)
-  //     );
-  //   });
-  // };
-
-  // setTimeout(function () {
-  //   renderSocialAccounts(user.socialAccounts);
-  // }, 2000);
 };
 
 /*------------------ End of Contact page ----------------------------*/
@@ -425,6 +404,9 @@ const controlThemePickerBtn = function (e) {
   func.setTheme(elem.dataset.color, app.currPage);
 };
 
+/**
+ * @description Display the social account used by user
+ */
 const controlSocialAccountView = function () {
   socialMediaView.renderSkeleton(4);
   fetch('/api/user/contact/social-account')
@@ -493,6 +475,10 @@ class App {
 
   get currPage() {
     return this._currPage;
+  }
+
+  get isMobileDevice() {
+    return this._isMobile;
   }
 
   init() {
