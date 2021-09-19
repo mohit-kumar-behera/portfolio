@@ -117,7 +117,6 @@ const buildAwardCard = phase => `
 
 export {
   buildThemePickerModelBody,
-  buildAccountCard,
   buildPersonalInfoCard,
   buildEducationTimeline,
   buildSkillBar,

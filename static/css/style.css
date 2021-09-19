@@ -96,6 +96,53 @@ p {
     left: 100%;
   }
 }
+@keyframes original-state--up {
+  to {
+    top: 0;
+    opacity: 1;
+  }
+}
+@-webkit-keyframes original-state--up {
+  to {
+    top: 0;
+    opacity: 1;
+  }
+}
+@keyframes original-state--left {
+  to {
+    left: 0;
+    opacity: 1;
+  }
+}
+@-webkit-keyframes original-state--left {
+  to {
+    left: 0;
+    opacity: 1;
+  }
+}
+@keyframes original-state--right {
+  to {
+    right: 0;
+    opacity: 1;
+  }
+}
+@-webkit-keyframes original-state--right {
+  to {
+    right: 0;
+    opacity: 1;
+  }
+}
+@keyframes original-state--opacity {
+  to {
+    opacity: 1;
+  }
+}
+@-webkit-keyframes original-state--opacity {
+  to {
+    opacity: 1;
+  }
+}
+
 /*Main Loader*/
 .loader {
   width: 100%;
@@ -194,6 +241,56 @@ p {
 }
 .skeleton-text:nth-child(odd):after {
   animation-delay: 0.2s;
+}
+.animate-opacity {
+  opacity: 0;
+  -webkit-animation: original-state--opacity 1s cubic-bezier(0.7, 0.1, 0.7, 1)
+    0.4s forwards;
+  animation: original-state--opacity 1s cubic-bezier(0.7, 0.1, 0.7, 1) 0.4s
+    forwards;
+}
+.animate-up,
+.animate-left,
+.animate-right {
+  position: relative;
+  opacity: 0;
+}
+.animate-up {
+  top: 25px;
+  -webkit-animation: original-state--up 0.7s cubic-bezier(0.7, 0.1, 0.7, 1)
+    0.45s forwards;
+  animation: original-state--up 0.7s cubic-bezier(0.7, 0.1, 0.7, 1) 0.45s
+    forwards;
+}
+.animate-up.mid {
+  top: 50px;
+}
+.animate-up.max {
+  top: 75px;
+}
+.animate-right {
+  right: 75px;
+  -webkit-animation: original-state--right 0.7s cubic-bezier(0.7, 0.1, 0.7, 1)
+    0.45s forwards;
+  animation: original-state--right 0.7s cubic-bezier(0.7, 0.1, 0.7, 1) 0.45s
+    forwards;
+}
+.animate-right.mid {
+  right: 100px;
+}
+.animate-right.max {
+  right: 125px;
+}
+.animate-left {
+  left: 75px;
+  -webkit-animation: original-state--left 0.7s ease-in-out 0.45s forwards;
+  animation: original-state--left 0.7s ease-in-out 0.45s forwards;
+}
+.animate-left.mid {
+  left: 100px;
+}
+.animate-left.max {
+  left: 125px;
 }
 
 /*--------------------------- GLOBAL STYLE ------------------------------------*/
