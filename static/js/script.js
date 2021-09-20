@@ -6,6 +6,7 @@ import Model from './views/modelView.js';
 
 import socialMediaView from './views/contact/socialMediaView.js';
 import contactFormView from './views/contact/contactFormView.js';
+import contactDetailView from './views/contact/contactDetailView.js';
 
 import * as func from './helper.js';
 import * as model from './model.js';
@@ -406,6 +407,22 @@ const controlThemePickerBtn = function (e) {
   func.setTheme(elem.dataset.color, app.currPage);
 };
 
+const controlContactDetail = async function () {
+  try {
+    // Loading Animation
+    contactDetailView.renderSkeleton(2);
+
+    // Fetch Data
+    await model.fetchUserContactDetail();
+
+    // Render Data
+    contactDetailView.render(model.state.contact.detail);
+  } catch (err) {
+    // Render Error
+    contactDetailView.renderError(err);
+  }
+};
+
 const controlContactForm = function () {
   contactFormView.renderHTML();
 };
@@ -415,11 +432,16 @@ const controlContactForm = function () {
  */
 const controlSocialAccountView = async function () {
   try {
+    // Loading Animation
     socialMediaView.renderSkeleton(3);
 
+    // Fetch Data
     await model.fetchUserSocialAccount();
+
+    // Render Data
     socialMediaView.render(model.state.contact.socialAccount);
   } catch (err) {
+    // Render Error
     socialMediaView.renderError(err);
   }
 };
@@ -498,6 +520,7 @@ class App {
         paletteView.setActiveThemeClass(this._currPageTheme);
         break;
       case 'contact':
+        contactDetailView.addHandlerRender(controlContactDetail);
         contactFormView.addHandlerRender(controlContactForm);
         socialMediaView.addHandlerRender(controlSocialAccountView);
         activateContactPageScript(user);

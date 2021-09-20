@@ -14,3 +14,12 @@ export const fetchUserSocialAccount = async function () {
     throw err;
   }
 };
+
+export const fetchUserContactDetail = async function () {
+  try {
+    const responseData = await sendRequest('/api/user/contact');
+    state.contact.detail = responseData.data;
+  } catch (err) {
+    throw err;
+  }
+};
