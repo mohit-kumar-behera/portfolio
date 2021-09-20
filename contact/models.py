@@ -41,6 +41,8 @@ class Contact(models.Model):
     def save(self, *args, **kwargs):
         tag = 'tel' if self.type == 'phone' else 'mailto'
         self.url = f'{tag}:{self.value}'
+        if self.type == 'phone':
+            self.value = ' '.join([self.value[0:len(self.value) // 2], self.value[len(self.value) // 2:]])
         super(Contact, self).save(*args, **kwargs)
          
     class Meta:

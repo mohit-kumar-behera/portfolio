@@ -5,6 +5,7 @@ from contact.models import Address, Contact, SocialAccount, Message
 class ContactSerializer(serializers.ModelSerializer):
   profile = serializers.SerializerMethodField()
   type = serializers.SerializerMethodField()
+  value = serializers.SerializerMethodField()
 
   class Meta:
     model = Contact
@@ -18,6 +19,11 @@ class ContactSerializer(serializers.ModelSerializer):
   
   def get_type(self, contact):
     return contact.get_type_display()
+
+  def get_value(self, contact):
+    if contact.type == 'phone':
+      return f'(+91) {contact.value}'
+    return contact.value
 
 
 class SocialAccountSerializer(serializers.ModelSerializer):
