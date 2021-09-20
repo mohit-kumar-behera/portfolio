@@ -529,6 +529,7 @@ img {
 /*.content-overflow::-webkit-scrollbar-thumb:hover {  }*/
 /* Error Div */
 .error-div {
+  margin: 0 auto;
   padding: 1.5rem 3rem;
   border: 2px solid #ff2626;
   background-color: #ff262607;
