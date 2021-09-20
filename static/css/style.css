@@ -538,12 +538,24 @@ img {
   font-family: var(--font-fancy);
 }
 .error-div > *:not(:last-child) {
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
 }
 .error-div i {
   font-size: 3rem;
   text-align: center;
   color: #ffbcbc;
+}
+.error-div a {
+  padding: 0.7rem 1.5rem;
+  border: 1px solid #ff2626;
+  border-radius: 100px;
+  color: #ff2626;
+  background: transparent;
+}
+.error-div a:hover,
+.error-div a:focus {
+  text-decoration: none;
+  background: #ffe6e605;
 }
 
 /*--------------------------- LAZY LOAD EFFECT ------------------------*/

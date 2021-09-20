@@ -7,6 +7,7 @@ import Model from './views/modelView.js';
 import socialMediaView from './views/contact/socialMediaView.js';
 
 import * as func from './helper.js';
+import * as model from './model.js';
 
 import user from '../js/modules/MohitInfo.js';
 import { loadImg, createImg } from '../js/modules/LoadCreateImg.js';
@@ -407,19 +408,15 @@ const controlThemePickerBtn = function (e) {
 /**
  * @description Display the social account used by user
  */
-const controlSocialAccountView = function () {
-  socialMediaView.renderSkeleton(4);
-  fetch('/api/user/contact/social-account')
-    .then(res => res.json())
-    .then(responseData => {
-      socialMediaView.render(responseData.data);
-    })
-    .catch(err => {
-      console.log(err);
-      socialMediaView.renderError(
-        'this is erdsihf dshf idsgfi dsgf disf iug dsfuyg dsuf guygf ufs duyg rfudskjfi dsgfi udsgf dsf dsgf dsfiu ysdguff iufdror!!!!!'
-      );
-    });
+const controlSocialAccountView = async function () {
+  try {
+    socialMediaView.renderSkeleton(3);
+
+    await model.fetchUserSocialAccount();
+    socialMediaView.render(model.state.contact.socialAccount);
+  } catch (err) {
+    socialMediaView.renderError(err);
+  }
 };
 
 class App {
