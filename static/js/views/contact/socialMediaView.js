@@ -2,7 +2,6 @@ import View from './../View.js';
 
 class SocialMediaView extends View {
   _parentElement = document.querySelector('.social-link--wrapper');
-  _data;
 
   addHandlerRender(handler) {
     handler();
