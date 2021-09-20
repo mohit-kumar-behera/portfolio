@@ -44,4 +44,9 @@ export default class View {
       2000
     );
   }
+
+  renderHTML() {
+    const markup = this._generateMarkup();
+    this._insertMarkup('afterbegin', this._parentElement, markup);
+  }
 }

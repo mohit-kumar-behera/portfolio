@@ -5,6 +5,7 @@ import paletteView from './views/themePaletteView.js';
 import Model from './views/modelView.js';
 
 import socialMediaView from './views/contact/socialMediaView.js';
+import contactFormView from './views/contact/contactFormView.js';
 
 import * as func from './helper.js';
 import * as model from './model.js';
@@ -405,6 +406,10 @@ const controlThemePickerBtn = function (e) {
   func.setTheme(elem.dataset.color, app.currPage);
 };
 
+const controlContactForm = function () {
+  contactFormView.renderHTML();
+};
+
 /**
  * @description Display the social account used by user
  */
@@ -493,6 +498,7 @@ class App {
         paletteView.setActiveThemeClass(this._currPageTheme);
         break;
       case 'contact':
+        contactFormView.addHandlerRender(controlContactForm);
         socialMediaView.addHandlerRender(controlSocialAccountView);
         activateContactPageScript(user);
         break;
