@@ -23,3 +23,16 @@ export const fetchUserContactDetail = async function () {
     throw err;
   }
 };
+
+export const uploadQueryForm = async function (formData) {
+  try {
+    const data = await sendRequest(
+      '/api/user/contact/send-message/',
+      formData,
+      'post'
+    );
+    console.log(data);
+  } catch (err) {
+    console.log(err);
+  }
+};
