@@ -519,7 +519,7 @@ class App {
     return this._isMobile;
   }
 
-  init() {
+  start() {
     navbarView.setActivePageNavLink(this._currPage);
     navbarView.addHandlerTogglerBtn();
     navbarView.addHandlerTabPress();
@@ -560,7 +560,7 @@ class App {
   }
 }
 const app = new App();
-app.init();
+app.start();
 
 /* 
 TODO: 
