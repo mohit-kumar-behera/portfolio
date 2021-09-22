@@ -8,7 +8,7 @@ import contactFormView from './views/contact/contactFormView.js';
 import contactDetailView from './views/contact/contactDetailView.js';
 
 import * as func from './helper.js';
-import * as model from './model.js';
+import * as model from './db-model.js';
 
 const RESPONSE_TYPE = {
   ERROR: 'error',
