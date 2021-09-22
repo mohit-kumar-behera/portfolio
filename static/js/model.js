@@ -26,13 +26,13 @@ export const fetchUserContactDetail = async function () {
 
 export const uploadQueryForm = async function (formData) {
   try {
-    const data = await sendRequest(
+    const responseData = await sendRequest(
       '/api/user/contact/send-message/',
       formData,
       'post'
     );
-    console.log(data);
+    state.contact.message = responseData.data;
   } catch (err) {
-    console.log(err);
+    throw err;
   }
 };

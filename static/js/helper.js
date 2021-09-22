@@ -10,6 +10,21 @@ const timeout = function (sec = 5) {
   });
 };
 
+const getCookie = function (cookieName) {
+  const unicodeCookies = decodeURIComponent(document.cookie);
+  const cookies = unicodeCookies.split(';');
+
+  // pair cookies by key, value pair and convert them to object
+  const cookiesPair = cookies.map(cookie => {
+    let [key, value] = cookie.split('=');
+    key = key.trim();
+    return [key, value];
+  });
+  const cookiesObj = Object.fromEntries(cookiesPair);
+
+  return cookiesObj[cookieName];
+};
+
 export const detectMobile = function () {
   const mobileOS = [
     /Android/i,
@@ -41,28 +56,6 @@ export const setTheme = function (newColor, currPage) {
   import('./views/themePaletteView.js').then(module => {
     currPage === 'home' && module.default.setActiveThemeClass(newColor);
   });
-};
-
-export const getCookie = function (cookieName) {
-  const allCookies = decodeURIComponent(document.cookie);
-  const splitCookies = allCookies.split(';');
-
-  // pair cookies by key, value pair
-  const pairCookies = splitCookies.map(cookie => cookie.split('='));
-
-  // find the cookie by cookieName
-  const foundCookie = pairCookies.find(
-    cookie => cookie[0].trim() === cookieName
-  );
-
-  if (!foundCookie) return false;
-
-  const [key, value] = foundCookie; // pair the found cookie
-
-  // Remove "" from cookie value (special cases)
-  // return value.slice(1, value.length-1);
-
-  return value;
 };
 
 export const sendRequest = async function (url, uploadData, method = 'get') {

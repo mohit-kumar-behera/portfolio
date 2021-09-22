@@ -18,6 +18,12 @@ class ContactFormView extends View {
     });
   }
 
+  renderError(err = null) {
+    this._parentElement
+      .querySelectorAll('.help-text')
+      .forEach(elem => (elem.style.display = 'block'));
+  }
+
   renderLoaderBtn(spinner = true) {
     const btn = this._parentElement.querySelector('.send-message--btn');
     btn.blur();

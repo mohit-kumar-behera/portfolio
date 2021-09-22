@@ -428,10 +428,13 @@ const controlContactFormSubmission = async function (receivedData) {
 
     // Upload the Form
     await model.uploadQueryForm(receivedData);
-
+  } catch (err) {
+    // Render Error Message
+    contactFormView.renderError();
+  } finally {
     // Remove Loading Animation from Submit Button
     contactFormView.renderLoaderBtn(false);
-  } catch (err) {}
+  }
 };
 
 /**
