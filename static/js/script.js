@@ -1,15 +1,7 @@
 'use strict';
 
-import navbarView from './views/navbarView.js';
-import paletteView from './views/themePaletteView.js';
-import Model from './views/modelView.js';
-
-import socialMediaView from './views/contact/socialMediaView.js';
-import contactFormView from './views/contact/contactFormView.js';
-import contactDetailView from './views/contact/contactDetailView.js';
-
+import * as controller from './controller.js';
 import * as func from './helper.js';
-import * as model from './model.js';
 
 import user from '../js/modules/MohitInfo.js';
 import { loadImg, createImg } from '../js/modules/LoadCreateImg.js';
@@ -23,7 +15,7 @@ import {
 
 /* ------------------- Required in All Pages ------------------------- */
 
-const activateDefaultPageScript = function (currPage, modelCl) {
+const activateDefaultPageScript = function (modelCl) {
   const overlay = document.querySelector('.overlay');
   const normalModelView = document.querySelector('.normal-model-view');
   const imgModelView = document.querySelector('.img-model-view');
@@ -306,130 +298,15 @@ const startIntersectionObserver = function () {
   );
   lazyImgElem.forEach(elem => lazyImgObserver.observe(elem));
 };
-/* -------------------------------------------------------------------------------------------------- */
-/* -------------------------------------------------------------------------------------------------- */
-/* -------------------------------------------------------------------------------------------------- */
-/* -------------------------------------------------------------------------------------------------- */
-/* -------------------------------------------------------------------------------------------------- */
-/* -------------------------------------------------------------------------------------------------- */
-/* -------------------------------------------------------------------------------------------------- */
-/* -------------------------------------------------------------------------------------------------- */
-/* -------------------------------------------------------------------------------------------------- */
 
-const RESPONSE_TYPE = {
-  ERROR: 'error',
-  MESSAGE: 'message',
-};
-
-/**
- * @description Customizes and opens model-window for Pallete selection
- */
-const controlThemeModelBtn = function () {
-  const params = {
-    model: document.querySelector('#normal-model.model'),
-    overlay: document.querySelector('.overlay'),
-    width: 'auto',
-    height: 'auto',
-  };
-
-  let modelCl = new Model(params.model, params.overlay);
-  modelCl.customize(params.width, params.height).renderSpinner().open();
-
-  const headEl = '<h4>Pick Theme</h4>';
-  const bodyEl = paletteView.render(false);
-
-  modelCl.render(bodyEl, headEl);
-  document
-    .querySelector('.theme-picker.from-model')
-    .addEventListener('click', e => controlThemePickerBtn(e));
-};
-
-/**
- * @param {object} e Event Object
- * @description Controller for theme picker button
- */
-const controlThemePickerBtn = function (e) {
-  const elem = e.target.closest('.color--btn');
-  if (!elem) return;
-  elem.blur();
-  func.setTheme(elem.dataset.color, app.currPage);
-};
-
-const controlContactDetail = async function () {
-  try {
-    // Loading Animation
-    contactDetailView.renderSkeleton(2);
-
-    // Fetch Data
-    await model.fetchUserContactDetail();
-
-    // Render Data
-    contactDetailView.render(model.state.contact.detail);
-  } catch (err) {
-    // Render Error
-    contactDetailView.renderResponseMessage(RESPONSE_TYPE.ERROR, err);
-  }
-};
-
-/**
- * @param {object} receivedData receives the Form Data as object
- * @description Handles Form Submission
- */
-const controlContactFormSubmission = async function (receivedData) {
-  try {
-    // Add Loading Animation to Submit Button
-    contactFormView.renderLoaderBtn();
-
-    // Scroll the form into view
-    contactFormView.scrollToView();
-
-    // Upload the Form
-    await model.uploadQueryForm(receivedData);
-
-    // Display Thankyou Message
-    contactFormView.renderResponseMessage(
-      RESPONSE_TYPE.MESSAGE,
-      `Your message titled <i>"${model.state.contact.message.subject}"</i> has been sent.<br>Thankyou for reaching out to Me. 😊`
-    );
-  } catch (err) {
-    // Render Help Text
-    contactFormView.renderHelpText();
-
-    // Remove Loading Animation from Submit Button
-    contactFormView.renderLoaderBtn(false);
-  }
-};
-
-/**
- * @description Render the Contact Me form
- */
-const controlContactForm = function () {
-  contactFormView.renderHTML();
-};
-
-/**
- * @description Display the social account used by user
- */
-const controlSocialAccountView = async function () {
-  try {
-    // Loading Animation
-    socialMediaView.renderSkeleton(3);
-
-    // Fetch Data
-    await model.fetchUserSocialAccount();
-
-    // Render Data
-    socialMediaView.render(model.state.contact.socialAccount);
-  } catch (err) {
-    // Render Error
-    socialMediaView.renderResponseMessage(RESPONSE_TYPE.ERROR, err);
-  }
-};
+//////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////
 
 class App {
-  _currPage;
-  _isMobile;
-  // _modelCl;
+  _modelCl;
   _loaderEl = document.querySelector('.loader');
   _mainBodyEl = document.getElementById('main-body');
 
@@ -441,23 +318,21 @@ class App {
   }
 
   _initialize() {
-    this._currPage = '';
-    this._isMobile = '';
     this._modelCl = null;
   }
 
   _setCurrPage() {
-    this._currPage = location.pathname.split('/')[1] || 'home';
+    window.currPage = location.pathname.split('/')[1] || 'home';
   }
 
   _setMobileDevice() {
     func
       .detectMobile()
       .then(res => {
-        this._isMobile = res.mobileDevice;
+        window.isMobile = res.mobileDevice;
       })
       .catch(_ => {
-        this._isMobile = false;
+        window.isMobile = false;
       })
       .finally(() => {
         this._addMobileAttribute();
@@ -465,45 +340,30 @@ class App {
   }
 
   _setPageTheme() {
-    if (!this._currPageTheme) localStorage.setItem('theme-color', '#fa1e0e');
-    func.setTheme(this._currPageTheme, this._currPage);
+    window.currPageTheme = this._currPageTheme;
+    if (!window.currPageTheme) localStorage.setItem('theme-color', '#fa1e0e');
+    func.setTheme(window.currPageTheme, window.currPage);
   }
 
   _addMobileAttribute() {
-    document.body.setAttribute('data-mobile-device', this._isMobile);
+    document.body.setAttribute('data-mobile-device', window.isMobile);
   }
 
   get _currPageTheme() {
     return localStorage.getItem('theme-color');
   }
 
-  get currPage() {
-    return this._currPage;
-  }
-
-  get isMobileDevice() {
-    return this._isMobile;
-  }
-
   start() {
-    navbarView.setActivePageNavLink(this._currPage);
-    navbarView.addHandlerTogglerBtn();
-    navbarView.addHandlerTabPress();
-    navbarView.addHandlerThemeModelBtn(controlThemeModelBtn);
+    controller.defaultInit();
 
-    activateDefaultPageScript(this._currPage, this._modelCl);
+    activateDefaultPageScript(this._modelCl);
 
-    switch (this._currPage) {
+    switch (window.currPage) {
       case 'home':
-        paletteView.render();
-        paletteView.addHandlerThemePickerBtn(controlThemePickerBtn);
-        paletteView.setActiveThemeClass(this._currPageTheme);
+        controller.homeInit();
         break;
       case 'contact':
-        contactDetailView.addHandlerRender(controlContactDetail);
-        contactFormView.addHandlerRender(controlContactForm);
-        contactFormView.addHandlerSubmit(controlContactFormSubmission);
-        socialMediaView.addHandlerRender(controlSocialAccountView);
+        controller.contactInit();
         break;
       case 'about':
         activateAboutPageScript(user);
@@ -526,39 +386,3 @@ class App {
 }
 const app = new App();
 app.start();
-
-/* 
-TODO: 
-  1) check import status from network tab and make use of dynamic import
-*/
-
-// Common DOM Selector for all Pages
-// const navbar = document.querySelector('.navbar');
-// const navbarTogglerBtn = document.querySelector('.navbar-toggler');
-
-// const overlay = document.querySelector('.overlay');
-// const normalModelView = document.querySelector('.normal-model-view');
-// const imgModelView = document.querySelector('.img-model-view');
-
-// const themePicker = document.querySelector('.theme-picker');
-// const themePickerModelBtn = document.querySelector('.theme-picker--btn');
-
-/* home page */
-// const contentContainer = document.querySelector('.content-container');
-// const usernameSpan = document.querySelector('.username');
-/* end of home page */
-
-/* contact page */
-// const contactForm = document.getElementById('contact-form');
-// const userInputFields = document.querySelectorAll('.user-input');
-// const sendMssgBtn = document.querySelector('.send-message--btn');
-// const socialAccountContainer = document.querySelector('.social-link--wrapper');
-/* end of contact page */
-
-/* about page */
-// const personalInfoContainer = document.querySelector('.about-me--content');
-// const aboutEducationContainer = document.querySelector('.about-education--content');
-// const aboutSkillsContainer = document.querySelector('.about-skills--content');
-// const aboutExperienceContainer = document.querySelector('.about-experience--content');
-// const aboutAwardsContainer = document.querySelector('.about-awards--content');
-/* end of about page */

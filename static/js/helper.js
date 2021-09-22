@@ -53,9 +53,11 @@ export const setTheme = function (newColor, currPage) {
   localStorage.setItem('theme-color', newColor);
   document.documentElement.style.setProperty('--secondary-color', newColor);
 
-  import('./views/themePaletteView.js').then(module => {
-    currPage === 'home' && module.default.setActiveThemeClass(newColor);
-  });
+  if (currPage == 'home') {
+    import('./views/themePaletteView.js').then(module => {
+      module.default.setActiveThemeClass(newColor);
+    });
+  }
 };
 
 export const sendRequest = async function (url, uploadData, method = 'get') {

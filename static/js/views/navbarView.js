@@ -1,22 +1,18 @@
 class NavbarView {
   _parentElement = document.querySelector('.navbar');
 
+  constructor() {
+    this._addHandlerTogglerBtn();
+    this._addHandlerTabPress();
+  }
+
   _toggleNavbar() {
     if (this._parentElement.classList.contains('open'))
       this._parentElement.classList.remove('open');
     else this._parentElement.classList.add('open');
   }
 
-  setActivePageNavLink(currPage) {
-    this._parentElement
-      .querySelector('a.nav-link.active')
-      ?.classList.remove('active');
-    this._parentElement
-      .querySelector(`a.nav-link[data-path='${currPage}']`)
-      ?.classList.add('active');
-  }
-
-  addHandlerTogglerBtn() {
+  _addHandlerTogglerBtn() {
     const navbarTogglerBtn =
       this._parentElement.querySelector('.navbar-toggler');
     navbarTogglerBtn.addEventListener(
@@ -28,7 +24,7 @@ class NavbarView {
     );
   }
 
-  addHandlerTabPress() {
+  _addHandlerTabPress() {
     document.body.addEventListener(
       'keyup',
       function (e) {
@@ -40,6 +36,15 @@ class NavbarView {
         }
       }.bind(this)
     );
+  }
+
+  setActivePageNavLink(currPage) {
+    this._parentElement
+      .querySelector('a.nav-link.active')
+      ?.classList.remove('active');
+    this._parentElement
+      .querySelector(`a.nav-link[data-path='${currPage}']`)
+      ?.classList.add('active');
   }
 
   addHandlerThemeModelBtn(handler) {

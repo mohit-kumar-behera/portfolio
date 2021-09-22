@@ -1,0 +1,154 @@
+import navbarView from './views/navbarView.js';
+
+import paletteView from './views/themePaletteView.js';
+import Model from './views/modelView.js';
+
+import socialMediaView from './views/contact/socialMediaView.js';
+import contactFormView from './views/contact/contactFormView.js';
+import contactDetailView from './views/contact/contactDetailView.js';
+
+import * as func from './helper.js';
+import * as model from './model.js';
+
+const RESPONSE_TYPE = {
+  ERROR: 'error',
+  MESSAGE: 'message',
+};
+
+///////////////////////////////////////////////////////////////////////////
+//////////////////////////// DEFAULT /////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////
+
+/**
+ * @description Customizes and opens model-window for Pallete selection
+ */
+const controlThemeModelBtn = function () {
+  const params = {
+    model: document.querySelector('#normal-model.model'),
+    overlay: document.querySelector('.overlay'),
+    width: 'auto',
+    height: 'auto',
+  };
+
+  let modelCl = new Model(params.model, params.overlay);
+  modelCl.customize(params.width, params.height).renderSpinner().open();
+
+  const headEl = '<h4>Pick Theme</h4>';
+  const bodyEl = paletteView.render(false);
+
+  modelCl.render(bodyEl, headEl);
+  document
+    .querySelector('.theme-picker.from-model')
+    .addEventListener('click', e => controlThemePickerBtn(e));
+};
+
+//////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////// HOME PAGE ///////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+
+/**
+ * @param {object} e Event Object
+ * @description Controller for theme picker button
+ */
+const controlThemePickerBtn = function (e) {
+  const elem = e.target.closest('.color--btn');
+  if (!elem) return;
+  elem.blur();
+  func.setTheme(elem.dataset.color, window.currPage);
+};
+
+//////////////////////////////////////////////////////////////////////////////////
+/////////////////////////// CONTACT PAGE ////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+
+/**
+ * @description Fetch contact detail of user and displays it
+ */
+const controlContactDetail = async function () {
+  try {
+    // Loading Animation
+    contactDetailView.renderSkeleton(2);
+
+    // Fetch Data
+    await model.fetchUserContactDetail();
+
+    // Render Data
+    contactDetailView.render(model.state.contact.detail);
+  } catch (err) {
+    // Render Error
+    contactDetailView.renderResponseMessage(RESPONSE_TYPE.ERROR, err);
+  }
+};
+
+/**
+ * @param {object} receivedData receives the Form Data as object
+ * @description Handles Form Submission
+ */
+const controlContactFormSubmission = async function (receivedData) {
+  try {
+    // Add Loading Animation to Submit Button
+    contactFormView.renderLoaderBtn();
+
+    // Scroll the form into view
+    contactFormView.scrollToView();
+
+    // Upload the Form
+    await model.uploadQueryForm(receivedData);
+
+    // Display Thankyou Message
+    contactFormView.renderResponseMessage(
+      RESPONSE_TYPE.MESSAGE,
+      `Your message titled <i>"${model.state.contact.message.subject}"</i> has been sent.<br>Thankyou for reaching out to Me. 😊`
+    );
+  } catch (err) {
+    // Render Help Text
+    contactFormView.renderHelpText();
+
+    // Remove Loading Animation from Submit Button
+    contactFormView.renderLoaderBtn(false);
+  }
+};
+
+/**
+ * @description Render the Contact Me form
+ */
+const controlContactForm = function () {
+  contactFormView.renderHTML();
+};
+
+/**
+ * @description Display the social account used by user
+ */
+const controlSocialAccountView = async function () {
+  try {
+    // Loading Animation
+    socialMediaView.renderSkeleton(3);
+
+    // Fetch Data
+    await model.fetchUserSocialAccount();
+
+    // Render Data
+    socialMediaView.render(model.state.contact.socialAccount);
+  } catch (err) {
+    // Render Error
+    socialMediaView.renderResponseMessage(RESPONSE_TYPE.ERROR, err);
+  }
+};
+
+export const defaultInit = function () {
+  navbarView.setActivePageNavLink(window.currPage);
+  navbarView.addHandlerThemeModelBtn(controlThemeModelBtn);
+};
+
+export const homeInit = function () {
+  paletteView.render();
+  paletteView.addHandlerThemePickerBtn(controlThemePickerBtn);
+  paletteView.setActiveThemeClass(window.currPageTheme);
+};
+
+export const contactInit = function () {
+  contactDetailView.addHandlerRender(controlContactDetail);
+  contactFormView.addHandlerRender(controlContactForm);
+  contactFormView.addHandlerSubmit(controlContactFormSubmission);
+  socialMediaView.addHandlerRender(controlSocialAccountView);
+};
