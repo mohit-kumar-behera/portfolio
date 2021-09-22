@@ -100,62 +100,6 @@ const activateDefaultPageScript = function (currPage, modelCl) {
 
 /* ---------------------- End of Default Page Script ----------------------- */
 
-/*------------------ Required only in Contact page ----------------------------*/
-
-const activateContactPageScript = function (user) {
-  // Contact Page DOM Selector
-  // const contactForm = document.getElementById('contact-form');
-  // const userInputFields = document.querySelectorAll('.user-input');
-  // const sendMssgBtn = document.querySelector('.send-message--btn');
-  // Email Validation
-  // const validateEmail = (regex, val) => regex.test(val);
-  // Input fields validation
-  // const validateInputFields = function () {
-  //   const inputFields = [...userInputFields];
-  //   const emailRegex =
-  //     /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]{2,})*$/;
-  //   let valid = false;
-  //   // It counts the number of fields that are in valid range mentioned respectively
-  //   const inRangeFieldsCount = inputFields
-  //     .filter(
-  //       field =>
-  //         field.value.length >= field.dataset.minlength &&
-  //         field.value.length <= field.dataset.maxlength
-  //     )
-  //     .reduce(count => count + 1, 0);
-  //   valid = inRangeFieldsCount === inputFields.length;
-  //   const emailField = inputFields.find(field => field.type === 'email');
-  //   return emailField && valid && validateEmail(emailRegex, emailField.value);
-  // };
-  // Handle Click Event on Send Meesage button
-  // sendMssgBtn?.addEventListener('click', function () {
-  //   this.blur();
-  //   this.innerHTML =
-  //     '<span>SEND MESSAGE</span><div class="spinner-border spinner-border-sm text-light ml-1"></div>';
-  //   const isValid = validateInputFields();
-  //   const { left, top } = contactForm.parentElement.getBoundingClientRect();
-  //   contactForm.parentElement.scrollIntoView({ behavior: 'smooth' }) ||
-  //     window.scrollTo({
-  //       left: left + window.pageXOffset,
-  //       top: top + window.pageYOffset,
-  //       behavior: 'smooth',
-  //     });
-  //   setTimeout(
-  //     function () {
-  //       isValid
-  //         ? contactForm.submit()
-  //         : document
-  //             .querySelectorAll('.help-text')
-  //             .forEach(elem => (elem.style.display = 'block'));
-  //       this.innerHTML = '<span>SEND MESSAGE</span>';
-  //     }.bind(this),
-  //     400
-  //   );
-  // });
-};
-
-/*------------------ End of Contact page ----------------------------*/
-
 /*------------------------- Required only in About us Page ----------------------------------------*/
 
 const activateAboutPageScript = function (user) {
