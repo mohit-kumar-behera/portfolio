@@ -157,12 +157,9 @@ def api_address_detail_view(request, type):
     return Response(response, status=status.HTTP_404_NOT_FOUND)
 
 
-from django.views.decorators.csrf import csrf_exempt
 @api_view(['POST'])
-# @csrf_exempt
 def api_send_message_view(request):
   profile = get_profile(user=get_user())
-  print(profile)
   if request.method == 'POST':
     if profile:
       data_obj = request.data
