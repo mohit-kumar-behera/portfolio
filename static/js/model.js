@@ -2,7 +2,9 @@ import { sendRequest } from './helper.js';
 
 export const state = {
   contact: {
+    detail: [],
     socialAccount: [],
+    message: {},
   },
 };
 

@@ -385,14 +385,16 @@ const controlContactFormSubmission = async function (receivedData) {
 
     // Upload the Form
     await model.uploadQueryForm(receivedData);
+
+    // Display Thankyou Message
     contactFormView.renderResponseMessage(
       RESPONSE_TYPE.MESSAGE,
-      'Thankyou for reaching out to Me. 😊'
+      `Your message titled "${model.state.contact.message.subject}" has been sent.\nThankyou for reaching out to Me. 😊`
     );
   } catch (err) {
     // Render Help Text
     contactFormView.renderHelpText();
-  } finally {
+
     // Remove Loading Animation from Submit Button
     contactFormView.renderLoaderBtn(false);
   }
@@ -502,7 +504,6 @@ class App {
         contactFormView.addHandlerRender(controlContactForm);
         contactFormView.addHandlerSubmit(controlContactFormSubmission);
         socialMediaView.addHandlerRender(controlSocialAccountView);
-        activateContactPageScript(user);
         break;
       case 'about':
         activateAboutPageScript(user);
