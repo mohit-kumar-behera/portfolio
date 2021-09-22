@@ -539,7 +539,7 @@ img {
 .response--div > *:not(:last-child) {
   margin-bottom: 2rem;
 }
-.response--div i {
+.response--div i.icon {
   font-size: 3.2rem;
   text-align: center;
 }
@@ -561,11 +561,13 @@ img {
   border: 2px solid #28ffbf;
   background-color: #28ffbf10;
 }
-.response--div.error i {
+.response--div.error i.icon {
   color: #ffbcbc;
 }
-.response--div.message i {
+.response--div.message i.icon {
   font-size: 4rem;
+}
+.response--div.message i {
   color: #f5fdb0;
 }
 .response--div.error a {

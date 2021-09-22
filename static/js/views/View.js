@@ -9,7 +9,9 @@ export default class View {
     const isError = type === 'error';
     return `
     <div class="response--div ${type} animate-opacity">
-      <i class="fa fa-${isError ? 'exclamation-triangle' : 'check-circle'}"></i>
+      <i class="icon fa fa-${
+        isError ? 'exclamation-triangle' : 'check-circle'
+      }"></i>
       <p>${msg}</p>
       ${isError ? '<a href="">Try Reloading</a>' : ''}
     </div>

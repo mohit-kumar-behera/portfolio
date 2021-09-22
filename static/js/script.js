@@ -389,7 +389,7 @@ const controlContactFormSubmission = async function (receivedData) {
     // Display Thankyou Message
     contactFormView.renderResponseMessage(
       RESPONSE_TYPE.MESSAGE,
-      `Your message titled "${model.state.contact.message.subject}" has been sent.\nThankyou for reaching out to Me. 😊`
+      `Your message titled <i>"${model.state.contact.message.subject}"</i> has been sent.<br>Thankyou for reaching out to Me. 😊`
     );
   } catch (err) {
     // Render Help Text
