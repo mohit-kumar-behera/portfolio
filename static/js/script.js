@@ -362,8 +362,21 @@ const startIntersectionObserver = function () {
   );
   lazyImgElem.forEach(elem => lazyImgObserver.observe(elem));
 };
-
 /* -------------------------------------------------------------------------------------------------- */
+/* -------------------------------------------------------------------------------------------------- */
+/* -------------------------------------------------------------------------------------------------- */
+/* -------------------------------------------------------------------------------------------------- */
+/* -------------------------------------------------------------------------------------------------- */
+/* -------------------------------------------------------------------------------------------------- */
+/* -------------------------------------------------------------------------------------------------- */
+/* -------------------------------------------------------------------------------------------------- */
+/* -------------------------------------------------------------------------------------------------- */
+
+const RESPONSE_TYPE = {
+  ERROR: 'error',
+  MESSAGE: 'message',
+};
+
 /**
  * @description Customizes and opens model-window for Pallete selection
  */
@@ -410,7 +423,7 @@ const controlContactDetail = async function () {
     contactDetailView.render(model.state.contact.detail);
   } catch (err) {
     // Render Error
-    contactDetailView.renderError(err);
+    contactDetailView.renderResponseMessage(RESPONSE_TYPE.ERROR, err);
   }
 };
 
@@ -428,9 +441,13 @@ const controlContactFormSubmission = async function (receivedData) {
 
     // Upload the Form
     await model.uploadQueryForm(receivedData);
+    contactFormView.renderResponseMessage(
+      RESPONSE_TYPE.MESSAGE,
+      'Thankyou for reaching out to Me. 😊'
+    );
   } catch (err) {
-    // Render Error Message
-    contactFormView.renderError();
+    // Render Help Text
+    contactFormView.renderHelpText();
   } finally {
     // Remove Loading Animation from Submit Button
     contactFormView.renderLoaderBtn(false);
@@ -459,7 +476,7 @@ const controlSocialAccountView = async function () {
     socialMediaView.render(model.state.contact.socialAccount);
   } catch (err) {
     // Render Error
-    socialMediaView.renderError(err);
+    socialMediaView.renderResponseMessage(RESPONSE_TYPE.ERROR, err);
   }
 };
 

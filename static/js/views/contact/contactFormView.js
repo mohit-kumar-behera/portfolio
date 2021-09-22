@@ -18,7 +18,7 @@ class ContactFormView extends View {
     });
   }
 
-  renderError(err = null) {
+  renderHelpText(err = null) {
     this._parentElement
       .querySelectorAll('.help-text')
       .forEach(elem => (elem.style.display = 'block'));

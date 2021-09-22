@@ -5,12 +5,32 @@ export default class View {
     this._parentElement.innerHTML = '';
   }
 
-  _generateErrorMarkup(msg) {
+  // _generateErrorMarkup(msg) {
+  //   return `
+  //   <div class="response--div error animate-opacity">
+  //     <i class="fa fa-exclamation-triangle"></i>
+  //     <p>${msg}</p>
+  //     <a href="">Try Reloading</a>
+  //   </div>
+  //   `;
+  // }
+
+  // _generateMessageMarkup(msg) {
+  //   return `
+  //   <div class="response--div message animate-opacity">
+  //     <i class="fa fa-check-circle"></i>
+  //     <p>${msg}</p>
+  //   </div>
+  //   `;
+  // }
+
+  _generateResponseMarkup(type, msg) {
+    const isError = type === 'error';
     return `
-    <div class="error-div animate-opacity">
-      <i class="fa fa-exclamation-triangle"></i>
+    <div class="response--div ${type} animate-opacity">
+      <i class="fa fa-${isError ? 'exclamation-triangle' : 'check-circle'}"></i>
       <p>${msg}</p>
-      <a href="">Try Reloading</a>
+      ${isError ? '<a href="">Try Reloading</a>' : ''}
     </div>
     `;
   }
@@ -25,9 +45,19 @@ export default class View {
     this._insertMarkup('afterbegin', this._parentElement, skeletonMarkup);
   }
 
-  renderError(message = 'Something went wrong') {
-    const errorMarkup = this._generateErrorMarkup(message);
-    this._insertMarkup('afterbegin', this._parentElement, errorMarkup);
+  // renderError(message = 'Something went wrong') {
+  //   const errorMarkup = this._generateErrorMarkup(message);
+  //   this._insertMarkup('afterbegin', this._parentElement, errorMarkup);
+  // }
+
+  // renderMessage(message = 'Request was Successfull 😊') {
+  //   const messageMarkup = this._generateMessageMarkup(message);
+  //   this._insertMarkup('afterbegin', this._parentElement, messageMarkup);
+  // }
+
+  renderResponseMessage(type, message) {
+    const responseMarkup = this._generateResponseMarkup(type, message);
+    this._insertMarkup('afterbegin', this._parentElement, responseMarkup);
   }
 
   render(data) {
