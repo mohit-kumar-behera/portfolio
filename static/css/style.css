@@ -527,36 +527,54 @@ img {
   border-radius: 1.5px;
 }
 /*.content-overflow::-webkit-scrollbar-thumb:hover {  }*/
-/* Error Div */
-.error-div {
+/* Fetch call Response Div */
+.response--div {
   margin: 0 auto;
   padding: 1.5rem 3rem;
-  border: 2px solid #ff2626;
-  background-color: #ff262607;
   border-radius: 8px;
   text-align: center;
   max-width: 80%;
   font-family: var(--font-fancy);
 }
-.error-div > *:not(:last-child) {
+.response--div > *:not(:last-child) {
   margin-bottom: 2rem;
 }
-.error-div i {
-  font-size: 3rem;
+.response--div i {
+  font-size: 3.2rem;
   text-align: center;
-  color: #ffbcbc;
 }
-.error-div a {
+.response--div a {
   padding: 0.7rem 1.5rem;
-  border: 1px solid #ff2626;
   border-radius: 100px;
-  color: #ff2626;
   background: transparent;
 }
-.error-div a:hover,
-.error-div a:focus {
+.response--div a:hover,
+.response--div a:focus {
   text-decoration: none;
-  background: #ffe6e605;
+  opacity: 0.8;
+}
+.response--div.error {
+  border: 2px solid #ff2626;
+  background-color: #ff262607;
+}
+.response--div.message {
+  border: 2px solid #28ffbf;
+  background-color: #28ffbf10;
+}
+.response--div.error i {
+  color: #ffbcbc;
+}
+.response--div.message i {
+  font-size: 4rem;
+  color: #f5fdb0;
+}
+.response--div.error a {
+  border: 1px solid #ff2626;
+  color: #ff2626;
+}
+.response--div.message a {
+  border: 1px solid #28ffbf;
+  color: #28ffbf;
 }
 
 /*--------------------------- LAZY LOAD EFFECT ------------------------*/
