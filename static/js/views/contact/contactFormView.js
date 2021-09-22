@@ -2,7 +2,6 @@ import View from './../View.js';
 
 class ContactFormView extends View {
   _parentElement = document.querySelector('.contact-form--div');
-  _emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]{2,})*$/;
 
   addHandlerRender(handler) {
     handler();
@@ -43,39 +42,6 @@ class ContactFormView extends View {
         behavior: 'smooth',
       });
   }
-
-  validateInputFields = function () {
-    let valid = false;
-    const inputFields = Array.from(
-      this._parentElement.querySelectorAll('.user-input')
-    );
-
-    // It counts the number of fields that are in valid range mentioned respectively
-    const inRangeFieldsCount = inputFields
-      .filter(
-        field =>
-          field.value.length >= field.dataset.minlength &&
-          field.value.length <= field.dataset.maxlength
-      )
-      .reduce(count => count + 1, 0);
-
-    valid = inRangeFieldsCount === inputFields.length;
-    const emailField = inputFields.find(field => field.type === 'email');
-    const h =
-      emailField &&
-      valid &&
-      this._validateEmail(this._emailRegex, emailField.value);
-
-    if (!h) {
-      this._parentElement.querySelector('#contact-form').submit();
-    }
-
-    return h;
-  };
-
-  _validateEmail = function (regex, val) {
-    return regex.test(val);
-  };
 
   _generateMarkup() {
     return `
