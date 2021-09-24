@@ -30,6 +30,7 @@
 }
 .entity .value {
   color: var(--light-shade2);
+  word-break: break-all;
 }
 .entity .value :is(.link) {
   color: inherit;
