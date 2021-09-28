@@ -69,6 +69,7 @@ class EducationSerializer(serializers.ModelSerializer):
 
 class WorkExperienceSerializer(serializers.ModelSerializer):
   profile = serializers.SerializerMethodField()
+  year_span = serializers.SerializerMethodField()
 
   class Meta:
     model = Work
@@ -80,16 +81,14 @@ class WorkExperienceSerializer(serializers.ModelSerializer):
       'username': experience.profile.user.username 
     }
 
+  def get_year_span(self, experience):
+    return experience.format_time_duration()
 
-class WorkExperienceDetailSerializer(serializers.ModelSerializer):
-  year_span = serializers.SerializerMethodField()
-  
+
+class WorkExperienceDetailSerializer(serializers.ModelSerializer):  
   class Meta:
     model = Work
     exclude = ('profile',)
-  
-  def get_year_span(self, experience):
-    return experience.format_time_duration()
 
   
 class SkillSerializer(serializers.ModelSerializer):

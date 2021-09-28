@@ -114,5 +114,5 @@ class Work(ExperienceDetail):
         time_interval = end_date - start_date
         month_interval = time_interval.total_seconds() / SECS_IN_MONTH
         if month_interval > MONTHS_IN_YEAR:
-            return round(month_interval / MONTHS_IN_YEAR, 1) 
-        return round(month_interval, 0)
+            return f'{round(month_interval / MONTHS_IN_YEAR, 1)} years ({end_date.strftime("%Y")})' 
+        return f'{int(round(month_interval, 0))} months ({end_date.strftime("%Y")})'

@@ -126,12 +126,12 @@ const activateAboutPageScript = function (user) {
   };
 
   const options = [
-    {
-      type: 'education',
-      elem: aboutEducationContainer,
-      classes: ['timeline'],
-      build: buildEducationTimeline,
-    },
+    // {
+    //   type: 'education',
+    //   elem: aboutEducationContainer,
+    //   classes: ['timeline'],
+    //   build: buildEducationTimeline,
+    // },
     {
       type: 'experience',
       elem: aboutExperienceContainer,

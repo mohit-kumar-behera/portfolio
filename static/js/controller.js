@@ -167,8 +167,12 @@ const controlEducationTimeline = async function () {
   try {
     // Loading Animation
     educationTimelineView.renderSkeleton(3);
+
     // Fetch Data
+    await model.fetchUserEducationDetail();
+
     // Render Data
+    educationTimelineView.render(model.state.about.education);
   } catch (err) {
     // Render Error
   }

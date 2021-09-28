@@ -124,6 +124,9 @@
 .card-right p:not(:last-child) {
   margin-bottom: 0.4rem;
 }
+.timeline--shortDescp {
+  font-weight: lighter;
+}
 .timeline--didWhat,
 .experience--position {
   font-weight: 800;

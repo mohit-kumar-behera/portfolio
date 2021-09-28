@@ -55,7 +55,8 @@ export const state = {
     message: {},
   },
   about: {
-    personalDetail: [],
+    personalDetail: {},
+    education: [],
   },
 };
 
@@ -94,6 +95,15 @@ export const fetchUserPersonalDetail = async function () {
   try {
     const responseData = await sendRequest('/api/user/about');
     state.about.personalDetail = createUserPersonalData(responseData.data);
+  } catch (err) {
+    throw err;
+  }
+};
+
+export const fetchUserEducationDetail = async function () {
+  try {
+    const responseData = await sendRequest('/api/user/about/education');
+    state.about.education = responseData.data;
   } catch (err) {
     throw err;
   }

@@ -32,7 +32,7 @@ def api_education_view(request):
   if request.method == 'GET':
     if profile:
       try:
-        user_education = Education.objects.filter(profile=profile)
+        user_education = Education.objects.filter(profile=profile).order_by('-end_date')
       except:
         response = create_404_response()
         return Response(response, status=status.HTTP_404_NOT_FOUND)
@@ -50,7 +50,7 @@ def api_experience_view(request):
   if request.method == 'GET':
     if profile:
       try:
-        user_work_experience = Work.objects.filter(profile=profile)
+        user_work_experience = Work.objects.filter(profile=profile).order_by('end_date')
       except:
         response = create_404_response()
         return Response(response, status=status.HTTP_404_NOT_FOUND)

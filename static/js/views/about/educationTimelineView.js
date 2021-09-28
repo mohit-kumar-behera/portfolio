@@ -3,6 +3,20 @@ import View from './../View.js';
 class PersonalDetalView extends View {
   _parentElement = document.querySelector('.about-education--content');
 
+  _buildEducationTimeline(item) {
+    return `
+    <div class="timeline--div">
+			<div class="timeline--logo"><span class="fa fa-book"></span></div>
+			<div class="timeline--content">
+				<div class="timeline--duration pill-badge text-weight-bold">${item.year_span}</div>
+				<div class="timeline--didWhat">${item.tag}</div>
+        <div class="timeline--shortDescp">${item.short_descp}</div>
+				<div class="timeline--fromWhere">${item.name}, ${item.state}</div>
+			</div>
+		</div>
+    `;
+  }
+
   _generateSkeletonMarkup() {
     return `
     <div class="timeline">
@@ -12,13 +26,14 @@ class PersonalDetalView extends View {
         </div>
         <div class="skeleton-text w-full"></div>
         <div class="skeleton-text w-full"></div>
+        <div class="skeleton-text w-full"></div>
       </div>
     </div>
     `;
   }
 
   _generateMarkup() {
-    return '';
+    return this._data.map(item => this._buildEducationTimeline(item)).join('');
   }
 }
 
