@@ -1,14 +1,20 @@
 import View from './../View.js';
 
-class PersonalDetalView extends View {
+class EducationTimelineView extends View {
   _parentElement = document.querySelector('.about-education--content');
 
   _buildEducationTimeline(item) {
+    const isGraduation = item.tag.toLowerCase().includes('graduation');
+
     return `
-    <div class="timeline--div">
-			<div class="timeline--logo"><span class="fa fa-book"></span></div>
+    <div class="timeline--div animate-left">
+			<div class="timeline--logo"><span class="fa fa-${
+        isGraduation ? 'graduation-cap' : 'book'
+      }"></span></div>
 			<div class="timeline--content">
-				<div class="timeline--duration pill-badge text-weight-bold">${item.year_span}</div>
+				<div class="timeline--duration pill-badge text-weight-bold">${
+          item.year_span
+        }</div>
 				<div class="timeline--didWhat">${item.tag}</div>
         <div class="timeline--shortDescp">${item.short_descp}</div>
 				<div class="timeline--fromWhere">${item.name}, ${item.state}</div>
@@ -33,8 +39,13 @@ class PersonalDetalView extends View {
   }
 
   _generateMarkup() {
+    if (this._data.length == 0)
+      return this._generateResponseMarkup(
+        'info',
+        'User has not added any education detail.'
+      );
     return this._data.map(item => this._buildEducationTimeline(item)).join('');
   }
 }
 
-export default new PersonalDetalView();
+export default new EducationTimelineView();

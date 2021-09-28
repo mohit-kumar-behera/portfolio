@@ -9,6 +9,7 @@ import contactDetailView from './views/contact/contactDetailView.js';
 
 import personalDetalView from './views/about/personalDetalView.js';
 import educationTimelineView from './views/about/educationTimelineView.js';
+import skillView from './views/about/skillView.js';
 
 import * as func from './helper.js';
 import * as model from './db-model.js';
@@ -163,6 +164,9 @@ const controlPersonalDetail = async function () {
   }
 };
 
+/**
+ * @description Fetch and display education detail of user
+ */
 const controlEducationTimeline = async function () {
   try {
     // Loading Animation
@@ -175,6 +179,23 @@ const controlEducationTimeline = async function () {
     educationTimelineView.render(model.state.about.education);
   } catch (err) {
     // Render Error
+    educationTimelineView.renderResponseMessage(RESPONSE_TYPE.ERROR, err);
+  }
+};
+
+const controlSkillView = async function () {
+  try {
+    // Loading Animation
+    skillView.renderSkeleton(1);
+
+    // Fetch Data
+    await model.fetchUserSkillDetail();
+
+    // Render Data
+    skillView.render(model.state.about.skill);
+  } catch (err) {
+    // Render Error
+    skillView.renderResponseMessage(RESPONSE_TYPE.ERROR, err);
   }
 };
 
@@ -199,4 +220,5 @@ export const contactInit = function () {
 export const aboutInit = function () {
   personalDetalView.addHandlerRender(controlPersonalDetail);
   educationTimelineView.addHandlerRender(controlEducationTimeline);
+  skillView.addHandlerRender(controlSkillView);
 };

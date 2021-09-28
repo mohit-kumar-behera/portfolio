@@ -544,7 +544,7 @@ img {
   text-align: center;
 }
 .response--div a {
-  padding: 6%;
+  padding: 0.7rem 0.9rem;
   border-radius: 100px;
   background: transparent;
 }
@@ -561,14 +561,22 @@ img {
   border: 2px solid #28ffbf;
   background-color: #28ffbf10;
 }
+.response--div.info {
+  border: 2px solid #3db2ff;
+  background-color: #3db2ff10;
+}
 .response--div.error i.icon {
   color: #ffbcbc;
 }
-.response--div.message i.icon {
+.response--div.message i.icon,
+.response--div.info i.icon {
   font-size: 4rem;
 }
 .response--div.message i {
   color: #f5fdb0;
+}
+.response--div.info i {
+  color: #ffedda;
 }
 .response--div.error a {
   border: 1px solid #ff2626;
@@ -577,6 +585,10 @@ img {
 .response--div.message a {
   border: 1px solid #28ffbf;
   color: #28ffbf;
+}
+.response--div.info a {
+  border: 1px solid #3db2ff;
+  color: #3db2ff;
 }
 
 /*--------------------------- LAZY LOAD EFFECT ------------------------*/

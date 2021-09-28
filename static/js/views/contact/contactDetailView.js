@@ -23,6 +23,11 @@ class SocialMediaView extends View {
   }
 
   _generateMarkup() {
+    if (this._data.length == 0)
+      return this._generateResponseMarkup(
+        'info',
+        'User has not added any contact detail.'
+      );
     return this._data.map(item => this._buildContactDetailCard(item)).join('');
   }
 }

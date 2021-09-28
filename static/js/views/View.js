@@ -14,7 +14,11 @@ export default class View {
     return `
     <div class="response--div ${type} animate-opacity">
       <i class="icon fa fa-${
-        isError ? 'exclamation-triangle' : 'check-circle'
+        isError
+          ? 'exclamation-triangle'
+          : type === 'message'
+          ? 'check-info-circle'
+          : 'info-circle'
       }"></i>
       <p>${msg}</p>
       ${isError ? '<a href="">Try Reloading</a>' : ''}

@@ -1,15 +1,3 @@
-// Build Education Timeline
-const buildEducationTimeline = phase => `
-		<div class="timeline--div">
-			<div class="timeline--logo"><span class="fa fa-book"></span></div>
-			<div class="timeline--content">
-				<div class="timeline--duration pill-badge text-weight-bold">${phase.durationStr}</div>
-				<div class="timeline--didWhat">${phase.tag}</div>
-				<div class="timeline--fromWhere">${phase.name}</div>
-			</div>
-		</div>
-	`;
-
 // Build Skill Bar
 const buildSkillBar = phase => `
 		<div class="col-lg-3 col-md-4 col-sm-12 mb-3">
@@ -75,9 +63,4 @@ const buildAwardCard = phase => `
 		</div>
 	`;
 
-export {
-  buildEducationTimeline,
-  buildSkillBar,
-  buildExperienceCard,
-  buildAwardCard,
-};
+export { buildSkillBar, buildExperienceCard, buildAwardCard };

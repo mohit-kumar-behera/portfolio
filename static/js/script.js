@@ -6,7 +6,6 @@ import * as func from './helper.js';
 import user from '../js/modules/MohitInfo.js';
 import { loadImg, createImg } from '../js/modules/LoadCreateImg.js';
 import {
-  buildEducationTimeline,
   buildSkillBar,
   buildExperienceCard,
   buildAwardCard,
@@ -126,12 +125,6 @@ const activateAboutPageScript = function (user) {
   };
 
   const options = [
-    // {
-    //   type: 'education',
-    //   elem: aboutEducationContainer,
-    //   classes: ['timeline'],
-    //   build: buildEducationTimeline,
-    // },
     {
       type: 'experience',
       elem: aboutExperienceContainer,
@@ -143,12 +136,6 @@ const activateAboutPageScript = function (user) {
       elem: aboutAwardsContainer,
       classes: ['display-card--wrapper'],
       build: buildAwardCard,
-    },
-    {
-      type: 'skills',
-      elem: aboutSkillsContainer,
-      classes: ['row', 'm-0'],
-      build: buildSkillBar,
     },
   ];
 
