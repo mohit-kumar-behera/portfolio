@@ -7,7 +7,22 @@ class PersonalDetalView extends View {
     handler();
   }
 
+  attachCVButton(cv) {
+    const CVButtonMarkup = `
+    <a href="${
+      cv.url
+    }" target="_blank" class="bttn secondary--type download-cv--btn" ${
+      cv.url ? '' : 'disabled'
+    } title="${cv.url ? 'View my CV' : 'CV not available'}">${
+      cv.displayName
+    }</a>
+    `;
+    this._parentElement.insertAdjacentHTML('afterend', CVButtonMarkup);
+  }
+
   _buildPersonalInfoCard(data) {
+    if (data.displayName.toLowerCase() === 'view cv') return;
+
     const getFormattedLink = data => {
       return `<a href="${data.url}" class="link" target="_blank">${data.displayVal}</a>`;
     };

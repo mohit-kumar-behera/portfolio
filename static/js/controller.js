@@ -151,6 +151,7 @@ const controlPersonalDetail = async function () {
 
     // Render Data
     personalDetalView.render(model.state.about.personalDetail);
+    personalDetalView.attachCVButton(model.state.about.personalDetail.cv);
   } catch (err) {
     // Render Error
     personalDetalView.renderResponseMessage(RESPONSE_TYPE.ERROR, err);
