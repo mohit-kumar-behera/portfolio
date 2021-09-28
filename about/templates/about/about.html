@@ -9,7 +9,7 @@
 
 {% block page-content %}
 
-  <div class="page-content about-me lazy-transition--bottom">
+  <div class="page-content about-me animate-up max">
     <div class="responsive-wrapper">
       <div class="about-me--div">
         <h4 class="text-weight-bold">Personal Infos</h4>
@@ -18,7 +18,7 @@
     </div>
   </div>
 
-  <div class="page-content about-education lazy-transition--bottom">
+  <div class="page-content about-education animate-up max">
     <div class="page-content-header">
       <h3 class="sub-heading">
         <span>My</span> <span class="text secondary--type">Education</span>
@@ -27,11 +27,11 @@
 
     <div class="responsive-wrapper">
       <div class="about-education--div">
-        <div class="div--left">
+        <div class="div--left animate-right">
           {% include 'svg/education-svg.html' %}
         </div>
 
-        <div class="div--right about-education--content">
+        <div class="div--right about-education--content animate-left">
           <!-- 
 								<div class="timeline">
 									<div class="timeline--div">
@@ -45,7 +45,7 @@
 								</div>
 							-->
 
-              <div class="timeline">
+              <!-- <div class="timeline">
                 <div class="timeline--div skeleton">
                   <div class="pill-badge mb-2 w-50 p-0">
                     <div class="skeleton-text w-full"></div>
@@ -61,7 +61,7 @@
                   <div class="skeleton-text w-full"></div>
                   <div class="skeleton-text w-full"></div>
                 </div>
-              </div>
+              </div> -->
 
         </div>
       </div>

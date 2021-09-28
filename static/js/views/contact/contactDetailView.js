@@ -3,10 +3,6 @@ import View from './../View.js';
 class SocialMediaView extends View {
   _parentElement = document.querySelector('.contact-detail');
 
-  addHandlerRender(handler) {
-    handler();
-  }
-
   _buildContactDetailCard(item) {
     return `
       <div class="email">

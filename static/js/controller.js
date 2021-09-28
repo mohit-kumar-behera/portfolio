@@ -8,6 +8,7 @@ import contactFormView from './views/contact/contactFormView.js';
 import contactDetailView from './views/contact/contactDetailView.js';
 
 import personalDetalView from './views/about/personalDetalView.js';
+import educationTimelineView from './views/about/educationTimelineView.js';
 
 import * as func from './helper.js';
 import * as model from './db-model.js';
@@ -140,7 +141,9 @@ const controlSocialAccountView = async function () {
 //////////////////////////////////////////////////////////////////////////////////
 /////////////////////////// ABOUT PAGE ////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
-
+/**
+ * @description Fetch and display personal info of user
+ */
 const controlPersonalDetail = async function () {
   try {
     // Loading Animation
@@ -151,10 +154,23 @@ const controlPersonalDetail = async function () {
 
     // Render Data
     personalDetalView.render(model.state.about.personalDetail);
+
+    // Attach CV Button
     personalDetalView.attachCVButton(model.state.about.personalDetail.cv);
   } catch (err) {
     // Render Error
     personalDetalView.renderResponseMessage(RESPONSE_TYPE.ERROR, err);
+  }
+};
+
+const controlEducationTimeline = async function () {
+  try {
+    // Loading Animation
+    educationTimelineView.renderSkeleton(3);
+    // Fetch Data
+    // Render Data
+  } catch (err) {
+    // Render Error
   }
 };
 
@@ -178,4 +194,5 @@ export const contactInit = function () {
 
 export const aboutInit = function () {
   personalDetalView.addHandlerRender(controlPersonalDetail);
+  educationTimelineView.addHandlerRender(controlEducationTimeline);
 };

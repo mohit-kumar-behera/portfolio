@@ -1,6 +1,10 @@
 export default class View {
   _data;
 
+  addHandlerRender(handler) {
+    handler();
+  }
+
   _clear() {
     this._parentElement.innerHTML = '';
   }

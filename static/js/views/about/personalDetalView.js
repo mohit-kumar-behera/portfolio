@@ -3,10 +3,6 @@ import View from './../View.js';
 class PersonalDetalView extends View {
   _parentElement = document.querySelector('.about-me--content');
 
-  addHandlerRender(handler) {
-    handler();
-  }
-
   attachCVButton(cv) {
     const CVButtonMarkup = `
     <a href="${

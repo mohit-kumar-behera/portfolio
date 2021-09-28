@@ -3,10 +3,6 @@ import View from './../View.js';
 class SocialMediaView extends View {
   _parentElement = document.querySelector('.social-link--wrapper');
 
-  addHandlerRender(handler) {
-    handler();
-  }
-
   _buildAccountCard(item) {
     return `
       <div class="display-card--div social-link--div animate-up" data-social-handle="${item.name}">
