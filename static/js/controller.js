@@ -147,7 +147,7 @@ const controlPersonalDetail = async function () {
     personalDetalView.renderSkeleton(10);
 
     // Fetch Data
-    await model.fetchUserPersonalDetal();
+    await model.fetchUserPersonalDetail();
 
     // Render Data
     personalDetalView.render(model.state.about.personalDetail);

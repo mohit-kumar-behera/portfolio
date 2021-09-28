@@ -1,43 +1,3 @@
-// Build Model for Theme Picker
-const buildThemePickerModelBody = () => `
-		<div class="theme-picker from-model">
-			<div class="pallete">
-				<button class="bttn color--btn" data-color="#913ee8" style="background: #913EE8"></button>
-				<button class="bttn color--btn" data-color="#0556f3" style="background: #0556F3"></button>
-				<button class="bttn color--btn" data-color="#fa1e0e" style="background: #FA1E0E"></button>
-				<button class="bttn color--btn" data-color="#fe4c03" style="background: #fe4c03"></button>
-				<button class="bttn color--btn" data-color="#ef5742" style="background: #EF5742"></button>
-			</div>
-			<div class="pallete">
-				<button class="bttn color--btn" data-color="#f97194" style="background: #f97194"></button>
-				<button class="bttn color--btn" data-color="#ffae00" style="background: #ffae00"></button>
-				<button class="bttn color--btn" data-color="#73a528" style="background: #73A528"></button>
-				<button class="bttn color--btn" data-color="#a0522d" style="background: #A0522D"></button>
-				<button class="bttn color--btn" data-color="#01937c" style="background: #01937C"></button>
-			</div>
-		</div>
-	`;
-
-// Build Personal Info Card
-const buildPersonalInfoCard = entry => {
-  // Format the link (address, phone, email)
-  const getFormattedLink = (key, val) =>
-    `<a href="${val.url}" class="link" target="_blank">${val[key]}</a>`;
-
-  return `
-		<div class="entity text-weight-bold">
-	 		<p class="key">${entry.key}</p>
-	 		<p class="value">${
-        entry.key.toLowerCase() !== 'address' &&
-        entry.key.toLowerCase() !== 'phone' &&
-        entry.key.toLowerCase() !== 'email'
-          ? entry.value
-          : getFormattedLink(entry.key.toLowerCase(), entry.value)
-      }</p>
-	 	</div>
-	`;
-};
-
 // Build Education Timeline
 const buildEducationTimeline = phase => `
 		<div class="timeline--div">
@@ -116,8 +76,6 @@ const buildAwardCard = phase => `
 	`;
 
 export {
-  buildThemePickerModelBody,
-  buildPersonalInfoCard,
   buildEducationTimeline,
   buildSkillBar,
   buildExperienceCard,

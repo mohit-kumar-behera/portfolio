@@ -6,7 +6,6 @@ import * as func from './helper.js';
 import user from '../js/modules/MohitInfo.js';
 import { loadImg, createImg } from '../js/modules/LoadCreateImg.js';
 import {
-  buildPersonalInfoCard,
   buildEducationTimeline,
   buildSkillBar,
   buildExperienceCard,
@@ -96,7 +95,6 @@ const activateDefaultPageScript = function (modelCl) {
 
 const activateAboutPageScript = function (user) {
   // About Page DOM Selector
-  const personalInfoContainer = document.querySelector('.about-me--content');
   const aboutEducationContainer = document.querySelector(
     '.about-education--content'
   );
@@ -105,22 +103,6 @@ const activateAboutPageScript = function (user) {
     '.about-experience--content'
   );
   const aboutAwardsContainer = document.querySelector('.about-awards--content');
-
-  // Render personal detail on screen in Personal Info section
-  const renderPersonalDetail = function (shortBio) {
-    if (!personalInfoContainer) return;
-    personalInfoContainer.innerHTML = '';
-
-    shortBio.forEach(entry => {
-      personalInfoContainer.insertAdjacentHTML(
-        'beforeend',
-        buildPersonalInfoCard(entry)
-      );
-    });
-  };
-  // setTimeout(function () {
-  //   renderPersonalDetail(user.getShortBio());
-  // }, 2000);
 
   const renderContentDynamically = function (user, elem, type, classes, build) {
     if (!elem) return;

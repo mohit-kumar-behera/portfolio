@@ -36,12 +36,6 @@ export default class View {
   render(data) {
     if (data === null || data === undefined)
       return this.renderResponseMessage('error', 'Something Went Wrong 😔');
-    // if (!data.length) {
-    //   return this.renderResponseMessage(
-    //     'error',
-    //     'Data is Empty. Nothing to show out.'
-    //   );
-    // }
 
     this._data = data;
     const markup = this._generateMarkup();
