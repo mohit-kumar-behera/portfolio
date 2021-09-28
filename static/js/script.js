@@ -118,9 +118,9 @@ const activateAboutPageScript = function (user) {
       );
     });
   };
-  setTimeout(function () {
-    renderPersonalDetail(user.getShortBio());
-  }, 2000);
+  // setTimeout(function () {
+  //   renderPersonalDetail(user.getShortBio());
+  // }, 2000);
 
   const renderContentDynamically = function (user, elem, type, classes, build) {
     if (!elem) return;
@@ -366,6 +366,7 @@ class App {
         controller.contactInit();
         break;
       case 'about':
+        controller.aboutInit();
         activateAboutPageScript(user);
         break;
       case 'project':

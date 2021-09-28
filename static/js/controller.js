@@ -7,6 +7,8 @@ import socialMediaView from './views/contact/socialMediaView.js';
 import contactFormView from './views/contact/contactFormView.js';
 import contactDetailView from './views/contact/contactDetailView.js';
 
+import personalDetalView from './views/about/personalDetalView.js';
+
 import * as func from './helper.js';
 import * as model from './db-model.js';
 
@@ -135,6 +137,26 @@ const controlSocialAccountView = async function () {
   }
 };
 
+//////////////////////////////////////////////////////////////////////////////////
+/////////////////////////// ABOUT PAGE ////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+
+const controlPersonalDetail = async function () {
+  try {
+    // Loading Animation
+    personalDetalView.renderSkeleton(10);
+
+    // Fetch Data
+    await model.fetchUserPersonalDetal();
+
+    // Render Data
+    personalDetalView.render(model.state.about.personalDetail);
+  } catch (err) {
+    // Render Error
+    personalDetalView.renderResponseMessage(RESPONSE_TYPE.ERROR, err);
+  }
+};
+
 export const defaultInit = function () {
   navbarView.setActivePageNavLink(window.currPage);
   navbarView.addHandlerThemeModelBtn(controlThemeModelBtn);
@@ -151,4 +173,8 @@ export const contactInit = function () {
   contactFormView.addHandlerRender(controlContactForm);
   contactFormView.addHandlerSubmit(controlContactFormSubmission);
   socialMediaView.addHandlerRender(controlSocialAccountView);
+};
+
+export const aboutInit = function () {
+  personalDetalView.addHandlerRender(controlPersonalDetail);
 };

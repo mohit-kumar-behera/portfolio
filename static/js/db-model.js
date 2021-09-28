@@ -6,6 +6,9 @@ export const state = {
     socialAccount: [],
     message: {},
   },
+  about: {
+    personalDetail: [],
+  },
 };
 
 export const fetchUserSocialAccount = async function () {
@@ -34,6 +37,15 @@ export const uploadQueryForm = async function (formData) {
       'post'
     );
     state.contact.message = responseData.data;
+  } catch (err) {
+    throw err;
+  }
+};
+
+export const fetchUserPersonalDetal = async function () {
+  try {
+    const responseData = await sendRequest('/api/user/about');
+    state.about.personalDetail = responseData.data;
   } catch (err) {
     throw err;
   }

@@ -17,7 +17,7 @@ class ShortBioSerializer(serializers.ModelSerializer):
   def get_other_info(self, profile):
     age = profile.get_age()
     try:
-      home_address = profile.address_set.get(type='homes')
+      home_address = profile.address_set.get(type='home')
     except Address.DoesNotExist:
       home_address = None
     else:
