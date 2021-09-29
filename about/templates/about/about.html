@@ -8,87 +8,57 @@
 {% block page-title %}<span>About <span class="text secondary--type">Me</span></span>{% endblock page-title %}
 
 {% block page-content %}
+<div class="page-content about-me animate-up max">
+  <div class="responsive-wrapper">
+    <div class="about-me--div">
+      <h4 class="text-weight-bold">Personal Infos</h4>
+      <div class="about-me--content flex-wrapper"></div>
+    </div>
+  </div>
+</div>
 
-  <div class="page-content about-me animate-up max">
-    <div class="responsive-wrapper">
-      <div class="about-me--div">
-        <h4 class="text-weight-bold">Personal Infos</h4>
-        <div class="about-me--content flex-wrapper"></div>
+<div class="page-content about-education animate-up max">
+  <div class="page-content-header">
+    <h3 class="sub-heading">
+      <span>My</span> <span class="text secondary--type">Education</span>
+    </h3>
+  </div>
+
+  <div class="responsive-wrapper">
+    <div class="about-education--div">
+      <div class="div--left animate-right">
+        {% include 'svg/education-svg.html' %}
       </div>
+      <div class="div--right about-education--content animate-left"></div>
     </div>
   </div>
+</div>
 
-  <div class="page-content about-education animate-up max">
-    <div class="page-content-header">
-      <h3 class="sub-heading">
-        <span>My</span> <span class="text secondary--type">Education</span>
-      </h3>
-    </div>
+<div class="page-content about-skills animate-up max">
+  <div class="page-content-header">
+    <h3 class="sub-heading">
+      <span>My</span> <span class="text secondary--type">Skills</span>
+    </h3>
+  </div>
+  <div class="skill--wrapper p-2 about-skills--content"></div>
+</div>
 
-    <div class="responsive-wrapper">
-      <div class="about-education--div">
-        <div class="div--left animate-right">
-          {% include 'svg/education-svg.html' %}
-        </div>
-        <div class="div--right about-education--content animate-left"></div>
-      </div>
-    </div>
+<div class="page-content about-experience animate-up max">
+  <div class="page-content-header">
+    <h3 class="sub-heading">
+      <span>My</span> <span class="text secondary--type">Experience</span>
+    </h3>
   </div>
 
-  <div class="page-content about-skills animate-up max">
-    <div class="page-content-header">
-      <h3 class="sub-heading">
-        <span>My</span> <span class="text secondary--type">Skills</span>
-      </h3>
-    </div>
-    <div class="skill--wrapper p-2 about-skills--content"></div>
+  <div class="responsive-wrapper about-experience--content normal-model-view"></div>
+</div>
+
+<div class="page-content about-awards animate-up max">
+  <div class="page-content-header">
+    <h3 class="sub-heading">
+      <span>My</span> <span class="text secondary--type">Awards</span>
+    </h3>
   </div>
-
-  <div class="page-content about-experience animate-up max">
-    <div class="page-content-header">
-      <h3 class="sub-heading">
-        <span>My</span> <span class="text secondary--type">Experience</span>
-      </h3>
-    </div>
-
-    <div class="responsive-wrapper about-experience--content normal-model-view"></div>
-  </div>
-
-  <div class="page-content about-awards animate-up max">
-    <div class="page-content-header">
-      <h3 class="sub-heading">
-        <span>My</span> <span class="text secondary--type">Awards</span>
-      </h3>
-    </div>
-
-    <div class="about-awards--content img-model-view">
-      <!-- 
-					<div class="display-card--wrapper">
-						<div class="display-card--div">
-							<div class="display-card">
-								<div class="display-card--img">
-									<img src="{% static 'media/image/webdevjpg.jpg' %}" class="award--img"/>
-								</div>
-
-								<a href="{% static 'media/image/webdevjpg.jpg' %}" class="display-card--link" target="_blank"></a>
-
-								<div class="overlay--div"><span>View</span></div>
-							</div>
-						</div>
-					</div>
-				-->
-
-    </div>
-  </div>
-
+  <div class="about-awards--content img-model-view"></div>
+</div>
 {% endblock page-content %}
-
-<!--
-
-NOTE: 
-IN AWARDS -
- use low resolution img while displaying the img,
- but the link will take the user to original image of higher resolution
-
-
--->

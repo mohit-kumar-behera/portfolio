@@ -5,7 +5,6 @@ import * as func from './helper.js';
 
 import user from '../js/modules/MohitInfo.js';
 import { loadImg, createImg } from '../js/modules/LoadCreateImg.js';
-import { buildAwardCard } from '../js/modules/Build.js';
 
 /* ------------------- Required in All Pages ------------------------- */
 
@@ -42,56 +41,6 @@ const activateDefaultPageScript = function (modelCl) {
 };
 
 /* ---------------------- End of Default Page Script ----------------------- */
-
-/*------------------------- Required only in About us Page ----------------------------------------*/
-
-const activateAboutPageScript = function (user) {
-  const aboutAwardsContainer = document.querySelector('.about-awards--content');
-
-  const renderContentDynamically = function (user, elem, type, classes, build) {
-    if (!elem) return;
-
-    const mainType = user.knowledge[type];
-    const phases = mainType.phase;
-
-    let html_div = document.createElement('div');
-    html_div.classList = classes.join(' ');
-
-    let html_content = '';
-
-    phases.forEach(phase => {
-      html_content += build(mainType.getDetail(phase));
-    });
-
-    html_div.innerHTML = html_content;
-
-    elem.innerHTML = '';
-    elem.append(html_div);
-  };
-
-  const options = [
-    {
-      type: 'awards',
-      elem: aboutAwardsContainer,
-      classes: ['display-card--wrapper'],
-      build: buildAwardCard,
-    },
-  ];
-
-  setTimeout(function () {
-    options.forEach(entry =>
-      renderContentDynamically(
-        user,
-        entry.elem,
-        entry.type,
-        entry.classes,
-        entry.build
-      )
-    );
-  }, 2000);
-};
-
-/*------------------------- End of About us Page -------------------------------------------*/
 
 const startIntersectionObserver = function () {
   const lazyOpacityElem = Array.from(

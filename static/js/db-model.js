@@ -59,6 +59,7 @@ export const state = {
     education: [],
     skill: [],
     experience: [],
+    award: [],
   },
 };
 
@@ -126,6 +127,17 @@ export const fetchUserExperienceDetail = async function (id) {
       ? await sendRequest(`/api/user/about/work-experience/c/${id}`)
       : await sendRequest('/api/user/about/work-experience');
     state.about.experience = responseData.data;
+  } catch (err) {
+    throw err;
+  }
+};
+
+export const fetchUserAwardDetail = async function (id) {
+  try {
+    const responseData = id
+      ? await sendRequest(`/api/user/about/award/${id}`)
+      : await sendRequest('/api/user/about/award');
+    state.about.award = responseData.data;
   } catch (err) {
     throw err;
   }

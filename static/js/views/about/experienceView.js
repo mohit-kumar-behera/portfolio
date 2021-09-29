@@ -14,7 +14,7 @@ class AboutView extends View {
 
   _buildExperienceCard(item) {
     return `
-    <div class="col-lg-6 col-md-12 col-sm-12 p-1 mb-2 animate-up">
+    <div class="col-lg-6 col-md-12 col-sm-12 p-1 mb-2 animate-up mid">
 			<div class="info-card" data-id="${item.name}">
 				<div class="info-card--left">
 					<img src="${item.image_low_res}" alt="${item.name} logo"/>

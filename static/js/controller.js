@@ -11,6 +11,7 @@ import personalDetalView from './views/about/personalDetalView.js';
 import educationTimelineView from './views/about/educationTimelineView.js';
 import skillView from './views/about/skillView.js';
 import experienceView from './views/about/experienceView.js';
+import awardView from './views/about/awardView.js';
 
 import * as func from './helper.js';
 import * as model from './db-model.js';
@@ -261,6 +262,25 @@ const controlExperienceModel = async function (id) {
   }
 };
 
+/**
+ * @description Fetch and display awards of the user
+ */
+const controlAwardView = async function () {
+  try {
+    // Loading Animation
+    awardView.renderSkeleton(1);
+
+    // Fetch Data
+    await model.fetchUserAwardDetail();
+
+    // Render Data
+    awardView.render(model.state.about.award);
+  } catch (err) {
+    // Render Error
+    awardView.renderResponseMessage(RESPONSE_TYPE.ERROR, err);
+  }
+};
+
 export const defaultInit = function () {
   navbarView.setActivePageNavLink(window.currPage);
   navbarView.addHandlerThemeModelBtn(controlThemeModelBtn);
@@ -285,4 +305,5 @@ export const aboutInit = function () {
   skillView.addHandlerRender(controlSkillView);
   experienceView.addHandlerRender(controlExperienceView);
   experienceView.addHandlerExperienceModelBtn(controlExperienceModel);
+  awardView.addHandlerRender(controlAwardView);
 };
