@@ -10,6 +10,7 @@ import contactDetailView from './views/contact/contactDetailView.js';
 import personalDetalView from './views/about/personalDetalView.js';
 import educationTimelineView from './views/about/educationTimelineView.js';
 import skillView from './views/about/skillView.js';
+import experienceView from './views/about/experienceView.js';
 
 import * as func from './helper.js';
 import * as model from './db-model.js';
@@ -34,7 +35,7 @@ const controlThemeModelBtn = function () {
     height: 'auto',
   };
 
-  let modelCl = new Model(params.model, params.overlay);
+  const modelCl = new Model(params.model, params.overlay);
   modelCl.customize(params.width, params.height).renderSpinner().open();
 
   const headEl = '<h4>Pick Theme</h4>';
@@ -183,6 +184,9 @@ const controlEducationTimeline = async function () {
   }
 };
 
+/**
+ * @description Fetch and display skills detail of user
+ */
 const controlSkillView = async function () {
   try {
     // Loading Animation
@@ -196,6 +200,59 @@ const controlSkillView = async function () {
   } catch (err) {
     // Render Error
     skillView.renderResponseMessage(RESPONSE_TYPE.ERROR, err);
+  }
+};
+
+/**
+ * @description Fetch and display work experience detail of user
+ */
+const controlExperienceView = async function () {
+  try {
+    // Loading Animation
+    experienceView.renderSkeleton(1);
+
+    // Fetch Data
+    await model.fetchUserExperienceDetail();
+
+    // Render Data
+    experienceView.render(model.state.about.experience);
+  } catch (err) {
+    // Render Error
+    experienceView.renderResponseMessage(RESPONSE_TYPE.ERROR, err);
+  }
+};
+
+/**
+ * @description Customizes and opens model-window for Experience Detail
+ */
+const controlExperienceModel = async function (id) {
+  const params = {
+    model: document.querySelector('#normal-model.model'),
+    overlay: document.querySelector('.overlay'),
+  };
+  const modelCl = new Model(params.model, params.overlay);
+  const dataHead = `<h4>Internship Experience</h4>`;
+  let dataBody = '';
+
+  try {
+    // Open Model and show Loading Animation
+    modelCl.customize().renderSpinner().open();
+
+    // Fetch Data
+    await model.fetchUserExperienceDetail(id);
+
+    // Render Data
+    dataBody = `
+    <div class="experience-description animate-opacity">
+    ${model.state.about.experience.detail}
+    </div>
+    `;
+  } catch (err) {
+    dataBody = err;
+  } finally {
+    setTimeout(function () {
+      modelCl.render(dataBody, dataHead);
+    }, 400);
   }
 };
 
@@ -221,4 +278,6 @@ export const aboutInit = function () {
   personalDetalView.addHandlerRender(controlPersonalDetail);
   educationTimelineView.addHandlerRender(controlEducationTimeline);
   skillView.addHandlerRender(controlSkillView);
+  experienceView.addHandlerRender(controlExperienceView);
+  experienceView.addHandlerExperienceModelBtn(controlExperienceModel);
 };

@@ -5,11 +5,7 @@ import * as func from './helper.js';
 
 import user from '../js/modules/MohitInfo.js';
 import { loadImg, createImg } from '../js/modules/LoadCreateImg.js';
-import {
-  buildSkillBar,
-  buildExperienceCard,
-  buildAwardCard,
-} from '../js/modules/Build.js';
+import { buildAwardCard } from '../js/modules/Build.js';
 
 /* ------------------- Required in All Pages ------------------------- */
 
@@ -47,6 +43,7 @@ const activateDefaultPageScript = function (modelCl) {
 
   // Handle Model view when experience section is clicked for viewing
   normalModelView?.addEventListener('click', function (e) {
+    return;
     const cardLink = e.target.closest('.experience--company .link');
     if (cardLink) return;
 
@@ -93,11 +90,7 @@ const activateDefaultPageScript = function (modelCl) {
 /*------------------------- Required only in About us Page ----------------------------------------*/
 
 const activateAboutPageScript = function (user) {
-  // About Page DOM Selector
-  const aboutEducationContainer = document.querySelector(
-    '.about-education--content'
-  );
-  const aboutSkillsContainer = document.querySelector('.about-skills--content');
+  // About Page DOM Selector=
   const aboutExperienceContainer = document.querySelector(
     '.about-experience--content'
   );
@@ -126,12 +119,6 @@ const activateAboutPageScript = function (user) {
 
   const options = [
     {
-      type: 'experience',
-      elem: aboutExperienceContainer,
-      classes: ['row'],
-      build: buildExperienceCard,
-    },
-    {
       type: 'awards',
       elem: aboutAwardsContainer,
       classes: ['display-card--wrapper'],
@@ -153,11 +140,6 @@ const activateAboutPageScript = function (user) {
 };
 
 /*------------------------- End of About us Page -------------------------------------------*/
-
-/*------------------------- Project Page -------------------------------------------*/
-// Handle click event to open model
-const activateProjectPageScript = function (user) {};
-/*------------------------- End of Project Page -------------------------------------------*/
 
 const startIntersectionObserver = function () {
   const lazyOpacityElem = Array.from(

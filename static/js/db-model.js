@@ -58,6 +58,7 @@ export const state = {
     personalDetail: {},
     education: [],
     skill: [],
+    experience: [],
   },
 };
 
@@ -114,6 +115,17 @@ export const fetchUserSkillDetail = async function () {
   try {
     const responseData = await sendRequest('/api/user/about/skill');
     state.about.skill = responseData.data;
+  } catch (err) {
+    throw err;
+  }
+};
+
+export const fetchUserExperienceDetail = async function (id) {
+  try {
+    const responseData = id
+      ? await sendRequest(`/api/user/about/work-experience/c/${id}`)
+      : await sendRequest('/api/user/about/work-experience');
+    state.about.experience = responseData.data;
   } catch (err) {
     throw err;
   }
