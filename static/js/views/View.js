@@ -36,8 +36,9 @@ export default class View {
     this._insertMarkup('afterbegin', this._parentElement, skeletonMarkup);
   }
 
-  renderResponseMessage(type, message) {
+  renderResponseMessage(type, message, render = true) {
     const responseMarkup = this._generateResponseMarkup(type, message);
+    if (!render) return responseMarkup;
     this._insertMarkup('afterbegin', this._parentElement, responseMarkup);
   }
 

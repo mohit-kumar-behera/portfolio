@@ -75,9 +75,14 @@ export const sendRequest = async function (url, uploadData, method = 'get') {
         : fetch(url);
 
     const response = await Promise.race([fetchPro, timeout(10)]);
-    const data = await response.json();
-
-    if (!response.ok) throw new Error(data.error?.message);
+    let data;
+    try {
+      data = await response.json();
+    } catch (err) {
+      throw new Error('Something Went Wrong');
+    }
+    if (!response.ok)
+      throw new Error(data.error?.message ?? 'Something Went Wrong');
     return data;
   } catch (err) {
     throw err;

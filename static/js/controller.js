@@ -248,7 +248,12 @@ const controlExperienceModel = async function (id) {
     </div>
     `;
   } catch (err) {
-    dataBody = err;
+    const markup = experienceView.renderResponseMessage(
+      RESPONSE_TYPE.ERROR,
+      err,
+      false
+    );
+    dataBody = markup;
   } finally {
     setTimeout(function () {
       modelCl.render(dataBody, dataHead);
