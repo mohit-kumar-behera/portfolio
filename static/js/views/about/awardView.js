@@ -3,12 +3,20 @@ import View from './../View.js';
 class AboutView extends View {
   _parentElement = document.querySelector('.about-awards--content');
 
+  addHandlerImageView(handler) {
+    this._parentElement.addEventListener('click', function (e) {
+      const imgElem = e.target.closest('.award--img');
+      if (!imgElem) return;
+      handler(imgElem);
+    });
+  }
+
   _buildAwardCard(item) {
     return `
-    <div class="display-card--div animate-up mid" data-img-src="${item.image_high_res}" data-id="${item.id}">
+    <div class="display-card--div animate-up mid">
       <div class="display-card award-card">
         <div class="display-card--img">
-          <img src="${item.image_low_res}" class="award--img" alt="${item.name}"/>
+          <img src="${item.image_low_res}" class="award--img" alt="${item.name}" data-src="${item.image_high_res}"/>
         </div>
         <div class="overlay--div"><span>View</span></div>
       </div>

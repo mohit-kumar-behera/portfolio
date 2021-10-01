@@ -1,4 +1,5 @@
 import navbarView from './views/navbarView.js';
+import { loadImg, createImg } from './modules/LoadCreateImg.js';
 
 import paletteView from './views/themePaletteView.js';
 import Model from './views/modelView.js';
@@ -281,6 +282,54 @@ const controlAwardView = async function () {
   }
 };
 
+/**
+ *
+ * @param {DOMElement} imgElem
+ * @description Attach image and show in model
+ */
+const controlImageView = async function (imgElem) {
+  const imgPath = imgElem.dataset.src;
+  const params = {
+    model: document.querySelector('#img-model.model'),
+    overlay: document.querySelector('.overlay'),
+    width: '90%',
+    height: '75vh',
+    background: 'transparent',
+  };
+  const modelCl = new Model(params.model, params.overlay);
+  let dataBody = '';
+
+  try {
+    // Open Model and show loading animation
+    modelCl
+      .customize(params.width, params.height, params.background)
+      .renderSpinner()
+      .open();
+
+    // Create Image
+    const newImg = await createImg(
+      imgPath,
+      ['view-img'],
+      imgElem.getAttribute('alt')
+    );
+
+    // Attach Image to Div Element
+    const divEl = document.createElement('div');
+    divEl.className = 'img--div';
+    divEl.insertAdjacentElement('afterbegin', newImg);
+    dataBody = divEl.innerHTML;
+  } catch (err) {
+    const markup = awardView.renderResponseMessage(
+      RESPONSE_TYPE.ERROR,
+      err,
+      false
+    );
+    dataBody = markup;
+  } finally {
+    modelCl.render(dataBody);
+  }
+};
+
 export const defaultInit = function () {
   navbarView.setActivePageNavLink(window.currPage);
   navbarView.addHandlerThemeModelBtn(controlThemeModelBtn);
@@ -306,4 +355,5 @@ export const aboutInit = function () {
   experienceView.addHandlerRender(controlExperienceView);
   experienceView.addHandlerExperienceModelBtn(controlExperienceModel);
   awardView.addHandlerRender(controlAwardView);
+  awardView.addHandlerImageView(controlImageView);
 };

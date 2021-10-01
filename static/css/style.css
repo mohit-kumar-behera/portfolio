@@ -548,6 +548,9 @@ img {
   border-radius: 100px;
   background: transparent;
 }
+.response--div p {
+  color: #fff;
+}
 .response--div a:hover,
 .response--div a:focus {
   text-decoration: none;

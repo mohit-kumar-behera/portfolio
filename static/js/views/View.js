@@ -52,7 +52,7 @@ export default class View {
       function () {
         this._insertMarkup('afterbegin', this._parentElement, markup);
       }.bind(this),
-      1500
+      0
     );
   }
 

@@ -219,10 +219,8 @@ class App {
         break;
       case 'about':
         controller.aboutInit();
-        activateAboutPageScript(user);
         break;
       case 'project':
-        activateProjectPageScript(user);
         break;
     }
 
