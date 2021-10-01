@@ -3,45 +3,7 @@
 import * as controller from './controller.js';
 import * as func from './helper.js';
 
-import user from '../js/modules/MohitInfo.js';
 import { loadImg, createImg } from '../js/modules/LoadCreateImg.js';
-
-/* ------------------- Required in All Pages ------------------------- */
-
-const activateDefaultPageScript = function (modelCl) {
-  const overlay = document.querySelector('.overlay');
-  const imgModelView = document.querySelector('.img-model-view');
-
-  // Handle Model view when images are clicked for viewing
-  imgModelView?.addEventListener('click', function (e) {
-    const card = e.target.closest('.display-card--div');
-    if (!card) return;
-
-    const imgPath = card.dataset.imgSrc;
-    const params = {
-      model: document.querySelector('#img-model.model'),
-      overlay,
-      width: '90%',
-      height: '75vh',
-      background: 'transparent',
-    };
-    modelCl = new Model(params.model, params.overlay);
-    modelCl
-      .customize(params.width, params.height, params.background)
-      .renderSpinner()
-      .open();
-
-    const dataBody = `
-      <div class="img--div">
-        <img src="${imgPath}" class="view-img" alt=""/>
-      </div>
-    `;
-    modelCl.render(dataBody);
-  });
-};
-
-/* ---------------------- End of Default Page Script ----------------------- */
-
 const startIntersectionObserver = function () {
   const lazyOpacityElem = Array.from(
     document.querySelectorAll('.lazy-opacity')
@@ -158,19 +120,13 @@ const startIntersectionObserver = function () {
 //////////////////////////////////////////////////////////////////////////////////////
 
 class App {
-  _modelCl;
   _loaderEl = document.querySelector('.loader');
   _mainBodyEl = document.getElementById('main-body');
 
   constructor() {
-    this._initialize();
     this._setCurrPage();
     this._setMobileDevice();
     this._setPageTheme();
-  }
-
-  _initialize() {
-    this._modelCl = null;
   }
 
   _setCurrPage() {
@@ -207,8 +163,6 @@ class App {
 
   start() {
     controller.defaultInit();
-
-    activateDefaultPageScript(this._modelCl);
 
     switch (window.currPage) {
       case 'home':
