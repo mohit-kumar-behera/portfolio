@@ -605,28 +605,12 @@ img {
     opacity: 0.3;
   }
 }
-.lazy-opacity,
 .lazy-img {
   opacity: 0.15;
 }
 .lazy-img {
   -webkit-animation: opacity-transition 0.5s ease-in-out infinite alternate;
   animation: opacity-transition 0.5s ease-in-out infinite alternate;
-}
-.lazy-transition--left,
-.lazy-transition--bottom {
-  transition-delay: 0.2s;
-}
-.lazy-transition--left {
-  transform: translateX(-30px);
-}
-.lazy-transition--bottom {
-  transform: translateY(50px);
-}
-.lazy-opacity,
-.lazy-transition--left,
-.lazy-transition--bottom,
-.lazy-img {
   -webkit-transition-timing-function: ease-in-out;
   transition-timing-function: ease-in-out;
 }

@@ -3,56 +3,13 @@
 import * as controller from './controller.js';
 import * as func from './helper.js';
 
-import { loadImg, createImg } from '../js/modules/LoadCreateImg.js';
-const startIntersectionObserver = function () {
-  const lazyOpacityElem = Array.from(
-    document.querySelectorAll('.lazy-opacity')
-  );
-  const lazyTransitionLeftElem = Array.from(
-    document.querySelectorAll('.lazy-transition--left')
-  );
-  const lazyTransitionBottomElem = Array.from(
-    document.querySelectorAll('.lazy-transition--bottom')
-  );
+import { loadImg } from './loadCreateImg.js';
+
+const startLazyImgObserver = function () {
   const lazyImgElem = Array.from(document.querySelectorAll('.lazy-img'));
-
-  const handleLazyOpacity = function (entries) {
-    const [entry] = entries;
-
-    if (!entry.isIntersecting) return;
-
-    const elem = entry.target;
-
-    elem.classList.remove('lazy-opacity');
-    lazyOpacityObserver.unobserve(elem);
-  };
-
-  const handleLazyTransitionLeft = function (entries) {
-    const [entry] = entries;
-
-    if (!entry.isIntersecting) return;
-
-    const elem = entry.target;
-
-    elem.classList.remove('lazy-transition--left');
-    lazyTransitionLeftObserver.unobserve(elem);
-  };
-
-  const handleLazyTransitionBottom = function (entries) {
-    // const [entry] = entries;
-    entries.forEach(function (entry) {
-      if (!entry.isIntersecting) return;
-
-      const elem = entry.target;
-
-      elem.classList.remove('lazy-transition--bottom');
-      lazyTransitionBottomObserver.unobserve(elem);
-    });
-  };
 
   const handleLazyImg = async function (entries) {
     const [entry] = entries;
-
     if (!entry.isIntersecting) return;
 
     const elem = entry.target;
@@ -65,18 +22,7 @@ const startIntersectionObserver = function () {
       elem.setAttribute('alt', 'Unable to Load Mohit Kumar Photo');
       console.error(err);
     }
-
     lazyImgObserver.unobserve(elem);
-  };
-
-  const lazyOpacityOption = {
-    root: null,
-    threshold: 0.25,
-  };
-
-  const lazyTransitionOption = {
-    root: null,
-    threshold: 0.2,
   };
 
   const lazyImgOption = {
@@ -84,40 +30,12 @@ const startIntersectionObserver = function () {
     threshold: 0.1,
   };
 
-  const lazyOpacityObserver = new IntersectionObserver(
-    handleLazyOpacity,
-    lazyOpacityOption
-  );
-  lazyOpacityElem.forEach(elem => lazyOpacityObserver.observe(elem));
-
-  const lazyTransitionLeftObserver = new IntersectionObserver(
-    handleLazyTransitionLeft,
-    lazyTransitionOption
-  );
-  lazyTransitionLeftElem.forEach(elem =>
-    lazyTransitionLeftObserver.observe(elem)
-  );
-
-  const lazyTransitionBottomObserver = new IntersectionObserver(
-    handleLazyTransitionBottom,
-    lazyTransitionOption
-  );
-  lazyTransitionBottomElem.forEach(elem =>
-    lazyTransitionBottomObserver.observe(elem)
-  );
-
   const lazyImgObserver = new IntersectionObserver(
     handleLazyImg,
     lazyImgOption
   );
   lazyImgElem.forEach(elem => lazyImgObserver.observe(elem));
 };
-
-//////////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////
 
 class App {
   _loaderEl = document.querySelector('.loader');
@@ -178,7 +96,7 @@ class App {
         break;
     }
 
-    startIntersectionObserver();
+    startLazyImgObserver();
 
     window.addEventListener(
       'load',

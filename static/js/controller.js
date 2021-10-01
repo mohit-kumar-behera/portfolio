@@ -1,5 +1,5 @@
 import navbarView from './views/navbarView.js';
-import { loadImg, createImg } from './modules/LoadCreateImg.js';
+import { createImg } from './loadCreateImg.js';
 
 import paletteView from './views/themePaletteView.js';
 import Model from './views/modelView.js';
