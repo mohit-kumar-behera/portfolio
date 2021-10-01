@@ -1,9 +1,5 @@
 'use strict';
-
 import * as controller from './controller.js';
-import * as func from './helper.js';
-
-import { loadImg } from './loadCreateImg.js';
 
 const startLazyImgObserver = function () {
   const lazyImgElem = Array.from(document.querySelectorAll('.lazy-img'));
@@ -15,7 +11,8 @@ const startLazyImgObserver = function () {
     const elem = entry.target;
 
     try {
-      const loadedImg = await loadImg(elem, elem.dataset.src);
+      const module = await import('./loadCreateImg.js');
+      const loadedImg = await module.loadImg(elem, elem.dataset.src);
       loadedImg.classList.remove('lazy-img');
     } catch (err) {
       elem.classList.remove('lazy-img');
@@ -51,8 +48,9 @@ class App {
     window.currPage = location.pathname.split('/')[1] || 'home';
   }
 
-  _setMobileDevice() {
-    func
+  async _setMobileDevice() {
+    const module = await import('./helper.js');
+    module
       .detectMobile()
       .then(res => {
         window.isMobile = res.mobileDevice;
@@ -65,10 +63,11 @@ class App {
       });
   }
 
-  _setPageTheme() {
+  async _setPageTheme() {
     window.currPageTheme = this._currPageTheme;
     if (!window.currPageTheme) localStorage.setItem('theme-color', '#fa1e0e');
-    func.setTheme(window.currPageTheme, window.currPage);
+    const module = await import('./helper.js');
+    module.setTheme(window.currPageTheme, window.currPage);
   }
 
   _addMobileAttribute() {

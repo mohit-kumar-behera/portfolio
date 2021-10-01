@@ -1,6 +1,3 @@
-import navbarView from './views/navbarView.js';
-import { createImg } from './loadCreateImg.js';
-
 import paletteView from './views/themePaletteView.js';
 import Model from './views/modelView.js';
 
@@ -307,7 +304,8 @@ const controlImageView = async function (imgElem) {
       .open();
 
     // Create Image
-    const newImg = await createImg(
+    const module = await import('./loadCreateImg.js');
+    const newImg = await module.createImg(
       imgPath,
       ['view-img'],
       imgElem.getAttribute('alt')
@@ -330,9 +328,10 @@ const controlImageView = async function (imgElem) {
   }
 };
 
-export const defaultInit = function () {
-  navbarView.setActivePageNavLink(window.currPage);
-  navbarView.addHandlerThemeModelBtn(controlThemeModelBtn);
+export const defaultInit = async function () {
+  const navbarModule = await import('./views/navbarView.js');
+  navbarModule.default.setActivePageNavLink(window.currPage);
+  navbarModule.default.addHandlerThemeModelBtn(controlThemeModelBtn);
 };
 
 export const homeInit = function () {
