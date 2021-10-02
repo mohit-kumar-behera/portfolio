@@ -1,7 +1,10 @@
 import View from './../View.js';
 
 class ContactFormView extends View {
-  _parentElement = document.querySelector('.contact-form--div');
+  constructor() {
+    super();
+    this._parentElement = document.querySelector('.contact-form--div');
+  }
 
   addHandlerSubmit(handler) {
     const form = this._parentElement.querySelector('#contact-form');

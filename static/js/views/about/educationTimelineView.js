@@ -1,7 +1,10 @@
 import View from './../View.js';
 
 class EducationTimelineView extends View {
-  _parentElement = document.querySelector('.about-education--content');
+  constructor() {
+    super();
+    this._parentElement = document.querySelector('.about-education--content');
+  }
 
   _buildEducationTimeline(item) {
     const isGraduation = item.tag.toLowerCase().includes('graduation');

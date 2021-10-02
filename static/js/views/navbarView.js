@@ -1,7 +1,6 @@
 class NavbarView {
-  _parentElement = document.querySelector('.navbar');
-
   constructor() {
+    this._parentElement = document.querySelector('.navbar');
     this._addHandlerTogglerBtn();
     this._addHandlerTabPress();
   }

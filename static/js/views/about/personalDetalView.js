@@ -1,7 +1,10 @@
 import View from './../View.js';
 
 class PersonalDetalView extends View {
-  _parentElement = document.querySelector('.about-me--content');
+  constructor() {
+    super();
+    this._parentElement = document.querySelector('.about-me--content');
+  }
 
   attachCVButton(cv) {
     const CVButtonMarkup = `

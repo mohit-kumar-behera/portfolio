@@ -35,10 +35,9 @@ const startLazyImgObserver = function () {
 };
 
 class App {
-  _loaderEl = document.querySelector('.loader');
-  _mainBodyEl = document.getElementById('main-body');
-
   constructor() {
+    this._loaderEl = document.querySelector('.loader');
+    this._mainBodyEl = document.getElementById('main-body');
     this._setCurrPage();
     this._setMobileDevice();
     this._setPageTheme();

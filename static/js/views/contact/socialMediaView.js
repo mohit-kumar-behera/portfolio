@@ -1,7 +1,10 @@
 import View from './../View.js';
 
 class SocialMediaView extends View {
-  _parentElement = document.querySelector('.social-link--wrapper');
+  constructor() {
+    super();
+    this._parentElement = document.querySelector('.social-link--wrapper');
+  }
 
   _buildAccountCard(item) {
     return `

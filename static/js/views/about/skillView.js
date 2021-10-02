@@ -1,7 +1,10 @@
 import View from './../View.js';
 
 class SkillView extends View {
-  _parentElement = document.querySelector('.about-skills--content');
+  constructor() {
+    super();
+    this._parentElement = document.querySelector('.about-skills--content');
+  }
 
   _buildSkillCard(item) {
     return `

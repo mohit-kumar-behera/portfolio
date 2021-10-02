@@ -1,7 +1,10 @@
 import View from './../View.js';
 
 class SocialMediaView extends View {
-  _parentElement = document.querySelector('.contact-detail');
+  constructor() {
+    super();
+    this._parentElement = document.querySelector('.contact-detail');
+  }
 
   _buildContactDetailCard(item) {
     return `

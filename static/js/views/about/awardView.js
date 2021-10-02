@@ -1,7 +1,10 @@
 import View from './../View.js';
 
 class AboutView extends View {
-  _parentElement = document.querySelector('.about-awards--content');
+  constructor() {
+    super();
+    this._parentElement = document.querySelector('.about-awards--content');
+  }
 
   addHandlerImageView(handler) {
     this._parentElement.addEventListener('click', function (e) {

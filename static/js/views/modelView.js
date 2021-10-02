@@ -1,12 +1,9 @@
 class Model {
-  _overlay;
-  _model;
-  _dataHead;
-  _dataBody;
-
   constructor(model, overlay) {
     this._model = model;
     this._overlay = overlay;
+    this._dataHead = null;
+    this._dataBody = null;
 
     this._overlay.addEventListener(
       'click',
