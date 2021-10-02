@@ -5,12 +5,15 @@ class ContactFormView extends View {
 
   addHandlerSubmit(handler) {
     const form = this._parentElement.querySelector('#contact-form');
-    form.addEventListener('submit', function (e) {
-      e.preventDefault();
-      const formDataArr = [...new FormData(this)];
-      const formData = Object.fromEntries(formDataArr);
-      handler(formData);
-    });
+    form.addEventListener(
+      'submit',
+      function (e) {
+        e.preventDefault();
+        const formDataArr = [...new FormData(e.target)];
+        const formData = Object.fromEntries(formDataArr);
+        handler(this, formData);
+      }.bind(this)
+    );
   }
 
   renderHelpText(err = null) {

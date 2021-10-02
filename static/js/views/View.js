@@ -2,7 +2,7 @@ export default class View {
   _data;
 
   addHandlerRender(handler) {
-    handler();
+    handler(this);
   }
 
   _clear() {

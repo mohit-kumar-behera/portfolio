@@ -1,17 +1,5 @@
 import paletteView from './views/themePaletteView.js';
-import Model from './views/modelView.js';
-
-import socialMediaView from './views/contact/socialMediaView.js';
-import contactFormView from './views/contact/contactFormView.js';
-import contactDetailView from './views/contact/contactDetailView.js';
-
-import personalDetalView from './views/about/personalDetalView.js';
-import educationTimelineView from './views/about/educationTimelineView.js';
-import skillView from './views/about/skillView.js';
-import experienceView from './views/about/experienceView.js';
-import awardView from './views/about/awardView.js';
-
-import * as func from './helper.js';
+import PopupModel from './views/modelView.js';
 import * as model from './db-model.js';
 
 const RESPONSE_TYPE = {
@@ -34,7 +22,7 @@ const controlThemeModelBtn = function () {
     height: 'auto',
   };
 
-  const modelCl = new Model(params.model, params.overlay);
+  const modelCl = new PopupModel(params.model, params.overlay);
   modelCl.customize(params.width, params.height).renderSpinner().open();
 
   const headEl = '<h4>Pick Theme</h4>';
@@ -58,7 +46,9 @@ const controlThemePickerBtn = function (e) {
   const elem = e.target.closest('.color--btn');
   if (!elem) return;
   elem.blur();
-  func.setTheme(elem.dataset.color, window.currPage);
+  import('./helper.js').then(module =>
+    module.setTheme(elem.dataset.color, window.currPage)
+  );
 };
 
 //////////////////////////////////////////////////////////////////////////////////
@@ -68,19 +58,19 @@ const controlThemePickerBtn = function (e) {
 /**
  * @description Fetch contact detail of user and displays it
  */
-const controlContactDetail = async function () {
+const controlContactDetail = async function (moduleCl) {
   try {
     // Loading Animation
-    contactDetailView.renderSkeleton(2);
+    moduleCl.renderSkeleton(2);
 
     // Fetch Data
     await model.fetchUserContactDetail();
 
     // Render Data
-    contactDetailView.render(model.state.contact.detail);
+    moduleCl.render(model.state.contact.detail);
   } catch (err) {
     // Render Error
-    contactDetailView.renderResponseMessage(RESPONSE_TYPE.ERROR, err);
+    moduleCl.renderResponseMessage(RESPONSE_TYPE.ERROR, err);
   }
 };
 
@@ -88,54 +78,54 @@ const controlContactDetail = async function () {
  * @param {object} receivedData receives the Form Data as object
  * @description Handles Form Submission
  */
-const controlContactFormSubmission = async function (receivedData) {
+const controlContactFormSubmission = async function (moduleCl, receivedData) {
   try {
     // Add Loading Animation to Submit Button
-    contactFormView.renderLoaderBtn();
+    moduleCl.renderLoaderBtn();
 
     // Scroll the form into view
-    contactFormView.scrollToView();
+    moduleCl.scrollToView();
 
     // Upload the Form
     await model.uploadQueryForm(receivedData);
 
     // Display Thankyou Message
-    contactFormView.renderResponseMessage(
+    moduleCl.renderResponseMessage(
       RESPONSE_TYPE.MESSAGE,
       `Your message titled <i>"${model.state.contact.message.subject}"</i> has been sent.<br>Thankyou for reaching out to Me. 😊`
     );
   } catch (err) {
     // Render Help Text
-    contactFormView.renderHelpText();
+    moduleCl.renderHelpText();
 
     // Remove Loading Animation from Submit Button
-    contactFormView.renderLoaderBtn(false);
+    moduleCl.renderLoaderBtn(false);
   }
 };
 
 /**
  * @description Render the Contact Me form
  */
-const controlContactForm = function () {
-  contactFormView.renderHTML();
+const controlContactForm = function (moduleCl) {
+  moduleCl.renderHTML();
 };
 
 /**
  * @description Display the social account used by user
  */
-const controlSocialAccountView = async function () {
+const controlSocialAccountView = async function (moduleCl) {
   try {
     // Loading Animation
-    socialMediaView.renderSkeleton(3);
+    moduleCl.renderSkeleton(3);
 
     // Fetch Data
     await model.fetchUserSocialAccount();
 
     // Render Data
-    socialMediaView.render(model.state.contact.socialAccount);
+    moduleCl.render(model.state.contact.socialAccount);
   } catch (err) {
     // Render Error
-    socialMediaView.renderResponseMessage(RESPONSE_TYPE.ERROR, err);
+    moduleCl.renderResponseMessage(RESPONSE_TYPE.ERROR, err);
   }
 };
 
@@ -145,79 +135,79 @@ const controlSocialAccountView = async function () {
 /**
  * @description Fetch and display personal info of user
  */
-const controlPersonalDetail = async function () {
+const controlPersonalDetail = async function (moduleCl) {
   try {
     // Loading Animation
-    personalDetalView.renderSkeleton(10);
+    moduleCl.renderSkeleton(10);
 
     // Fetch Data
     await model.fetchUserPersonalDetail();
 
     // Render Data
-    personalDetalView.render(model.state.about.personalDetail);
+    moduleCl.render(model.state.about.personalDetail);
 
     // Attach CV Button
-    personalDetalView.attachCVButton(model.state.about.personalDetail.cv);
+    moduleCl.attachCVButton(model.state.about.personalDetail.cv);
   } catch (err) {
     // Render Error
-    personalDetalView.renderResponseMessage(RESPONSE_TYPE.ERROR, err);
+    moduleCl.renderResponseMessage(RESPONSE_TYPE.ERROR, err);
   }
 };
 
 /**
  * @description Fetch and display education detail of user
  */
-const controlEducationTimeline = async function () {
+const controlEducationTimeline = async function (moduleCl) {
   try {
     // Loading Animation
-    educationTimelineView.renderSkeleton(3);
+    moduleCl.renderSkeleton(3);
 
     // Fetch Data
     await model.fetchUserEducationDetail();
 
     // Render Data
-    educationTimelineView.render(model.state.about.education);
+    moduleCl.render(model.state.about.education);
   } catch (err) {
     // Render Error
-    educationTimelineView.renderResponseMessage(RESPONSE_TYPE.ERROR, err);
+    moduleCl.renderResponseMessage(RESPONSE_TYPE.ERROR, err);
   }
 };
 
 /**
  * @description Fetch and display skills detail of user
  */
-const controlSkillView = async function () {
+const controlSkillView = async function (moduleCl) {
   try {
     // Loading Animation
-    skillView.renderSkeleton(1);
+    moduleCl.renderSkeleton(1);
 
     // Fetch Data
     await model.fetchUserSkillDetail();
 
     // Render Data
-    skillView.render(model.state.about.skill);
+    moduleCl.render(model.state.about.skill);
   } catch (err) {
     // Render Error
-    skillView.renderResponseMessage(RESPONSE_TYPE.ERROR, err);
+    moduleCl.renderResponseMessage(RESPONSE_TYPE.ERROR, err);
   }
 };
 
 /**
  * @description Fetch and display work experience detail of user
  */
-const controlExperienceView = async function () {
+const controlExperienceView = async function (moduleCl) {
   try {
     // Loading Animation
-    experienceView.renderSkeleton(1);
+    moduleCl.renderSkeleton(1);
 
     // Fetch Data
     await model.fetchUserExperienceDetail();
 
     // Render Data
-    experienceView.render(model.state.about.experience);
+    moduleCl.render(model.state.about.experience);
   } catch (err) {
     // Render Error
-    experienceView.renderResponseMessage(RESPONSE_TYPE.ERROR, err);
+    moduleCl.renderResponseMessage(RESPONSE_TYPE.ERROR, err);
   }
 };
 
@@ -229,7 +219,7 @@ const controlExperienceModel = async function (id) {
     model: document.querySelector('#normal-model.model'),
     overlay: document.querySelector('.overlay'),
   };
-  const modelCl = new Model(params.model, params.overlay);
+  const modelCl = new PopupModel(params.model, params.overlay);
   const dataHead = `<h4>Internship Experience</h4>`;
   let dataBody = '';
 
@@ -256,26 +246,26 @@ const controlExperienceModel = async function (id) {
   } finally {
     setTimeout(function () {
       modelCl.render(dataBody, dataHead);
-    }, 400);
+    }, 250);
   }
 };
 
 /**
  * @description Fetch and display awards of the user
  */
-const controlAwardView = async function () {
+const controlAwardView = async function (moduleCl) {
   try {
     // Loading Animation
-    awardView.renderSkeleton(1);
+    moduleCl.renderSkeleton(1);
 
     // Fetch Data
     await model.fetchUserAwardDetail();
 
     // Render Data
-    awardView.render(model.state.about.award);
+    moduleCl.render(model.state.about.award);
   } catch (err) {
     // Render Error
-    awardView.renderResponseMessage(RESPONSE_TYPE.ERROR, err);
+    moduleCl.renderResponseMessage(RESPONSE_TYPE.ERROR, err);
   }
 };
 
@@ -293,7 +283,7 @@ const controlImageView = async function (imgElem) {
     height: '75vh',
     background: 'transparent',
   };
-  const modelCl = new Model(params.model, params.overlay);
+  const modelCl = new PopupModel(params.model, params.overlay);
   let dataBody = '';
 
   try {
@@ -334,25 +324,42 @@ export const defaultInit = async function () {
   navbarModule.default.addHandlerThemeModelBtn(controlThemeModelBtn);
 };
 
-export const homeInit = function () {
+export const homeInit = async function () {
   paletteView.render();
   paletteView.addHandlerThemePickerBtn(controlThemePickerBtn);
   paletteView.setActiveThemeClass(window.currPageTheme);
 };
 
-export const contactInit = function () {
-  contactDetailView.addHandlerRender(controlContactDetail);
-  contactFormView.addHandlerRender(controlContactForm);
-  contactFormView.addHandlerSubmit(controlContactFormSubmission);
-  socialMediaView.addHandlerRender(controlSocialAccountView);
+export const contactInit = async function () {
+  const contactDetailModule = await import(
+    './views/contact/contactDetailView.js'
+  );
+  const contactFormModule = await import('./views/contact/contactFormView.js');
+  const socialAccountModule = await import(
+    './views/contact/socialMediaView.js'
+  );
+  contactDetailModule.default.addHandlerRender(controlContactDetail);
+  contactFormModule.default.addHandlerRender(controlContactForm);
+  contactFormModule.default.addHandlerSubmit(controlContactFormSubmission);
+  socialAccountModule.default.addHandlerRender(controlSocialAccountView);
 };
 
-export const aboutInit = function () {
-  personalDetalView.addHandlerRender(controlPersonalDetail);
-  educationTimelineView.addHandlerRender(controlEducationTimeline);
-  skillView.addHandlerRender(controlSkillView);
-  experienceView.addHandlerRender(controlExperienceView);
-  experienceView.addHandlerExperienceModelBtn(controlExperienceModel);
-  awardView.addHandlerRender(controlAwardView);
-  awardView.addHandlerImageView(controlImageView);
+export const aboutInit = async function () {
+  const personalDetailModule = await import(
+    './views/about/personalDetalView.js'
+  );
+  const educationModule = await import(
+    './views/about/educationTimelineView.js'
+  );
+  const skillModule = await import('./views/about/skillView.js');
+  const experienceModule = await import('./views/about/experienceView.js');
+  const awardModule = await import('./views/about/awardView.js');
+
+  personalDetailModule.default.addHandlerRender(controlPersonalDetail);
+  educationModule.default.addHandlerRender(controlEducationTimeline);
+  skillModule.default.addHandlerRender(controlSkillView);
+  experienceModule.default.addHandlerRender(controlExperienceView);
+  experienceModule.default.addHandlerExperienceModelBtn(controlExperienceModel);
+  awardModule.default.addHandlerRender(controlAwardView);
+  awardModule.default.addHandlerImageView(controlImageView);
 };
