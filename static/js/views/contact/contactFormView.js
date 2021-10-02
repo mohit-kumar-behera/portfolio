@@ -16,7 +16,7 @@ class ContactFormView extends View {
     );
   }
 
-  renderHelpText(err = null) {
+  renderHelpText() {
     this._parentElement
       .querySelectorAll('.help-text')
       .forEach(elem => (elem.style.display = 'block'));
@@ -37,7 +37,7 @@ class ContactFormView extends View {
     this._parentElement.scrollIntoView({ behavior: 'smooth' }) ||
       window.scrollTo({
         left: left + window.pageXOffset,
-        top: top + window.pageYOffset,
+        top: top + window.pageYOffset - 40,
         behavior: 'smooth',
       });
   }
