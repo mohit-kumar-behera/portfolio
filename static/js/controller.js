@@ -318,6 +318,30 @@ const controlImageView = async function (imgElem) {
   }
 };
 
+//////////////////////////////////////////////////////////////////////////////////
+/////////////////////////// PROJECT PAGE ////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+/**
+ *
+ * @param {*} moduleCl
+ * @description Fetch and display Mentor
+ */
+const controlMentorView = async function (moduleCl) {
+  try {
+    // Loading Animation
+    moduleCl.renderSkeleton(1);
+
+    // Fetch Data
+    await model.fetchUserMentor();
+
+    // Render Data
+    moduleCl.render(model.state.project.mentor);
+  } catch (err) {
+    // Render Error
+    moduleCl.renderResponseMessage(RESPONSE_TYPE.ERROR, err);
+  }
+};
+
 export const defaultInit = async function () {
   const navbarModule = await import('./views/navbarView.js');
   navbarModule.default.setActivePageNavLink(window.currPage);
@@ -362,4 +386,9 @@ export const aboutInit = async function () {
   experienceModule.default.addHandlerExperienceModelBtn(controlExperienceModel);
   awardModule.default.addHandlerRender(controlAwardView);
   awardModule.default.addHandlerImageView(controlImageView);
+};
+
+export const projectInit = async function () {
+  const mentorModule = await import('./views/project/mentorView.js');
+  mentorModule.default.addHandlerRender(controlMentorView);
 };

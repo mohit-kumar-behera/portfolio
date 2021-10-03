@@ -91,6 +91,7 @@ class App {
         controller.aboutInit();
         break;
       case 'project':
+        controller.projectInit();
         break;
     }
 

@@ -61,6 +61,9 @@ export const state = {
     experience: [],
     award: [],
   },
+  project: {
+    mentor: [],
+  },
 };
 
 export const fetchUserSocialAccount = async function () {
@@ -138,6 +141,15 @@ export const fetchUserAwardDetail = async function (id) {
       ? await sendRequest(`/api/user/about/award/${id}`)
       : await sendRequest('/api/user/about/award');
     state.about.award = responseData.data;
+  } catch (err) {
+    throw err;
+  }
+};
+
+export const fetchUserMentor = async function () {
+  try {
+    const responseData = await sendRequest('/api/user/mentor');
+    state.project.mentor = responseData.data;
   } catch (err) {
     throw err;
   }

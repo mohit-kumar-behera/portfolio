@@ -26,11 +26,9 @@ class AboutView extends View {
 					<div class="info-card--content">
 						<p class="experience--duration pill-badge text-weight-bold">${item.year_span}</p>
 					</div>
-					
 					<div class="info-card--content">
 						<p class="experience--position">${item.position}</p>
 					</div>
-					
 					<div class="info-card--content">
 						<p class="experience--company"><a href="${item.url}" class="link" target="_blank">${item.name}</a></p>
 					</div>
@@ -52,11 +50,9 @@ class AboutView extends View {
             <div class="info-card--content">
               <div class="skeleton-text w-half"></div>
             </div>
-            
             <div class="info-card--content">
               <div class="skeleton-text w-full"></div>
             </div>
-            
             <div class="info-card--content">
               <div class="skeleton-text w-half"></div>
             </div>
