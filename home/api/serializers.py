@@ -1,6 +1,10 @@
 from rest_framework import serializers
 from django.contrib.auth import get_user_model
-from home.models import Profile, ProfileImage, Technology
+from home.models import (
+  Profile, ProfileImage, 
+  Technology, Mentor,
+  MentorChannel
+)
 User=get_user_model()
 
 
@@ -41,3 +45,22 @@ class TechnologySerializer(serializers.ModelSerializer):
   class Meta:
     model = Technology
     fields = '__all__'
+
+
+class MentorChannelSerializer(serializers.ModelSerializer):
+  class Meta:
+    model = MentorChannel
+    exclude = ('mentor',)
+
+
+class MentorSerializer(serializers.ModelSerializer):
+  channel = serializers.SerializerMethodField()
+
+  class Meta:
+    model = Mentor
+    fields = '__all__'
+
+  def get_channel(self, mentor):
+    channel = mentor.mentorchannel_set.all()
+    serializer = MentorChannelSerializer(channel, many=True)
+    return serializer.data
