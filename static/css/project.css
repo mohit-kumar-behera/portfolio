@@ -143,6 +143,15 @@
   margin-top: 3rem;
   color: #dc3545;
 }
+.project--demo-link {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding: 0.4rem;
+}
+.project--demo-link > button {
+  margin: 0 1rem;
+}
 .project--video-demo {
   background: #ffffff20;
   width: 100%;
@@ -175,4 +184,8 @@
   .project--video-demo {
     height: 100%;
   }
+}
+.project-detail .tech-badge--link {
+  pointer-events: none;
+  padding: 0.5rem 1rem;
 }
