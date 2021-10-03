@@ -40,7 +40,7 @@ class MentorView extends View {
   _generateSkeletonMarkup() {
     const skeleton = () => {
       return `
-      <div class="col-lg-4 col-md-6 col-sm-12 p-1 mb-2">
+      <div class="col-lg-4 col-md-6 col-sm-12 p-1 mb-2 mx-auto">
       <div class="info-card skeleton">
         <div class="info-card--left">
           <div class="skeleton-circle"></div>

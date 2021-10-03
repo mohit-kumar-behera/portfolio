@@ -91,13 +91,15 @@
 .display-card--div {
   width: 50%; /*Specific for this page only*/
 }
+.project-detail {
+}
 .project-detail > div.responsive-wrapper {
   padding: 0.6rem;
   border: 0.2px solid #ffffff20;
   border-radius: 4px;
 }
 .project-detail--div {
-  font-family: var(--font-primary);
+  font-family: var(--font-fancy);
 }
 .project-detail--div > div:not(:last-child),
 .project--demo > div:not(:last-child) {
@@ -121,7 +123,8 @@
   object-fit: contain;
 }
 .project--description > * {
-  line-height: 1.6;
+  word-spacing: 3px;
+  line-height: 1.7;
   margin-bottom: 0.8rem;
 }
 .project--description a {
