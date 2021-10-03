@@ -392,3 +392,9 @@ export const projectInit = async function () {
   const mentorModule = await import('./views/project/mentorView.js');
   mentorModule.default.addHandlerRender(controlMentorView);
 };
+
+export const projectDetailInit = async function () {
+  const splitUrl = location.pathname.split('/');
+  const slug = splitUrl[splitUrl.length - 2];
+  console.log(slug);
+};

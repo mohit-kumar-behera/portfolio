@@ -91,7 +91,9 @@ class App {
         controller.aboutInit();
         break;
       case 'project':
-        controller.projectInit();
+        const type = location.pathname.split('/')[2];
+        if (type.toLowerCase() === 'all') controller.projectInit();
+        else controller.projectDetailInit();
         break;
     }
 
