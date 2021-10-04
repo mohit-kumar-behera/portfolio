@@ -63,6 +63,7 @@ export const state = {
   },
   project: {
     mentor: [],
+    detail: {},
   },
 };
 
@@ -150,6 +151,15 @@ export const fetchUserMentor = async function () {
   try {
     const responseData = await sendRequest('/api/user/mentor');
     state.project.mentor = responseData.data;
+  } catch (err) {
+    throw err;
+  }
+};
+
+export const fetchProjectDetail = async function (slug) {
+  try {
+    const responseData = await sendRequest(`/api/user/project/v/${slug}`);
+    state.project.detail = responseData.data;
   } catch (err) {
     throw err;
   }

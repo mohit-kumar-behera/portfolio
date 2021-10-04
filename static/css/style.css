@@ -206,7 +206,7 @@ p {
 }
 .skeleton-text {
   position: relative;
-  padding: 0.7rem;
+  padding: 1rem;
   width: 70%;
   height: 20px;
   border-radius: 2px;
@@ -226,9 +226,20 @@ p {
 .skeleton-content-loader .skeleton-text:last-child {
   width: 65%;
 }
+.skeleton-btn {
+  border: none;
+  width: 125px;
+  height: 55px;
+  border-radius: 20px;
+  pointer-events: none;
+  background: hsl(12, 5%, 15%);
+  position: relative;
+  overflow: hidden;
+}
 .skeleton-text:after,
 .skeleton-image:after,
-.skeleton-circle:after {
+.skeleton-circle:after,
+.skeleton-btn:after {
   transform: translateX(-50%);
   -webkit-transform: translateX(-50%);
   left: 0;
@@ -242,6 +253,7 @@ p {
 .skeleton-text:nth-child(odd):after {
   animation-delay: 0.2s;
 }
+/* Animation */
 .animate-opacity {
   opacity: 0;
   -webkit-animation: original-state--opacity 1s cubic-bezier(0.7, 0.1, 0.7, 1)

@@ -349,13 +349,16 @@ const controlProjectDetailView = async function (moduleCl) {
     const slug = splitUrl[splitUrl.length - 2];
 
     // Loading Animation
-    // moduleCl.renderSkeleton(1);
+    moduleCl.renderSkeleton(1);
 
     // Fetch Data
+    await model.fetchProjectDetail(slug);
 
     // Render Data
+    moduleCl.render(model.state.project.detail);
   } catch (err) {
     // Render Error
+    moduleCl.renderResponseMessage(RESPONSE_TYPE.ERROR, err);
   }
 };
 
