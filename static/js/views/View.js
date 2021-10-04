@@ -2,8 +2,20 @@ export default class View {
   constructor() {
     this._data = null;
   }
+
   addHandlerRender(handler, ...args) {
     return handler(this, args);
+  }
+
+  addHandlerImageView(handler) {
+    this._parentElement.addEventListener(
+      'click',
+      function (e) {
+        const imgElem = e.target.closest('.enlarge-img');
+        if (!imgElem) return;
+        handler(this, imgElem);
+      }.bind(this)
+    );
   }
 
   _clear() {

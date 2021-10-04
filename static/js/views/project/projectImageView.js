@@ -12,7 +12,7 @@ class ProjectImageView extends View {
     <div class="display-card--div" data-img-src="${item.image_high_res}">
       <div class="display-card">
         <div class="display-card--img">
-          <img src="${item.image_low_res}" class="award--img" onerror="this.closest('.display-card').querySelector('.overlay--div').style.display='none'" />
+          <img src="${item.image_low_res}" class="enlarge-img" alt="${item.name}" onerror="this.closest('.display-card').style.pointerEvents='none'" data-src="${item.image_high_res}"/>
         </div>
         <div class="overlay--div"><span>View</span></div>
       </div>
@@ -42,6 +42,7 @@ class ProjectImageView extends View {
         'info',
         'User has not added any images related to this Project.'
       );
+
     const markup = `
     <div class="page-content-header animate-up">
       <h4 class="sub-heading"><span>Project</span> <span class="text secondary--type">Picture</span></h4>		

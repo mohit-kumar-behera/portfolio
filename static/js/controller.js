@@ -274,7 +274,7 @@ const controlAwardView = async function (moduleCl) {
  * @param {DOMElement} imgElem
  * @description Attach image and show in model
  */
-const controlImageView = async function (imgElem) {
+const controlImageView = async function (moduleCl, imgElem) {
   const imgPath = imgElem.dataset.src;
   const params = {
     model: document.querySelector('#img-model.model'),
@@ -307,7 +307,7 @@ const controlImageView = async function (imgElem) {
     divEl.insertAdjacentElement('afterbegin', newImg);
     dataBody = divEl.innerHTML;
   } catch (err) {
-    const markup = awardView.renderResponseMessage(
+    const markup = moduleCl.renderResponseMessage(
       RESPONSE_TYPE.ERROR,
       err,
       false
@@ -461,6 +461,8 @@ export const projectDetailInit = async function () {
   const [slug, video_url] = await projectDetailModule.default.addHandlerRender(
     controlProjectDetailView
   );
+  projectDetailModule.default.addHandlerImageView(controlImageView);
   projectImageModule.default.addHandlerRender(controlProjectImage, slug);
+  projectImageModule.default.addHandlerImageView(controlImageView);
   projectVideoModule.default.addHandlerRender(controlProjectVideo, video_url);
 };

@@ -4,6 +4,7 @@ class ProjectDetailView extends View {
   constructor() {
     super();
     this._parentElement = document.querySelector('.project-detail');
+    this._grandParentElement = this._parentElement;
     this._parentElement = this._parentElement.querySelector('.part-one');
   }
 
@@ -27,7 +28,9 @@ class ProjectDetailView extends View {
     <div class="project-thumbnail-img animate-up">
       <img src="${
         item.thumbnail && item.thumbnail.image_low_res
-      }" class="project--img" alt="${item.name}">
+      }" class="project--img enlarge-img" alt="${item.name}" data-src="${
+      item.thumbnail && item.thumbnail.image_high_res
+    }">
     </div>
     <div class="project--description animate-up">${item.description}</div>
     <div class="hr"></div>
