@@ -342,6 +342,23 @@ const controlMentorView = async function (moduleCl) {
   }
 };
 
+const controlProjectDetailView = async function (moduleCl) {
+  try {
+    // Extract Slug from URL
+    const splitUrl = location.pathname.split('/');
+    const slug = splitUrl[splitUrl.length - 2];
+
+    // Loading Animation
+    // moduleCl.renderSkeleton(1);
+
+    // Fetch Data
+
+    // Render Data
+  } catch (err) {
+    // Render Error
+  }
+};
+
 export const defaultInit = async function () {
   const navbarModule = await import('./views/navbarView.js');
   navbarModule.default.setActivePageNavLink(window.currPage);
@@ -394,7 +411,8 @@ export const projectInit = async function () {
 };
 
 export const projectDetailInit = async function () {
-  const splitUrl = location.pathname.split('/');
-  const slug = splitUrl[splitUrl.length - 2];
-  console.log(slug);
+  const projectDetailModule = await import(
+    './views/project/projectDetailView.js'
+  );
+  projectDetailModule.default.addHandlerRender(controlProjectDetailView);
 };

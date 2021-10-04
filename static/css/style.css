@@ -503,6 +503,7 @@ div.hr {
   height: 2px;
   background: #ffffff20;
   border-radius: 100px;
+  margin: 0.7rem 0;
 }
 /* Flex Wrapper */
 .flex-wrapper {

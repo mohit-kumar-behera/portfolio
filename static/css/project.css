@@ -91,8 +91,6 @@
 .display-card--div {
   width: 50%; /*Specific for this page only*/
 }
-.project-detail {
-}
 .project-detail > div.responsive-wrapper {
   padding: 0.6rem;
   border: 0.2px solid #ffffff20;
@@ -101,8 +99,8 @@
 .project-detail--div {
   font-family: var(--font-fancy);
 }
-.project-detail--div > div:not(:last-child),
-.project--demo > div:not(:last-child) {
+.project-detail--div > div.part-one > div:not(:last-child),
+.project-detail--div > div.part-three > div:not(:last-child) {
   margin-bottom: 2rem;
 }
 .project--heading {
@@ -185,7 +183,6 @@
     height: 100%;
   }
 }
-.project-detail .tech-badge--link {
+.project-detail .tech-badge {
   pointer-events: none;
-  padding: 0.5rem 1rem;
 }
