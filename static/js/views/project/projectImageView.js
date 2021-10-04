@@ -37,6 +37,11 @@ class ProjectImageView extends View {
   }
 
   _generateMarkup() {
+    if (this._data.length == 0)
+      return this._generateResponseMarkup(
+        'info',
+        'User has not added any images related to this Project.'
+      );
     const markup = `
     <div class="page-content-header animate-up">
       <h4 class="sub-heading"><span>Project</span> <span class="text secondary--type">Picture</span></h4>		

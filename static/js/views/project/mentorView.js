@@ -71,7 +71,7 @@ class MentorView extends View {
     if (this._data.length == 0)
       return this._generateResponseMarkup(
         'info',
-        'User has not added any contact detail.'
+        'User has not added any info about Mentor.'
       );
     const markup = `
       <div class="row">
