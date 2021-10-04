@@ -63,7 +63,11 @@ export const state = {
   },
   project: {
     mentor: [],
-    detail: {},
+    list: [],
+    detail: {
+      content: {},
+      images: [],
+    },
   },
 };
 
@@ -159,7 +163,18 @@ export const fetchUserMentor = async function () {
 export const fetchProjectDetail = async function (slug) {
   try {
     const responseData = await sendRequest(`/api/user/project/v/${slug}`);
-    state.project.detail = responseData.data;
+    state.project.detail.content = responseData.data;
+  } catch (err) {
+    throw err;
+  }
+};
+
+export const fetchProjectImages = async function (slug) {
+  try {
+    const responseData = await sendRequest(
+      `/api/user/project/v/${slug}/images`
+    );
+    state.project.detail.images = responseData.data;
   } catch (err) {
     throw err;
   }

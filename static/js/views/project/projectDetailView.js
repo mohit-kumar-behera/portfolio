@@ -21,21 +21,21 @@ class ProjectDetailView extends View {
 
   _buildProjectDetailMarkup(item) {
     return `
-    <div class="page-content-header">
+    <div class="page-content-header animate-up">
       <h4 class="project--heading">${item.name}</h4>		
     </div>
-    <div class="project-thumbnail-img">
+    <div class="project-thumbnail-img animate-up">
       <img src="${
         item.thumbnail && item.thumbnail.image_low_res
       }" class="project--img" alt="${item.name}">
     </div>
-    <div class="project--description">${item.description}</div>
+    <div class="project--description animate-up">${item.description}</div>
     <div class="hr"></div>
-    <div class="project-tech-stack flex-wrapper">
+    <div class="project-tech-stack flex-wrapper animate-up">
       <span class="mr-3">Tech Stack</span>
       ${item.tech_stack.map(entry => this._addTechBadge(entry)).join('')}
     </div>
-    <div class="project--demo-link text-center">
+    <div class="project--demo-link text-center animate-up">
       ${
         item.project_url
           ? this._addLinkBtn(item.project_url, 'Project Demo')

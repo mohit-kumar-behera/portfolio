@@ -343,11 +343,10 @@ const controlMentorView = async function (moduleCl) {
 };
 
 const controlProjectDetailView = async function (moduleCl) {
+  // Extract Slug from URL
+  const splitUrl = location.pathname.split('/');
+  const slug = splitUrl[splitUrl.length - 2];
   try {
-    // Extract Slug from URL
-    const splitUrl = location.pathname.split('/');
-    const slug = splitUrl[splitUrl.length - 2];
-
     // Loading Animation
     moduleCl.renderSkeleton(1);
 
@@ -355,7 +354,26 @@ const controlProjectDetailView = async function (moduleCl) {
     await model.fetchProjectDetail(slug);
 
     // Render Data
-    moduleCl.render(model.state.project.detail);
+    moduleCl.render(model.state.project.detail.content);
+  } catch (err) {
+    // Render Error
+    moduleCl.renderResponseMessage(RESPONSE_TYPE.ERROR, err);
+  }
+};
+
+const controlProjectImage = async function (moduleCl) {
+  // Extract Slug from URL
+  const splitUrl = location.pathname.split('/');
+  const slug = splitUrl[splitUrl.length - 2];
+  try {
+    // Loading Animation
+    moduleCl.renderSkeleton(1);
+
+    // Fetch Data
+    await model.fetchProjectImages(slug);
+
+    // Render Data
+    moduleCl.render(model.state.project.detail.images);
   } catch (err) {
     // Render Error
     moduleCl.renderResponseMessage(RESPONSE_TYPE.ERROR, err);
@@ -417,5 +435,10 @@ export const projectDetailInit = async function () {
   const projectDetailModule = await import(
     './views/project/projectDetailView.js'
   );
+  const projectImageModule = await import(
+    './views/project/projectImageView.js'
+  );
+
   projectDetailModule.default.addHandlerRender(controlProjectDetailView);
+  projectImageModule.default.addHandlerRender(controlProjectImage);
 };
