@@ -7,5 +7,5 @@ urlpatterns = [
     path('', views.redirect_to_all_projects, name='redirect_to_all_projects'),
     path('v/', views.redirect_to_all_projects, name='redirect_to_all_projects'),
     path('all/', views.all_projects, name='all_projects'),
-    path('v/<slug:title>/', views.view_project, name='view_product'),
+    path('v/<slug:slug>/', views.view_project, name='view_product'),
 ]

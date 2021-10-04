@@ -4,7 +4,7 @@
 <link rel="stylesheet" type="text/css" href="{% static 'css/project.css' %}?{% now 'U' %}">
 {% endblock page-stylesheet %}
 
-{% block page-title %}<span>Project <span class="text secondary--type">#12</span></span>{% endblock page-title %}
+{% block page-title %}<span>Project <span class="text secondary--type">#{{ proj_num }}</span></span>{% endblock page-title %}
 
 {% block page-content %}
 	<div class="page-content project-detail animate-up max">

@@ -448,6 +448,8 @@ export const projectInit = async function () {
 };
 
 export const projectDetailInit = async function () {
+  if (!document.querySelector('.project-detail')) return;
+
   const projectDetailModule = await import(
     './views/project/projectDetailView.js'
   );
