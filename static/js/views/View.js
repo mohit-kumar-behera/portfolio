@@ -2,8 +2,8 @@ export default class View {
   constructor() {
     this._data = null;
   }
-  addHandlerRender(handler) {
-    handler(this);
+  addHandlerRender(handler, ...args) {
+    return handler(this, args);
   }
 
   _clear() {

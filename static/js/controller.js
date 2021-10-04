@@ -355,17 +355,20 @@ const controlProjectDetailView = async function (moduleCl) {
 
     // Render Data
     moduleCl.render(model.state.project.detail.content);
+
+    return [slug, model.state.project.detail.content.video_url];
   } catch (err) {
     // Render Error
     moduleCl.renderResponseMessage(RESPONSE_TYPE.ERROR, err);
   }
 };
 
-const controlProjectImage = async function (moduleCl) {
-  // Extract Slug from URL
-  const splitUrl = location.pathname.split('/');
-  const slug = splitUrl[splitUrl.length - 2];
+const controlProjectImage = async function (moduleCl, params) {
   try {
+    // Destructure Params
+    const [slug] = params;
+    if (!params.length || !slug) throw new Error('Something Went Wrong!😔');
+
     // Loading Animation
     moduleCl.renderSkeleton(1);
 
@@ -374,6 +377,19 @@ const controlProjectImage = async function (moduleCl) {
 
     // Render Data
     moduleCl.render(model.state.project.detail.images);
+  } catch (err) {
+    // Render Error
+    moduleCl.renderResponseMessage(RESPONSE_TYPE.ERROR, err);
+  }
+};
+
+const controlProjectVideo = async function (moduleCl, params) {
+  try {
+    // Loading Animation
+    moduleCl.renderSkeleton(1);
+
+    // Render Data
+    moduleCl.render(params);
   } catch (err) {
     // Render Error
     moduleCl.renderResponseMessage(RESPONSE_TYPE.ERROR, err);
@@ -438,7 +454,13 @@ export const projectDetailInit = async function () {
   const projectImageModule = await import(
     './views/project/projectImageView.js'
   );
+  const projectVideoModule = await import(
+    './views/project/projectVideoView.js'
+  );
 
-  projectDetailModule.default.addHandlerRender(controlProjectDetailView);
-  projectImageModule.default.addHandlerRender(controlProjectImage);
+  const [slug, video_url] = await projectDetailModule.default.addHandlerRender(
+    controlProjectDetailView
+  );
+  projectImageModule.default.addHandlerRender(controlProjectImage, slug);
+  projectVideoModule.default.addHandlerRender(controlProjectVideo, video_url);
 };
