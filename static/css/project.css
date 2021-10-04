@@ -37,6 +37,7 @@
   border-top-right-radius: inherit;
 }
 .project-thumbnail-img {
+  cursor: pointer;
   background: #ffffff10;
   box-sizing: content-box;
 }
