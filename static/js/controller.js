@@ -412,6 +412,19 @@ const controlSocialShareView = async function (moduleCl) {
   }
 };
 
+const controlShareBtn = async function (account) {
+  // Find account
+  const shareTo = model.socialSharer.find(acc => acc.name === account);
+
+  // Encode SharerURL
+  const currURL = encodeURIComponent(location.href);
+  const shareToURL = `${shareTo.sharerURL}${currURL}`;
+
+  // Open Browser window to share
+  const browserWindowModule = await import('./browserWindow.js');
+  browserWindowModule.default.open(shareToURL);
+};
+
 export const defaultInit = async function () {
   const navbarModule = await import('./views/navbarView.js');
   navbarModule.default.setActivePageNavLink(window.currPage);
@@ -485,4 +498,5 @@ export const projectDetailInit = async function () {
   projectImageModule.default.addHandlerImageView(controlImageView);
   projectVideoModule.default.addHandlerRender(controlProjectVideo, video_url);
   projectShareModule.default.addHandlerRender(controlSocialShareView);
+  projectShareModule.default.addHandlerClick(controlShareBtn);
 };

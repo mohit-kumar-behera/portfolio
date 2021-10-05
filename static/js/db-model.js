@@ -48,7 +48,7 @@ const createUserPersonalData = data => {
   };
 };
 
-const socialSharer = [
+export const socialSharer = [
   {
     name: 'facebook',
     sharerURL: 'https://www.facebook.com/sharer/sharer.php?u=',

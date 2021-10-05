@@ -7,6 +7,15 @@ class ProjectImageView extends View {
     this._parentElement = this._parentElement.querySelector('.part-four');
   }
 
+  addHandlerClick(handler) {
+    this._parentElement.addEventListener('click', function (e) {
+      const sharerBtn = e.target.closest('.share--btn');
+      if (!sharerBtn) return;
+      sharerBtn.blur();
+      handler(sharerBtn.dataset.accountType);
+    });
+  }
+
   _buildSocialSharerBtn(item) {
     return `<button class="bttn share--btn" data-account-type="${item.name}"><span class="fa fa-${item.name} icon"></span></button>`;
   }
