@@ -48,6 +48,25 @@ const createUserPersonalData = data => {
   };
 };
 
+const socialSharer = [
+  {
+    name: 'facebook',
+    sharerURL: 'https://www.facebook.com/sharer/sharer.php?u=',
+  },
+  {
+    name: 'whatsapp',
+    sharerURL: 'https://wa.me/?text=',
+  },
+  {
+    name: 'linkedin',
+    sharerURL: 'https://www.linkedin.com/shareArticle?mini=true&url=',
+  },
+  {
+    name: 'twitter',
+    sharerURL: 'https://twitter.com/intent/tweet?url=',
+  },
+];
+
 export const state = {
   contact: {
     detail: [],
@@ -178,4 +197,11 @@ export const fetchProjectImages = async function (slug) {
   } catch (err) {
     throw err;
   }
+};
+
+export const fetchSocialShareOptions = function () {
+  return new Promise((resolve, reject) => {
+    if (socialSharer) resolve(socialSharer);
+    else reject('Something Went Wrong!😔');
+  });
 };

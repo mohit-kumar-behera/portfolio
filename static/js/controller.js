@@ -396,6 +396,22 @@ const controlProjectVideo = async function (moduleCl, params) {
   }
 };
 
+const controlSocialShareView = async function (moduleCl) {
+  try {
+    // Loading Animation
+    moduleCl.renderSkeleton(1);
+
+    // Fetch Data
+    const data = await model.fetchSocialShareOptions();
+
+    // Render Data
+    moduleCl.render(data);
+  } catch (err) {
+    // Render Error
+    moduleCl.renderResponseMessage(RESPONSE_TYPE.ERROR, err);
+  }
+};
+
 export const defaultInit = async function () {
   const navbarModule = await import('./views/navbarView.js');
   navbarModule.default.setActivePageNavLink(window.currPage);
@@ -459,6 +475,7 @@ export const projectDetailInit = async function () {
   const projectVideoModule = await import(
     './views/project/projectVideoView.js'
   );
+  const projectShareModule = await import('./views/project/socialShareView.js');
 
   const [slug, video_url] = await projectDetailModule.default.addHandlerRender(
     controlProjectDetailView
@@ -467,4 +484,5 @@ export const projectDetailInit = async function () {
   projectImageModule.default.addHandlerRender(controlProjectImage, slug);
   projectImageModule.default.addHandlerImageView(controlImageView);
   projectVideoModule.default.addHandlerRender(controlProjectVideo, video_url);
+  projectShareModule.default.addHandlerRender(controlSocialShareView);
 };
