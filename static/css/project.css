@@ -187,3 +187,33 @@
 .project-detail .tech-badge {
   pointer-events: none;
 }
+.share--div {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.share--btn {
+  margin: 0.35rem;
+  border-radius: 3.5px;
+  color: #fff;
+}
+.share--btn[data-account-type='facebook'] {
+  background: var(--color-facebook);
+}
+.share--btn[data-account-type='whatsapp'] {
+  background: var(--color-whatsapp);
+}
+.share--btn[data-account-type='linkedin'] {
+  background: var(--color-linkedin);
+}
+.share--btn[data-account-type='twitter'] {
+  background: var(--color-twitter);
+}
+.share--btn:hover,
+.share--btn:focus {
+  box-shadow: var(--secondary-color) 0px 1px 4px,
+    var(--secondary-color) 0px 0px 0px 3px;
+}
+.share--btn > .icon {
+  font-size: 1.35rem;
+}
