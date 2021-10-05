@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 from home.models import Profile, Technology
 from home.helper import image_directory_path
 from ckeditor.fields import RichTextField
@@ -29,6 +30,9 @@ class Project(models.Model):
     
     def __unicode__(self):
         return f'{self.profile}-{self.name}'
+
+    def get_absolute_url(self):
+        return reverse('project:view_project', kwargs={'slug': self.slug})
 
     class Meta:
         verbose_name_plural = 'Project'

@@ -23,7 +23,7 @@ def api_project_list_view(request, start, end):
   if request.method == 'GET':
     if profile:
       try:
-        user_projects = Project.objects.filter(profile=profile)[start-1:end]
+        user_projects = Project.objects.filter(profile=profile)[start:end]
       except:
         response = create_404_response()
         return Response(response, status=status.HTTP_404_NOT_FOUND)

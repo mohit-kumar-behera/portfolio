@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from home.api.serializers import TechnologySerializer
 from project.models import Project, ProjectImage
+import re
 
 
 class ProjectImageSerializer(serializers.ModelSerializer):
@@ -36,7 +37,15 @@ class ProjectDetailSerializer(serializers.ModelSerializer):
 class ProjectListSerializer(serializers.ModelSerializer):
   tech_stack = TechnologySerializer(many=True)
   thumbnail = ProjectImageSerializer(many=False)
-  
+  url = serializers.SerializerMethodField()
+  description = serializers.SerializerMethodField()
+
   class Meta:
     model = Project
-    fields = ('name', 'thumbnail', 'tech_stack')
+    fields = ('name', 'thumbnail', 'tech_stack', 'url', 'description')
+
+  def get_url(self, project):
+    return project.get_absolute_url()
+
+  def get_description(self, project):
+    return re.sub('<[^<>]+>', '', project.description[:120]) + '...'

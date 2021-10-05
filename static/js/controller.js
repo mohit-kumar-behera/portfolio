@@ -321,11 +321,24 @@ const controlImageView = async function (moduleCl, imgElem) {
 //////////////////////////////////////////////////////////////////////////////////
 /////////////////////////// PROJECT PAGE ////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
-/**
- *
- * @param {*} moduleCl
- * @description Fetch and display Mentor
- */
+
+const controlProjectList = async function (moduleCl) {
+  const defaultPage = 1;
+  try {
+    // Loading Animation
+    moduleCl.renderSkeleton(3);
+
+    // Fetch Data
+    await model.fetchProjectList(defaultPage);
+
+    // Render Data
+    moduleCl.render(model.state.project.list);
+  } catch (err) {
+    // Render Error
+    moduleCl.renderResponseMessage(RESPONSE_TYPE.ERROR, err);
+  }
+};
+
 const controlMentorView = async function (moduleCl) {
   try {
     // Loading Animation
@@ -472,7 +485,10 @@ export const aboutInit = async function () {
 };
 
 export const projectInit = async function () {
+  const projectListModule = await import('./views/project/projectListView.js');
   const mentorModule = await import('./views/project/mentorView.js');
+
+  projectListModule.default.addHandlerRender(controlProjectList);
   mentorModule.default.addHandlerRender(controlMentorView);
 };
 

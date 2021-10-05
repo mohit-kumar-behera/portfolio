@@ -87,6 +87,7 @@ export const state = {
       content: {},
       images: [],
     },
+    resultsPerPage: 2,
   },
 };
 
@@ -174,6 +175,24 @@ export const fetchUserMentor = async function () {
   try {
     const responseData = await sendRequest('/api/user/mentor');
     state.project.mentor = responseData.data;
+  } catch (err) {
+    throw err;
+  }
+};
+
+const calculatePageRange = page => {
+  const start = (page - 1) * state.project.resultsPerPage;
+  const end = page * state.project.resultsPerPage;
+  return [start, end];
+};
+
+export const fetchProjectList = async function (page) {
+  const [start, end] = calculatePageRange(page);
+  try {
+    const responseData = await sendRequest(
+      `/api/user/project/list/s/${start}/e/${end}`
+    );
+    state.project.list = responseData.data;
   } catch (err) {
     throw err;
   }

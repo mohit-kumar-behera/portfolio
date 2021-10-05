@@ -68,11 +68,11 @@
   background: transparent;
   color: var(--light-shade1);
 }
-.tech-badge:not(:last-child) {
-  margin-right: 0.7rem;
+.tech-badge {
+  margin: 0.5rem 0.3rem;
 }
 .tech-badge--link {
-  padding: 0.08rem 0.5rem;
+  padding: 0.25rem 0.5rem;
   color: inherit;
   border-radius: inherit;
   background: #ffffff10;
