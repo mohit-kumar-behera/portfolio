@@ -3,13 +3,36 @@ from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from home.helper import (
   create_200_response, create_404_response,
+  create_400_response
 ) 
 from home.api.serializers import TechnologySerializer
 from home.user import get_user, get_profile
 from project.models import Project, ProjectImage
-from project.api.serializers import ProjectDetailSerializer, ProjectImageSerializer
+from project.api.serializers import ProjectListSerializer, ProjectDetailSerializer, ProjectImageSerializer
 
 import uuid
+
+
+@api_view(['GET'])
+def api_project_list_view(request, start, end):
+  if not isinstance(start, int) and not isinstance(end, int):
+    response = create_400_response()
+    return Response(response, status=status.HTTP_400_BAD_REQUEST)
+  
+  profile = get_profile(user=get_user())
+  if request.method == 'GET':
+    if profile:
+      try:
+        user_projects = Project.objects.filter(profile=profile)[start-1:end]
+      except:
+        response = create_404_response()
+        return Response(response, status=status.HTTP_404_NOT_FOUND)
+      else:
+        serializer = ProjectListSerializer(user_projects, many=True)
+        response = create_200_response(data=serializer.data)
+        return Response(response, status=status.HTTP_200_OK)
+    response = create_404_response()
+    return Response(response, status=status.HTTP_404_NOT_FOUND)
 
 
 @api_view(['GET'])

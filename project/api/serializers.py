@@ -31,3 +31,12 @@ class ProjectDetailSerializer(serializers.ModelSerializer):
       'id': project.profile.id,
       'username': project.profile.user.username
     }
+
+
+class ProjectListSerializer(serializers.ModelSerializer):
+  tech_stack = TechnologySerializer(many=True)
+  thumbnail = ProjectImageSerializer(many=False)
+  
+  class Meta:
+    model = Project
+    fields = ('name', 'thumbnail', 'tech_stack')
