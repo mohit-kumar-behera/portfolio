@@ -17,7 +17,6 @@ class ProjectDetailView extends View {
   }
 
   _addPaginationBtn(type, currPage = 1, disabled = false) {
-    console.log('i am here');
     return `
     <div class="pagination-controller">
       <button class="bttn secondary--type pagination--btn ${type}" ${
