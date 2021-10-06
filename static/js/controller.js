@@ -324,15 +324,16 @@ const controlImageView = async function (moduleCl, imgElem) {
 
 const controlProjectList = async function (moduleCl) {
   const defaultPage = 1;
+  const tag = location.hash.slice(1);
   try {
     // Loading Animation
     moduleCl.renderSkeleton(3);
 
     // Fetch Data
-    await model.fetchProjectList(defaultPage);
+    await model.fetchProjectList(defaultPage, tag);
 
     // Render Data
-    moduleCl.render(model.state.project.list);
+    moduleCl.render(model.state.project.list.items);
   } catch (err) {
     // Render Error
     moduleCl.renderResponseMessage(RESPONSE_TYPE.ERROR, err);
@@ -489,6 +490,7 @@ export const projectInit = async function () {
   const mentorModule = await import('./views/project/mentorView.js');
 
   projectListModule.default.addHandlerRender(controlProjectList);
+  projectListModule.default.addHandlerHashChange(controlProjectList);
   mentorModule.default.addHandlerRender(controlMentorView);
 };
 

@@ -82,12 +82,17 @@ export const state = {
   },
   project: {
     mentor: [],
-    list: [],
+    list: {
+      tag: 'all',
+      items: [],
+      results: 0,
+      currPage: 1,
+      resultsPerPage: 2,
+    },
     detail: {
       content: {},
       images: [],
     },
-    resultsPerPage: 2,
   },
 };
 
@@ -181,18 +186,23 @@ export const fetchUserMentor = async function () {
 };
 
 const calculatePageRange = page => {
-  const start = (page - 1) * state.project.resultsPerPage;
-  const end = page * state.project.resultsPerPage;
+  const start = (page - 1) * state.project.list.resultsPerPage;
+  const end = page * state.project.list.resultsPerPage;
   return [start, end];
 };
 
-export const fetchProjectList = async function (page) {
+export const fetchProjectList = async function (page, tag) {
+  tag = tag || 'all';
+
+  const projList = state.project.list;
+  projList.currPage = page;
   const [start, end] = calculatePageRange(page);
   try {
     const responseData = await sendRequest(
-      `/api/user/project/list/s/${start}/e/${end}`
+      `/api/user/project/list/tag/${tag}/s/${start}/e/${end}`
     );
-    state.project.list = responseData.data;
+    projList.items = responseData.data;
+    projList.results = responseData.results;
   } catch (err) {
     throw err;
   }

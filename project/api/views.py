@@ -14,7 +14,7 @@ import uuid
 
 
 @api_view(['GET'])
-def api_project_list_view(request, start, end):
+def api_project_list_view(request, tag, start, end):
   if not isinstance(start, int) and not isinstance(end, int):
     response = create_400_response()
     return Response(response, status=status.HTTP_400_BAD_REQUEST)
@@ -23,13 +23,19 @@ def api_project_list_view(request, start, end):
   if request.method == 'GET':
     if profile:
       try:
-        user_projects = Project.objects.filter(profile=profile)[start:end]
+        if tag == 'all':
+          user_projects_count = Project.objects.filter(profile=profile).count() 
+          user_projects = Project.objects.filter(profile=profile)[start:end]
+        else:
+          user_projects_count = Project.objects.filter(profile=profile, tech_stack__name__iexact=tag).count() 
+          user_projects = Project.objects.filter(profile=profile, tech_stack__name__iexact=tag)[start:end]
       except:
         response = create_404_response()
         return Response(response, status=status.HTTP_404_NOT_FOUND)
       else:
         serializer = ProjectListSerializer(user_projects, many=True)
         response = create_200_response(data=serializer.data)
+        response['results'] = user_projects_count
         return Response(response, status=status.HTTP_200_OK)
     response = create_404_response()
     return Response(response, status=status.HTTP_404_NOT_FOUND)

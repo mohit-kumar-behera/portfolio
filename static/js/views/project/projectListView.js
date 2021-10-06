@@ -6,10 +6,16 @@ class ProjectDetailView extends View {
     this._parentElement = document.querySelector('.project--wrapper');
   }
 
+  addHandlerHashChange(handler) {
+    window.addEventListener('hashchange', () => handler(this));
+  }
+
   _addTechBadge(tech) {
     return `
     <div class="tech-badge text-weight-bold">
-      <a href="#" class="link tech-badge--link">${tech.name}</a>
+      <a href="#${tech.name.toLowerCase()}" class="link tech-badge--link">${
+      tech.name
+    }</a>
     </div>
     `;
   }
@@ -69,7 +75,10 @@ class ProjectDetailView extends View {
 
   _generateMarkup() {
     if (this._data.length == 0)
-      return this._generateResponseMarkup('error', 'Something Went Wrong.😔');
+      return this._generateResponseMarkup(
+        'error',
+        "Sorry! Couldn't find any related projects to this search.🧐"
+      );
     return this._data.map(item => this._buildProjectCard(item)).join('');
   }
 }
