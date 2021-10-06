@@ -13,6 +13,10 @@
 .pagination--btn {
   padding: 0.6rem 1.2rem;
 }
+.pagination--btn[disabled] {
+  pointer-events: none;
+  filter: brightness(0.25);
+}
 .pagination--btn > span.icon {
   font-size: 1.2rem;
   position: relative;

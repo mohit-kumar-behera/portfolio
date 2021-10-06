@@ -85,7 +85,7 @@ export const state = {
     list: {
       tag: 'all',
       items: [],
-      results: 0,
+      totalResults: 0,
       currPage: 1,
       resultsPerPage: 2,
     },
@@ -196,13 +196,15 @@ export const fetchProjectList = async function (page, tag) {
 
   const projList = state.project.list;
   projList.currPage = page;
+  projList.tag = tag;
   const [start, end] = calculatePageRange(page);
+
   try {
     const responseData = await sendRequest(
       `/api/user/project/list/tag/${tag}/s/${start}/e/${end}`
     );
     projList.items = responseData.data;
-    projList.results = responseData.results;
+    projList.totalResults = responseData.results;
   } catch (err) {
     throw err;
   }

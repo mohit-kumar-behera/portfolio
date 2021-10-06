@@ -322,22 +322,46 @@ const controlImageView = async function (moduleCl, imgElem) {
 /////////////////////////// PROJECT PAGE ////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-const controlProjectList = async function (moduleCl) {
-  const defaultPage = 1;
+const controlProjectList = async function (moduleCl, params) {
   const tag = location.hash.slice(1);
+  const [page = 1] = params;
+
   try {
     // Loading Animation
     moduleCl.renderSkeleton(3);
 
     // Fetch Data
-    await model.fetchProjectList(defaultPage, tag);
+    await model.fetchProjectList(page, tag);
 
     // Render Data
     moduleCl.render(model.state.project.list.items);
+
+    // Render Pagination
+    const paginationModule = await import('./views/project/paginationView.js');
+    paginationModule.default.addHandlerRender(
+      controlProjectPagination,
+      model.state.project.list
+    );
   } catch (err) {
     // Render Error
     moduleCl.renderResponseMessage(RESPONSE_TYPE.ERROR, err);
   }
+};
+
+const controlProjectPagination = async function (moduleCl, params) {
+  const [modelProjList] = params;
+  try {
+    // Render Pagination
+    moduleCl.render(modelProjList);
+  } catch (err) {
+    // Render Error
+    moduleCl.renderResponseMessage(RESPONSE_TYPE.ERROR, err);
+  }
+};
+
+const controlPaginationBtn = async function (goToPage) {
+  const projectListModule = await import('./views/project/projectListView.js');
+  projectListModule.default.addHandlerRender(controlProjectList, goToPage);
 };
 
 const controlMentorView = async function (moduleCl) {
@@ -486,11 +510,17 @@ export const aboutInit = async function () {
 };
 
 export const projectInit = async function () {
+  const defaultPage = 1;
   const projectListModule = await import('./views/project/projectListView.js');
   const mentorModule = await import('./views/project/mentorView.js');
+  const paginationModule = await import('./views/project/paginationView.js');
 
-  projectListModule.default.addHandlerRender(controlProjectList);
-  projectListModule.default.addHandlerHashChange(controlProjectList);
+  projectListModule.default.addHandlerRender(controlProjectList, defaultPage);
+  projectListModule.default.addHandlerHashChange(
+    controlProjectList,
+    defaultPage
+  );
+  paginationModule.default.addHandlerPaginationBtn(controlPaginationBtn);
   mentorModule.default.addHandlerRender(controlMentorView);
 };
 

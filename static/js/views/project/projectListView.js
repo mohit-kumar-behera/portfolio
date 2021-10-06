@@ -6,8 +6,8 @@ class ProjectDetailView extends View {
     this._parentElement = document.querySelector('.project--wrapper');
   }
 
-  addHandlerHashChange(handler) {
-    window.addEventListener('hashchange', () => handler(this));
+  addHandlerHashChange(handler, ...args) {
+    window.addEventListener('hashchange', () => handler(this, args));
   }
 
   _addTechBadge(tech) {
@@ -22,7 +22,7 @@ class ProjectDetailView extends View {
 
   _buildProjectCard(item) {
     return `
-    <div class="project--div animate-up">
+    <div class="project--div">
       <div class="project--card">
         <div class="project-thumbnail-img">
           <img src="${
