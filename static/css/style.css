@@ -778,15 +778,3 @@ body[data-mobile-device='true'] .theme-picker .color--btn:active {
   transform: scale(0.95);
 }
 /*---------------- END OF THEME PICKER PALLETE --------------------*/
-
-/*
-@media screen and (min-width: 1400px) {}
-@media screen and (min-width: 1200px) and (max-width: 1400px) {}
-@media screen and (min-width: 992px) and (max-width: 1200px) {}
-@media screen and (min-width: 768px) and (max-width: 992px) {}
-@media screen and (min-width: 576px) and (max-width: 768px) {}
-@media screen and (min-width: 464px) and (max-width: 576px) {}
-@media screen and (min-width: 360px) and (max-width: 464px) {}
-@media screen and (min-width: 320px) and (max-width: 360px) {}
-@media screen and (max-width: 320px) {}
-*/
