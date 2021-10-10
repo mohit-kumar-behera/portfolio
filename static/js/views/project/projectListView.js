@@ -13,9 +13,9 @@ class ProjectDetailView extends View {
   _addTechBadge(tech) {
     return `
     <div class="tech-badge text-weight-bold">
-      <a href="#${tech.name.toLowerCase()}" class="link tech-badge--link">${
-      tech.name
-    }</a>
+      <a href="#${tech.name
+        .toLowerCase()
+        .replace(/ /g, '-')}" class="link tech-badge--link">${tech.name}</a>
     </div>
     `;
   }

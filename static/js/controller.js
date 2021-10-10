@@ -280,7 +280,7 @@ const controlImageView = async function (moduleCl, imgElem) {
 ////////////////////////////////////////////////////////////////////////////////
 
 const controlProjectList = async function (moduleCl, params) {
-  const tag = location.hash.slice(1);
+  const tag = location.hash.slice(1).replace(/-/g, ' ');
   const [page = 1] = params;
 
   try {
