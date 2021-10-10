@@ -328,7 +328,7 @@ const controlProjectList = async function (moduleCl, params) {
 
   try {
     // Loading Animation
-    moduleCl.renderSkeleton(3);
+    moduleCl.renderSkeleton(2);
 
     // Fetch Data
     await model.fetchProjectList(page, tag);

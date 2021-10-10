@@ -11,6 +11,12 @@ class ProjectDetailView extends View {
       const btn = e.target.closest('.pagination--btn');
       if (!btn) return;
       btn.blur();
+
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth',
+      });
+
       const goToPage = +btn.dataset.goto;
       handler(goToPage);
     });
