@@ -11,9 +11,6 @@ const RESPONSE_TYPE = {
 //////////////////////////// DEFAULT /////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////
 
-/**
- * @description Customizes and opens model-window for Pallete selection
- */
 const controlThemeModelBtn = function () {
   const params = {
     model: document.querySelector('#normal-model.model'),
@@ -38,10 +35,6 @@ const controlThemeModelBtn = function () {
 /////////////////////////////////// HOME PAGE ///////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-/**
- * @param {object} e Event Object
- * @description Controller for theme picker button
- */
 const controlThemePickerBtn = function (e) {
   const elem = e.target.closest('.color--btn');
   if (!elem) return;
@@ -55,9 +48,6 @@ const controlThemePickerBtn = function (e) {
 /////////////////////////// CONTACT PAGE ////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-/**
- * @description Fetch contact detail of user and displays it
- */
 const controlContactDetail = async function (moduleCl) {
   try {
     // Loading Animation
@@ -74,10 +64,6 @@ const controlContactDetail = async function (moduleCl) {
   }
 };
 
-/**
- * @param {object} receivedData receives the Form Data as object
- * @description Handles Form Submission
- */
 const controlContactFormSubmission = async function (moduleCl, receivedData) {
   try {
     // Add Loading Animation to Submit Button
@@ -103,16 +89,10 @@ const controlContactFormSubmission = async function (moduleCl, receivedData) {
   }
 };
 
-/**
- * @description Render the Contact Me form
- */
 const controlContactForm = function (moduleCl) {
   moduleCl.renderHTML();
 };
 
-/**
- * @description Display the social account used by user
- */
 const controlSocialAccountView = async function (moduleCl) {
   try {
     // Loading Animation
@@ -132,9 +112,6 @@ const controlSocialAccountView = async function (moduleCl) {
 //////////////////////////////////////////////////////////////////////////////////
 /////////////////////////// ABOUT PAGE ////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
-/**
- * @description Fetch and display personal info of user
- */
 const controlPersonalDetail = async function (moduleCl) {
   try {
     // Loading Animation
@@ -154,9 +131,6 @@ const controlPersonalDetail = async function (moduleCl) {
   }
 };
 
-/**
- * @description Fetch and display education detail of user
- */
 const controlEducationTimeline = async function (moduleCl) {
   try {
     // Loading Animation
@@ -173,9 +147,6 @@ const controlEducationTimeline = async function (moduleCl) {
   }
 };
 
-/**
- * @description Fetch and display skills detail of user
- */
 const controlSkillView = async function (moduleCl) {
   try {
     // Loading Animation
@@ -192,9 +163,6 @@ const controlSkillView = async function (moduleCl) {
   }
 };
 
-/**
- * @description Fetch and display work experience detail of user
- */
 const controlExperienceView = async function (moduleCl) {
   try {
     // Loading Animation
@@ -211,9 +179,6 @@ const controlExperienceView = async function (moduleCl) {
   }
 };
 
-/**
- * @description Customizes and opens model-window for Experience Detail
- */
 const controlExperienceModel = async function (id) {
   const params = {
     model: document.querySelector('#normal-model.model'),
@@ -250,9 +215,6 @@ const controlExperienceModel = async function (id) {
   }
 };
 
-/**
- * @description Fetch and display awards of the user
- */
 const controlAwardView = async function (moduleCl) {
   try {
     // Loading Animation
@@ -269,11 +231,6 @@ const controlAwardView = async function (moduleCl) {
   }
 };
 
-/**
- *
- * @param {DOMElement} imgElem
- * @description Attach image and show in model
- */
 const controlImageView = async function (moduleCl, imgElem) {
   const imgPath = imgElem.dataset.src;
   const params = {
