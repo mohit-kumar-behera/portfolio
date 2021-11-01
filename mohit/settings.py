@@ -134,14 +134,19 @@ CORS_ALLOW_ALL_ORIGINS = False
 
 
 STATIC_URL = '/static/'
-MEDIA_URL = '/uploads/'
+
+if DEBUG:
+    MEDIA_URL = '/uploads/'
+else:
+    MEDIA_URL = '/static/upload/'
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
+    os.path.join(BASE_DIR, 'uploads')
 ]
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-MEDIA_ROOT = os.path.join(BASE_DIR, 'uploads')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'uploads/upload')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
