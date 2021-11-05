@@ -48,8 +48,25 @@ export const detectMobile = function () {
   });
 };
 
+export const palette = [
+  '#913ee8',
+  '#01937c',
+  '#fa1e0e',
+  '#a0522d',
+  '#ef5742',
+  '#f97194',
+  '#ffae00',
+  '#73a528',
+  '#fe4c03',
+  '#0556f3',
+];
+
 export const setTheme = function (newColor, currPage) {
   /* Update the Theme Pattern */
+  const DEFAULT_THEME = '#fa1e0e';
+  if (!newColor || palette.indexOf(newColor) === -1 || newColor === 'null')
+    newColor = DEFAULT_THEME;
+
   localStorage.setItem('theme-color', newColor);
   document.documentElement.style.setProperty('--secondary-color', newColor);
 

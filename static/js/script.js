@@ -64,7 +64,6 @@ class App {
 
   async _setPageTheme() {
     window.currPageTheme = this._currPageTheme;
-    if (!window.currPageTheme) localStorage.setItem('theme-color', '#fa1e0e');
     const module = await import('./helper.js');
     module.setTheme(window.currPageTheme, window.currPage);
   }

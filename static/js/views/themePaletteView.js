@@ -1,20 +1,11 @@
+import { palette } from '.././helper.js';
+
 class ThemePaletteView {
   constructor() {
     this._parentElement = document.querySelector(
       '.content.theme-picker-container'
     );
-    this._palette = [
-      '#913ee8',
-      '#01937c',
-      '#fa1e0e',
-      '#a0522d',
-      '#ef5742',
-      '#f97194',
-      '#ffae00',
-      '#73a528',
-      '#fe4c03',
-      '#0556f3',
-    ];
+    this._palette = palette;
     this._paletteSet = this._splitPaletteToSets(this._palette);
   }
 
