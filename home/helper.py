@@ -77,7 +77,7 @@ def compress_image(instance, dual, save=False):
                 add_logo_watermark(imgH, imgL)
             
             imgH.save(instance.image_high_res.path, quality=IMAGE_RESOLUTION['normal'])
-            imgL.save(instance.image_low_res.path, quality=IMAGE_RESOLUTION['low'])
+            # imgL.save(instance.image_low_res.path, quality=IMAGE_RESOLUTION['low'])
     else:
         # Compress image only for low resolution
         try:
