@@ -1,6 +1,10 @@
 from django.contrib import admin
 from project.models import Project, ProjectImage
 
+class ProjectImageInline(admin.StackedInline):
+    model = ProjectImage
+    extra = 5
+
 
 class ProjectAdmin(admin.ModelAdmin):
     readonly_fields = ('date_added', 'date_updated')
@@ -10,6 +14,7 @@ class ProjectAdmin(admin.ModelAdmin):
     prepopulated_fields = {
         'slug': ('name',)
     }
+    inlines = [ProjectImageInline]
 
 
 class ProjectImageAdmin(admin.ModelAdmin):

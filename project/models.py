@@ -26,10 +26,10 @@ class Project(models.Model):
     thumbnail = models.OneToOneField('ProjectImage', on_delete=models.CASCADE, null=True, blank=True, related_name='thumbnail')
 
     def __str__(self):
-        return f'{self.profile}-{self.name}'
+        return self.name
     
     def __unicode__(self):
-        return f'{self.profile}-{self.name}'
+        return self.name
 
     def get_absolute_url(self):
         return reverse('project:view_project', kwargs={'slug': self.slug})
