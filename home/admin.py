@@ -18,11 +18,15 @@ class TechnologyAdmin(admin.ModelAdmin):
     search_fields = ('name',)
     ordering = ('name',)
 
+class MentorChannelInline(admin.StackedInline):
+    model = MentorChannel
+    extra = 3
+
 class MentorAdmin(admin.ModelAdmin):
     list_display = ('name',)
     search_fields = ('name',)
     ordering = ('name',)
-
+    inlines = [MentorChannelInline]
 
 class MentorChannelAdmin(admin.ModelAdmin):
     list_display = ('mentor', 'name')
