@@ -7,6 +7,31 @@
 
 {% block page-title %}<span>About <span class="text secondary--type">Me</span></span>{% endblock page-title %}
 
+{% block meta %}
+<meta name="description" content="In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content.">
+<meta name="keywords" content="about mohit, mohit kumar, mohit portfolio, iiit bhubaneswar, mohit iiit">{
+
+<meta property="og:site_name" content="Mohit Kumar">
+<meta property="og:title" content="Know about Mohit Kumar">
+<meta property="og:description" content="In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content.">
+<meta property="og:url" content="__PAGE_URL__">
+<meta property="og:type" content="article">
+
+<meta property="article:publisher" content="__PAGE_URL__"/>
+<meta property="article:tag" content="Portfolio"/>
+<meta property="article:author" content="Mohit Kumar"/>
+
+<meta property="og:image" content="{% static 'media/logo/mk-final.png' %}">
+<meta property="og:image:secure_url" content="{% static 'media/logo/mk-final.png' %}">
+<meta property="og:image:width" content="1280">
+<meta property="og:image:height" content="640">
+
+<meta property="twitter:card" content="In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content." />
+<meta property="twitter:image" content="{% static 'media/logo/mk-final.png' %}" />
+<!-- image should be my avatar in contact and about page -->
+<meta property="twitter:site" content="Mohit Kumar" />
+{% endblock meta %}
+
 {% block page-content %}
 <div class="page-content about-me animate-up max">
   <div class="responsive-wrapper">

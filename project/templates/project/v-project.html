@@ -1,10 +1,35 @@
 {% extends 'base-2.html' %} {% load static %}
 {% block title %}<title>Project {{ proj_num }}:</title>{% endblock title %}
+
 {% block page-stylesheet %}
 <link rel="stylesheet" type="text/css" href="{% static 'css/project.css' %}?{% now 'U' %}">
 {% endblock page-stylesheet %}
 
 {% block page-title %}<span>Project <span class="text secondary--type">#{{ proj_num }}</span></span>{% endblock page-title %}
+
+{% block meta %}
+	<meta name="description" content="In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content.">
+	<meta name="keywords" content="projects of mohit, mohit kumar, mohit portfolio, iiit bhubaneswar, mohit iiit">{
+
+	<meta property="og:site_name" content="Mohit Kumar">
+	<meta property="og:title" content="__PROJECT_TITLE__">
+	<meta property="og:description" content="In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content.">
+	<meta property="og:url" content="__PAGE_URL__">
+	<meta property="og:type" content="article">
+
+	<meta property="article:publisher" content="__PAGE_URL__"/>
+	<meta property="article:tag" content="Portfolio"/>
+	<meta property="article:author" content="Mohit Kumar"/>
+
+	<meta property="og:image" content="__PROJECT_THUMBNAIL_PIC__">
+	<meta property="og:image:secure_url" content="__PROJECT_THUMBNAIL_PIC__">
+	<meta property="og:image:width" content="1280">
+	<meta property="og:image:height" content="640">
+
+	<meta property="twitter:card" content="In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content." />
+	<meta property="twitter:image" content="__PROJECT_THUMBNAIL_PIC__" />
+	<meta property="twitter:site" content="Mohit Kumar" />
+{% endblock meta %}
 
 {% block page-content %}
 	<div class="page-content project-detail animate-up max">

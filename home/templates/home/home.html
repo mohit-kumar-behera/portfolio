@@ -1,19 +1,48 @@
-{% extends 'base-1.html' %} {% load static %} {% block title %}
-<title>Mohit Kumar</title>
-{% endblock title %} {% block page-stylesheet %}
+{% extends 'base-1.html' %} {% load static %} 
+{% block title %}<title>Mohit Kumar</title>{% endblock title %} 
+
+{% block meta %}
+<meta name="description" content="In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content.">
+<meta name="keywords" content="mohit, mohit kumar, mohit portfolio, iiit bhubaneswar, mohit iiit">{
+
+<meta property="og:site_name" content="Mohit Kumar">
+<meta property="og:title" content="Welcome to Mohit Kumar Portfolio">
+<meta property="og:description" content="In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content.">
+<meta property="og:url" content="__PAGE_URL__">
+<meta property="og:type" content="article">
+
+<meta property="article:publisher" content="__PAGE_URL__"/>
+<meta property="article:tag" content="Portfolio"/>
+<meta property="article:author" content="Mohit Kumar"/>
+
+<meta property="og:image" content="{% static 'media/logo/mk-final.png' %}">
+<meta property="og:image:secure_url" content="{% static 'media/logo/mk-final.png' %}">
+<meta property="og:image:width" content="1280">
+<meta property="og:image:height" content="640">
+
+<meta property="twitter:card" content="In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content." />
+<meta property="twitter:image" content="{% static 'media/logo/mk-final.png' %}" />
+<meta property="twitter:site" content="Mohit Kumar" />
+{% endblock meta %}
+
+{% block page-stylesheet %}
 <link
   rel="stylesheet"
   type="text/css"
   href="{% static 'css/home.css' %}?{% now 'U' %}"
 />
-{% endblock page-stylesheet %} {% block img-content %}
+{% endblock page-stylesheet %} 
+
+{% block img-content %}
 <div class="blob">{% include 'svg/blob.html' %}</div>
 <img
   src="{{ profile.profileimage.image_low_res.url }}"
   class="main-img lazy-img"
   data-src="{{ profile.profileimage.image_high_res.url }}"
   alt="{{ profile.user.get_full_name }} profile image"/>
-{% endblock img-content %} {% block text-content %}
+{% endblock img-content %} 
+
+{% block text-content %}
 <div class="content">
   <h5 class="focus">HI THERE !</h5>
   <h1 class="highlight-heading focus">
