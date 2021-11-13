@@ -105,6 +105,13 @@ class App {
         this._mainBodyEl.style.display = 'block';
       }.bind(this)
     );
+
+    const clearPreTag = elem => elem.remove();
+    const timer = setInterval(function () {
+      const [preTag] = document.getElementsByTagName('pre');
+
+      if (preTag) clearPreTag(preTag) && clearInterval(timer);
+    }, 1000);
   }
 }
 const app = new App();
