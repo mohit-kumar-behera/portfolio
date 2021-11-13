@@ -61,12 +61,7 @@ export default class View {
 
     this._data = data;
     const markup = this._generateMarkup();
-    setTimeout(
-      function () {
-        this._insertMarkup('afterbegin', this._parentElement, markup);
-      }.bind(this),
-      0
-    );
+    this._insertMarkup('afterbegin', this._parentElement, markup);
   }
 
   renderHTML() {
