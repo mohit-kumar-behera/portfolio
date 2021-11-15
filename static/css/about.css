@@ -131,3 +131,25 @@
 .experience--position {
   font-weight: 800;
 }
+
+.normal-flow {
+  height: auto;
+  overflow-y: hidden;
+}
+.scrolling-content {
+  height: 420px;
+  overflow-y: auto;
+}
+
+/* scrollbar */
+.scrolling-content::-webkit-scrollbar {
+  width: 8px;
+}
+.scrolling-content::-webkit-scrollbar-track {
+  background-color: #ffffff15;
+  border-radius: 10px;
+}
+.scrolling-content::-webkit-scrollbar-thumb {
+  background-color: var(--secondary-color);
+  border-radius: 10px;
+}

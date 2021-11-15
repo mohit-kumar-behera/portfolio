@@ -46,13 +46,17 @@ class SkillView extends View {
   }
 
   _generateMarkup() {
+    const breakup_point = 767;
+
     if (this._data.length == 0)
       return this._generateResponseMarkup(
         'info',
         'User has not added any detail about skills.'
       );
     const markup = `
-      <div class="row m-0">
+      <div class="row m-0 ${
+        window.innerWidth <= breakup_point ? 'scrolling-content' : 'normal-flow'
+      }">
         ${this._data.map(item => this._buildSkillCard(item)).join('')}
       </div>
     `;
