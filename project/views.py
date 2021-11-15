@@ -11,7 +11,11 @@ def all_projects(request):
 
 def view_project(request, slug):
 	try:
-		proj_num = Project.objects.get(slug=slug).project_num
+		# proj_num = Project.objects.get(slug=slug).project_num
+		# # project_meta = Project.objects.filter(slug=slug).values('name', 'project_num', 'thumbnail').first()
+		# # print(project_meta)
+		project_meta = Project.objects.all().meta_info(slug)
+		project_meta['page_url'] = request.path_info
 	except Project.DoesNotExist:
 		context = {
 		'error':{
@@ -21,5 +25,5 @@ def view_project(request, slug):
 		}
 		return render(request, 'error/error.html', context, status=404)
 	else:
-		context = {'proj_num': proj_num}
+		context = {'meta': project_meta}
 		return render(request, 'project/v-project.html', context)

@@ -74,9 +74,6 @@ class ProjectDetailView extends View {
   }
 
   _generateMarkup() {
-    // Update title tag
-    document.title = `Project ${this._data.project_num}: ${this._data.name}`;
-
     return this._buildProjectDetailMarkup(this._data);
   }
 }

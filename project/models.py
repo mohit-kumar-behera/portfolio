@@ -3,7 +3,22 @@ from django.urls import reverse
 from home.models import Profile, Technology
 from home.helper import image_directory_path
 from ckeditor.fields import RichTextField
-import uuid
+import uuid, re
+
+class ProjectQuerySet(models.QuerySet):
+    def meta_info(self, slug):
+        query = self.filter(slug=slug).first()  
+        context = {
+            "title": query.name,
+            "project_num": query.project_num,
+            "thumbnail": query.thumbnail.image_high_res.url,
+            "description": query.get_short_description()
+        }
+        return context
+
+class ProjectModelManager(models.Manager):
+    def get_queryset(self):
+        return ProjectQuerySet(self.model, using=self._db)
 
 class Project(models.Model):
     id = models.UUIDField(default=uuid.uuid4, primary_key=True, unique=True, editable=False)
@@ -25,6 +40,8 @@ class Project(models.Model):
     source_code_url = models.URLField(verbose_name='Source Code URL', null=True, blank=True)
     thumbnail = models.OneToOneField('ProjectImage', on_delete=models.CASCADE, null=True, blank=True, related_name='thumbnail')
 
+    objects = ProjectModelManager()
+
     def __str__(self):
         return self.name
     
@@ -33,6 +50,11 @@ class Project(models.Model):
 
     def get_absolute_url(self):
         return reverse('project:view_project', kwargs={'slug': self.slug})
+
+    def get_short_description(self):
+        markup_safe_text = re.sub('<[^<>]+>', '', self.description)
+        short_text = ". ".join(markup_safe_text.split(". ")[:6])
+        return short_text + "."
 
     class Meta:
         verbose_name_plural = 'Project'
