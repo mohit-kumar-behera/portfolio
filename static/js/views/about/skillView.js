@@ -53,6 +53,7 @@ class SkillView extends View {
         'info',
         'User has not added any detail about skills.'
       );
+      
     const markup = `
       <div class="row m-0 ${
         window.innerWidth <= breakup_point ? 'scrolling-content' : 'normal-flow'

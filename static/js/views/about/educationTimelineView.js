@@ -18,9 +18,9 @@ class EducationTimelineView extends View {
 				<div class="timeline--duration pill-badge text-weight-bold">${
           item.year_span
         }</div>
+        <div class="timeline--fromWhere">${item.name}, ${item.state}</div>
 				<div class="timeline--didWhat">${item.tag}</div>
         <div class="timeline--shortDescp">${item.short_descp}</div>
-				<div class="timeline--fromWhere">${item.name}, ${item.state}</div>
 			</div>
 		</div>
     `;

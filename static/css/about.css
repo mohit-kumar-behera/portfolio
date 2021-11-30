@@ -127,9 +127,12 @@
 .timeline--shortDescp {
   font-weight: lighter;
 }
-.timeline--didWhat,
+.timeline--fromWhere,
 .experience--position {
   font-weight: 800;
+}
+.timeline--didWhat {
+  font-weight: 600;
 }
 
 .normal-flow {
