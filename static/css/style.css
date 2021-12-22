@@ -399,6 +399,16 @@ body[data-mobile-device='false'] .bttn.secondary--type:focus:after {
   transform: scale(0.9);
   -webkit-transform: scale(0.9);
 }
+.show-more-div {
+  width: 100%;
+}
+.show-more-btn {
+  margin-top: 2rem;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  -webkit-transform: translateX(-50%);
+}
 /*-- Model Component --*/
 .overlay {
   position: fixed;

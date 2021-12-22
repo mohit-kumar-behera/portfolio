@@ -4,6 +4,25 @@ class AboutView extends View {
   constructor() {
     super();
     this._parentElement = document.querySelector('.about-awards--content');
+    this._showMoreBtnVisible = true;
+  }
+
+  addHandlerShowMoreBtn(handler) {
+    this._parentElement.addEventListener(
+      'click',
+      function (e) {
+        const btn = e.target.closest('.show-more-btn');
+        if (!btn) return;
+
+        // Scroll Up to Content Container
+        this._parentElement.closest('.about-awards').scrollIntoView({
+          behavior: 'smooth',
+        });
+
+        this._showMoreBtnVisible = false;
+        handler(this, true);
+      }.bind(this)
+    );
   }
 
   _buildAwardCard(item) {
@@ -15,6 +34,14 @@ class AboutView extends View {
         </div>
         <div class="overlay--div"><span>View</span></div>
       </div>
+    </div>
+    `;
+  }
+
+  _buildShowMoreBtn() {
+    return `
+    <div class="show-more-div">
+      <button class="bttn secondary--type show-more-btn">show more awards</button>
     </div>
     `;
   }
@@ -48,6 +75,7 @@ class AboutView extends View {
         <div class="display-card--wrapper">
         ${this._data.map(item => this._buildAwardCard(item)).join('')}
         </div>
+        ${this._showMoreBtnVisible ? this._buildShowMoreBtn() : ''}
     `;
     return markup;
   }

@@ -89,7 +89,7 @@ export const state = {
       items: [],
       totalResults: 0,
       currPage: 1,
-      resultsPerPage: windowWidth > 1400 ? 4 : windowWidth > 992 ? 6 : 4,
+      resultsPerPage: windowWidth > 1400 ? 8 : windowWidth > 992 ? 6 : 4,
     },
     detail: {
       content: {},
@@ -167,11 +167,11 @@ export const fetchUserExperienceDetail = async function (id) {
   }
 };
 
-export const fetchUserAwardDetail = async function (id) {
+export const fetchUserAwardDetail = async function (showAll = false) {
   try {
-    const responseData = id
-      ? await sendRequest(`/api/user/about/award/${id}`)
-      : await sendRequest('/api/user/about/award');
+    const responseData = await sendRequest(
+      `/api/user/about/award/?all=${showAll}`
+    );
     state.about.award = responseData.data;
   } catch (err) {
     throw err;

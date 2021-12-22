@@ -7,6 +7,13 @@ const RESPONSE_TYPE = {
   MESSAGE: 'message',
 };
 
+const wait = sec =>
+  new Promise(resolve =>
+    setTimeout(function () {
+      resolve();
+    }, sec * 1000)
+  );
+
 ///////////////////////////////////////////////////////////////////////////
 //////////////////////////// DEFAULT /////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////
@@ -215,15 +222,19 @@ const controlExperienceModel = async function (id) {
   }
 };
 
-const controlAwardView = async function (moduleCl) {
+const controlAwardView = async function (moduleCl, showMore = false) {
+  let shouldShowAll = false;
+  if (!(showMore instanceof Array) && showMore) shouldShowAll = true;
+
   try {
     // Loading Animation
     moduleCl.renderSkeleton(1);
 
     // Fetch Data
-    await model.fetchUserAwardDetail();
+    await model.fetchUserAwardDetail(shouldShowAll);
 
     // Render Data
+    if (!(showMore instanceof Array)) await wait(1);
     moduleCl.render(model.state.about.award);
   } catch (err) {
     // Render Error
@@ -470,6 +481,7 @@ export const aboutInit = async function () {
   experienceModule.default.addHandlerExperienceModelBtn(controlExperienceModel);
   awardModule.default.addHandlerRender(controlAwardView);
   awardModule.default.addHandlerImageView(controlImageView);
+  awardModule.default.addHandlerShowMoreBtn(controlAwardView);
 };
 
 export const projectInit = async function () {

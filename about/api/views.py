@@ -103,9 +103,14 @@ def api_skill_view(request):
 def api_award_view(request):
   profile = get_profile(user=get_user())
   if request.method == 'GET':
+    show_all = request.GET.get('all')
+    
     if profile:
       try:
-        user_awards = Award.objects.filter(profile=profile)
+        if show_all == 'true':
+          user_awards = Award.objects.filter(profile=profile)
+        else:
+          user_awards = Award.objects.filter(profile=profile)[:4]
       except:
         response = create_404_response()
         return Response(response, status=status.HTTP_404_NOT_FOUND) 
