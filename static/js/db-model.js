@@ -89,7 +89,7 @@ export const state = {
       items: [],
       totalResults: 0,
       currPage: 1,
-      resultsPerPage: windowWidth > 1400 ? 8 : windowWidth > 992 ? 6 : 4,
+      resultsPerPage: windowWidth > 1400 ? 4 : windowWidth > 992 ? 6 : 4,
     },
     detail: {
       content: {},

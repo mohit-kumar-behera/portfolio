@@ -302,6 +302,12 @@ const controlProjectList = async function (moduleCl, params) {
   } catch (err) {
     // Render Error
     moduleCl.renderResponseMessage(RESPONSE_TYPE.ERROR, err);
+  } finally {
+    // Scroll Up to Top
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
   }
 };
 
