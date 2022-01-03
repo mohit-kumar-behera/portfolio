@@ -400,14 +400,9 @@ body[data-mobile-device='false'] .bttn.secondary--type:focus:after {
   -webkit-transform: scale(0.9);
 }
 .show-more-div {
-  width: 100%;
-}
-.show-more-btn {
   margin-top: 2rem;
-  position: relative;
-  left: 50%;
-  transform: translateX(-50%);
-  -webkit-transform: translateX(-50%);
+  width: 100%;
+  text-align: center;
 }
 /*-- Model Component --*/
 .overlay {

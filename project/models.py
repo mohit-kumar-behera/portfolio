@@ -8,6 +8,8 @@ import uuid, re
 class ProjectQuerySet(models.QuerySet):
     def meta_info(self, slug):
         query = self.filter(slug=slug).first()  
+        if not query:
+            return {}
         context = {
             "title": query.name,
             "project_num": query.project_num,
