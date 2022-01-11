@@ -26,10 +26,16 @@ class ProjectDetailView extends View {
     </div>
     <div class="project-thumbnail-img animate-up">
       <img src="${
-        item.thumbnail && item.thumbnail.image_low_res
+        item.thumbnail
+          ? item.thumbnail.image_low_res
+          : '/static/media/project/project-default.png'
       }" class="project--img enlarge-img" alt="${
-      item.thumbnail?.name
-    }" data-src="${item.thumbnail && item.thumbnail.image_high_res}">
+      item.thumbnail ? item.thumbnail.name : 'default project card thumbnail'
+    }" data-src="${
+      item.thumbnail
+        ? item.thumbnail.image_high_res
+        : '/static/media/project/project-default.png'
+    }">
     </div>
     <div class="project--description animate-up">${item.description}</div>
     <div class="hr"></div>

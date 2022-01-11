@@ -13,9 +13,10 @@ class ProjectQuerySet(models.QuerySet):
         context = {
             "title": query.name,
             "project_num": query.project_num,
-            "thumbnail": query.thumbnail.image_high_res.url,
+            "thumbnail": query.thumbnail.image_high_res.url if query.thumbnail else '',
             "description": query.get_short_description()
         }
+        print(context)
         return context
 
 class ProjectModelManager(models.Manager):
