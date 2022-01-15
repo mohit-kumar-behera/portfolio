@@ -1,5 +1,5 @@
 {% extends 'base-2.html' %} {% load static %} 
-{% block title %}<title>My Projects - Mohit Kumar</title>{% endblock title %} 
+{% block title %}<title>My Portfolio - Mohit Kumar</title>{% endblock title %} 
 
 {% block page-stylesheet %}
 <link rel="stylesheet" type="text/css" href="{% static 'css/project.css' %}?{% now 'U' %}"/>
@@ -40,6 +40,10 @@
 
   <div class="page-content pagination" style="padding: 0.1rem">
     <div class="pagination--wrapper"></div>
+  </div>
+
+  <div class="page-content pagination mt-4" style="padding: 0.1rem">
+    <button class="bttn secondary--type mx-auto" onclick="window.location.href=`{% url 'project:all_projects' %}`">See All Projects</button>
   </div>
 
   <div class="page-content project--mentor mt-5 animate-up mid">

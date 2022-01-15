@@ -54,6 +54,9 @@ class Project(models.Model):
     def get_absolute_url(self):
         return reverse('project:view_project', kwargs={'slug': self.slug})
 
+    def get_description(self):
+        return re.sub('<[^<>]+>', '', self.description[:120]) + '...'
+
     def get_short_description(self):
         markup_safe_text = re.sub('<[^<>]+>', '', self.description)
         short_text = ". ".join(markup_safe_text.split(". ")[:6])

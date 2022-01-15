@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+import project
 from project.models import Project
 
 def redirect_to_portfolio(request):
@@ -10,7 +11,9 @@ def my_portfolio(request):
 
 
 def all_projects(request):
-	return render(request, 'project/project-all.html')
+	projects = Project.objects.all()
+	context = {'projects': projects} 
+	return render(request, 'project/project-all.html', context)
 
 
 def view_project(request, slug):

@@ -35,7 +35,36 @@
 {% block page-content %}
 
   <div class="page-content project">
-    <div class="project--wrapper flex-wrapper justify-content-around"></div>
+    <div class="project--wrapper flex-wrapper justify-content-around">
+      {% if projects %}
+        {% for project in projects %}
+          <div class="project--div">
+            <div class="project--card">
+              <div class="project-thumbnail-img">
+                {% if project.thumbnail %}
+                  <img src="{{ project.thumbnail.image_low_res.url }}"  class="project--img" alt="{{ project.thumbnail.name }}" />
+                {% else %}
+                  <img src="/static/media/project/project-default.png"  class="project--img" alt="{{ project.name }}" />
+                {% endif %}
+              </div>
+              <div class="project-content">
+                <div class="project-headline">
+                  <a href="{{ project.get_absolute_url }}" class="link display-card--link"></a>
+                  <h5 class="headline text-weight-bold">{{ project.name }}</h5>
+                  <p>{{ project.get_description }}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      {% else %}
+        <div class="response--div info animate-up">
+          <i class="icon fa fa-info-circle"></i>
+          <p>Sorry! There are no projects yet. It will be added soon.🧐</p>
+          <a href="{% url 'home:home' %}">Back Home</a>
+        </div>
+      {% endif %}
+    </div>
   </div>
 
 {% endblock page-content %}

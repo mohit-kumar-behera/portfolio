@@ -91,9 +91,9 @@ class App {
         break;
       case 'project':
         const type = location.pathname.split('/')[2].toLowerCase();
-        if (type === 'all') console.log('hello from ele');
-        else if (type === 'v') controller.projectDetailInit();
-        else controller.projectInit();
+        if (type === '') controller.projectInit();
+        // URL: /project/
+        else if (type === 'v') controller.projectDetailInit(); // URL: /project/v/:slug/
         break;
     }
 
