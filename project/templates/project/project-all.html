@@ -6,7 +6,7 @@
 <link rel="stylesheet" type="text/css" href="{% static 'css/pagination.css' %}?{% now 'U' %}"/>
 {% endblock page-stylesheet %} 
 
-{% block page-title %}<span>My <span class="text secondary--type">Projects</span></span>{% endblock page-title %}
+{% block page-title %}<span>My <span class="text secondary--type">{{ num_of_projects }}</span> Projects</span>{% endblock page-title %}
 
 {% block meta %}
 <meta name="description" content="In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content.">
