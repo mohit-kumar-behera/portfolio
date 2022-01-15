@@ -90,9 +90,10 @@ class App {
         controller.aboutInit();
         break;
       case 'project':
-        const type = location.pathname.split('/')[2];
-        if (type.toLowerCase() === 'all') controller.projectInit();
-        else controller.projectDetailInit();
+        const type = location.pathname.split('/')[2].toLowerCase();
+        if (type === 'all') console.log('hello from ele');
+        else if (type === 'v') controller.projectDetailInit();
+        else controller.projectInit();
         break;
     }
 

@@ -1,12 +1,16 @@
 from django.shortcuts import render, redirect
 from project.models import Project
 
-def redirect_to_all_projects(request):
-	return redirect('project:all_projects')
+def redirect_to_portfolio(request):
+	return redirect('project:my_portfolio')
+
+
+def my_portfolio(request):
+	return render(request, 'project/project.html')
 
 
 def all_projects(request):
-	return render(request, 'project/project.html')
+	return render(request, 'project/project-all.html')
 
 
 def view_project(request, slug):
