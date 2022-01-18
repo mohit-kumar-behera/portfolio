@@ -126,6 +126,9 @@
   line-height: 1.7;
   margin-bottom: 0.8rem;
 }
+.project--description p {
+  font-size: 1.1em;
+}
 .project--description a {
   color: var(--secondary-color);
   font-weight: 600;
@@ -136,7 +139,27 @@
 }
 .project--description ul,
 .project--description ol {
-  padding-left: 1.7rem;
+  padding-left: 1.85rem;
+}
+.project--description li:not(:last-child) {
+  margin-bottom: 0.3rem;
+}
+.project--description kbd {
+  background-color: var(--dark-shade6);
+  color: var(--light-shade1);
+  padding: 0.4rem 0.8rem;
+}
+.project--description > div {
+  background-color: var(--dark-shade6);
+  border-radius: 5px;
+  padding: 0.7rem;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+}
+.project--description code {
+  color: #7fffff;
 }
 .project--description p.note {
   margin-top: 3rem;
