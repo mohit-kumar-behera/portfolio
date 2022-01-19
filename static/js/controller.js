@@ -131,7 +131,8 @@ const controlPersonalDetail = async function (moduleCl) {
     moduleCl.render(model.state.about.personalDetail);
 
     // Attach CV Button
-    moduleCl.attachCVButton(model.state.about.personalDetail.cv);
+    model.state.about.personalDetail.cv.url &&
+      moduleCl.attachCVButton(model.state.about.personalDetail.cv);
   } catch (err) {
     // Render Error
     moduleCl.renderResponseMessage(RESPONSE_TYPE.ERROR, err);

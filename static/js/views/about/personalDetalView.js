@@ -8,13 +8,7 @@ class PersonalDetalView extends View {
 
   attachCVButton(cv) {
     const CVButtonMarkup = `
-    <a href="${
-      cv.url
-    }" target="_blank" class="bttn secondary--type download-cv--btn" ${
-      cv.url ? '' : 'disabled'
-    } title="${cv.url ? 'View my CV' : 'CV not available'}">${
-      cv.displayName
-    }</a>
+    <button class="bttn secondary--type" onclick="window.open('${cv.url}', '_blank')">view cv</a>
     `;
     this._parentElement.insertAdjacentHTML('afterend', CVButtonMarkup);
   }
