@@ -22,7 +22,7 @@ class ProjectDetailSerializer(serializers.ModelSerializer):
   tech_stack = TechnologySerializer(many=True)
   thumbnail = ProjectImageSerializer(many=False)
   profile = serializers.SerializerMethodField()
-  short_description = serializers.SerializerMethodField()
+  short_description = serializers.SerializerMethodField('get_description')
 
   class Meta:
     model = Project
@@ -33,11 +33,9 @@ class ProjectDetailSerializer(serializers.ModelSerializer):
       'id': project.profile.id,
       'username': project.profile.user.username
     }
-
-  def get_short_description(self, project):
-    markup_safe_text = re.sub('<[^<>]+>', '', project.description)
-    short_text = ". ".join(markup_safe_text.split(". ")[:6])
-    return short_text + "."
+  
+  def get_description(self, project):
+    return project.get_short_description()
 
 
 class ProjectListSerializer(serializers.ModelSerializer):
@@ -54,4 +52,4 @@ class ProjectListSerializer(serializers.ModelSerializer):
     return project.get_absolute_url()
 
   def get_description(self, project):
-    return re.sub('<[^<>]+>', '', project.description[:120]) + '...'
+    return project.get_short_description()

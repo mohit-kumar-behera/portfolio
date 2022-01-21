@@ -1,5 +1,6 @@
 from django.db import models
 from django.urls import reverse
+from django.utils.html import strip_tags
 from home.models import Profile, Technology
 from home.helper import image_directory_path
 from ckeditor.fields import RichTextField
@@ -56,13 +57,11 @@ class Project(models.Model):
     def get_absolute_url(self):
         return reverse('project:view_project', kwargs={'slug': self.slug})
 
-    def get_description(self):
-        return re.sub('<[^<>]+>', '', self.description[:120]) + '...'
-
     def get_short_description(self):
-        markup_safe_text = re.sub('<[^<>]+>', '', self.description)
-        short_text = ". ".join(markup_safe_text.split(". ")[:6])
-        return short_text + "."
+        MAX_DESCRIPTION_SIZE = 100
+        stripped_str = strip_tags(self.description)[:MAX_DESCRIPTION_SIZE]
+        stripped_str = re.sub('&nbsp;', ' ', stripped_str)
+        return stripped_str
 
     class Meta:
         verbose_name_plural = 'Project'
