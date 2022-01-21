@@ -17,7 +17,8 @@ def all_projects(request):
 
 def view_project(request, slug):
 	try:
-		project_meta = Project.objects.all().meta_info(slug)
+		project_meta = Project.objects.meta_info(slug)
+
 		if not project_meta:
 			raise Exception("Content not found for this search")
 		project_meta['page_url'] = request.path_info

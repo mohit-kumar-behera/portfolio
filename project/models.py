@@ -16,12 +16,14 @@ class ProjectQuerySet(models.QuerySet):
             "thumbnail": query.thumbnail.image_high_res.url if query.thumbnail else '',
             "description": query.get_short_description()
         }
-        print(context)
         return context
 
 class ProjectModelManager(models.Manager):
     def get_queryset(self):
         return ProjectQuerySet(self.model, using=self._db)
+    
+    def meta_info(self, slug):
+        return self.get_queryset().meta_info(slug)
 
 class Project(models.Model):
     id = models.UUIDField(default=uuid.uuid4, primary_key=True, unique=True, editable=False)
