@@ -45,6 +45,7 @@ class Project(models.Model):
     video_url = models.URLField(verbose_name='Video Demo URL', null=True, blank=True)
     source_code_url = models.URLField(verbose_name='Source Code URL', null=True, blank=True)
     thumbnail = models.OneToOneField('ProjectImage', on_delete=models.CASCADE, null=True, blank=True, related_name='thumbnail')
+    highlight = models.BooleanField(verbose_name='Hightlight Project', default=False)
 
     objects = ProjectModelManager()
 
