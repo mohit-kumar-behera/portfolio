@@ -42,8 +42,9 @@
     <div class="pagination--wrapper"></div>
   </div>
 
-  <div class="page-content pagination mt-4" style="padding: 0.1rem">
-    <button class="bttn secondary--type mx-auto" onclick="window.location.href=`{% url 'project:all_projects' %}`">See All Projects</button>
+  <div class="page-content project-page-btn mt-4" style="padding: 0.1rem">
+    <button class="bttn secondary--type" onclick="window.location.href=`{% url 'project:highlighted_projects' %}`">Highlighted Projects</button>
+    <button class="bttn secondary--type" onclick="window.location.href=`{% url 'project:all_projects' %}`">See All Projects</button>
   </div>
 
   <div class="page-content project--mentor mt-5 animate-up mid">

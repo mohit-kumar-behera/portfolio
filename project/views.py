@@ -15,6 +15,12 @@ def all_projects(request):
 	return render(request, 'project/project-all.html', context)
 
 
+def highlighted_projects(request):
+	projects = Project.objects.filter(highlight=True)[:6]
+	context = {'projects': projects, 'num_of_projects': projects.count()}
+	return render(request, 'project/project-all.html', context)
+
+
 def view_project(request, slug):
 	try:
 		project_meta = Project.objects.meta_info(slug)
