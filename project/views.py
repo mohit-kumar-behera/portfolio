@@ -11,13 +11,15 @@ def my_portfolio(request):
 
 def all_projects(request):
 	projects = Project.objects.all()
-	context = {'projects': projects, 'num_of_projects': projects.count()} 
+	is_admin = request.user.is_authenticated and request.user.is_admin
+	context = {'projects': projects, 'num_of_projects': projects.count(), 'is_admin': is_admin} 
 	return render(request, 'project/project-all.html', context)
 
 
 def highlighted_projects(request):
 	projects = Project.objects.filter(highlight=True)[:6]
-	context = {'projects': projects, 'num_of_projects': projects.count()}
+	is_admin = request.user.is_authenticated and request.user.is_admin
+	context = {'projects': projects, 'num_of_projects': projects.count(), 'is_admin': is_admin}
 	return render(request, 'project/project-all.html', context)
 
 

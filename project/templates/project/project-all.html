@@ -38,7 +38,7 @@
     <div class="project--wrapper flex-wrapper justify-content-around">
       {% if projects %}
         {% for project in projects %}
-          <div class="project--div">
+          <div class="project--div category-all">
             <div class="project--card">
               <div class="project-thumbnail-img">
                 {% if project.thumbnail %}
@@ -52,8 +52,20 @@
                   <a href="{{ project.get_absolute_url }}" class="link display-card--link"></a>
                   <h5 class="headline text-weight-bold">{{ project.name }}</h5>
                   <p>{{ project.get_short_description }}</p>
-                </div>
+                </div>  
               </div>
+
+              {% if is_admin %}
+                <div class="set-highlight-star {% if project.highlight %}active{% endif %}">
+                  <i class="fa fa-trophy trophy-icon"></i>
+                </div>
+              {% endif %}
+
+              {% if project.highlight %}
+                <div class="highlight-star-div">
+                  <i class="fa fa-star star-icon"></i>
+                </div>
+              {% endif %}
             </div>
           </div>
         {% endfor %}

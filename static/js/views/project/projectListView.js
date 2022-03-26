@@ -44,6 +44,12 @@ class ProjectDetailView extends View {
             ${item.tech_stack.map(entry => this._addTechBadge(entry)).join('')}
           </div>
         </div>
+
+        ${
+          item.highlight
+            ? '<div class="highlight-star-div"><i class="fa fa-star star-icon"></i></div>'
+            : ''
+        }
       </div>
     </div>
     `;
@@ -79,6 +85,7 @@ class ProjectDetailView extends View {
         'error',
         "Sorry! Couldn't find any related projects to this search.🧐"
       );
+
     return this._data.map(item => this._buildProjectCard(item)).join('');
   }
 }

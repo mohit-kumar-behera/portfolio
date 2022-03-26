@@ -46,7 +46,7 @@ class ProjectListSerializer(serializers.ModelSerializer):
 
   class Meta:
     model = Project
-    fields = ('name', 'thumbnail', 'tech_stack', 'url', 'description')
+    fields = ('name', 'thumbnail', 'tech_stack', 'url', 'description', 'highlight')
 
   def get_url(self, project):
     return project.get_absolute_url()
