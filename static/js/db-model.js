@@ -95,6 +95,7 @@ export const state = {
       content: {},
       images: [],
     },
+    projectHighlight: false,
   },
 };
 
@@ -216,6 +217,19 @@ export const fetchProjectDetail = async function (slug) {
   try {
     const responseData = await sendRequest(`/api/user/project/v/${slug}`);
     state.project.detail.content = responseData.data;
+  } catch (err) {
+    throw err;
+  }
+};
+
+export const setProjectHighlighter = async function (id, formData) {
+  try {
+    const responseData = await sendRequest(
+      `/api/user/project/v/${id}/highlight`,
+      formData,
+      'post'
+    );
+    state.project.projectHighlight = responseData.data;
   } catch (err) {
     throw err;
   }

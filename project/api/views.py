@@ -60,6 +60,23 @@ def api_project_detail_view(request, slug):
     return Response(response, status=status.HTTP_404_NOT_FOUND)
 
 
+@api_view(['POST'])
+def api_project_highlight_views(request, pid):
+  if request.method == 'POST':
+    try:
+      project = Project.objects.get(id=pid)
+    except Project.DoesNotExist:
+      response = create_404_response()
+      return Response(response, status=status.HTTP_404_NOT_FOUND)
+    else:
+      project.highlight = request.data.get('setProjectHighlight')
+      project.save()
+      response = create_200_response(data={'highlight': project.highlight})
+      return Response(response, status=status.HTTP_200_OK)
+  response = create_404_response()
+  return Response(response, status=status.HTTP_404_NOT_FOUND)
+
+
 @api_view(['GET'])
 def api_project_detail_techstack_view(request, slug):
   profile = get_profile(user=get_user())
@@ -119,3 +136,4 @@ def api_project_image_detail_view(request, id):
         return Response(response, status=status.HTTP_200_OK)
     response = create_404_response()
     return Response(response, status=status.HTTP_404_NOT_FOUND)
+  

@@ -7,7 +7,7 @@ const RESPONSE_TYPE = {
   MESSAGE: 'message',
 };
 
-const wait = sec =>
+export const wait = sec =>
   new Promise(resolve =>
     setTimeout(function () {
       resolve();

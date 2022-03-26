@@ -29,7 +29,9 @@
   padding: 0;
   border: 0.5px solid #ffffff20;
 
+  /*------#################################---------*/
   position: relative;
+  /*------#################################---------*/
 }
 .project--card .project-thumbnail-img,
 .project--card .project-thumbnail-img > .project--img {
@@ -39,19 +41,18 @@
   border-top-right-radius: inherit;
 }
 
+/*------#################################---------*/
 .project--div {
   margin-bottom: 1.6rem;
 }
 .project--card .set-highlight-star {
   padding: 1rem;
-  display: flex;
   position: absolute;
   bottom: -10px;
   right: -10px;
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  justify-content: center;
   background-color: var(--dark-shade4);
   border: 0.02px solid var(--light-shade1);
   cursor: pointer;
@@ -81,7 +82,13 @@
 .set-highlight-star > .trophy-icon {
   font-size: 1.2rem;
   position: relative;
-  top: -5px;
+  top: -5.5px;
+  right: 5.4px;
+}
+.set-highlight-star > .spinner-border {
+  position: relative;
+  top: -10px;
+  right: 5px;
 }
 .highlight-star-div > .star-icon {
   font-size: 2.5rem;
@@ -89,6 +96,7 @@
   text-shadow: 4.2px 5.5px 5px rgba(20, 47, 67, 0.6),
     -2px -2px 6px rgba(255, 171, 76, 0.5);
 }
+/*------#################################---------*/
 
 .project-thumbnail-img {
   cursor: pointer;
