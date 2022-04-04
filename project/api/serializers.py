@@ -1,7 +1,6 @@
 from rest_framework import serializers
 from home.api.serializers import TechnologySerializer
 from project.models import Project, ProjectImage
-import re
 
 
 class ProjectImageSerializer(serializers.ModelSerializer):
