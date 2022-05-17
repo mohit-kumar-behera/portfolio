@@ -11,6 +11,7 @@ from contact.api.serializers import (
   AddressSerializer, ContactSerializer, 
   MessageSerializer, SocialAccountSerializer
 )
+from emailer import emailSender
 import uuid, re
 
 EMAIL_REGEX = re.compile(r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b')
@@ -167,6 +168,7 @@ def api_send_message_view(request):
         response = create_400_response(data=VALID_FIELD_GUIDE)
         return Response(response, status=status.HTTP_400_BAD_REQUEST)
       try:
+        pass
         message_obj = Message.objects.create(
           profile=profile,
           name=data_obj.get('name'),
@@ -180,6 +182,10 @@ def api_send_message_view(request):
       else:
         curr_message_entry = Message.objects.get(id=uuid.UUID(str(message_obj.id)))
         serializer = MessageSerializer(curr_message_entry, many=False)
+
+        # SEND EMAIL
+        emailSender.send_mail(curr_message_entry)
+
         response = create_200_response(serializer.data)
         return Response(response, status=status.HTTP_201_CREATED)
     response = create_404_response()
